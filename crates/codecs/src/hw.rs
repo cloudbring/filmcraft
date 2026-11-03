@@ -302,7 +302,7 @@ impl NalStreamInfo {
         if !sets.iter().any(|n| nal_type(n) == Some(32)) || !sets.iter().any(|n| nal_type(n) == Some(34)) {
             return Err(CodecError::Decode("hvcC lacks a VPS or PPS".into()));
         }
-        let sps = filmcraft_hevc::params::Sps::parse(&craft_bitstream::unescape_rbsp(sps_nal.get(2..).unwrap_or_default()))
+        let sps = craft_hevc::params::Sps::parse(&craft_bitstream::unescape_rbsp(sps_nal.get(2..).unwrap_or_default()))
             .map_err(|e| CodecError::Decode(e.to_string()))?;
         let crop = sps.crop_rect();
         let vui = sps.vui.clone().unwrap_or_default();

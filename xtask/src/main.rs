@@ -47,7 +47,6 @@ const LAYERS: &[(&str, u8)] = &[
     ("ogg", 0),
     ("riff", 0),
     ("h264enc", 0),
-    ("hevc", 0),
     ("vp8", 0),
     ("vp9", 0),
     ("prores", 0),
@@ -55,7 +54,6 @@ const LAYERS: &[(&str, u8)] = &[
     ("dnx", 0),
     ("apv", 0),
     ("dng", 0),
-    ("av1", 0),
     ("aac", 0),
     ("flac", 0),
     ("opus", 0),
@@ -435,7 +433,6 @@ mod serve_tests {
 
 /// (crate, test target, test) whose ignored test builds that crate's fixture matrix.
 const FIXTURE_GENERATORS: &[(&str, &str, &str)] = &[
-    ("hevc", "it", "conformance::generate_fixtures"),
     ("isobmff", "it", "oracle_demux::generate_fixtures"),
     ("matroska", "oracle", "generate_fixtures"),
     ("prores", "it", "oracle_decode::generate_fixtures"),

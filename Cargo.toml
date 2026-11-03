@@ -11,9 +11,11 @@ rust-version = "1.95"
 repository = "https://github.com/storytold/filmcraft"
 
 [workspace.dependencies]
-# TODO(#48): repoint to storytold/craft-libs once craft-h264 merges
-craft-bitstream = { git = "https://github.com/cloudbring/craft-libs", branch = "algo/48-craft-h264" }
-craft-h264 = { git = "https://github.com/cloudbring/craft-libs", branch = "algo/48-craft-h264" }
+# TODO(#48): repoint to storytold/craft-libs once the shared codecs merge
+craft-bitstream = { git = "https://github.com/cloudbring/craft-libs", branch = "algo/48-craft-av1" }
+craft-h264 = { git = "https://github.com/cloudbring/craft-libs", branch = "algo/48-craft-av1" }
+craft-hevc = { git = "https://github.com/cloudbring/craft-libs", branch = "algo/48-craft-av1" }
+craft-av1 = { git = "https://github.com/cloudbring/craft-libs", branch = "algo/48-craft-av1" }
 
 # internal
 filmcraft-time = { path = "crates/time" }
@@ -29,14 +31,12 @@ filmcraft-mpeg2v = { path = "crates/mpeg2v" }
 filmcraft-ac3 = { path = "crates/ac3" }
 filmcraft-mpa = { path = "crates/mpa" }
 filmcraft-ogg = { path = "crates/ogg" }
-filmcraft-hevc = { path = "crates/hevc" }
 filmcraft-vp8 = { path = "crates/vp8" }
 filmcraft-vp9 = { path = "crates/vp9" }
 filmcraft-prores = { path = "crates/prores" }
 filmcraft-dnx = { path = "crates/dnx" }
 filmcraft-apv = { path = "crates/apv" }
 filmcraft-dng = { path = "crates/dng" }
-filmcraft-av1 = { path = "crates/av1" }
 filmcraft-aac = { path = "crates/aac" }
 filmcraft-flac = { path = "crates/flac" }
 filmcraft-opus = { path = "crates/opus" }
@@ -120,7 +120,7 @@ opt-level = 3
 [profile.dev.package.filmcraft-h264enc]
 opt-level = 3
 
-[profile.dev.package.filmcraft-hevc]
+[profile.dev.package.craft-hevc]
 opt-level = 3
 
 [profile.dev.package.filmcraft-prores]
@@ -135,7 +135,7 @@ opt-level = 3
 [profile.dev.package.filmcraft-dng]
 opt-level = 3
 
-[profile.dev.package.filmcraft-av1]
+[profile.dev.package.craft-av1]
 opt-level = 3
 
 [profile.dev.package.filmcraft-aac]

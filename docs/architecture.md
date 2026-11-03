@@ -28,9 +28,9 @@ Design principles:
  L3  render · gpu · export · golden (test-only)
  L2  edit · codecs · interchange · captions · speech · tts · tts-text
  L1  frame · media · project · audio-dsp · text
-     shared dependencies below all workspace layers: craft-bitstream · craft-h264 (craft-libs)
+     shared dependencies below all workspace layers: craft-bitstream · craft-h264 · craft-hevc · craft-av1 (craft-libs)
  L0  foundation: time · geom · color · testkit (dev-dependency only)
-     codecs/containers: isobmff · matroska · mxf · cfb · mpegts · ogg · h264enc · hevc · vp9 · av1 · mpeg2v · prores · dnx · apv · dng · aac · ac3 · mpa · opus
+     codecs/containers: isobmff · matroska · mxf · cfb · mpegts · ogg · h264enc · vp9 · mpeg2v · prores · dnx · apv · dng · aac · ac3 · mpa · opus
 ```
 
 Crates are named `filmcraft-<dir>` (`crates/time` is `filmcraft-time`). The apps are `filmcraft`
@@ -50,12 +50,12 @@ and `filmcraft-cli`.
 | `ogg` | L0 | Ogg demux (RFC 3533), Ogg Opus timing (RFC 7845 granules, pre-skip, end trimming), Vorbis headers |
 | `craft-h264` (craft-libs) | shared | H.264 decoder |
 | `h264enc` | L0 | H.264 encoder |
-| `hevc` | L0 | H.265 Main/Main 10 decoder |
+| `craft-hevc` (craft-libs) | shared | H.265 Main/Main 10 decoder |
 | `prores` | L0 | ProRes decoder and encoder |
 | `dnx` | L0 | DNxHD / DNxHR (SMPTE ST 2019-1 VC-3) decoder and DNxHR encoder |
 | `apv` | L0 | Advanced Professional Video (IETF RFC 9924) decoder and encoder ([README](../crates/apv/README.md)) |
 | `dng` | L0 | DNG / CinemaDNG camera RAW decoder: TIFF container, uncompressed and lossless JPEG raw data, DNG processing to linear Rec. 709 ([README](../crates/dng/README.md)) |
-| `av1` | L0 | AV1 decoder (Main profile; bit-exact with libdav1d; see its README for the stage table) |
+| `craft-av1` (craft-libs) | shared | AV1 decoder (Main profile; bit-exact with libdav1d; see its README for the stage table) |
 | `mpeg2v` | L0 | MPEG-2 video (Main / 4:2:2 profile; frame and field pictures, dual prime) and MPEG-1 video decoder ([README](../crates/mpeg2v/README.md)) |
 | `aac` | L0 | AAC-LC decoder and encoder |
 | `ac3` | L0 | AC-3 (ATSC A/52) decoder ([README](../crates/ac3/README.md)) |
@@ -96,7 +96,7 @@ are exempt):
 | Every crate has a layer | A new crate fails the check until it is added to `LAYERS`. |
 | Only downward edges | A crate may not depend on a crate in a higher layer. |
 | Same-layer edges are listed | From L1 up, a same-layer edge must be in `SAME_LAYER`: `media→frame`, `project→media`, `project→frame`, `gpu→render`, `export→render`, `cli→filmcraft`, plus a few reserved for planned crates. |
-| L0 codecs stay standalone | L0 crates other than `time`, `geom`, `color`, `testkit` may depend on no workspace crate. Shared `craft-bitstream`/`craft-h264` sit below every workspace layer; external crates such as `thiserror` and `rayon` are allowed. |
+| L0 codecs stay standalone | L0 crates other than `time`, `geom`, `color`, `testkit` may depend on no workspace crate. Shared `craft-bitstream`/`craft-h264`/`craft-hevc`/`craft-av1` sit below every workspace layer; external crates such as `thiserror` and `rayon` are allowed. |
 | No UI/OS crates below L5 | `egui`, `eframe`, `egui-wgpu`, `winit`, `rfd`, `cpal`, `muda` are allowed only in L5 and L6. |
 
 `cargo xtask wasm` runs `cargo check --target wasm32-unknown-unknown` on every L0–L4 crate, the

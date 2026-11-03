@@ -5,7 +5,7 @@
 #![cfg(target_os = "windows")]
 
 use craft_bitstream::unescape_rbsp;
-use filmcraft_hevc::params::Sps;
+use craft_hevc::params::Sps;
 use filmcraft_isobmff::{HevcConfig, SampleEntry};
 use filmcraft_platform::nvenc::{Codec, Config, Nvenc, Packet, Profile, annex_b_to_length_prefixed_for, hevc_available, nal_type};
 

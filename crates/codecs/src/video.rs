@@ -398,23 +398,23 @@ pub fn h264_factory(e: &SampleEntry) -> Option<Result<Box<dyn VideoDecoder>>> {
 /// Our pure-Rust HEVC decoder (Main / Main 10, frame-threaded).
 pub struct HevcDecoder {
     hvcc: Vec<u8>,
-    dec: filmcraft_hevc::Decoder,
+    dec: craft_hevc::Decoder,
     length_size: usize,
     highest_tid: Option<u8>,
 }
 
 impl HevcDecoder {
     pub fn new(hvcc: Vec<u8>) -> Result<Self> {
-        let dec = filmcraft_hevc::Decoder::from_hvcc(&hvcc).map_err(hevc_error)?;
+        let dec = craft_hevc::Decoder::from_hvcc(&hvcc).map_err(hevc_error)?;
         let (length_size, highest_tid) = hvcc_length_size_and_tid(&hvcc);
         Ok(Self { hvcc, dec, length_size, highest_tid })
     }
     /// A decoder for Annex B byte-stream samples (start codes, in-band parameter sets: TS).
     pub fn annexb() -> Self {
-        Self { hvcc: Vec::new(), dec: filmcraft_hevc::Decoder::new(), length_size: 0, highest_tid: None }
+        Self { hvcc: Vec::new(), dec: craft_hevc::Decoder::new(), length_size: 0, highest_tid: None }
     }
-    fn convert(p: filmcraft_hevc::Picture) -> DecodedFrame {
-        use filmcraft_hevc::Plane;
+    fn convert(p: craft_hevc::Picture) -> DecodedFrame {
+        use craft_hevc::Plane;
         use std::sync::Arc;
         let (w, h) = (p.width as usize, p.height as usize);
         let (cw, ch) = (p.chroma_width as usize, p.chroma_height as usize);
@@ -446,9 +446,9 @@ impl HevcDecoder {
 }
 
 /// An HEVC decoder error as a [`CodecError`] (see [`h264_error`]).
-fn hevc_error(e: filmcraft_hevc::Error) -> CodecError {
+fn hevc_error(e: craft_hevc::Error) -> CodecError {
     match e {
-        filmcraft_hevc::Error::Unsupported(what) => CodecError::Unsupported(format!("HEVC: {what}")),
+        craft_hevc::Error::Unsupported(what) => CodecError::Unsupported(format!("HEVC: {what}")),
         e => CodecError::Decode(e.to_string()),
     }
 }
@@ -463,8 +463,8 @@ impl VideoDecoder for HevcDecoder {
     }
     fn reset(&mut self) {
         if self.hvcc.is_empty() {
-            self.dec = filmcraft_hevc::Decoder::new();
-        } else if let Ok(d) = filmcraft_hevc::Decoder::from_hvcc(&self.hvcc) {
+            self.dec = craft_hevc::Decoder::new();
+        } else if let Ok(d) = craft_hevc::Decoder::from_hvcc(&self.hvcc) {
             self.dec = d;
         }
     }
@@ -670,17 +670,17 @@ pub fn vp8_factory(e: &SampleEntry) -> Option<Result<Box<dyn VideoDecoder>>> {
 /// Our AV1 decoder. The `av1C` configuration OBUs (sequence header) are fed before the first
 /// sample and again after every reset.
 pub struct Av1Decoder {
-    dec: filmcraft_av1::Decoder,
+    dec: craft_av1::Decoder,
     config_obus: Vec<u8>,
     primed: bool,
 }
 
 impl Av1Decoder {
     pub fn new(config_obus: Vec<u8>) -> Av1Decoder {
-        Av1Decoder { dec: filmcraft_av1::Decoder::new(), config_obus, primed: false }
+        Av1Decoder { dec: craft_av1::Decoder::new(), config_obus, primed: false }
     }
 
-    fn convert(p: filmcraft_av1::Picture, pts: i64) -> DecodedFrame {
+    fn convert(p: craft_av1::Picture, pts: i64) -> DecodedFrame {
         use std::sync::Arc;
         let draft = p.draft;
         let w = p.width as usize;
@@ -738,7 +738,7 @@ impl VideoDecoder for Av1Decoder {
             .collect()
     }
     fn reset(&mut self) {
-        self.dec = filmcraft_av1::Decoder::new();
+        self.dec = craft_av1::Decoder::new();
         self.primed = false;
     }
     fn name(&self) -> &str {
@@ -748,7 +748,7 @@ impl VideoDecoder for Av1Decoder {
         self.dec.set_draft(on);
     }
     fn is_random_access(&self, sample: &[u8]) -> Option<bool> {
-        Some(filmcraft_av1::is_key_frame_unit(sample))
+        Some(craft_av1::is_key_frame_unit(sample))
     }
 }
 

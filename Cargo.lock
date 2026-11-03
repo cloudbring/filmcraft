@@ -1059,11 +1059,21 @@ dependencies = [
 ]
 
 [[package]]
+name = "craft-av1"
+version = "0.1.0"
+source = "git+https://github.com/cloudbring/craft-libs?branch=algo%2F48-craft-av1#58f8a71e1f29d1ff6238e8eed5215873249550c9"
+dependencies = [
+ "craft-bitstream",
+ "rayon",
+ "thiserror 2.0.21",
+]
+
+[[package]]
 name = "craft-bitstream"
 version = "0.1.0"
-source = "git+https://github.com/cloudbring/craft-libs?branch=algo%2F48-craft-h264#935b3523ef56b00f97ff6bba4b989108e3a51a33"
+source = "git+https://github.com/cloudbring/craft-libs?branch=algo%2F48-craft-av1#58f8a71e1f29d1ff6238e8eed5215873249550c9"
 dependencies = [
- "craft-media 0.1.0 (git+https://github.com/cloudbring/craft-libs?branch=algo%2F48-craft-h264)",
+ "craft-media 0.1.0 (git+https://github.com/cloudbring/craft-libs?branch=algo%2F48-craft-av1)",
 ]
 
 [[package]]
@@ -1079,7 +1089,17 @@ source = "git+https://github.com/storytold/craft-libs?rev=c5a1cbfb5f9049f9270955
 [[package]]
 name = "craft-h264"
 version = "0.1.0"
-source = "git+https://github.com/cloudbring/craft-libs?branch=algo%2F48-craft-h264#935b3523ef56b00f97ff6bba4b989108e3a51a33"
+source = "git+https://github.com/cloudbring/craft-libs?branch=algo%2F48-craft-av1#58f8a71e1f29d1ff6238e8eed5215873249550c9"
+dependencies = [
+ "craft-bitstream",
+ "rayon",
+ "thiserror 2.0.21",
+]
+
+[[package]]
+name = "craft-hevc"
+version = "0.1.0"
+source = "git+https://github.com/cloudbring/craft-libs?branch=algo%2F48-craft-av1#58f8a71e1f29d1ff6238e8eed5215873249550c9"
 dependencies = [
  "craft-bitstream",
  "rayon",
@@ -1112,7 +1132,7 @@ dependencies = [
 [[package]]
 name = "craft-media"
 version = "0.1.0"
-source = "git+https://github.com/cloudbring/craft-libs?branch=algo%2F48-craft-h264#935b3523ef56b00f97ff6bba4b989108e3a51a33"
+source = "git+https://github.com/cloudbring/craft-libs?branch=algo%2F48-craft-av1#58f8a71e1f29d1ff6238e8eed5215873249550c9"
 dependencies = [
  "thiserror 2.0.21",
 ]
@@ -1943,17 +1963,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "filmcraft-av1"
-version = "0.17.0"
-dependencies = [
- "craft-bitstream",
- "filmcraft-testkit",
- "rayon",
- "rustix 1.1.5",
- "thiserror 2.0.21",
-]
-
-[[package]]
 name = "filmcraft-avi"
 version = "0.17.0"
 dependencies = [
@@ -2003,17 +2012,17 @@ dependencies = [
 name = "filmcraft-codecs"
 version = "0.17.0"
 dependencies = [
+ "craft-av1",
  "craft-bitstream",
  "craft-h264",
+ "craft-hevc",
  "filmcraft-aac",
  "filmcraft-ac3",
  "filmcraft-apv",
- "filmcraft-av1",
  "filmcraft-avi",
  "filmcraft-color",
  "filmcraft-dnx",
  "filmcraft-frame",
- "filmcraft-hevc",
  "filmcraft-isobmff",
  "filmcraft-matroska",
  "filmcraft-media",
@@ -2233,16 +2242,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "filmcraft-hevc"
-version = "0.17.0"
-dependencies = [
- "craft-bitstream",
- "filmcraft-testkit",
- "rayon",
- "thiserror 2.0.21",
-]
-
-[[package]]
 name = "filmcraft-interchange"
 version = "0.17.0"
 dependencies = [
@@ -2348,11 +2347,11 @@ version = "0.17.0"
 dependencies = [
  "craft-bitstream",
  "craft-h264",
+ "craft-hevc",
  "filmcraft-codecs",
  "filmcraft-color",
  "filmcraft-export",
  "filmcraft-frame",
- "filmcraft-hevc",
  "filmcraft-isobmff",
  "filmcraft-media",
  "filmcraft-project",

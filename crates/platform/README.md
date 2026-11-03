@@ -97,7 +97,7 @@ let availability = filmcraft_platform::register(); // Available("VideoToolbox") 
   VA-API decoding is *stateless*: the host parses the stream and keeps the decoded picture buffer,
   and the GPU decodes one picture's slice data at a time into a surface. That host side
   (`vaapi/h264.rs`, `vaapi/hevc.rs`, safe code) is the software decoders' own: their parameter-set
-  and slice-header parsers, POC computation and DPBs (`craft_h264::dpb`, `filmcraft_hevc::dpb`,
+  and slice-header parsers, POC computation and DPBs (`craft_h264::dpb`, `craft_hevc::dpb`,
   generic over what a picture is: H.264 reference marking including MMCOs and reference lists with
   modifications; HEVC reference picture sets and lists, RASL pictures of a CRA the run starts at
   left out; output order). The two decoders therefore make
@@ -226,7 +226,7 @@ level 4 High tier, which many hardware decoders refuse; it is now level 4.1 Main
   PPS, access unit delimiters and end-of-sequence / bitstream markers are dropped; slices and SEI
   stay. `nvEncGetSequenceParams` returns all three parameter sets.
 - **The `hvcC` is built from the SPS the encoder wrote** (`nvenc/hevc.rs`, parsed with
-  `filmcraft_hevc`): profile space, tier, profile, compatibility flags and level from the SPS's
+  `craft_hevc`): profile space, tier, profile, compatibility flags and level from the SPS's
   profile / tier / level; the 48 general constraint flags and `sps_temporal_id_nesting_flag` read from
   the SPS bits that carry them; chroma format, bit depths and temporal layers from the SPS; the
   arrays complete (`array_completeness` 1). Nothing is a constant of ours except what the format

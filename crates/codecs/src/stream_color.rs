@@ -59,7 +59,7 @@ fn avc(c: &AvcConfig) -> Option<ColorCodes> {
 fn hevc(c: &HevcConfig) -> Option<ColorCodes> {
     // two-byte NAL header: nal_unit_type 33 is an SPS (whatever array the record files it under)
     let nal = c.arrays.iter().flat_map(|a| &a.nalus).find(|n| n.first().is_some_and(|h| (h >> 1) & 0x3f == 33))?;
-    let sps = filmcraft_hevc::params::Sps::parse(&craft_bitstream::unescape_rbsp(nal.get(2..)?)).ok()?;
+    let sps = craft_hevc::params::Sps::parse(&craft_bitstream::unescape_rbsp(nal.get(2..)?)).ok()?;
     let v = sps.vui?;
     Some(ColorCodes { primaries: v.colour_primaries, transfer: v.transfer_characteristics, matrix: v.matrix_coefficients, full_range: Some(v.full_range) })
 }
@@ -67,7 +67,7 @@ fn hevc(c: &HevcConfig) -> Option<ColorCodes> {
 fn av1(config_obus: &[u8]) -> Option<ColorCodes> {
     // OBU type 1: the sequence header
     let (_, payload) = crate::hw_frame::obus(config_obus).into_iter().find(|(t, _)| *t == 1)?;
-    let c = filmcraft_av1::SequenceHeader::parse(payload).ok()?.color;
+    let c = craft_av1::SequenceHeader::parse(payload).ok()?.color;
     Some(ColorCodes { primaries: c.color_primaries, transfer: c.transfer_characteristics, matrix: c.matrix_coefficients, full_range: Some(c.color_range) })
 }
 
