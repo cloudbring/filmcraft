@@ -56,7 +56,6 @@ pub(crate) fn fft_size(sample_rate: f32) -> usize {
 }
 
 /// Shared spectral scratch.
-#[derive(Clone, Debug)]
 pub(crate) struct Spectral {
     pub fft: Fft,
     pub window: Vec<f32>,
@@ -67,22 +66,26 @@ pub(crate) struct Spectral {
 impl Spectral {
     /// `sqrt_window`: use √Hann for analysis and synthesis (sums to a constant at 75 % overlap);
     /// otherwise Hann for both.
-    pub(crate) fn new(n: usize, sqrt_window: bool) -> Self {
+    #[allow(clippy::expect_used, reason = "fft_size selects only the fixed valid lengths 2048, 4096, and 8192.")]
+    pub(crate) fn new(sample_rate: f32, sqrt_window: bool) -> Self {
+        let n = fft_size(sample_rate);
         let mut window = hann(n);
         if sqrt_window {
             window.iter_mut().for_each(|w| *w = w.sqrt());
         }
-        Spectral { fft: Fft::new(n), window, re: vec![0.0; n], im: vec![0.0; n] }
+        Spectral { fft: Fft::new(n).expect("bounded FFT size"), window, re: vec![0.0; n], im: vec![0.0; n] }
     }
     /// Window `input` into re/im and run the forward FFT.
+    #[allow(clippy::expect_used, reason = "The plan and its private scratch vectors are created with the same length and never resized.")]
     pub(crate) fn analyse(&mut self, input: &[f32]) {
         for i in 0..input.len() {
             self.re[i] = input[i] * self.window[i];
             self.im[i] = 0.0;
         }
-        self.fft.forward(&mut self.re, &mut self.im);
+        self.fft.forward(&mut self.re, &mut self.im).expect("fixed spectral scratch lengths");
     }
     /// Enforce Hermitian symmetry from bins 0..=n/2, inverse FFT, window, scale and add to `out`.
+    #[allow(clippy::expect_used, reason = "The plan and its private scratch vectors are created with the same length and never resized.")]
     pub(crate) fn synthesise_add(&mut self, out: &mut [f32], scale: f32) {
         let n = self.re.len();
         self.im[0] = 0.0;
@@ -91,7 +94,7 @@ impl Spectral {
             self.re[n - k] = self.re[k];
             self.im[n - k] = -self.im[k];
         }
-        self.fft.inverse(&mut self.re, &mut self.im);
+        self.fft.inverse(&mut self.re, &mut self.im).expect("fixed spectral scratch lengths");
         for i in 0..n {
             out[i] += self.re[i] * self.window[i] * scale;
         }

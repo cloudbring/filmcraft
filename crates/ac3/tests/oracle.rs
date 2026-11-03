@@ -163,6 +163,7 @@ fn frames(data: &[u8]) -> Vec<&[u8]> {
 #[test]
 fn ffmpeg_encoded_streams_decode() {
     let ff = filmcraft_testkit::require_ffmpeg!();
+    let mut changed_total = 0;
     for s in SPECS {
         let f = make(&ff, s).unwrap_or_else(|| panic!("could not generate {}", s.name));
         let data = std::fs::read(&f).unwrap();
@@ -174,6 +175,29 @@ fn ffmpeg_encoded_streams_decode() {
             assert_eq!(d.header.is_eac3(), s.codec == "eac3", "{}", s.name);
             for (o, c) in ours.iter_mut().zip(d.channels) {
                 o.extend(c);
+            }
+        }
+        if let Some(root) = std::env::var_os("FILMCRAFT_FFT_BASELINE") {
+            let root = PathBuf::from(root);
+            std::fs::create_dir_all(&root).unwrap();
+            let path = root.join(format!("{}.f32le", s.name));
+            let bytes: Vec<u8> = ours.iter().flatten().flat_map(|sample| sample.to_le_bytes()).collect();
+            if std::env::var_os("FILMCRAFT_FFT_RECORD").is_some() {
+                std::fs::write(path, bytes).unwrap();
+            } else {
+                let previous = std::fs::read(path).unwrap();
+                assert_eq!(bytes.len(), previous.len());
+                let mut changed = 0;
+                let mut worst = 0.0f32;
+                for (actual, expected) in bytes.as_chunks::<4>().0.iter().zip(previous.as_chunks::<4>().0) {
+                    changed += usize::from(actual != expected);
+                    let actual = f32::from_le_bytes(*actual);
+                    let expected = f32::from_le_bytes(*expected);
+                    assert!(actual.is_finite());
+                    worst = worst.max((actual - expected).abs());
+                }
+                eprintln!("{}: {changed}/{} PCM samples changed; max error {worst:e}", s.name, bytes.len() / 4);
+                changed_total += changed;
             }
         }
         let o = Command::new(&ff).args(["-v", "error", "-i"]).arg(&f).args(["-f", "f32le", "-"]).output().unwrap();
@@ -212,6 +236,7 @@ fn ffmpeg_encoded_streams_decode() {
         );
         assert!(worst >= s.min_snr, "{}: SNR {worst:.1} dB < {}", s.name, s.min_snr);
     }
+    assert_eq!(changed_total, 0, "decoded PCM is not bit-identical to the migration baseline");
 }
 
 /// Damaged E-AC-3 syncframes (bit flips, truncation, corrupt sizes) give errors or noise, never

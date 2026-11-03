@@ -75,6 +75,9 @@ proptest = "1"
 roxmltree = "0.21"
 craft-docpath = { version = "0.1.0", git = "https://github.com/storytold/craft-libs", rev = "c5a1cbfb5f9049f9270955caffb5bee5997aebf7" }
 craft-media = { version = "0.1.0", git = "https://github.com/storytold/craft-libs", rev = "c5a1cbfb5f9049f9270955caffb5bee5997aebf7", default-features = false }
+# TODO(#1): repoint to storytold/craft-libs once craft-fft merges
+craft-fft = { git = "https://github.com/cloudbring/craft-libs", branch = "algo/1-craft-fft" }
+allocation-counter = "0.8"
 
 # ui
 # Shared frontend components; keep this dependency above the engine boundary.

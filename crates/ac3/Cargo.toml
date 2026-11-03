@@ -10,7 +10,9 @@ rust-version.workspace = true
 workspace = true
 
 [dependencies]
+craft-fft = { workspace = true }
 thiserror = { workspace = true }
 
 [dev-dependencies]
+allocation-counter = { workspace = true }
 filmcraft-testkit = { workspace = true }

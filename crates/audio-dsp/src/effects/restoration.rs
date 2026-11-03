@@ -172,7 +172,7 @@ impl DeNoise {
             n,
             hop,
             sub_frames,
-            spec: Spectral::new(n, true),
+            spec: Spectral::new(sample_rate, true),
             stft: vec![StftChannel::new(n); ch],
             noise: vec![NoiseState::new(bins); ch],
             smoothed_gains: vec![1.0; bins],

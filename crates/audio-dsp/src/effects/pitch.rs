@@ -64,7 +64,7 @@ impl PitchShifter {
             pv: ParamValues::new(Self::PARAMS),
             n,
             hop: n / OVERLAP,
-            spec: Spectral::new(n, false),
+            spec: Spectral::new(sample_rate, false),
             stft: vec![StftChannel::new(n); ch],
             state: vec![PvState { last_re: vec![0.0; bins], last_im: vec![0.0; bins], rot: vec![0.0; bins], new_rot: vec![0.0; bins] }; ch],
             scratch: Scratch { mag: vec![0.0; bins], out_re: vec![0.0; bins], out_im: vec![0.0; bins], peaks: Vec::with_capacity(bins) },
@@ -294,7 +294,7 @@ mod tests {
         let mut rng = Rng::new(3);
         let tones = [sine(220.0, 0.3, SR as f64, 40 * hop + n, 0.0), sine(1234.5, 0.2, SR as f64, 40 * hop + n, 1.0)];
         let x: Vec<f32> = (0..40 * hop + n).map(|i| tones[0][i] + tones[1][i] + 0.05 * rng.uniform()).collect();
-        let mut spec = Spectral::new(n, false);
+        let mut spec = Spectral::new(SR, false);
         let mut st = PvState { last_re: vec![0.0; bins], last_im: vec![0.0; bins], rot: vec![0.0; bins], new_rot: vec![0.0; bins] };
         let mut sc = Scratch { mag: vec![0.0; bins], out_re: vec![0.0; bins], out_im: vec![0.0; bins], peaks: Vec::new() };
         let (mut last_phase, mut rot) = (vec![0.0f32; bins], vec![0.0f32; bins]);

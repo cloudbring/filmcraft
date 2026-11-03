@@ -182,8 +182,9 @@ fn hann(n: usize) -> Vec<f32> {
 }
 
 /// Magnitude spectra of `x` with frame `n` and `hop` (frames start at `t·hop`).
+#[allow(clippy::expect_used, reason = "Private callers use bounded power-of-two sizes from onset_frame; both scratch vectors have exactly that size.")]
 fn stft_mag(x: &[f32], n: usize, hop: usize) -> Vec<Vec<f32>> {
-    let fft = Fft::new(n);
+    let mut fft = Fft::new(n).expect("bounded analysis FFT size");
     let w = hann(n);
     let frames = if x.len() >= n { (x.len() - n) / hop + 1 } else { 1 };
     let mut re = vec![0f32; n];
@@ -195,7 +196,7 @@ fn stft_mag(x: &[f32], n: usize, hop: usize) -> Vec<Vec<f32>> {
             re[i] = x.get(s + i).copied().unwrap_or(0.0) * w[i];
             im[i] = 0.0;
         }
-        fft.forward(&mut re, &mut im);
+        fft.forward(&mut re, &mut im).expect("fixed analysis scratch lengths");
         out.push((0..n / 2 + 1).map(|k| (re[k] * re[k] + im[k] * im[k]).sqrt()).collect());
     }
     out

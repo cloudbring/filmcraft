@@ -1,6 +1,6 @@
 # filmcraft-audio-dsp
 
-Real-time audio DSP for FilmCraft. Layer **L1**, **no dependencies**, compiles for
+Real-time audio DSP for FilmCraft. Layer **L1**, using shared **craft-fft** kernels, compiles for
 `wasm32-unknown-unknown`, no `unsafe`. Clean-room: written from the public standards
 (ITU-R BS.1770-4, EBU R128 / Tech 3341 / Tech 3342) and textbook DSP (RBJ cookbook biquads,
 Householder FDN, phase vocoder, spectral subtraction with the statistical late-reverberation
@@ -14,6 +14,36 @@ model).
 - Parameters change between blocks and are smoothed per sample; output does not depend on how
   the stream is cut into blocks (tested for every effect with 0/1/random-size blocks).
 - Recursive state is flushed below ~1e-30, so no denormals without CPU FTZ flags.
+
+## Shared FFT migration (#105)
+
+`fft::Fft` adapts split-complex slices to `craft-fft`, retaining unscaled forward **and inverse**
+transforms. Its constructor and processing methods return `Result`; processing now borrows the plan
+mutably. Plans and interleaved scratch are created off the realtime path and reused by STFT effects,
+convolution, sync, and Remix. FilmCraft keeps its existing windows, overlap-add weights, and latency.
+
+On 2026-11-03, Apple M6, aarch64 macOS, rustup stable Rust 1.99.0, release mode, the warmed FFT-filter/STFT
+benchmark measured the median of seven batches of 30 calls, each processing 65,536 mono samples
+(including the same input copy). Against `eb59ec09daaea519c9c8fffa404a594ae50d00e0`:
+
+- 48 kHz / 2048-point FFT: 3645.294 → 2170.054 µs (1.68× faster).
+- 96 kHz / 4096-point FFT: 4156.137 → 2770.803 µs (1.50× faster).
+- 192 kHz / 8192-point FFT: 4792.510 → 2916.228 µs (1.64× faster).
+
+The consecutive old/new runs used the same release profile and harness. Load averages (1/5/15
+minutes) were 20.90/29.93/32.37 before and 25.95/30.82/32.67 between and after the runs; other
+builds were active, so these timings are noisy observations, not isolated performance estimates.
+
+The six neutral/shaped filter vectors at those rates differed by at most 8.940697e-8, below the
+1e-6 migration threshold. Existing identity, curve-response, pitch, restoration, convolution,
+sync, and Remix tests also pass. Allocation-counter tests cover the first processing call and
+reset/reuse of all five FFT effects and both directions of the adapter.
+
+Run `cargo test -p filmcraft-audio-dsp --release --test fft_migration stft_timing -- --ignored --nocapture --test-threads=1`.
+For differential vectors, run `filter_migration_vectors` with `--ignored --nocapture`,
+`FILMCRAFT_FFT_BASELINE=<directory>` and `FILMCRAFT_FFT_RECORD=1` on the old implementation with
+the same test harness; unset `FILMCRAFT_FFT_RECORD` to compare the migrated code. Do not commit
+the generated binary vectors. These measurements are local observations, not portable speed guarantees.
 
 ## Loudness (`loudness`)
 
@@ -94,7 +124,7 @@ Essential Sound builds on these (Repair: `denoise`, high-pass via `parametric_eq
 **Enhance Speech decision.** No machine-learning model is bundled: we found no openly licensed
 speech-enhancement model that is also practical to ship here (pure Rust, wasm, asset rules).
 DeepFilterNet (MIT/Apache-2.0, with a Rust implementation on `tract`) is the candidate for a future
-optional integration behind a trait outside this dependency-free crate, once its weights' licence and
+optional integration behind a trait outside this DSP crate, once its weights' licence and
 size are vetted as an asset. Until then `speech_enhance` is the DSP chain above.
 
 Measured on synthetic signals (`effects::essential::tests`, 48 kHz):

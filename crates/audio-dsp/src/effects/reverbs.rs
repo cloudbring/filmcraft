@@ -116,6 +116,7 @@ impl ConvolutionReverb {
         ParamSpec::new("gain", "Gain", -24.0, 12.0, 0.0, Unit::Decibels),
     ];
 
+    #[allow(clippy::expect_used, reason = "2 * PART is a fixed valid FFT length.")]
     pub fn new(sample_rate: f32, channels: usize) -> Self {
         let max_len = IR_SPECS.iter().map(|s| ir_len(s, sample_rate)).max().unwrap_or(1);
         let max_parts = max_len.div_ceil(PART);
@@ -123,7 +124,7 @@ impl ConvolutionReverb {
         let mut s = ConvolutionReverb {
             pv: ParamValues::new(Self::PARAMS),
             sr: sample_rate,
-            fft: Fft::new(2 * PART),
+            fft: Fft::new(2 * PART).expect("fixed convolution FFT size"),
             base: [vec![0.0; max_len], vec![0.0; max_len]],
             base_len: 0,
             h: [vec![0.0; max_parts * bins2], vec![0.0; max_parts * bins2]],
@@ -151,6 +152,7 @@ impl ConvolutionReverb {
     }
 
     /// Rebuild the partition spectra (only when the impulse, size or damping changed).
+    #[allow(clippy::expect_used, reason = "The private scratch vectors always have the fixed plan length, 2 * PART.")]
     fn rebuild(&mut self) {
         let key = (self.pv.idx("impulse"), self.pv.v("room_size"), self.pv.v("damping_lf"), self.pv.v("damping_hf"));
         if key == self.key {
@@ -197,7 +199,7 @@ impl ConvolutionReverb {
                     }
                     self.re[k] = v;
                 }
-                self.fft.forward(&mut self.re, &mut self.im);
+                self.fft.forward(&mut self.re, &mut self.im).expect("fixed convolution scratch lengths");
                 let dst = &mut self.h[c][p * bins2..(p + 1) * bins2];
                 for k in 0..=PART {
                     dst[2 * k] = self.re[k];
@@ -226,13 +228,14 @@ impl ConvolutionReverb {
     }
 
     /// Convolve the collected block (`inbuf`) and fill `out`.
+    #[allow(clippy::expect_used, reason = "The private scratch vectors always have the fixed plan length, 2 * PART.")]
     fn block(&mut self) {
         let bins2 = 2 * (PART + 1);
         self.hist.copy_within(PART.., 0);
         self.hist[PART..].copy_from_slice(&self.inbuf);
         self.re.copy_from_slice(&self.hist);
         self.im.iter_mut().for_each(|v| *v = 0.0);
-        self.fft.forward(&mut self.re, &mut self.im);
+        self.fft.forward(&mut self.re, &mut self.im).expect("fixed convolution scratch lengths");
         self.head = (self.head + self.max_parts - 1) % self.max_parts;
         {
             let slot = &mut self.fdl[self.head * bins2..(self.head + 1) * bins2];
@@ -269,7 +272,7 @@ impl ConvolutionReverb {
             self.re[k] = lr - ri;
             self.im[k] = li + rr;
         }
-        self.fft.inverse(&mut self.re, &mut self.im);
+        self.fft.inverse(&mut self.re, &mut self.im).expect("fixed convolution scratch lengths");
         let s = 1.0 / n as f32;
         for k in 0..PART {
             self.out[0][k] = self.re[PART + k] * s;

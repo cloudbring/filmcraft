@@ -134,13 +134,13 @@ fn normalise(x: &mut [f32]) {
 /// GCC-PHAT-β of `a` and `b` (zero-padded to `n`, a power of two ≥ `a.len() + b.len()`):
 /// `r[L mod n] = Σ a[i + L]·b[i]` with whitened spectra. Only bins whose frequency (cycles per
 /// sample) lies in `band` contribute.
-fn gcc(a: &[f32], b: &[f32], n: usize, beta: f32, band: (f32, f32)) -> Vec<f32> {
-    let fft = Fft::new(n);
+fn gcc(a: &[f32], b: &[f32], n: usize, beta: f32, band: (f32, f32)) -> Option<Vec<f32>> {
+    let mut fft = Fft::new(n).ok()?;
     let mut re = vec![0.0f32; n];
     let mut im = vec![0.0f32; n];
     re[..a.len()].copy_from_slice(a);
     im[..b.len()].copy_from_slice(b);
-    fft.forward(&mut re, &mut im);
+    fft.forward(&mut re, &mut im).ok()?;
     // X = A + iB for real a, b: A(k) = (X(k) + X*(n-k)) / 2, B(k) = (X(k) - X*(n-k)) / 2i.
     let weigh = |k: usize, xr: f32, xi: f32, yr: f32, yi: f32| -> (f32, f32) {
         // y = X*(n-k) given as (yr, yi) already conjugated
@@ -171,8 +171,8 @@ fn gcc(a: &[f32], b: &[f32], n: usize, beta: f32, band: (f32, f32)) -> Vec<f32> 
         re[j] = rj.0;
         im[j] = rj.1;
     }
-    fft.inverse(&mut re, &mut im);
-    re
+    fft.inverse(&mut re, &mut im).ok()?;
+    Some(re)
 }
 
 fn corr_at(r: &[f32], lag: i64) -> f32 {
@@ -203,7 +203,7 @@ pub fn find_offset(a: &[f32], b: &[f32], sample_rate: u32, opts: &SyncOptions) -
     let n = ((la + lb) as usize).next_power_of_two();
     let rate_c = sr as f32 / d as f32;
     let band = ((40.0 / rate_c).min(0.05), if d > 1 { 0.40 } else { 0.5 });
-    let r = gcc(&ca, &cb, n, opts.phat_beta, band);
+    let r = gcc(&ca, &cb, n, opts.phat_beta, band)?;
     // valid lags: b[0..lb) against a[L..L+lb) must overlap by a minimum amount
     let min_overlap = ((rate_c as i64) / 2).min(la.min(lb) / 4).max(8);
     let max_lag_c = opts.max_lag.map(|m| m.abs() / d as i64 + 1);
@@ -287,7 +287,7 @@ pub fn find_offset(a: &[f32], b: &[f32], sample_rate: u32, opts: &SyncOptions) -
     normalise(&mut aw);
     normalise(&mut bw);
     let n2 = (aw.len() + bw.len()).next_power_of_two();
-    let r2 = gcc(&aw, &bw, n2, opts.phat_beta, (20.0 / sr as f32, 0.5));
+    let r2 = gcc(&aw, &bw, n2, opts.phat_beta, (20.0 / sr as f32, 0.5))?;
     // r2[L'] = Σ aw[i + L']·bw[i]; L' = margin + δ
     let sign = if inverted { -1.0 } else { 1.0 };
     let mut bl = 0i64;

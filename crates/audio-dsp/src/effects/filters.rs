@@ -626,7 +626,7 @@ impl FftFilter {
             sr: sample_rate,
             n,
             hop: n / 4,
-            spec: Spectral::new(n, true),
+            spec: Spectral::new(sample_rate, true),
             stft: vec![StftChannel::new(n); channels.max(1)],
             target: vec![1.0; bins],
             gains: vec![1.0; bins],

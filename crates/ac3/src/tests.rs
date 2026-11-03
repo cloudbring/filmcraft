@@ -1,6 +1,37 @@
 use super::*;
 
 #[test]
+#[ignore = "manual before/after IMDCT comparison; set FILMCRAFT_FFT_BASELINE and optionally FILMCRAFT_FFT_RECORD"]
+fn imdct_migration_vectors() {
+    let root = std::path::PathBuf::from(std::env::var_os("FILMCRAFT_FFT_BASELINE").unwrap());
+    std::fs::create_dir_all(&root).unwrap();
+    for short in [false, true] {
+        let input = std::array::from_fn(|index| ((index * 17 % 101) as f32 - 50.0) / 200.0);
+        let mut output = [0.0; 512];
+        let mut fft = ComplexFft::new(if short { 64 } else { 128 }).unwrap();
+        imdct(&mut fft, &input, short, &mut output).unwrap();
+        let bytes: Vec<u8> = output.iter().flat_map(|sample| sample.to_le_bytes()).collect();
+        let path = root.join(format!("imdct-{short}.f32le"));
+        if std::env::var_os("FILMCRAFT_FFT_RECORD").is_some() {
+            std::fs::write(path, bytes).unwrap();
+        } else {
+            let previous = std::fs::read(path).unwrap();
+            assert_eq!(bytes.len(), previous.len());
+            let mut changed = 0;
+            let mut worst = 0.0f32;
+            for (actual, expected) in bytes.as_chunks::<4>().0.iter().zip(previous.as_chunks::<4>().0) {
+                changed += usize::from(actual != expected);
+                let actual = f32::from_le_bytes(*actual);
+                assert!(actual.is_finite());
+                worst = worst.max((actual - f32::from_le_bytes(*expected)).abs());
+            }
+            eprintln!("IMDCT short={short}: {changed}/512 changed, max error {worst:e}");
+            assert!(worst < 1e-5);
+        }
+    }
+}
+
+#[test]
 fn computed_window_matches_table_7_33() {
     let w = window();
     for (n, (&a, &b)) in w.iter().zip(tables::WINDOW_TABLE.iter()).enumerate() {
@@ -37,8 +68,12 @@ fn inverse_fft_matches_the_definition() {
     for n in [64usize, 128] {
         let re0: Vec<f32> = (0..n).map(|i| ((i * 7 + 3) % 11) as f32 - 5.0).collect();
         let im0: Vec<f32> = (0..n).map(|i| ((i * 5 + 1) % 13) as f32 - 6.0).collect();
-        let (mut re, mut im) = (re0.clone(), im0.clone());
-        ifft(&mut re, &mut im);
+        let mut spectrum: Vec<_> = re0.iter().zip(&im0).map(|(&real, &imaginary)| Complex::new(real, imaginary)).collect();
+        let mut fft = ComplexFft::new(n).unwrap();
+        fft.process_in_place(Direction::Inverse, &mut spectrum).unwrap();
+        for value in &mut spectrum {
+            *value *= n as f32;
+        }
         for t in 0..n {
             let (mut sr, mut si) = (0f64, 0f64);
             for k in 0..n {
@@ -46,8 +81,61 @@ fn inverse_fft_matches_the_definition() {
                 sr += re0[k] as f64 * a.cos() - im0[k] as f64 * a.sin();
                 si += re0[k] as f64 * a.sin() + im0[k] as f64 * a.cos();
             }
-            assert!((sr - re[t] as f64).abs() < 1e-3 && (si - im[t] as f64).abs() < 1e-3, "n {n} t {t}");
+            assert!((sr - spectrum[t].re as f64).abs() < 1e-3 && (si - spectrum[t].im as f64).abs() < 1e-3, "n {n} t {t}");
         }
+    }
+}
+
+#[test]
+fn imdct_processing_does_not_allocate() {
+    let mut decoder = Decoder::new();
+    let input = [0.125; 256];
+    let mut output = [0.0; 512];
+    let allocations = allocation_counter::measure(|| {
+        imdct(&mut decoder.fft_long, &input, false, &mut output).unwrap();
+        imdct(&mut decoder.fft_short, &input, true, &mut output).unwrap();
+        decoder.reset();
+    });
+    assert_eq!(allocations.count_total, 0);
+}
+
+#[test]
+fn long_imdct_matches_cosine_definition() {
+    let input = std::array::from_fn(|index| ((index * 17 % 101) as f32 - 50.0) / 200.0);
+    let mut output = [0.0; 512];
+    let mut fft = ComplexFft::new(128).unwrap();
+    imdct(&mut fft, &input, false, &mut output).unwrap();
+    for (time, &actual) in output.iter().enumerate() {
+        let sum: f64 = input
+            .iter()
+            .enumerate()
+            .map(|(bin, &coefficient)| {
+                let angle = std::f64::consts::PI / 256.0 * (time as f64 + 128.5) * (bin as f64 + 0.5);
+                -(coefficient as f64) * angle.cos()
+            })
+            .sum();
+        let weight = window()[if time < 256 { time } else { 511 - time }] as f64;
+        assert!((actual as f64 - sum * weight).abs() < 2e-6, "sample {time}");
+    }
+}
+
+#[test]
+fn short_imdct_matches_cosine_definition() {
+    let input = std::array::from_fn(|index| ((index * 17 % 101) as f32 - 50.0) / 200.0);
+    let mut output = [0.0; 512];
+    let mut fft = ComplexFft::new(64).unwrap();
+    imdct(&mut fft, &input, true, &mut output).unwrap();
+    for (index, &actual) in output.iter().enumerate() {
+        let half = usize::from(index >= 256);
+        let time = index - half * 128;
+        let sum: f64 = (0..128)
+            .map(|bin| {
+                let angle = std::f64::consts::PI / 128.0 * (time as f64 + 0.5) * (bin as f64 + 0.5);
+                -(input[2 * bin + half] as f64) * angle.cos()
+            })
+            .sum();
+        let weight = window()[if index < 256 { index } else { 511 - index }] as f64;
+        assert!((actual as f64 - sum * weight).abs() < 2e-6, "sample {index}");
     }
 }
 

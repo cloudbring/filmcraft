@@ -1,7 +1,7 @@
 # filmcraft-ac3
 
 Clean-room AC-3 (Dolby Digital) and E-AC-3 (Dolby Digital Plus) audio decoder in pure Rust. Layer L0: depends only on
-`thiserror`. Builds for `wasm32-unknown-unknown`; no `unsafe`. No GPL/LGPL code (FFmpeg,
+`thiserror` and `craft-fft`. Builds for `wasm32-unknown-unknown`; no `unsafe`. No GPL/LGPL code (FFmpeg,
 liba52) was consulted; FFmpeg is used only as an external fixture generator and test oracle.
 
 ## Specification
@@ -17,6 +17,30 @@ window (α = 5) and checked against Table 7.33 to 6·10⁻⁶. E-AC-3: Annex E �
 (attenuation Table E3.14, which is 2^(-(code + 1)(bin + 1) / 15), checked against the table).
 
 ## API
+
+### FFT migration compatibility (#105)
+
+The shared inverse plans preserve normalization but **not bit-identical floating-point rounding**.
+On 2026-11-03 (aarch64 macOS, rustup stable Rust 1.99.0), all ten existing generated AC-3/E-AC-3
+oracle fixtures still passed their FFmpeg SNR thresholds. Compared with FilmCraft
+`eb59ec09daaea519c9c8fffa404a594ae50d00e0`, 687,478 of 1,225,728 decoded f32 samples changed,
+with maximum absolute error 1.4901161e-7. Synthetic long/short IMDCT vectors differed by
+9.536743e-7 / 5.029142e-7. Both block sizes have allocation tests and independent direct-cosine
+normalization tests.
+
+**The ticket's strict AC-3 bit-identity acceptance remains unmet.** Backend butterfly ordering
+differs; multiplying the normalized inverse by its power-of-two length restores amplitude, not
+the old rounding sequence. A compatible shared backend or explicit acceptance of a tolerance
+is needed before this migration is ready upstream. No rounding mask or legacy FFT is retained.
+
+To reproduce, run `cargo test -p filmcraft-ac3 --test oracle -- --nocapture` with
+`FILMCRAFT_REQUIRE_ORACLES=1`, `FILMCRAFT_FFT_BASELINE=<directory>` and
+`FILMCRAFT_FFT_RECORD=1` on the old implementation with the same harness. Unset the record
+variable for the migrated run: it reports every fixture and fails if any sample differs.
+`cargo test -p filmcraft-ac3 imdct_migration_vectors -- --ignored --nocapture` uses the same
+environment for synthetic long/short blocks. Keep generated fixtures and vectors untracked.
+
+### Decode
 
 ```rust
 let mut dec = filmcraft_ac3::Decoder::new();
@@ -37,8 +61,10 @@ dec.reset();                                    // before decoding from another 
 - Channel coupling (coupling bands, master coordinates, phase flags in 2/0), rematrixing (all
   four banding cases), dynamic range control (`dynrng`, `dynrng2`; applied at full scale), dither
   for zero-bit mantissas (uniform ±0.707, §7.3.4).
-- 512-sample IMDCT and the pair of 256-sample IMDCTs for block-switched blocks, with radix-2
-  inverse FFTs, KBD window and overlap-add.
+- 512-sample IMDCT and the pair of 256-sample IMDCTs for block-switched blocks, with cached
+  `craft-fft` inverse plans, KBD window and overlap-add. Each decoder creates 128- and 64-point
+  plans once; inverse results are multiplied by 128 or 64 before post-rotation to retain the
+  unscaled A/52 convention. Transform processing and reset do not allocate.
 - Output: f32 at full scale ±1; channels reordered from the coded order (L C R Ls Rs LFE) to the
   WAV / SMPTE order (L R C LFE Ls Rs). No downmix (the mixer handles layouts).
 - Dither is reseeded per syncframe from the frame's CRC words, so a frame decodes to the same

@@ -232,7 +232,7 @@ impl DeReverb {
             n,
             hop,
             delay,
-            spec: Spectral::new(n, true),
+            spec: Spectral::new(sample_rate, true),
             stft: vec![StftChannel::new(n); ch],
             state: vec![ReverbState::new(bins, delay); ch],
             smoothed_gains: vec![1.0; bins],

@@ -23,6 +23,7 @@
 mod eac3;
 mod tables;
 
+use craft_fft::{Complex, ComplexFft, Direction};
 use std::sync::OnceLock;
 
 #[derive(Debug, thiserror::Error, PartialEq, Eq)]
@@ -33,6 +34,8 @@ pub enum Error {
     Unsupported(String),
     #[error("invalid AC-3 frame: {0}")]
     Invalid(&'static str),
+    #[error("invalid AC-3 transform: {0}")]
+    Transform(#[from] craft_fft::Error),
 }
 
 pub type Result<T> = std::result::Result<T, Error>;
@@ -197,14 +200,12 @@ fn window() -> &'static [f32; 256] {
 }
 
 /// Twiddles for the IMDCTs: (xcos1, xsin1) for N = 512 and (xcos2, xsin2) for the 256-sample
-/// transforms, and the IFFT kernels.
+/// transforms.
 struct Twiddles {
     c1: [f32; 128],
     s1: [f32; 128],
     c2: [f32; 64],
     s2: [f32; 64],
-    /// e^{j 2π m / 128}, m = 0..128.
-    e: [(f32, f32); 128],
 }
 
 fn twiddles() -> &'static Twiddles {
@@ -212,13 +213,11 @@ fn twiddles() -> &'static Twiddles {
     T.get_or_init(|| {
         use std::f64::consts::PI;
         let n = 512.0;
-        let mut t = Twiddles { c1: [0.0; 128], s1: [0.0; 128], c2: [0.0; 64], s2: [0.0; 64], e: [(0.0, 0.0); 128] };
+        let mut t = Twiddles { c1: [0.0; 128], s1: [0.0; 128], c2: [0.0; 64], s2: [0.0; 64] };
         for k in 0..128 {
             let a = 2.0 * PI * (8 * k + 1) as f64 / (8.0 * n);
             t.c1[k] = -a.cos() as f32;
             t.s1[k] = -a.sin() as f32;
-            let m = 2.0 * PI * k as f64 / 128.0;
-            t.e[k] = (m.cos() as f32, m.sin() as f32);
         }
         for k in 0..64 {
             let a = 2.0 * PI * (8 * k + 1) as f64 / (4.0 * n);
@@ -229,56 +228,24 @@ fn twiddles() -> &'static Twiddles {
     })
 }
 
-/// In-place complex inverse DFT of size `n` (128 or 64) by radix-2 decimation in time:
-/// z[n] = Σ Z[k] e^{+j 2π k n / size}.
-fn ifft(re: &mut [f32], im: &mut [f32]) {
-    let n = re.len();
-    let e = &twiddles().e;
-    // bit reversal
-    let bits = n.trailing_zeros();
-    for i in 0..n {
-        let j = i.reverse_bits() >> (usize::BITS - bits);
-        if j > i {
-            re.swap(i, j);
-            im.swap(i, j);
-        }
-    }
-    let mut len = 2;
-    while len <= n {
-        let step = 128 / len;
-        for s in (0..n).step_by(len) {
-            for k in 0..len / 2 {
-                let (wr, wi) = e[k * step];
-                let (a, b) = (s + k, s + k + len / 2);
-                let tr = re[b] * wr - im[b] * wi;
-                let ti = re[b] * wi + im[b] * wr;
-                re[b] = re[a] - tr;
-                im[b] = im[a] - ti;
-                re[a] += tr;
-                im[a] += ti;
-            }
-        }
-        len *= 2;
-    }
-}
-
 /// Inverse transform of one block of 256 coefficients into 512 windowed samples (§7.9.4).
-fn imdct(x: &[f32; 256], short: bool, out: &mut [f32; 512]) {
+/// `craft-fft` scales inverse transforms by 1/N; restore the A/52 unscaled convention before rotation.
+fn imdct(fft: &mut ComplexFft<f32>, x: &[f32; 256], short: bool, out: &mut [f32; 512]) -> Result<()> {
     let w = window();
     let t = twiddles();
     const N: usize = 512;
     if !short {
-        let (mut zr, mut zi) = ([0f32; 128], [0f32; 128]);
+        let mut spectrum = [Complex::new(0.0, 0.0); 128];
         for k in 0..N / 4 {
             let (a, b) = (x[N / 2 - 2 * k - 1], x[2 * k]);
-            zr[k] = a * t.c1[k] - b * t.s1[k];
-            zi[k] = b * t.c1[k] + a * t.s1[k];
+            spectrum[k] = Complex::new(a * t.c1[k] - b * t.s1[k], b * t.c1[k] + a * t.s1[k]);
         }
-        ifft(&mut zr, &mut zi);
+        fft.process_in_place(Direction::Inverse, &mut spectrum)?;
         let (mut yr, mut yi) = ([0f32; 128], [0f32; 128]);
         for n in 0..N / 4 {
-            yr[n] = zr[n] * t.c1[n] - zi[n] * t.s1[n];
-            yi[n] = zi[n] * t.c1[n] + zr[n] * t.s1[n];
+            let value = spectrum[n] * 128.0;
+            yr[n] = value.re * t.c1[n] - value.im * t.s1[n];
+            yi[n] = value.im * t.c1[n] + value.re * t.s1[n];
         }
         for n in 0..N / 8 {
             out[2 * n] = -yi[N / 8 + n] * w[2 * n];
@@ -290,20 +257,20 @@ fn imdct(x: &[f32; 256], short: bool, out: &mut [f32; 512]) {
             out[3 * N / 4 + 2 * n] = yi[n] * w[N / 4 - 2 * n - 1];
             out[3 * N / 4 + 2 * n + 1] = -yr[N / 4 - n - 1] * w[N / 4 - 2 * n - 2];
         }
-        return;
+        return Ok(());
     }
     let mut y = [([0f32; 64], [0f32; 64]); 2];
     for (h, yh) in y.iter_mut().enumerate() {
-        let (mut zr, mut zi) = ([0f32; 64], [0f32; 64]);
+        let mut spectrum = [Complex::new(0.0, 0.0); 64];
         for k in 0..N / 8 {
             let (a, b) = (x[2 * (N / 4 - 2 * k - 1) + h], x[2 * (2 * k) + h]);
-            zr[k] = a * t.c2[k] - b * t.s2[k];
-            zi[k] = b * t.c2[k] + a * t.s2[k];
+            spectrum[k] = Complex::new(a * t.c2[k] - b * t.s2[k], b * t.c2[k] + a * t.s2[k]);
         }
-        ifft(&mut zr, &mut zi);
+        fft.process_in_place(Direction::Inverse, &mut spectrum)?;
         for n in 0..N / 8 {
-            yh.0[n] = zr[n] * t.c2[n] - zi[n] * t.s2[n];
-            yh.1[n] = zi[n] * t.c2[n] + zr[n] * t.s2[n];
+            let value = spectrum[n] * 64.0;
+            yh.0[n] = value.re * t.c2[n] - value.im * t.s2[n];
+            yh.1[n] = value.im * t.c2[n] + value.re * t.s2[n];
         }
     }
     let ((yr1, yi1), (yr2, yi2)) = (y[0], y[1]);
@@ -317,6 +284,7 @@ fn imdct(x: &[f32; 256], short: bool, out: &mut [f32; 512]) {
         out[3 * N / 4 + 2 * n] = yi2[n] * w[N / 4 - 2 * n - 1];
         out[3 * N / 4 + 2 * n + 1] = -yr2[N / 8 - n - 1] * w[N / 4 - 2 * n - 2];
     }
+    Ok(())
 }
 
 fn logadd(a: i32, b: i32) -> i32 {
@@ -653,6 +621,8 @@ fn mantissa(r: &mut Bits, bap: u8, gr: &mut Groups) -> f32 {
 
 /// A decoder: keeps the overlap of each channel between frames.
 pub struct Decoder {
+    fft_long: ComplexFft<f32>,
+    fft_short: ComplexFft<f32>,
     delay: [[f32; 256]; 6],
     dither: u32,
     seed: u32,
@@ -676,8 +646,16 @@ pub struct Decoded {
 }
 
 impl Decoder {
+    #[allow(clippy::expect_used, reason = "64 and 128 are fixed valid FFT lengths.")]
     pub fn new() -> Decoder {
-        Decoder { delay: [[0.0; 256]; 6], dither: 0, seed: 0x1234_5678, carry: None }
+        Decoder {
+            fft_long: ComplexFft::new(128).expect("128-point FFT"),
+            fft_short: ComplexFft::new(64).expect("64-point FFT"),
+            delay: [[0.0; 256]; 6],
+            dither: 0,
+            seed: 0x1234_5678,
+            carry: None,
+        }
     }
 
     /// Seed the dither generator (dither is decoder-specific noise; tests compare two seeds).
@@ -800,7 +778,8 @@ impl Decoder {
             for (ch, out) in pcm.iter_mut().enumerate() {
                 let src = if ch < nfchans { ch } else { LFE };
                 let short = ch < nfchans && f.blksw[ch];
-                imdct(&coefs[src], short, &mut buf);
+                let fft = if short { &mut self.fft_short } else { &mut self.fft_long };
+                imdct(fft, &coefs[src], short, &mut buf)?;
                 let d = &mut self.delay[src];
                 for n in 0..256 {
                     out.push(2.0 * (buf[n] + d[n]));

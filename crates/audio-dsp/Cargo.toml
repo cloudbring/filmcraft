@@ -9,8 +9,9 @@ rust-version.workspace = true
 [lints]
 workspace = true
 
-# Intentionally dependency-free (layer L1): planar `&mut [f32]` slices in, planar slices out.
 [dependencies]
+craft-fft = { workspace = true }
 
 [dev-dependencies]
+allocation-counter = { workspace = true }
 filmcraft-testkit = { workspace = true }
