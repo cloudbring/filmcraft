@@ -2155,6 +2155,7 @@ version = "0.17.0"
 dependencies = [
  "filmcraft-color",
  "filmcraft-time",
+ "proptest",
  "rayon",
  "serde",
 ]

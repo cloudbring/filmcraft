@@ -52,6 +52,7 @@ pub struct ColorInfo {
     pub primaries: u8,
     pub transfer: u8,
     pub matrix: u8,
+    pub chroma_location: u32,
 }
 
 /// A decoded, cropped picture in 8-bit planar 4:2:0.

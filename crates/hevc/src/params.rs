@@ -148,13 +148,23 @@ pub struct Vui {
     pub colour_primaries: u8,
     pub transfer_characteristics: u8,
     pub matrix_coefficients: u8,
+    pub chroma_loc: Option<(u32, u32)>,
     pub field_seq: bool,
     pub timing: Option<(u32, u32)>,
 }
 
 impl Default for Vui {
     fn default() -> Self {
-        Vui { sar: (0, 0), full_range: false, colour_primaries: 2, transfer_characteristics: 2, matrix_coefficients: 2, field_seq: false, timing: None }
+        Vui {
+            sar: (0, 0),
+            full_range: false,
+            colour_primaries: 2,
+            transfer_characteristics: 2,
+            matrix_coefficients: 2,
+            chroma_loc: None,
+            field_seq: false,
+            timing: None,
+        }
     }
 }
 
@@ -201,8 +211,7 @@ fn parse_vui(r: &mut BitReader, max_sub_layers_minus1: u32) -> Result<Vui> {
         }
     }
     if r.read_flag()? {
-        r.read_ue()?;
-        r.read_ue()?;
+        v.chroma_loc = Some((r.read_ue()?, r.read_ue()?));
     }
     r.skip(1)?; // neutral_chroma_indication_flag
     v.field_seq = r.read_flag()?;

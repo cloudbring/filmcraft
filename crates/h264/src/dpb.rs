@@ -26,6 +26,7 @@ pub struct OutputMeta {
     pub colour_primaries: u8,
     pub transfer_characteristics: u8,
     pub matrix_coefficients: u8,
+    pub chroma_location: u32,
     pub sar: (u16, u16),
     /// Decoded without deblocking (draft mode, non-reference picture).
     pub draft: bool,
@@ -441,6 +442,7 @@ mod tests {
             colour_primaries: 2,
             transfer_characteristics: 2,
             matrix_coefficients: 2,
+            chroma_location: 0,
             sar: (1, 1),
             draft: false,
         })

@@ -19,6 +19,7 @@ pub struct OutputMeta {
     pub colour_primaries: u8,
     pub transfer_characteristics: u8,
     pub matrix_coefficients: u8,
+    pub chroma_location: u32,
     pub sar: (u16, u16),
     pub bit_depth: u32,
     /// Decoded in draft mode (no in-loop filters).

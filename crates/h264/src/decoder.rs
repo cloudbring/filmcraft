@@ -629,6 +629,7 @@ fn output_meta(sps: &Sps, pts: i64, key: bool) -> OutputMeta {
         colour_primaries: vui.colour_primaries,
         transfer_characteristics: vui.transfer_characteristics,
         matrix_coefficients: vui.matrix_coefficients,
+        chroma_location: vui.chroma_loc.map_or(0, |location| location.0),
         sar: vui.sar,
         draft: false,
     }
@@ -657,6 +658,7 @@ fn make_picture(o: &Output<FrameRef>) -> Picture {
             primaries: o.meta.colour_primaries,
             transfer: o.meta.transfer_characteristics,
             matrix: o.meta.matrix_coefficients,
+            chroma_location: o.meta.chroma_location,
         },
         sar: o.meta.sar,
         draft: o.meta.draft,

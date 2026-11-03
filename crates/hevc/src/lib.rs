@@ -51,6 +51,7 @@ pub struct ColorInfo {
     pub primaries: u8,
     pub transfer: u8,
     pub matrix: u8,
+    pub chroma_location: u32,
 }
 
 /// Samples of one plane: 8-bit streams produce `U8`, higher bit depths `U16` (value range
