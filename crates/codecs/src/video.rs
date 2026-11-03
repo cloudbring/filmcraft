@@ -494,7 +494,7 @@ pub fn hevc_factory(e: &SampleEntry) -> Option<Result<Box<dyn VideoDecoder>>> {
 /// Our pure-Rust VP9 decoder (profiles 0-3, 8/10/12-bit; tile columns and loop filter decode in
 /// parallel).
 pub struct Vp9Decoder {
-    dec: filmcraft_vp9::Decoder,
+    dec: craft_vp9::Decoder,
     /// Container colour (vpcC / Matroska `Colour`): transfer and primaries are not in the VP9
     /// bitstream.
     transfer: Option<filmcraft_color::Transfer>,
@@ -517,17 +517,17 @@ pub(crate) fn primaries_from_code(c: u8) -> Option<filmcraft_color::Primaries> {
 impl Vp9Decoder {
     pub fn new(cfg: Option<&filmcraft_isobmff::VpcConfig>) -> Self {
         Self {
-            dec: filmcraft_vp9::Decoder::new(),
+            dec: craft_vp9::Decoder::new(),
             transfer: cfg.and_then(|c| filmcraft_color::Transfer::from_code(c.transfer_characteristics)),
             primaries: cfg.and_then(|c| primaries_from_code(c.colour_primaries)),
         }
     }
 
     /// `None` for a picture whose planes mix sample types (never produced by the decoder).
-    fn convert(&self, p: filmcraft_vp9::Picture) -> Option<DecodedFrame> {
+    fn convert(&self, p: craft_vp9::Picture) -> Option<DecodedFrame> {
+        use craft_vp9::Plane;
         use filmcraft_color::Range;
         use filmcraft_frame::{Chroma, PixelData};
-        use filmcraft_vp9::Plane;
         use std::sync::Arc;
         let (w, h) = (p.width as usize, p.height as usize);
         let (cw, ch) = (p.chroma_width as usize, p.chroma_height as usize);
@@ -602,7 +602,7 @@ impl VideoDecoder for Vp9Decoder {
         self.dec.set_draft(on);
     }
     fn is_random_access(&self, sample: &[u8]) -> Option<bool> {
-        Some(filmcraft_vp9::is_keyframe(sample))
+        Some(craft_vp9::is_keyframe(sample))
     }
 }
 
@@ -615,7 +615,7 @@ pub fn vp9_factory(e: &SampleEntry) -> Option<Result<Box<dyn VideoDecoder>>> {
 
 /// Our pure-Rust VP8 decoder (RFC 6386; #432): WebM / Matroska `V_VP8` and MP4 `vp08`.
 pub struct Vp8Decoder {
-    dec: filmcraft_vp8::Decoder,
+    dec: craft_vp8::Decoder,
 }
 
 impl Default for Vp8Decoder {
@@ -626,10 +626,10 @@ impl Default for Vp8Decoder {
 
 impl Vp8Decoder {
     pub fn new() -> Self {
-        Self { dec: filmcraft_vp8::Decoder::new() }
+        Self { dec: craft_vp8::Decoder::new() }
     }
 
-    fn convert(p: filmcraft_vp8::Picture) -> DecodedFrame {
+    fn convert(p: craft_vp8::Picture) -> DecodedFrame {
         use filmcraft_frame::{Chroma, PixelData};
         use std::sync::Arc;
         // color_space 0 is BT.601 YUV (RFC 6386 9.2), studio swing; a container's Colour wins
@@ -656,7 +656,7 @@ impl VideoDecoder for Vp8Decoder {
         "FilmCraft VP8"
     }
     fn is_random_access(&self, sample: &[u8]) -> Option<bool> {
-        Some(filmcraft_vp8::is_keyframe(sample))
+        Some(craft_vp8::is_keyframe(sample))
     }
     fn is_disposable(&self, sample: &[u8]) -> bool {
         self.dec.is_disposable(sample)

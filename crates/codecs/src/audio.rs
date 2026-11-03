@@ -88,7 +88,7 @@ enum Inner {
     MpegPending(u32),
     /// Our own Opus decoder (always 48 kHz output; pre-skip is left to container timestamps).
     /// `order` maps output channel → decoded channel (Vorbis → WAV/SMPTE order for surround).
-    Opus { dec: Box<filmcraft_opus::Decoder>, order: Option<&'static [usize]> },
+    Opus { dec: Box<craft_opus::Decoder>, order: Option<&'static [usize]> },
     /// Bootstrap decoders (MP3, ALAC, FLAC, HE-AAC…) via symphonia.
     Symphonia(SymphoniaDecoder),
     /// Our AC-3 and E-AC-3 decoder (ATSC A/52, Annex E).
@@ -151,7 +151,7 @@ fn reorder(mut channels: Vec<Vec<f32>>, order: Option<&[usize]>) -> Vec<Vec<f32>
 /// without parsing frame lengths. For a multistream packet this is the first stream's TOC, which
 /// every stream shares. `None` for an empty or invalid (> 120 ms) packet.
 pub fn opus_packet_samples(data: &[u8]) -> Option<usize> {
-    let toc = filmcraft_opus::Toc::parse(*data.first()?);
+    let toc = craft_opus::Toc::parse(*data.first()?);
     let frames = match data[0] & 3 {
         0 => 1,
         1 | 2 => 2,
@@ -189,8 +189,8 @@ impl PacketDecoder {
     }
     /// Opus from an `OpusHead` (Matroska `CodecPrivate`, Ogg) or a `dOps` box payload. Output is
     /// 48 kHz; pre-skip is *not* trimmed here (Matroska `CodecDelay` / MP4 edit lists do that).
-    pub fn opus(head: filmcraft_opus::OpusHead) -> Result<Self> {
-        let dec = filmcraft_opus::Decoder::from_head(head, OPUS_RATE).map_err(|e| CodecError::Unsupported(format!("Opus: {e}")))?;
+    pub fn opus(head: craft_opus::OpusHead) -> Result<Self> {
+        let dec = craft_opus::Decoder::from_head(head, OPUS_RATE).map_err(|e| CodecError::Unsupported(format!("Opus: {e}")))?;
         let channels = dec.channels();
         let order = if dec.head().mapping_family == 1 { vorbis_to_wav_order(channels) } else { None };
         Ok(Self { inner: Inner::Opus { dec: Box::new(dec), order }, channels })
@@ -243,7 +243,7 @@ impl PacketDecoder {
             C::Alac { cookie } => Self::new(CODEC_TYPE_ALAC, rate, Some(cookie.clone())),
             // the decoder needs the STREAMINFO body: `dfLa` holds it after the 4-byte block header
             C::Flac(f) => Self::new(CODEC_TYPE_FLAC, rate, f.metadata_blocks.get(4..38).map(<[u8]>::to_vec)),
-            C::Opus(o) => Self::opus(filmcraft_opus::OpusHead::from_dops(&o.to_bytes()).map_err(|e| CodecError::Unsupported(format!("Opus: {e}")))?),
+            C::Opus(o) => Self::opus(craft_opus::OpusHead::from_dops(&o.to_bytes()).map_err(|e| CodecError::Unsupported(format!("Opus: {e}")))?),
             other => Err(CodecError::Unsupported(format!("{} audio", other.name()))),
         }
     }

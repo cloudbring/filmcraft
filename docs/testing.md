@@ -81,12 +81,13 @@ const fs = require('node:fs');
 })().catch(error => { console.error(error); process.exitCode = 1; });
 EOF
 export CARGO_TARGET_WASM32_WASIP1_RUNNER="node /tmp/filmcraft-wasi-runner.cjs"
-cargo test -p filmcraft-vp9 --lib \
+# Run in the pinned craft-libs checkout.
+cargo test -p craft-vp9 --lib \
   --no-default-features --target wasm32-wasip1 hostile_lengths -- --test-threads=1
 # Repeat with --release: wrapping arithmetic is also dangerous without overflow checks.
 ```
 
-In the pinned craft-libs checkout, repeat with `-p craft-av1`.
+In that checkout, repeat with `-p craft-av1`.
 The runner forwards the WASI exit code to Node.js so Cargo also fails when a test fails.
 The bitstream regression tests use only the standard library and need no proptest dependency.
 The tests wrap parser calls in `catch_unwind`; on WASI an aborting panic still fails the

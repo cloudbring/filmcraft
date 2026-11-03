@@ -1,5 +1,238 @@
 # Shared bitstream and codec migration (#48)
 
+## Final VP9, VP8 and Opus dependency boundary
+
+- Base: FilmCraft `1fe4502c16383617d5d6ee1b105d9191e7fe4869` (`algo/48-use-craft-hevc-av1`);
+  implementation branch: `algo/48-use-craft-vp9-opus`.
+- `craft-bitstream`, `craft-h264`, `craft-hevc`, `craft-av1`, `craft-fft`, `craft-vp9`,
+  `craft-vp8` and `craft-opus` all specify `branch = "algo/integration"` from
+  `cloudbring/craft-libs`. `Cargo.lock` resolves all eight to
+  **`1cfc1a1d23dd6af8b09fcd2256012620b22a9122`** (including VP9's upstream memory-budget
+  hardening). The transitive codec `craft-media` uses that revision too. There is one
+  `craft-bitstream` package identity; unrelated UI/document dependency pins are unchanged.
+- TODO(#48): repoint this group together to `storytold/craft-libs` after the shared codecs
+  merge upstream. The existing repoint TODO remains beside the workspace dependencies.
+- `filmcraft-codecs` is the sole direct consumer of the three removed local crates. Its
+  implementation and tests change only crate names and import ordering. Dependency kinds,
+  features/default features and optionality are unchanged; codec opt-level 3 overrides
+  follow the shared package names. VP9 retains its default `threads`/Rayon feature.
+- Delete **70 files / 20,803 lines**: VP8 **21 / 3,296**, VP9 **27 / 9,822**,
+  Opus **22 / 7,685**. Remove their layer registrations; the `crates/*` glob removes the
+  workspace members. No fixture-generator entries existed for these three crates.
+  Update the VP9 WASI testing instructions to run in craft-libs.
+- This base's Opus predates #49. `craft-opus` uses #49's MDCT on `craft-fft`, so PCM is
+  compared with an absolute **1e-6** tolerance, not bit equality. No consumer expectation
+  or existing test tolerance is changed. `craft-fft` is introduced here as the shared
+  Opus dependency, not as a replacement for unrelated FilmCraft DSP implementations.
+- Earlier sections below are historical migration evidence. In particular, the old HEVC
+  hardening deferral and codec-branch pins no longer describe this final boundary.
+
+### Final VP8/VP9/Opus golden parity
+
+The same saved pre-migration executable and a mechanically renamed post-migration executable
+read identical fixture bytes; input SHA-256, output shape/length, exit status and errors are
+checked before comparing output. The temporary example is removed before the final gates.
+VP8/VP9 output includes frame dimensions (and VP9 bit depth) and all Y/U/V plane bytes.
+VP9 covers threads **1 and 4**, each with draft **off and on**. Ogg Opus covers complete
+planar PCM and three fresh-source seeks (1/5, 1/2 and 1/3 of the stream, up to 1,024 frames).
+All **282 records pass**, with no rejected or silently skipped golden inputs:
+
+| Golden group | Inputs | Comparisons | Result |
+|---|---:|---:|---|
+| VP8 generated fixtures | 19 | 19 (229 frames) | All bytes identical |
+| VP9 generated fixtures | 56 | 224 (2,312 frames across four modes) | All bytes identical |
+| Ogg Opus consumer fixtures | 3 | 3 (full decode + seeks) | Maximum absolute PCM delta **5.960464477539063e-8** |
+| Official Opus vectors, stereo | 12 | 12 | Maximum delta **2.384185791015625e-7** |
+| Official Opus vectors, stereo without phase inversion | 12 | 12 | Maximum delta **2.384185791015625e-7** |
+| Official Opus vectors, mono | 12 | 12 | Maximum delta **1.1920928955078125e-7** |
+
+Overall maximum PCM deviation is **2.384185791015625e-7**, below 1e-6. All **36 official
+RFC 6716/RFC 8251 cases** pass in both original and shared suites, including exact final
+range-coder state after every packet and nonnegative conformance quality scores. The archive
+`opus_testvectors-rfc8251.tar.gz` is SHA-256 verified against the shared crate's manifest:
+`6b26a22f9ba87b2b836906a9bb7afec5f8e54d49553b1200382520ee6fedfa55`.
+The optional external VP8 conformance corpus is not installed; the 19 generated inputs above
+are exercised, while its existing optional corpus test retains the same skip behavior.
+
+#### Video golden inventory
+
+Each digest below is SHA-256 of the per-mode output SHA-256 hex strings, each followed by
+LF, in manifest order (VP9: 1/off, 4/off, 1/on, 4/on). The before and after mode hashes
+are individually identical; these digests compactly list all fixtures. Paths are relative
+to `target/fixtures/`.
+
+| Fixture | Modes | Before = after digest |
+|---|---:|---|
+| `vp8-tests/altref_2pass.ivf` | 1 | `43ee65e050cb2136e4e8094f95fb084af4b46be53051fabfea66bbee26d99638` |
+| `vp8-tests/coarse.ivf` | 1 | `9126e9f6f4247aa23d9e198f845da558a6e59700fa88a520e7c99f1dab57161b` |
+| `vp8-tests/default.ivf` | 1 | `e66d6c2b25a8cff54bdfa1182f67d9c1edcc343acd49274307991b3d1cfa1a7e` |
+| `vp8-tests/hd_1080p.ivf` | 1 | `7b5a42b7407dd5d002329156d9d67f282f5482bcf73f4bfaf6ce12de8c328f79` |
+| `vp8-tests/intra_only.ivf` | 1 | `9bd87fbdaeca7c821be0a7e0b7b4892c80b991382a45899597d01dcabd38f564` |
+| `vp8-tests/near_lossless.ivf` | 1 | `a61f1ea1c4b35e985bb30141e98c5f9848bc1b4344b3281e7c9b0e6443f719ee` |
+| `vp8-tests/noise_high_rate.ivf` | 1 | `e026668cdc273e6ade9d9f0ce65353d0dbb86afb9afbb0ec158978dae1148eb2` |
+| `vp8-tests/odd_size.ivf` | 1 | `30b0ce3d1dc8f9d6b3a370ac39ae67ec390c5cee1029ef6216aa9158b6dcd0e5` |
+| `vp8-tests/partitions8.ivf` | 1 | `ea4003ed488eb3552f40b1140434acbbdb345ab5d37072684506d325e8c51b91` |
+| `vp8-tests/realtime_segments.ivf` | 1 | `594c25e14353f37c3b7948693766f92475656375c0714cbf67f437c7a50055a6` |
+| `vp8-tests/screen.ivf` | 1 | `ad582aefde9f2e3301c076326f7968ff9d96dc8b6eee0272a88897a72de0d7bc` |
+| `vp8-tests/sharpness7.ivf` | 1 | `6a22838f27645bb79b4f08bba6c5b2f95f893a416443f401ebcac15323824c45` |
+| `vp8-tests/temporal_layers.ivf` | 1 | `694e3f82b725f55758d03dd76642b31489ae69284f0a14016bd26fc28da33ce9` |
+| `vp8-tests/tiny.ivf` | 1 | `cb41986e374d24d19881209f7845fadc9e2ead217bfe3e494a85097f7bd22603` |
+| `vp8-tests/version1_bilinear_simple.ivf` | 1 | `74870a8ba2bde98f6fd222f76bda2e141180711259f579e001be1a28ae6097c5` |
+| `vp8-tests/version2.ivf` | 1 | `d4684b56cf2252ac7dc5b4ff6481e30753e970a5acff075928cb8ac854e35cc8` |
+| `vp8-tests/version3_fullpixel.ivf` | 1 | `ebe1786a38eeb62501a885d0fef0cd3c1d2c262045c319f03fab6177dc459f50` |
+| `vp8/vp8_fz_default.ivf` | 1 | `2990dfe6a72bf109406480e4e734700edb8411aa30fd10980e4f1c98fe74f956` |
+| `vp8/vp8_fz_partitions.ivf` | 1 | `353834e156f51261992fb65f80fef187813447eb59d931f8e4c907cad96d3b47` |
+| `vp9/altref_10bit.ivf` | 4 | `afc448ff159be17fcfd79164ab8c90fd057fb0cbde8ad964621461ffc3c9531c` |
+| `vp9/altref_hidden.ivf` | 4 | `322e570abab7874d55f663b57ee17d8b6a388bc6ef44d494e9c9f131b5418628` |
+| `vp9/altref_tiles.ivf` | 4 | `78c0fa7f0eebe2f4dfbf4702a56af4969b3c5c3294cbec39f74bf367c60aeaca` |
+| `vp9/aq_complexity.ivf` | 4 | `624ab87f849a8326b0c23a74fc0efdb83f012ccf0822ac48594693bf0e6fc970` |
+| `vp9/aq_segmentation.ivf` | 4 | `500abddaffaf5392210a8e861a4d43560cb22d6c8728e4c0af281a7a02e1ec92` |
+| `vp9/aq_variance.ivf` | 4 | `54e7e1f80fb1644769fbdb5e7df423af101882c0075cc324e112f97d153ebf27` |
+| `vp9/cq_10bit_low.ivf` | 4 | `0df580946c2ef164de022f558d3061e279c5852a4e6f31444248ec9f780ffb80` |
+| `vp9/cq_12bit_high.ivf` | 4 | `b512df5e212effb4c6b2aa57e4dce17eda7ae62d6037e096c2eb3fd1ce7ca229` |
+| `vp9/cq_high.ivf` | 4 | `09d0ce89ffe21a4dfdd4e87ccdbbc6502f5e7c94723f03fd56df55fb51625083` |
+| `vp9/cq_low.ivf` | 4 | `866a56007b74c7d027a40251c22f2762729793ed4b73db19e68e899daf149b58` |
+| `vp9/cq_q4.ivf` | 4 | `e4ce4a694b6563329c6664cd1aa811eb9122fc9db3a609bb422af284c8ee9099` |
+| `vp9/default_good.ivf` | 4 | `e17cf1a6dfac280e5d46b3bc3c86c98a529ca585ca94e66d9a19bd9280182fd1` |
+| `vp9/error_resilient.ivf` | 4 | `0bfdb6b840aa8a483b0864f1ed2a83031c925bc47bb0e7acaf01f10718ac52e2` |
+| `vp9/fade_intra_heavy.ivf` | 4 | `b578df57e7fc02abdfb74a260206b2549102617ecb3bc0f2c605593de1fcee09` |
+| `vp9/frame_parallel.ivf` | 4 | `2acec7d4d3dba3083677244752140e3c70a0f84a90921db95b0040897bc712bc` |
+| `vp9/hd_1080p.ivf` | 4 | `efefde67856e82bab02607d096bdd021f89dce24ab27d7d2a58ffffa3ce7d769` |
+| `vp9/intra_only_keyframes.ivf` | 4 | `3948cdb4afb501c4a88e0600a7f32887bb958e2933f2c39c3b86a013e58eb610` |
+| `vp9/lossless.ivf` | 4 | `b07541b03d60d6372e9978ca9ed4b7b5815480fd61ffc7b4f5eeb697366691e2` |
+| `vp9/lossless_10bit.ivf` | 4 | `414406258d48f7c9cfec686a945d0cfb0a3bae86473984d6a6158b9c8ba17791` |
+| `vp9/narrow_tall.ivf` | 4 | `74142a6bd17fb0d86bf14442be42c0eafdb1c16fbbc2baba9b416bfc4ac160af` |
+| `vp9/odd_size.ivf` | 4 | `bc67deed94a27502fff284af056aafc810b6c368e8602bc071b3d89d19523b03` |
+| `vp9/profile1_422.ivf` | 4 | `eaf128549d5a5cc53d9b9663db7152cccdbae7847b73248f0e85ca03decdafc4` |
+| `vp9/profile1_440.ivf` | 4 | `d5dd68508915a2a5e83091a02a6c7f0dbc485255c8a2ced52290ef5dda7946ad` |
+| `vp9/profile1_444.ivf` | 4 | `2156a25b8e14d1701fd4016b52337a6eeed1ed813447ccb1dc70ddd481c0ec07` |
+| `vp9/profile2_10bit.ivf` | 4 | `d403a1cc345bff8ae966d5d06c493fdece0755937c447e01d5de603d3699ff86` |
+| `vp9/profile2_12bit.ivf` | 4 | `c2188f0345b901f620dc165c734b344443f96dfd864894a56a7281ffb0dc8657` |
+| `vp9/profile3_422_12bit.ivf` | 4 | `cd7c329157e7829788c85a524e53887793aa1065b5d3d5e85f9e103fdb4f69ab` |
+| `vp9/profile3_444_10bit.ivf` | 4 | `4f462f29628897f86f8c6abf0c906a8dc88d94fa01db38d7e53f4e500844c54c` |
+| `vp9/resize_concat.ivf` | 4 | `91c1f700dcba20317aed8d9a6a661b8262f41bdbaeeedfa4e30b4e78dd75c382` |
+| `vp9/row_mt.ivf` | 4 | `596cdc3f3e9e8f9737ef75de115fb8c4760ce67705b36b861ac6404243444d31` |
+| `vp9/sharpness.ivf` | 4 | `6bfdd986d0a7542b789e0fa1ed939df51f1efb278dd85429e490c84b0bb53769` |
+| `vp9/speed0.ivf` | 4 | `1a26028bb286f3ef6ca030cc52a888454b06feb08e71fa8925a2fd2d3c7204ae` |
+| `vp9/speed1.ivf` | 4 | `7fb1d587750c2c24b4031c95865c8c792c728bf10884c192fa113936e003284f` |
+| `vp9/speed2.ivf` | 4 | `863798279076e246d10e2143f4e18eb14e0a7f473ba223420f420cd678d876d0` |
+| `vp9/speed3.ivf` | 4 | `5ea1b890e8693b3f710e5176d6d27db162bed5f7c08159a0eac53deec73968dd` |
+| `vp9/speed4.ivf` | 4 | `652f6bd8c7f382ae4767320ea252b6f075dd9e82434dc23057ca2e4bb9a6de3d` |
+| `vp9/speed5.ivf` | 4 | `d745e9ae51cd8a8578181794dec00566c20e460364c48237fb26bc5c91a3821e` |
+| `vp9/speed6.ivf` | 4 | `5e955f939ec51608fff6d0ec76e86ff8cafb78b15dd73990ec8e5cfcddfc0df5` |
+| `vp9/speed7.ivf` | 4 | `ac56da42e8aecdcfad0940c2b05e145be802b8369080f667a9a37f3809abb930` |
+| `vp9/speed8.ivf` | 4 | `86c6441de9969decf5b3f0280fff2c79173dbe2521591f6e2ee4be4f9e37cc7d` |
+| `vp9/syn_base_352.ivf` | 4 | `1744f4097af214f222c72f3451d33c8e0f4f97b6c545823021e002038b23cc33` |
+| `vp9/syn_er_256x208.ivf` | 4 | `eac0978980e4f92bbdebef0ea9e6433c5fcdfaabd20d3c5093b008574c48a313` |
+| `vp9/syn_er_301x199.ivf` | 4 | `96c1ab5680b7a0755188bcd2bc382de6b287bc2f460e3968b85e0bdbebc65e1f` |
+| `vp9/syn_er_352.ivf` | 4 | `41a6b94e2239b689b3102106366f7669ce3d13fdbd7b00298b0269d1268d49ed` |
+| `vp9/syn_er_352x288.ivf` | 4 | `1af0f74a110e7553b840599f393d490241a179cd09d99b00ea51aac7c57f9ee7` |
+| `vp9/syn_er_480x400.ivf` | 4 | `3d4e8b2917019a081f5d86b996c8a7004efd1f6fc5a7abf158e00bc0d8a851c1` |
+| `vp9/syn_er_g8.ivf` | 4 | `d0186f7b185ed97c9314621cc53d89a0481829b98047223e931b904b3ec18387` |
+| `vp9/temporal_layers.ivf` | 4 | `ca8ed139a39f6ffb35f3727583a05ffdc91deaf435c9623d5411383135695169` |
+| `vp9/tiles_cols4.ivf` | 4 | `ad4b9219183e2de80fc821a7b5f1d337253263bf9fd5a6cf9ce91234d525187c` |
+| `vp9/tiles_rows4.ivf` | 4 | `eccae15d8ff8947c0bd5c3c8239e00169110a75ec60779bf87924ca26c0d51be` |
+| `vp9/tiles_rows_cols.ivf` | 4 | `9134b7af4e085a7593eeaa5cf3e6ac57d31ae7fe76361ad72538f565bf047cc2` |
+| `vp9/tiny_odd.ivf` | 4 | `ac8aec4feb91f7dfcff34fb36f7c3596504c942fe7ce75bf71cfb4c8d09d93a2` |
+| `vp9/vp9_fz_2tiles_10bit.ivf` | 4 | `666bf71c64644ff1c851941c6fcb0e235b4e8d99da9d312f3f8ed66b4b30c8f0` |
+| `vp9/vp9_fz_444.ivf` | 4 | `7ab67edc6030b7ce9ceae4583225e1fa9842f1e90de9cb645b2065bfb4f0437b` |
+| `vp9/vp9_fz_altref.ivf` | 4 | `2e8bbaea18b8911878c291615a43deb96a9b91c119a5a84adb4e6d7488f9cc58` |
+| `vp9/vp9_fz_default.ivf` | 4 | `69fb0ebdb8ef1407c50ea88fd9f7c67d990542c716dc5ce614d2f601c798f83a` |
+
+#### Opus golden inventory
+
+| Fixture | Maximum absolute PCM deviation |
+|---|---:|
+| `codecs/ogg_opus_music.opus` (complete + seeks) | 5.9604644775390625e-08 |
+| `codecs/ogg_opus_speech.opus` (complete + seeks) | 0 |
+| `codecs/ogg_opus_trim.ogg` (complete + seeks) | 4.4703483581542969e-08 |
+| `testvector01.bit` (stereo / stereo-m / mono) | 1.7881393432617188e-07 / 1.7881393432617188e-07 / 1.1920928955078125e-07 |
+| `testvector02.bit` (stereo / stereo-m / mono) | 0 / 0 / 0 |
+| `testvector03.bit` (stereo / stereo-m / mono) | 0 / 0 / 0 |
+| `testvector04.bit` (stereo / stereo-m / mono) | 0 / 0 / 0 |
+| `testvector05.bit` (stereo / stereo-m / mono) | 5.2154064178466797e-08 / 5.2154064178466797e-08 / 3.9115548133850098e-08 |
+| `testvector06.bit` (stereo / stereo-m / mono) | 4.8428773880004883e-08 / 4.0978193283081055e-08 / 3.7252902984619141e-08 |
+| `testvector07.bit` (stereo / stereo-m / mono) | 6.7055225372314453e-08 / 5.9604644775390625e-08 / 5.9604644775390625e-08 |
+| `testvector08.bit` (stereo / stereo-m / mono) | 8.9406967163085938e-08 / 8.9406967163085938e-08 / 5.9604644775390625e-08 |
+| `testvector09.bit` (stereo / stereo-m / mono) | 9.3132257461547852e-08 / 9.3132257461547852e-08 / 7.4505805969238281e-08 |
+| `testvector10.bit` (stereo / stereo-m / mono) | 5.9604644775390625e-08 / 5.9604644775390625e-08 / 5.9604644775390625e-08 |
+| `testvector11.bit` (stereo / stereo-m / mono) | 2.384185791015625e-07 / 2.384185791015625e-07 / 1.1920928955078125e-07 |
+| `testvector12.bit` (stereo / stereo-m / mono) | 2.2351741790771484e-08 / 2.2351741790771484e-08 / 2.2351741790771484e-08 |
+
+### Final consumer counts and gates
+
+Validated on 2026-11-03 using rustup's `stable-aarch64-apple-darwin`, Rust **1.99.0**
+(`b940084d7`) / Cargo **1.99.0** (`5f94df478`), not Homebrew Cargo. Counts below include
+unit, integration and doc tests. Every remaining workspace package has the same counts
+as the baseline; all direct consumers of the repointed packages and downstream export
+are listed explicitly (passed / failed / ignored):
+
+| FilmCraft consumer | Before | After |
+|---|---:|---:|
+| `filmcraft-aac` | 35 / 0 / 0 | 35 / 0 / 0 |
+| `filmcraft-apv` | 7 / 0 / 0 | 7 / 0 / 0 |
+| `filmcraft-codecs` | 220 / 0 / 3 | 220 / 0 / 3 |
+| `filmcraft-dnx` | 11 / 0 / 4 | 11 / 0 / 4 |
+| `filmcraft-export` | 147 / 0 / 0 | 147 / 0 / 0 |
+| `filmcraft-flac` | 13 / 0 / 0 | 13 / 0 / 0 |
+| `filmcraft-h264enc` | 35 / 0 / 0 | 35 / 0 / 0 |
+| `filmcraft-mpa` | 10 / 0 / 1 | 10 / 0 / 1 |
+| `filmcraft-platform` | 72 / 1 / 0 | 72 / 1 / 0 |
+| `filmcraft-prores` | 30 / 0 / 3 | 30 / 0 / 3 |
+
+The original local decoder suites are VP8 **26 / 0 / 1**, VP9 **78 / 0 / 3** and
+Opus **38 / 0 / 1**. Separately running the locked shared source's own tests gives:
+
+| Shared crate | Passed / failed / ignored |
+|---|---:|
+| `craft-bitstream` | 12 / 0 / 0 |
+| `craft-fft` | 18 / 0 / 1 |
+| `craft-h264` | 112 / 0 / 4 |
+| `craft-hevc` | 108 / 0 / 4 |
+| `craft-av1` | 40 / 0 / 4 |
+| `craft-vp8` | 26 / 0 / 1 |
+| `craft-vp9` | 81 / 0 / 3 |
+| `craft-opus` | 39 / 0 / 1 |
+
+Shared VP9 adds three upstream memory-budget regressions; shared Opus adds one allocation
+regression. These are upstream additions, not removed or weakened FilmCraft consumer tests.
+The isolated shared validation workspace prunes unrelated workspace members and vendor
+patches, but its eight crate directories match the locked Git source byte-for-byte.
+An initial AV1 oracle-discovery failure was corrected in the local FFmpeg wrapper, then
+all 40 AV1 tests passed; no product code or tests were changed for that correction.
+
+Workspace validation runs serially because the baseline parallel run exposed an AVI
+fixture-generation race and a platform hardware-counter race. Serial reruns of those
+baseline consumers leave **4,339 passed / 1 failed / 41 ignored** overall. After deleting
+the three local suites, `cargo test --workspace --no-fail-fast -- --test-threads=1`
+reports **4,197 passed / 1 failed / 36 ignored**, exactly subtracting their 142 passes
+and five ignores. The sole failure, unchanged before and after, is
+`filmcraft-platform::hardware_encode::rgba_pictures_encode_like_the_cpu_conversion`
+(VideoToolbox RGBA-versus-planar luma PSNR). It is not suppressed or modified.
+
+| Gate | Final result |
+|---|---|
+| `cargo fmt --check` | Pass |
+| `cargo clippy --workspace --all-targets -- -D warnings` | Pass |
+| `cargo xtask layers` | Pass |
+| `cargo xtask assets` | Pass: 69 attributed assets |
+| `cargo xtask wasm` | Pass: 42 crates |
+| Workspace tests | Only the known VideoToolbox baseline failure above |
+| `git diff --check` | Pass |
+
+Builds used `CARGO_TARGET_DIR=/Users/emm/ArtCraft/worktrees/filmcraft-48-vp9-opus/target-48`,
+`CARGO_BUILD_JOBS=4` and `CARGO_INCREMENTAL=0`. Codec validation required external oracles
+with `FILMCRAFT_REQUIRE_ORACLES=1` / `CRAFT_MEDIA_REQUIRE_ORACLES=1`, using generated
+fixtures and the verified official Opus vectors. The FFmpeg wrapper dispatches AV1
+and decoder discovery to Homebrew's full FFmpeg, and high-bit-depth VP9/kvazaar work to
+the OSXExperts FFmpeg binary; neither is a shipped dependency.
+
+Logs, count JSON, comparison harnesses and golden manifests remain locally in ignored
+`target/validation-48/`. The required `target-48` build directory is removed. Its temporary
+shared-checkout/generated assets caused the first asset scan to fail; after cleanup, the
+same built xtask executable was run as `target/validation-48/xtask assets` and passed.
+No attribution files, scanner rules or ignore rules were changed to hide that failure.
+
 ## HEVC and AV1 dependency boundary
 
 - Base: FilmCraft `eb3487a5c24c0d9d03fee9c01c207d52c050d8aa`

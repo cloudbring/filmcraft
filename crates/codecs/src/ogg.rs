@@ -43,7 +43,7 @@ struct OpusState {
 
 enum Kind {
     Opus {
-        head: Box<filmcraft_opus::OpusHead>,
+        head: Box<craft_opus::OpusHead>,
         timing: OpusTiming,
         state: Mutex<OpusState>,
     },
@@ -81,7 +81,7 @@ impl OggSource {
         let st = &file.streams[stream];
         let (kind, rate, channels, codec) = match st.codec {
             Codec::Opus => {
-                let head = filmcraft_opus::OpusHead::parse(&st.headers[0]).map_err(|e| CodecError::Unsupported(format!("Opus: {e}")))?;
+                let head = craft_opus::OpusHead::parse(&st.headers[0]).map_err(|e| CodecError::Unsupported(format!("Opus: {e}")))?;
                 let timing = OpusTiming::of(st, head.pre_skip as u32);
                 let channels = head.channels as u32;
                 (
@@ -123,7 +123,7 @@ impl OggSource {
         &self.file
     }
 
-    fn opus_packet(&self, st: &mut OpusState, head: &filmcraft_opus::OpusHead, timing: &OpusTiming, i: usize) -> crate::Result<Arc<Vec<Vec<f32>>>> {
+    fn opus_packet(&self, st: &mut OpusState, head: &craft_opus::OpusHead, timing: &OpusTiming, i: usize) -> crate::Result<Arc<Vec<Vec<f32>>>> {
         if let Some(p) = st.packets.get(&i) {
             return Ok(p.clone());
         }

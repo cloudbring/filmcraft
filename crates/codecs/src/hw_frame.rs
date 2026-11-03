@@ -219,7 +219,7 @@ impl FrameStreamInfo {
     /// frame is a shown key frame): the software decoders' own test.
     pub fn is_random_access(&self, sample: &[u8]) -> bool {
         match self.codec {
-            FrameCodec::Vp9 => filmcraft_vp9::is_keyframe(sample),
+            FrameCodec::Vp9 => craft_vp9::is_keyframe(sample),
             FrameCodec::Av1 => craft_av1::is_key_frame_unit(sample),
         }
     }
@@ -229,7 +229,7 @@ impl FrameStreamInfo {
     pub fn picture_params(&self, sample: &[u8]) -> Option<PictureParams> {
         match self.codec {
             FrameCodec::Vp9 => {
-                let k = filmcraft_vp9::keyframe_info(sample)?;
+                let k = craft_vp9::keyframe_info(sample)?;
                 let color = vp9_color(k.width, k.height, k.color.color_space, k.color.full_range, self.transfer, self.primaries);
                 Some(PictureParams {
                     size: (k.width, k.height),
