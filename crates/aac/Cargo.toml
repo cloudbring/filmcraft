@@ -14,9 +14,11 @@ default = []
 rayon = ["dep:rayon"]
 
 [dependencies]
+craft-fft = { workspace = true }
 filmcraft-bitstream = { workspace = true }
 thiserror = { workspace = true }
 rayon = { workspace = true, optional = true }
 
 [dev-dependencies]
+allocation-counter = { workspace = true }
 filmcraft-testkit = { workspace = true }

@@ -1,6 +1,6 @@
 //! Clean-room pure-Rust Opus decoder (RFC 6716, updated by RFC 8251).
 //!
-//! Layer L0: no dependencies beyond `std`; no `unsafe`; builds for `wasm32-unknown-unknown`.
+//! Layer L0: shared `craft-fft` transforms; no `unsafe`; builds for `wasm32-unknown-unknown`.
 
 #![cfg_attr(not(test), deny(clippy::unwrap_used, clippy::expect_used, clippy::panic, clippy::unimplemented, clippy::todo, clippy::unreachable))]
 pub(crate) mod celt;
@@ -23,6 +23,7 @@ pub enum Error {
     InvalidPacket(&'static str),
     InvalidHeader(&'static str),
     Unsupported(&'static str),
+    Transform(craft_fft::Error),
 }
 
 impl std::fmt::Display for Error {
@@ -32,10 +33,17 @@ impl std::fmt::Display for Error {
             Error::InvalidPacket(s) => write!(f, "invalid packet: {s}"),
             Error::InvalidHeader(s) => write!(f, "invalid header: {s}"),
             Error::Unsupported(s) => write!(f, "unsupported: {s}"),
+            Error::Transform(error) => write!(f, "transform: {error}"),
         }
     }
 }
 
 impl std::error::Error for Error {}
+
+impl From<craft_fft::Error> for Error {
+    fn from(error: craft_fft::Error) -> Self {
+        Self::Transform(error)
+    }
+}
 
 pub type Result<T> = std::result::Result<T, Error>;

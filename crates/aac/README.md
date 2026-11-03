@@ -2,7 +2,7 @@
 
 A clean-room AAC-LC encoder and decoder (ISO/IEC 14496-3, MPEG-4 Audio, Low Complexity profile),
 written from the standard and the public psychoacoustics literature. Layer L0: it depends only on
-`filmcraft-bitstream` and `thiserror` (plus optional `rayon`), has no `unsafe`, and builds for
+`filmcraft-bitstream`, `craft-fft` and `thiserror` (plus optional `rayon`), has no `unsafe`, and builds for
 `wasm32-unknown-unknown`.
 
 No FFmpeg/FAAC/FDK-AAC/libfaad or other GPL/LGPL code was read or ported. ffmpeg is used only as an
@@ -61,8 +61,10 @@ Per 1024-sample frame and channel element:
    sub-blocks against the mean of the previous eight; one frame of look-ahead selects
    `ONLY_LONG` / `LONG_START` / `EIGHT_SHORT` / `LONG_STOP`. Short windows are grouped by energy
    similarity (an attack starts a new group). LFE is always long.
-2. **MDCT** (2048/256 points) via a DCT-IV on an N/4-point radix-2 complex FFT; sine or KBD
-   (α = 4 long, 6 short) windows.
+2. **MDCT** (2048/256 points) via `craft-fft`'s cached N/4 complex FFT; sine or KBD
+   (α = 4 long, 6 short) windows. Long/short encoder plans and decoder scratch are allocated at
+   construction, never per transform. AAC transition windows remain codec-owned: the adapter
+   compensates for the facade's sine window using its middle half, then restores unscaled output.
 3. **Psychoacoustic model** in the MDCT domain: band energies, tonality from the spectral flatness of
    a ≥16-line neighbourhood, Schroeder's spreading function in the Bark domain, tonality-dependent
    masking offset (30 dB tonal … 6 dB noise), Terhardt threshold in quiet (capped at 40 dB SPL) as a

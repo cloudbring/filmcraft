@@ -83,7 +83,6 @@ pub struct Mode {
     /// Per-band maximum allocation: `[(2*LM + C-1)*NB_EBANDS + band]`.
     pub caps: Vec<u8>,
     pub window: [f32; OVERLAP],
-    pub mdct: [super::mdct::Imdct; MAX_LM + 1],
 }
 
 impl Mode {
@@ -93,14 +92,7 @@ impl Mode {
             *l = log2_frac((EBANDS[i + 1] - EBANDS[i]) as u32, BITRES);
         }
         let (cache_index, cache_bits) = compute_pulse_cache(MAX_LM as i32);
-        let mut m = Mode {
-            log_n,
-            cache_index,
-            cache_bits,
-            caps: Vec::new(),
-            window: [0.0; OVERLAP],
-            mdct: [super::mdct::Imdct::new(1920), super::mdct::Imdct::new(960), super::mdct::Imdct::new(480), super::mdct::Imdct::new(240)],
-        };
+        let mut m = Mode { log_n, cache_index, cache_bits, caps: Vec::new(), window: [0.0; OVERLAP] };
         m.caps = compute_caps(&m);
         for i in 0..OVERLAP {
             let x = std::f64::consts::FRAC_PI_2 * (i as f64 + 0.5) / OVERLAP as f64;

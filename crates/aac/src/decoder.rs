@@ -5,7 +5,7 @@ use filmcraft_bitstream::BitReader;
 use crate::config::{AudioSpecificConfig, ElementType, ProgramConfig};
 use crate::huffman::{self, INTENSITY_HCB, INTENSITY_HCB2, NOISE_HCB, ZERO_HCB};
 use crate::ics::{IcsInfo, WindowSequence};
-use crate::mdct::{MdctScratch, WindowShape, mdct_long, mdct_short, window};
+use crate::mdct::{MdctScratch, WindowShape, window};
 use crate::tables::{pow43, pow43_table, sf_gain};
 use crate::tns::{self, TnsData};
 use crate::{Error, Result};
@@ -53,8 +53,8 @@ struct Scratch {
 }
 
 impl Scratch {
-    fn new() -> Scratch {
-        Scratch { q: vec![0; 1024], buf: vec![0.0; 2048], y: vec![0.0; 2048], long: mdct_long().scratch(), short: mdct_short().scratch() }
+    fn new() -> Result<Scratch> {
+        Ok(Scratch { q: vec![0; 1024], buf: vec![0.0; 2048], y: vec![0.0; 2048], long: MdctScratch::new(1024)?, short: MdctScratch::new(128)? })
     }
 }
 
@@ -92,7 +92,7 @@ impl Decoder {
             return Err(Error::InvalidConfig("unsupported channel configuration"));
         }
         let mut d =
-            Decoder { asc, layout: Vec::new(), offsets: Vec::new(), channels: Vec::new(), noise_state: 0x2545_F491, scratch: Scratch::new(), sbr_seen: false };
+            Decoder { asc, layout: Vec::new(), offsets: Vec::new(), channels: Vec::new(), noise_state: 0x2545_F491, scratch: Scratch::new()?, sbr_seen: false };
         d.set_layout(layout);
         Ok(d)
     }
@@ -164,7 +164,7 @@ impl Decoder {
                     let mut ics = self.decode_ics(&mut br, None)?;
                     let ch = self.offsets[slot];
                     self.fill_noise(&mut ics, None);
-                    out[ch] = Some(self.finish_channel(ch, &mut ics));
+                    out[ch] = Some(self.finish_channel(ch, &mut ics)?);
                 }
                 ID_CPE => {
                     let tag = br.read_bits(4)? as u8;
@@ -299,7 +299,7 @@ impl Decoder {
                 }
             }
         }
-        Ok([self.finish_channel(ch, &mut l), self.finish_channel(ch + 1, &mut r)])
+        Ok([self.finish_channel(ch, &mut l)?, self.finish_channel(ch + 1, &mut r)?])
     }
 
     fn decode_ics(&mut self, br: &mut BitReader, common: Option<IcsInfo>) -> Result<Ics> {
@@ -507,7 +507,7 @@ impl Decoder {
     }
 
     /// TNS + filterbank for a single channel element; returns output samples.
-    fn finish_channel(&mut self, ch: usize, ics: &mut Ics) -> Vec<f32> {
+    fn finish_channel(&mut self, ch: usize, ics: &mut Ics) -> Result<Vec<f32>> {
         if let Some(t) = &ics.tns {
             tns::apply_decoder(&mut ics.spec, &ics.info, self.sf_index(), t);
         }
@@ -516,7 +516,7 @@ impl Decoder {
 }
 
 /// Inverse MDCT, windowing and overlap-add (§4.6.18), output scaled to ±1.0 full scale.
-fn synth(state: &mut ChannelState, sc: &mut Scratch, info: &IcsInfo, spec: &[f32]) -> Vec<f32> {
+fn synth(state: &mut ChannelState, sc: &mut Scratch, info: &IcsInfo, spec: &[f32]) -> Result<Vec<f32>> {
     let Scratch { buf, y, long, short, .. } = sc;
     buf.fill(0.0);
     let prev = state.prev_shape;
@@ -524,11 +524,10 @@ fn synth(state: &mut ChannelState, sc: &mut Scratch, info: &IcsInfo, spec: &[f32
     let norm = 1.0 / 32768.0;
     match info.window_sequence {
         WindowSequence::EightShort => {
-            let t = mdct_short();
             let y = &mut y[..256];
             let wc = window(cur, false);
             for w in 0..8 {
-                t.inverse_with(&spec[w * 128..(w + 1) * 128], y, short);
+                short.inverse_with(&spec[w * 128..(w + 1) * 128], y)?;
                 let wl = window(if w == 0 { prev } else { cur }, false);
                 let off = 448 + 128 * w;
                 let s = norm / 128.0;
@@ -539,7 +538,7 @@ fn synth(state: &mut ChannelState, sc: &mut Scratch, info: &IcsInfo, spec: &[f32
             }
         }
         seq => {
-            mdct_long().inverse_with(&spec[..1024], y, long);
+            long.inverse_with(&spec[..1024], y)?;
             let s = norm / 1024.0;
             match seq {
                 WindowSequence::LongStop => {
@@ -580,7 +579,7 @@ fn synth(state: &mut ChannelState, sc: &mut Scratch, info: &IcsInfo, spec: &[f32
     let out: Vec<f32> = (0..1024).map(|n| state.overlap[n] + buf[n]).collect();
     state.overlap.copy_from_slice(&buf[1024..]);
     state.prev_shape = cur;
-    out
+    Ok(out)
 }
 
 #[cfg(test)]

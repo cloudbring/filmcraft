@@ -1,233 +1,68 @@
-//! MDCT / IMDCT (ISO/IEC 14496-3 §4.6.18) via a DCT-IV computed with an N/4-point complex FFT,
-//! plus the sine and Kaiser–Bessel-derived windows.
+//! AAC transform adapters for craft-fft (ISO/IEC 14496-3 §4.6.18).
+//!
+//! AAC applies asymmetric transition windows outside the transform. The shared facade currently
+//! applies a full sine window, so these adapters undo it using only the well-conditioned middle
+//! half (window >= sqrt(1/2)), and restore the codec's unscaled convention.
 
 use std::f64::consts::PI;
 use std::sync::OnceLock;
 
-/// Radix-2 complex FFT (forward, `e^{-2πi nk/P}`).
-struct Fft {
-    n: usize,
-    /// Twiddle of the length-2 stage, `e^{-2πi 0/n}`.
-    w0: [f32; 2],
-    /// Twiddles of the stages of length 4, 8, ..., n, one contiguous run of `len / 2` per stage.
-    stage_re: Vec<f32>,
-    stage_im: Vec<f32>,
-    rev: Vec<u32>,
-}
+use craft_fft::{Error, TdacWindow};
 
-impl Fft {
-    fn new(n: usize) -> Fft {
-        assert!(n.is_power_of_two());
-        let bits = n.trailing_zeros();
-        let rev = (0..n as u32).map(|i| if bits == 0 { 0 } else { i.reverse_bits() >> (32 - bits) }).collect();
-        let twiddle: Vec<[f32; 2]> = (0..n / 2)
-            .map(|k| {
-                let a = -2.0 * PI * k as f64 / n as f64;
-                [a.cos() as f32, a.sin() as f32]
-            })
-            .collect();
-        let (mut stage_re, mut stage_im) = (Vec::new(), Vec::new());
-        let mut len = 4;
-        while len <= n {
-            let step = n / len;
-            for k in 0..len / 2 {
-                stage_re.push(twiddle[k * step][0]);
-                stage_im.push(twiddle[k * step][1]);
-            }
-            len <<= 1;
-        }
-        Fft { n, w0: twiddle.first().copied().unwrap_or([1.0, 0.0]), stage_re, stage_im, rev }
-    }
-
-    fn run(&self, re: &mut [f32], im: &mut [f32]) {
-        let n = self.n;
-        for i in 0..n {
-            let j = self.rev[i] as usize;
-            if j > i {
-                re.swap(i, j);
-                im.swap(i, j);
-            }
-        }
-        if n >= 2 {
-            let [wr, wi] = self.w0;
-            let ((re2, _), (im2, _)) = (re.as_chunks_mut::<2>(), im.as_chunks_mut::<2>());
-            for (r, i) in re2.iter_mut().zip(im2) {
-                let xr = r[1] * wr - i[1] * wi;
-                let xi = r[1] * wi + i[1] * wr;
-                r[1] = r[0] - xr;
-                i[1] = i[0] - xi;
-                r[0] += xr;
-                i[0] += xi;
-            }
-        }
-        let mut len = 4;
-        let mut off = 0;
-        // Two radix-2 stages (len, 2 * len) per pass over the data: the same butterflies in the same
-        // order per element, so the result is bit-identical to running the stages one by one.
-        while len * 2 <= n {
-            let h = len / 2;
-            let (t1r, t1i) = (&self.stage_re[off..off + h], &self.stage_im[off..off + h]);
-            let (t2r, t2i) = (&self.stage_re[off + h..off + 3 * h], &self.stage_im[off + h..off + 3 * h]);
-            off += 3 * h;
-            for (rc, ic) in re.chunks_exact_mut(4 * h).zip(im.chunks_exact_mut(4 * h)) {
-                let (ra, rest) = rc.split_at_mut(h);
-                let (rb, rest) = rest.split_at_mut(h);
-                let (rc2, rd) = rest.split_at_mut(h);
-                let (ia, rest) = ic.split_at_mut(h);
-                let (ib, rest) = rest.split_at_mut(h);
-                let (ic2, id) = rest.split_at_mut(h);
-                for k in 0..h {
-                    let (w1r, w1i) = (t1r[k], t1i[k]);
-                    // stage `len`: (a, b) and (c, d)
-                    let xr = rb[k] * w1r - ib[k] * w1i;
-                    let xi = rb[k] * w1i + ib[k] * w1r;
-                    let (br, bi) = (ra[k] - xr, ia[k] - xi);
-                    let (ar, ai) = (ra[k] + xr, ia[k] + xi);
-                    let xr = rd[k] * w1r - id[k] * w1i;
-                    let xi = rd[k] * w1i + id[k] * w1r;
-                    let (dr, di) = (rc2[k] - xr, ic2[k] - xi);
-                    let (cr, ci) = (rc2[k] + xr, ic2[k] + xi);
-                    // stage `2 * len`: (a, c) with w2[k], (b, d) with w2[k + h]
-                    let (w2r, w2i) = (t2r[k], t2i[k]);
-                    let xr = cr * w2r - ci * w2i;
-                    let xi = cr * w2i + ci * w2r;
-                    rc2[k] = ar - xr;
-                    ic2[k] = ai - xi;
-                    ra[k] = ar + xr;
-                    ia[k] = ai + xi;
-                    let (w2r, w2i) = (t2r[k + h], t2i[k + h]);
-                    let xr = dr * w2r - di * w2i;
-                    let xi = dr * w2i + di * w2r;
-                    rd[k] = br - xr;
-                    id[k] = bi - xi;
-                    rb[k] = br + xr;
-                    ib[k] = bi + xi;
-                }
-            }
-            len <<= 2;
-        }
-        if len <= n {
-            let half = len / 2;
-            let (twr, twi) = (&self.stage_re[off..off + half], &self.stage_im[off..off + half]);
-            for (rc, ic) in re.chunks_exact_mut(len).zip(im.chunks_exact_mut(len)) {
-                let (ra, rb) = rc.split_at_mut(half);
-                let (ia, ib) = ic.split_at_mut(half);
-                for k in 0..half {
-                    let (wr, wi) = (twr[k], twi[k]);
-                    let xr = rb[k] * wr - ib[k] * wi;
-                    let xi = rb[k] * wi + ib[k] * wr;
-                    rb[k] = ra[k] - xr;
-                    ib[k] = ia[k] - xi;
-                    ra[k] += xr;
-                    ia[k] += xi;
-                }
-            }
-        }
-    }
-}
-
-/// MDCT of `2M` inputs to `M` outputs (unscaled sums):
-/// `X[k] = Σ x[n] cos(π/M (n + ½ + M/2)(k + ½))`, and the matching unscaled inverse.
 pub struct Mdct {
-    m: usize,
-    fft: Fft,
-    pre: Vec<[f32; 2]>,
-    post: Vec<[f32; 2]>,
+    plan: craft_fft::Mdct<f32>,
+    buffer: Vec<f32>,
 }
 
 impl Mdct {
-    pub fn new(m: usize) -> Mdct {
-        let q = m / 2;
-        let pre = (0..q)
-            .map(|n| {
-                let a = -PI * n as f64 / m as f64;
-                [a.cos() as f32, a.sin() as f32]
-            })
-            .collect();
-        let post = (0..q)
-            .map(|k| {
-                let a = -PI * (k as f64 + 0.25) / m as f64;
-                [a.cos() as f32, a.sin() as f32]
-            })
-            .collect();
-        Mdct { m, fft: Fft::new(q), pre, post }
+    pub fn new(coefficients: usize) -> Result<Self, Error> {
+        let plan = craft_fft::Mdct::new(coefficients, TdacWindow::Sine)?;
+        Ok(Self { plan, buffer: vec![0.0; 2 * coefficients] })
     }
 
-    /// Working buffers for this transform size.
-    pub fn scratch(&self) -> MdctScratch {
-        MdctScratch { re: vec![0.0; self.m / 2], im: vec![0.0; self.m / 2], u: vec![0.0; self.m] }
-    }
-
-    /// DCT-IV: `out[k] = Σ u[n] cos(π/M (n+½)(k+½))`; `re` and `im` (length M/2) are overwritten.
-    fn dct4(&self, u: &[f32], out: &mut [f32], re: &mut [f32], im: &mut [f32]) {
-        let m = self.m;
-        let q = m / 2;
-        for n in 0..q {
-            let (a, b) = (u[2 * n], u[m - 1 - 2 * n]);
-            let [c, s] = self.pre[n];
-            re[n] = a * c - b * s;
-            im[n] = a * s + b * c;
+    pub fn forward(&mut self, input: &[f32], output: &mut [f32]) -> Result<(), Error> {
+        let length = self.plan.coefficients_len();
+        if input.len() != 2 * length {
+            return Err(Error::Length { expected: 2 * length, actual: input.len() });
         }
-        self.fft.run(re, im);
-        for k in 0..q {
-            let [c, s] = self.post[k];
-            let wr = re[k] * c - im[k] * s;
-            let wi = re[k] * s + im[k] * c;
-            out[2 * k] = wr;
-            out[m - 1 - 2 * k] = -wi;
+        let half = length / 2;
+        let window = self.plan.window();
+        for index in 0..half {
+            let left = length - 1 - index;
+            let right = 3 * half - 1 - index;
+            self.buffer[left] = (input[left] - input[index]) / window[left];
+            self.buffer[right] = (input[right] + input[3 * half + index]) / window[right];
         }
-    }
-
-    /// Forward MDCT of `x` (length 2M, already windowed) into `out` (length M).
-    pub fn forward(&self, x: &[f32], out: &mut [f32]) {
-        let m = self.m;
-        let h = m / 2;
-        let MdctScratch { re, im, mut u } = self.scratch();
-        for n in 0..h {
-            // quarters a, b, c, d of length M/2
-            u[n] = -x[m + h - 1 - n] - x[m + h + n];
-            u[h + n] = x[n] - x[m - 1 - n];
-        }
-        let (mut re, mut im) = (re, im);
-        self.dct4(&u, out, &mut re, &mut im);
-    }
-
-    /// Inverse MDCT (unscaled): `y[n] = Σ X[k] cos(π/M (n + ½ + M/2)(k + ½))`, `y` has length 2M.
-    #[cfg(test)]
-    pub fn inverse(&self, spec: &[f32], y: &mut [f32]) {
-        self.inverse_with(spec, y, &mut self.scratch());
-    }
-
-    /// [`Self::inverse`] with caller-provided working buffers from [`Self::scratch`].
-    pub fn inverse_with(&self, spec: &[f32], y: &mut [f32], sc: &mut MdctScratch) {
-        let m = self.m;
-        let h = m / 2;
-        let MdctScratch { re, im, u } = sc;
-        self.dct4(spec, u, re, im);
-        for n in 0..h {
-            y[n] = u[h + n];
-            y[m - 1 - n] = -u[h + n];
-            y[m + h - 1 - n] = -u[n];
-            y[m + h + n] = -u[n];
-        }
+        self.plan.process_into(&self.buffer, output)
     }
 }
 
-/// Working buffers of one [`Mdct`] size, reusable across transforms.
 pub struct MdctScratch {
-    re: Vec<f32>,
-    im: Vec<f32>,
-    u: Vec<f32>,
+    plan: craft_fft::Imdct<f32>,
+    gains: Vec<f32>,
 }
 
-/// Cached transforms for 1024 and 128 lines.
-pub fn mdct_long() -> &'static Mdct {
-    static M: OnceLock<Mdct> = OnceLock::new();
-    M.get_or_init(|| Mdct::new(1024))
-}
-pub fn mdct_short() -> &'static Mdct {
-    static M: OnceLock<Mdct> = OnceLock::new();
-    M.get_or_init(|| Mdct::new(128))
+impl MdctScratch {
+    pub fn new(coefficients: usize) -> Result<Self, Error> {
+        let plan = craft_fft::Imdct::new(coefficients, TdacWindow::Sine)?;
+        let half = coefficients / 2;
+        let gains = plan.window()[half..3 * half].iter().map(|window| half as f32 / window).collect();
+        Ok(Self { plan, gains })
+    }
+
+    pub fn inverse_with(&mut self, spectrum: &[f32], output: &mut [f32]) -> Result<(), Error> {
+        self.plan.process_into(spectrum, output)?;
+        let length = self.plan.coefficients_len();
+        let half = length / 2;
+        for (sample, gain) in output[half..3 * half].iter_mut().zip(&self.gains) {
+            *sample *= gain;
+        }
+        for index in 0..half {
+            output[index] = -output[length - 1 - index];
+            output[3 * half + index] = output[3 * half - 1 - index];
+        }
+        Ok(())
+    }
 }
 
 /// Window shape (`window_shape` bit): 0 = sine, 1 = Kaiser–Bessel derived.
@@ -301,6 +136,42 @@ pub fn window(shape: WindowShape, long: bool) -> &'static [f32] {
 mod tests {
     use super::*;
 
+    #[test]
+    fn processing_including_first_call_does_not_allocate() {
+        for length in [128, 1024] {
+            let mut forward = Mdct::new(length).unwrap();
+            let mut inverse = MdctScratch::new(length).unwrap();
+            let input = vec![0.25; 2 * length];
+            let mut spectrum = vec![0.0; length];
+            let mut output = vec![0.0; 2 * length];
+            let allocations = allocation_counter::measure(|| {
+                for _ in 0..16 {
+                    forward.forward(&input, &mut spectrum).unwrap();
+                    inverse.inverse_with(&spectrum, &mut output).unwrap();
+                }
+            });
+            assert_eq!(allocations.count_total, 0);
+        }
+    }
+
+    #[test]
+    fn invalid_lengths_do_not_panic_or_modify_output() {
+        for length in [0, 1, 127, usize::MAX] {
+            assert!(Mdct::new(length).is_err());
+            assert!(MdctScratch::new(length).is_err());
+        }
+        let mut forward = Mdct::new(128).unwrap();
+        let mut inverse = MdctScratch::new(128).unwrap();
+        let mut spectrum = [7.0; 128];
+        let mut output = [7.0; 256];
+        assert!(forward.forward(&[0.0; 255], &mut spectrum).is_err());
+        assert!(forward.forward(&[0.0; 256], &mut spectrum[..127]).is_err());
+        assert!(inverse.inverse_with(&spectrum[..127], &mut output).is_err());
+        assert!(inverse.inverse_with(&spectrum, &mut output[..255]).is_err());
+        assert_eq!(spectrum, [7.0; 128]);
+        assert_eq!(output, [7.0; 256]);
+    }
+
     fn direct(x: &[f32]) -> Vec<f64> {
         let m = x.len() / 2;
         (0..m).map(|k| (0..2 * m).map(|n| x[n] as f64 * (PI / m as f64 * (n as f64 + 0.5 + m as f64 / 2.0) * (k as f64 + 0.5)).cos()).sum()).collect()
@@ -311,7 +182,7 @@ mod tests {
         for m in [128usize, 1024] {
             let x: Vec<f32> = (0..2 * m).map(|i| ((i * 7919) % 101) as f32 / 50.0 - 1.0).collect();
             let mut out = vec![0f32; m];
-            Mdct::new(m).forward(&x, &mut out);
+            Mdct::new(m).unwrap().forward(&x, &mut out).unwrap();
             let d = direct(&x);
             for k in 0..m {
                 assert!((out[k] as f64 - d[k]).abs() < 1e-3 * (m as f64).sqrt(), "m={m} k={k} {} {}", out[k], d[k]);
@@ -321,20 +192,22 @@ mod tests {
 
     #[test]
     fn inverse_matches_definition() {
-        let m = 128;
-        let spec: Vec<f32> = (0..m).map(|i| ((i * 31) % 17) as f32 - 8.0).collect();
-        let mut y = vec![0f32; 2 * m];
-        Mdct::new(m).inverse(&spec, &mut y);
-        for n in 0..2 * m {
-            let d: f64 = (0..m).map(|k| spec[k] as f64 * (PI / m as f64 * (n as f64 + 0.5 + m as f64 / 2.0) * (k as f64 + 0.5)).cos()).sum();
-            assert!((y[n] as f64 - d).abs() < 1e-3, "n={n}");
+        for m in [128, 1024] {
+            let spec: Vec<f32> = (0..m).map(|i| ((i * 31) % 17) as f32 - 8.0).collect();
+            let mut y = vec![0f32; 2 * m];
+            MdctScratch::new(m).unwrap().inverse_with(&spec, &mut y).unwrap();
+            for n in 0..2 * m {
+                let d: f64 = (0..m).map(|k| spec[k] as f64 * (PI / m as f64 * (n as f64 + 0.5 + m as f64 / 2.0) * (k as f64 + 0.5)).cos()).sum();
+                assert!((y[n] as f64 - d).abs() < 1e-3, "m={m} n={n}");
+            }
         }
     }
 
     #[test]
     fn tdac_perfect_reconstruction() {
         let m = 1024;
-        let t = Mdct::new(m);
+        let mut t = Mdct::new(m).unwrap();
+        let mut inverse = MdctScratch::new(m).unwrap();
         for shape in [WindowShape::Sine, WindowShape::Kbd] {
             let w = window(shape, true);
             let win = |n: usize| if n < m { w[n] } else { w[2 * m - 1 - n] };
@@ -343,12 +216,12 @@ mod tests {
             for f in 0..3 {
                 let seg: Vec<f32> = (0..2 * m).map(|n| x[f * m + n] * win(n)).collect();
                 let mut spec = vec![0f32; m];
-                t.forward(&seg, &mut spec);
+                t.forward(&seg, &mut spec).unwrap();
                 for v in spec.iter_mut() {
                     *v *= 2.0;
                 }
                 let mut y = vec![0f32; 2 * m];
-                t.inverse(&spec, &mut y);
+                inverse.inverse_with(&spec, &mut y).unwrap();
                 for n in 0..2 * m {
                     out[f * m + n] += y[n] * win(n) / m as f32;
                 }

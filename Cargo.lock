@@ -1883,6 +1883,8 @@ dependencies = [
 name = "filmcraft-aac"
 version = "0.17.0"
 dependencies = [
+ "allocation-counter",
+ "craft-fft",
  "filmcraft-bitstream",
  "filmcraft-testkit",
  "rayon",
@@ -2349,6 +2351,8 @@ dependencies = [
 name = "filmcraft-opus"
 version = "0.17.0"
 dependencies = [
+ "allocation-counter",
+ "craft-fft",
  "filmcraft-testkit",
 ]
 

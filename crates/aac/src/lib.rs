@@ -63,6 +63,8 @@ pub enum Error {
     Bitstream(&'static str),
     #[error("unexpected end of access unit")]
     Eof,
+    #[error("transform: {0}")]
+    Transform(#[from] craft_fft::Error),
 }
 
 impl From<filmcraft_bitstream::BitError> for Error {

@@ -20,7 +20,7 @@ use filmcraft_bitstream::BitWriter;
 
 use crate::config::{AdtsHeader, AudioSpecificConfig, ElementType, ProgramConfig, config_layout};
 use crate::ics::{IcsInfo, WindowSequence};
-use crate::mdct::{WindowShape, mdct_long, mdct_short, window};
+use crate::mdct::{Mdct, WindowShape, window};
 use crate::tables::{sample_rate_index, swb_offsets_long, swb_offsets_short, tns_max_bands};
 use crate::tns::{self, TnsData, TnsFilter};
 use crate::{Error, FRAME_LEN, Result};
@@ -119,6 +119,8 @@ const HISTORY: usize = 2048;
 
 /// AAC-LC encoder.
 pub struct Encoder {
+    mdct_long: Mdct,
+    mdct_short: Mdct,
     cfg: EncoderConfig,
     sf_index: u8,
     asc: AudioSpecificConfig,
@@ -214,6 +216,8 @@ impl Encoder {
         let res_max = (max_frame_bits - mean).max(0);
         let hist = vec![vec![0f32; HISTORY]; cfg.channels];
         Ok(Encoder {
+            mdct_long: Mdct::new(1024)?,
+            mdct_short: Mdct::new(128)?,
             psy: Psy::new(cfg.sample_rate, sf_index),
             sf_index,
             asc,
@@ -355,7 +359,8 @@ impl Encoder {
         swb.iter().take(swb.len() - 1).filter(|&&o| o < bin).count().max(1)
     }
 
-    fn mdct(&self, ch: usize, seq: WindowSequence) -> Vec<f32> {
+    #[allow(clippy::expect_used, reason = "Plans have literal sizes 1024/128; input and output lengths are fixed locally to 2048/1024 and 256/128")]
+    fn mdct(&mut self, ch: usize, seq: WindowSequence) -> Vec<f32> {
         let shape = self.cfg.window_shape;
         let seg = &self.hist[ch][HISTORY - FRAME_LEN..HISTORY + FRAME_LEN];
         let mut spec = vec![0f32; 1024];
@@ -369,7 +374,7 @@ impl Encoder {
                     buf[n] = seg[off + n] * ws[n] * scale;
                     buf[128 + n] = seg[off + 128 + n] * ws[127 - n] * scale;
                 }
-                mdct_short().forward(&buf, &mut spec[w * 128..(w + 1) * 128]);
+                self.mdct_short.forward(&buf, &mut spec[w * 128..(w + 1) * 128]).expect("fixed short MDCT buffers");
             }
             return spec;
         }
@@ -406,7 +411,7 @@ impl Encoder {
             };
             buf[n] = seg[n] * w * scale;
         }
-        mdct_long().forward(&buf, &mut spec);
+        self.mdct_long.forward(&buf, &mut spec).expect("fixed long MDCT buffers");
         spec
     }
 

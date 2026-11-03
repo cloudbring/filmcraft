@@ -69,7 +69,7 @@ impl StreamDecoder {
         Ok(StreamDecoder {
             rate,
             channels,
-            celt: CeltDecoder::new(rate, channels),
+            celt: CeltDecoder::new(rate, channels)?,
             silk: SilkDecoder::new(rate, channels),
             stream_channels: channels,
             bandwidth: Bandwidth::Fullband,

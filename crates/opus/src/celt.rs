@@ -108,7 +108,7 @@ pub struct CeltDecoder {
 
 impl CeltDecoder {
     /// `sample_rate` is the output rate (48000, 24000, 16000, 12000 or 8000).
-    pub fn new(sample_rate: u32, channels: usize) -> CeltDecoder {
+    pub fn new(sample_rate: u32, channels: usize) -> crate::Result<CeltDecoder> {
         let downsample = (48000 / sample_rate) as usize;
         let mut d = CeltDecoder {
             m: mode(),
@@ -135,11 +135,11 @@ impl CeltDecoder {
             background_log_e: [0.0; 2 * NB_EBANDS],
             x: Vec::new(),
             freq: Vec::new(),
-            imdct: ImdctScratch::default(),
+            imdct: ImdctScratch::new()?,
             pcm_scratch: Vec::new(),
         };
         d.reset();
-        d
+        Ok(d)
     }
 
     /// `OPUS_RESET_STATE`.
@@ -187,7 +187,7 @@ impl CeltDecoder {
         let data = match data {
             Some(d) if d.len() > 1 => d,
             _ => {
-                self.decode_lost(n_full, lm);
+                self.decode_lost(n_full, lm)?;
                 self.deemphasis(n_full, pcm, accum);
                 return Ok(frame_size);
             }
@@ -196,17 +196,17 @@ impl CeltDecoder {
             return Err(crate::Error::InvalidPacket("CELT frame too long"));
         }
         match dec {
-            Some(d) => self.decode_frame(d, data.len(), n_full, lm),
+            Some(d) => self.decode_frame(d, data.len(), n_full, lm)?,
             None => {
                 let mut own = RangeDecoder::new(data);
-                self.decode_frame(&mut own, data.len(), n_full, lm)
+                self.decode_frame(&mut own, data.len(), n_full, lm)?
             }
         }
         self.deemphasis(n_full, pcm, accum);
         Ok(frame_size)
     }
 
-    fn decode_frame(&mut self, dec: &mut RangeDecoder, len: usize, n: usize, lm: usize) {
+    fn decode_frame(&mut self, dec: &mut RangeDecoder, len: usize, n: usize, lm: usize) -> crate::Result<()> {
         let cc = self.channels;
         let c = self.stream_channels;
         let m = self.m;
@@ -359,7 +359,16 @@ impl CeltDecoder {
                 *v = -28.0;
             }
         }
-        self.synthesis(SynthesisFrame { bands: &x, samples: n, start_band: start, end_band: eff_end, coded_channels: c, transient: is_transient, lm, silence });
+        self.synthesis(SynthesisFrame {
+            bands: &x,
+            samples: n,
+            start_band: start,
+            end_band: eff_end,
+            coded_channels: c,
+            transient: is_transient,
+            lm,
+            silence,
+        })?;
         self.x = x;
 
         // Post-filter.
@@ -435,10 +444,11 @@ impl CeltDecoder {
         }
         self.rng = dec.rng();
         self.loss_count = 0;
+        Ok(())
     }
 
     /// Denormalisation + IMDCT into the decode memory (`celt_synthesis`).
-    fn synthesis(&mut self, frame: SynthesisFrame<'_>) {
+    fn synthesis(&mut self, frame: SynthesisFrame<'_>) -> crate::Result<()> {
         let SynthesisFrame { bands: x, samples: n, start_band: start, end_band: eff_end, coded_channels: c, transient: is_transient, lm, silence } = frame;
         let cc = self.channels;
         let m = self.m;
@@ -465,7 +475,7 @@ impl CeltDecoder {
             for (ch, f) in [(0usize, &*f1), (1usize, &*f0)] {
                 let mem = &mut self.decode_mem[ch * ml..(ch + 1) * ml];
                 for b in 0..bcount {
-                    m.mdct[shift].backward(&f[b..], bcount, &mut mem[out_off + nb * b..], &m.window, OVERLAP, &mut self.imdct);
+                    self.imdct.backward(shift, &f[b..], bcount, &mut mem[out_off + nb * b..], &m.window, OVERLAP)?;
                 }
             }
         } else if cc == 1 && c == 2 {
@@ -494,7 +504,7 @@ impl CeltDecoder {
             }
             let mem = &mut self.decode_mem[..ml];
             for b in 0..bcount {
-                m.mdct[shift].backward(&f0[b..], bcount, &mut mem[out_off + nb * b..], &m.window, OVERLAP, &mut self.imdct);
+                self.imdct.backward(shift, &f0[b..], bcount, &mut mem[out_off + nb * b..], &m.window, OVERLAP)?;
             }
         } else {
             for ch in 0..cc {
@@ -510,11 +520,12 @@ impl CeltDecoder {
                 });
                 let mem = &mut self.decode_mem[ch * ml..(ch + 1) * ml];
                 for b in 0..bcount {
-                    m.mdct[shift].backward(&f0[b..], bcount, &mut mem[out_off + nb * b..], &m.window, OVERLAP, &mut self.imdct);
+                    self.imdct.backward(shift, &f0[b..], bcount, &mut mem[out_off + nb * b..], &m.window, OVERLAP)?;
                 }
             }
         }
         self.freq = freq;
+        Ok(())
     }
 
     fn deemphasis(&mut self, n: usize, pcm: &mut [f32], accum: bool) {
@@ -585,7 +596,7 @@ impl CeltDecoder {
 
     /// Packet-loss concealment: pitch-periodic extension for the first lost frames, then
     /// decaying shaped noise.
-    fn decode_lost(&mut self, n: usize, lm: usize) {
+    fn decode_lost(&mut self, n: usize, lm: usize) -> crate::Result<()> {
         let cc = self.channels;
         let ml = self.mem_len();
         let m = self.m;
@@ -630,7 +641,7 @@ impl CeltDecoder {
                 transient: false,
                 lm,
                 silence: false,
-            });
+            })?;
             self.stream_channels = saved_sc;
             self.x = x;
         } else {
@@ -674,6 +685,7 @@ impl CeltDecoder {
             }
         }
         self.loss_count += 1;
+        Ok(())
     }
 }
 

@@ -332,6 +332,62 @@ The perf tests check bit-exactness before they time anything. Results go in the 
 performance table, with machine and thread count. Headline numbers go in
 [ROADMAP.md](../ROADMAP.md). Measure on an idle machine: parallel agent builds distort timings.
 
+### AAC / Opus shared MDCT migration (#49)
+
+Measured on November 3, 2026, on macOS arm64 with rustup stable Rust 1.99.0,
+against filmcraft baseline `e41efc93` and craft-fft revision `79a39bab`. Inputs were
+held fixed across the comparison; no codec test tolerances were changed.
+
+| Codec | Largest exercised fixture | Before | After | Maximum absolute PCM change |
+|---|---|---:|---:|---:|
+| AAC | `enc_chords_8ch_48000_448000.aac`, 115,361 bytes, 98,304 samples/channel, 8 channels | 3.805333 ms | 4.425625 ms | 1.7881393e-7 |
+| Opus | `testvector09.bit`, 798,481 bytes, 1,323,600 samples/channel, stereo | 44.271334 ms | 44.965334 ms | 7.4505806e-7 |
+
+Timings are release-build medians of 11 full decodes after one warmup, including
+decoder creation and PCM accumulation, but excluding file I/O and fixture
+generation. These observations show regressions of about 16.3% (AAC) and 1.6%
+(Opus), not a speedup; other host activity can affect wall-clock timings.
+The AAC benchmark used a frozen baseline-encoded fixture rather than regenerating
+it with the changed encoder. PCM maxima cover the exercised decoder fixtures,
+not just the benchmark inputs. The Opus maximum was on
+`sweep_stereo_510k_48000`; across the official RFC 8251 vectors it was 2.3841858e-7
+on `testvector11_2_m`. All 36 vector comparisons retained their exact final-range
+checks and quality-score threshold of zero. AAC fixture SNR checks and both
+codecs' FFmpeg oracle checks passed with their existing thresholds.
+
+The adapter uses the current `Mdct` / `Imdct` API without changes to craft-fft.
+AAC folds already-windowed forward input into the middle half and compensates
+the facade's sine window. Both inverse adapters remove the facade's window and
+2/M normalization only in that well-conditioned half, where the window is at
+least sqrt(1/2). AAC reconstructs the other half by symmetry; CELT uses the middle
+half at overlap/2 and retains its existing low-overlap TDAC rotation, coefficient
+stride and shift sizes. Plans and scratch for every size are constructed once
+per encoder/decoder. Allocation-counter tests cover the first and repeated
+transform calls, with zero allocations; the existing owned PCM-returning decode
+APIs still allocate their output buffers.
+
+An optional shared-library optimization would add
+`Mdct::process_unwindowed_into(input, output)` and
+`Imdct::process_unwindowed_into(input, output)` with the same lengths and cached
+scratch as `process_into`, but no window multiplication and no inverse 2/M
+normalization. These methods would expose the unscaled cosine sums and remove
+adapter compensation; no custom-window API is required for correctness.
+
+Validation used `FILMCRAFT_REQUIRE_ORACLES=1` and an external FFmpeg 7.1 binary:
+the AAC/Opus suite passed 76 tests, with one existing ignored vector diagnostic;
+AAC's optional rayon build passed its 24 unit tests. Workspace clippy with
+`--all-targets -- -D warnings`, formatting, layers, asset attribution and the
+49-crate wasm check passed. The broader workspace test run encountered the
+unmodified VideoToolbox test
+`hardware_encode::rgba_pictures_encode_like_the_cpu_conversion`, which also
+failed in isolation: its RGB-versus-planar luma gap was 4.1 dB against a strict
+3 dB bound. That video-only test and its tolerances were left unchanged.
+The complete `--no-fail-fast` workspace run finished with 4,572 passed, two
+failed and 55 ignored: the other failure was
+`hardware_encode::rate_conversion_and_cancel_then_export_again` (global encoder
+counter 6 versus 5); it passed when rerun alone. Neither failure is in a modified
+crate.
+
 ### Playback benchmark
 
 `cargo xtask bench-playback` (the example `crates/ui-egui/examples/bench_playback.rs`) plays
