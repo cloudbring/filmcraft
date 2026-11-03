@@ -12,7 +12,6 @@
 use std::path::{Path, PathBuf};
 
 use serde::Serialize;
-use sha2::Digest;
 
 /// One file of a model.
 #[derive(Clone, Copy, Debug, Serialize)]
@@ -209,11 +208,11 @@ fn valid_file(path: &Path, file: &ModelFile) -> bool {
         return false;
     }
     let Ok(mut input) = std::fs::File::open(path) else { return false };
-    let mut hasher = sha2::Sha256::new();
+    let mut hasher = craft_hash::Sha256::new();
     if std::io::copy(&mut input, &mut hasher).is_err() {
         return false;
     }
-    format!("{:x}", hasher.finalize()).eq_ignore_ascii_case(file.sha256)
+    hasher.hex().eq_ignore_ascii_case(file.sha256)
 }
 
 /// All files present and matching their pinned size and SHA-256.
@@ -270,7 +269,7 @@ pub fn download_files(dir: &Path, files: &[ModelFile], progress: DownloadProgres
         let mut body = resp.into_body();
         let mut reader = body.as_reader();
         let mut out = std::io::BufWriter::new(std::fs::File::create(&part)?);
-        let mut hasher = sha2::Sha256::new();
+        let mut hasher = craft_hash::Sha256::new();
         let mut buf = vec![0u8; 1 << 20];
         let mut got = 0u64;
         loop {
@@ -289,7 +288,7 @@ pub fn download_files(dir: &Path, files: &[ModelFile], progress: DownloadProgres
         }
         out.flush()?;
         drop(out);
-        let sha: String = hasher.finalize().iter().map(|b| format!("{b:02x}")).collect();
+        let sha = hasher.hex();
         if sha != f.sha256 || got != f.size {
             let _ = std::fs::remove_file(&part);
             return Err(SpeechError::Download(format!("{}: checksum mismatch (got {sha}, {got} bytes; expected {}, {} bytes)", f.name, f.sha256, f.size)));

@@ -31,7 +31,20 @@ fn mix(mut z: u64) -> u64 {
 }
 
 pub(crate) fn fnv(s: &[u8], h: u64) -> u64 {
-    s.iter().fold(h, |h, &b| (h ^ b as u64).wrapping_mul(0x0000_0100_0000_01B3))
+    let mut hash = craft_hash::Fnv64::from_state(h);
+    hash.update(s);
+    hash.finish()
+}
+
+#[cfg(test)]
+#[test]
+fn fnv_matches_previous_fold() {
+    for seed in [0, 0xCBF2_9CE4_8422_2325, u64::MAX] {
+        for data in [&b""[..], &b"123456789"[..], &[0, 255, 128][..]] {
+            let old = data.iter().fold(seed, |hash, &byte| (hash ^ u64::from(byte)).wrapping_mul(0x0000_0100_0000_01B3));
+            assert_eq!(fnv(data, seed), old);
+        }
+    }
 }
 
 fn timestamp() -> Vec<u8> {

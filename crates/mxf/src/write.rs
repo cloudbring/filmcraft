@@ -70,10 +70,9 @@ impl Umid {
 }
 
 fn hash128(seed: &[u8]) -> [u8; 16] {
-    let mut a = 0xcbf2_9ce4_8422_2325u64;
+    let a = craft_hash::fnv1a64(seed);
     let mut b = 0x84222325_cbf29ce4u64 ^ seed.len() as u64;
     for &x in seed {
-        a = (a ^ x as u64).wrapping_mul(0x0000_0100_0000_01B3);
         b = (b ^ x as u64).wrapping_mul(0x9E37_79B9_7F4A_7C15).rotate_left(23);
     }
     let mix = |mut z: u64| {
@@ -85,6 +84,28 @@ fn hash128(seed: &[u8]) -> [u8; 16] {
     out[..8].copy_from_slice(&mix(a ^ b.rotate_left(17)).to_be_bytes());
     out[8..].copy_from_slice(&mix(b ^ a.rotate_left(41)).to_be_bytes());
     out
+}
+
+#[cfg(test)]
+#[test]
+fn material_hash_matches_previous_implementation() {
+    for seed in [&b""[..], &b"123456789"[..], &[0, 255, 128][..]] {
+        let mut a = 0xcbf2_9ce4_8422_2325u64;
+        let mut b = 0x84222325_cbf29ce4u64 ^ seed.len() as u64;
+        for &byte in seed {
+            a = (a ^ u64::from(byte)).wrapping_mul(0x0000_0100_0000_01B3);
+            b = (b ^ u64::from(byte)).wrapping_mul(0x9E37_79B9_7F4A_7C15).rotate_left(23);
+        }
+        let mix = |mut value: u64| {
+            value = (value ^ (value >> 30)).wrapping_mul(0xBF58_476D_1CE4_E5B9);
+            value = (value ^ (value >> 27)).wrapping_mul(0x94D0_49BB_1331_11EB);
+            value ^ (value >> 31)
+        };
+        let mut expected = [0; 16];
+        expected[..8].copy_from_slice(&mix(a ^ b.rotate_left(17)).to_be_bytes());
+        expected[8..].copy_from_slice(&mix(b ^ a.rotate_left(41)).to_be_bytes());
+        assert_eq!(hash128(seed), expected);
+    }
 }
 
 /// Operational pattern of the written file.

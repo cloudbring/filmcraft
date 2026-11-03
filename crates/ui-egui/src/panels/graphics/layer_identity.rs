@@ -51,13 +51,8 @@ pub(super) fn current_layer_uid(session: &Session, clip: u64, layer: usize) -> O
 /// does not make the target look new, and it deliberately excludes the editable text, so typing
 /// does not either.
 pub(super) fn layer_fingerprint(effect: &EffectInstance) -> u64 {
-    let mut h: u64 = 0xcbf2_9ce4_8422_2325;
-    let mut hash = |bytes: &[u8]| {
-        for &b in bytes {
-            h ^= u64::from(b);
-            h = h.wrapping_mul(0x0000_0100_0000_01b3);
-        }
-    };
+    let mut h = craft_hash::Fnv64::new();
+    let mut hash = |bytes: &[u8]| h.update(bytes);
     hash(effect.effect.as_bytes());
     hash(&[u8::from(effect.enabled)]);
     hash(&effect.layer.as_ref().map_or(0, |x| x.uid).to_le_bytes());
@@ -81,7 +76,7 @@ pub(super) fn layer_fingerprint(effect: &EffectInstance) -> u64 {
             _ => {}
         }
     }
-    h
+    h.finish()
 }
 
 /// Static-identity fingerprint of the enabled layer at `layer`, or `None` when it is not
@@ -136,10 +131,9 @@ const LAYOUT_PARAMS: &[&str] = &[
 
 /// Fold `bytes` into the FNV-1a-style hash accumulator `h`, allowing callers to chain fields.
 fn hash_bytes(h: &mut u64, bytes: &[u8]) {
-    for &b in bytes {
-        *h ^= u64::from(b);
-        *h = h.wrapping_mul(0x0000_0100_0000_01b3);
-    }
+    let mut hash = craft_hash::Fnv64::from_state(*h);
+    hash.update(bytes);
+    *h = hash.finish();
 }
 
 /// Hash the bits of a finite `f64`; all non-finite values share one representation so NaN

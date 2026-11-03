@@ -81,11 +81,7 @@ pub(super) fn draw_preedit(painter: &egui::Painter, top: Pos2, bottom: Pos2, pre
 
 /// Identity of committed text alone (no caret or selection).
 fn ime_text_stamp(text: &str) -> u64 {
-    let mut h: u64 = 0xcbf2_9ce4_8422_2325;
-    for &b in text.as_bytes() {
-        h ^= u64::from(b);
-        h = h.wrapping_mul(0x0000_0100_0000_01b3);
-    }
+    let h = craft_hash::fnv1a64(text.as_bytes());
     h ^ (text.len() as u64).wrapping_mul(0x9e37_79b9_7f4a_7c15)
 }
 

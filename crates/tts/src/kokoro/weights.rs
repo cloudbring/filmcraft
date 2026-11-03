@@ -12,7 +12,7 @@ use std::io::Read;
 use std::path::Path;
 
 use candle_core::{DType, Device, Tensor};
-use sha2::{Digest, Sha256};
+use craft_hash::Sha256;
 
 use crate::TtsError;
 
@@ -149,7 +149,7 @@ fn verify_checkpoint(path: &Path) -> Result<(), TtsError> {
         }
         hasher.update(&buf[..n]);
     }
-    let actual = format!("{:x}", hasher.finalize());
+    let actual = hasher.hex();
     if actual != file.sha256 {
         return Err(err(format!("{}: checkpoint digest does not match the official package", path.display())));
     }

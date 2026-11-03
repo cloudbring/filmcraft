@@ -123,7 +123,7 @@ fn register_fonts(t: &GraphicsTemplate) -> usize {
     let mut n = 0;
     for f in &t.resources.fonts {
         let Some(data) = base64_decode(&f.data) else { continue };
-        let h = data.iter().fold(0xcbf2_9ce4_8422_2325u64, |h, b| (h ^ *b as u64).wrapping_mul(0x100_0000_01b3));
+        let h = craft_hash::fnv1a64(&data);
         let mut seen = SEEN.get_or_init(Default::default).lock().unwrap_or_else(|e| e.into_inner());
         if seen.insert(h) {
             n += filmcraft_text::fonts::add_font_data(data).len();
@@ -194,7 +194,7 @@ fn thumbnail_dimensions(canvas: [u32; 2], requested_width: u32) -> (u32, u32) {
 pub fn thumbnail_cached(t: &GraphicsTemplate, w: u32) -> Arc<(u32, u32, Vec<u8>)> {
     static CACHE: OnceLock<Mutex<std::collections::HashMap<(String, u64, u32), Arc<(u32, u32, Vec<u8>)>>>> = OnceLock::new();
     let json = t.to_json();
-    let h = json.bytes().fold(0xcbf2_9ce4_8422_2325u64, |h, b| (h ^ b as u64).wrapping_mul(0x100_0000_01b3));
+    let h = craft_hash::fnv1a64(json.as_bytes());
     let key = (t.id.clone(), h, w);
     if let Some(v) = CACHE.get_or_init(Default::default).lock().unwrap_or_else(|e| e.into_inner()).get(&key) {
         return v.clone();

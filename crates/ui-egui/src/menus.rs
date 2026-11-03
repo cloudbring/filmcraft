@@ -810,11 +810,7 @@ fn clipboard_media_key(media: &crate::ClipboardMedia) -> String {
     match media {
         crate::ClipboardMedia::Files(paths) => format!("files:{}", paths.join("\0")),
         crate::ClipboardMedia::Image { width, height, rgba } => {
-            let mut h: u64 = 0xcbf2_9ce4_8422_2325;
-            for b in rgba {
-                h ^= u64::from(*b);
-                h = h.wrapping_mul(0x0100_0000_01b3);
-            }
+            let h = craft_hash::fnv1a64(rgba);
             format!("img:{width}x{height}:{h}")
         }
     }

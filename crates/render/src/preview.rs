@@ -531,33 +531,43 @@ fn native(project: &Project, seq: &Sequence, it: &TrackItem) -> bool {
 // ---------------------------------------------------------------- hashing
 
 /// 128-bit FNV-1a over the serde JSON form of values.
-struct Fnv128(u128);
+struct Fnv128(craft_hash::ContentHash);
 
 impl Fnv128 {
-    const OFFSET: u128 = 0x6c62272e07bb014262b821756295c58d;
-    const PRIME: u128 = 0x0000000001000000000000000000013B;
     fn new() -> Self {
-        Self(Self::OFFSET)
+        Self(craft_hash::ContentHash::new())
     }
     fn json<T: Serialize + ?Sized>(&mut self, v: &T) {
         let _ = serde_json::to_writer(&mut *self, v);
-        self.0 ^= 0xff; // value separator
-        self.0 = self.0.wrapping_mul(Self::PRIME);
+        self.0.update(&[0xff]);
     }
     fn hex(&self) -> String {
-        format!("{:032x}", self.0)
+        format!("{:032x}", self.0.finish())
     }
 }
 
 impl std::io::Write for Fnv128 {
     fn write(&mut self, buf: &[u8]) -> std::io::Result<usize> {
-        for &b in buf {
-            self.0 ^= b as u128;
-            self.0 = self.0.wrapping_mul(Self::PRIME);
-        }
+        self.0.update(buf);
         Ok(buf.len())
     }
     fn flush(&mut self) -> std::io::Result<()> {
         Ok(())
+    }
+}
+
+#[cfg(test)]
+#[test]
+fn json_hash_matches_previous_fnv() {
+    let values = ["", "hello", "🦀"];
+    let mut old = 0x6c62272e07bb014262b821756295c58du128;
+    let mut hash = Fnv128::new();
+    for value in values {
+        hash.json(value);
+        let bytes = serde_json::to_vec(value).unwrap();
+        for byte in bytes.into_iter().chain([0xff]) {
+            old = (old ^ u128::from(byte)).wrapping_mul(0x0000000001000000000000000000013b);
+        }
+        assert_eq!(hash.hex(), format!("{old:032x}"));
     }
 }

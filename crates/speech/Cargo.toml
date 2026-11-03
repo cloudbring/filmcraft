@@ -17,6 +17,7 @@ whisper = ["dep:candle-core", "dep:candle-nn"]
 download = ["dep:ureq", "dep:rustls", "dep:rustls-rustcrypto"]
 
 [dependencies]
+craft-hash = { workspace = true }
 filmcraft-time = { workspace = true }
 filmcraft-project = { workspace = true }
 serde = { workspace = true }
@@ -28,7 +29,6 @@ rayon = { workspace = true }
 ureq = { version = "3", default-features = false, features = ["rustls-no-provider", "platform-verifier"], optional = true }
 rustls = { version = "0.23", default-features = false, optional = true }
 rustls-rustcrypto = { version = "0.0.2-alpha", optional = true }
-sha2 = "0.10"
 
 [[example]]
 name = "transcribe"
