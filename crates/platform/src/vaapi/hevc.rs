@@ -12,7 +12,7 @@
 
 use std::sync::Arc;
 
-use filmcraft_bitstream::{length_prefixed_nals, unescape_rbsp};
+use craft_bitstream::{length_prefixed_nals, unescape_rbsp};
 use filmcraft_codecs::{CodecError, DecodedFrame, Result};
 use filmcraft_hevc::dpb::{Dpb, Marking, Output, OutputMeta, PocState, Ref, RefPicSet, build_ref_lists};
 use filmcraft_hevc::params::{Layout, Pps, ScalingList, Sps};

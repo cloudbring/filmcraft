@@ -583,13 +583,13 @@ pub struct LatmConfig {
 
 const AAC_RATES: [u32; 13] = [96_000, 88_200, 64_000, 48_000, 44_100, 32_000, 24_000, 22_050, 16_000, 12_000, 11_025, 8_000, 7_350];
 
-fn latm_value(r: &mut filmcraft_bitstream::BitReader) -> Option<u32> {
+fn latm_value(r: &mut craft_bitstream::BitReader) -> Option<u32> {
     let n = r.read_bits(2).ok()? + 1;
     r.read_bits(8 * n).ok()
 }
 
 /// StreamMuxConfig after `audioMuxVersion`, leaving the reader after it.
-fn stream_mux_config(r: &mut filmcraft_bitstream::BitReader) -> Option<LatmConfig> {
+fn stream_mux_config(r: &mut craft_bitstream::BitReader) -> Option<LatmConfig> {
     let version = r.read_bits(1).ok()?;
     let version_a = if version == 1 { r.read_bits(1).ok()? } else { 0 };
     if version_a != 0 {
@@ -652,7 +652,7 @@ pub fn latm_config(frame: &[u8]) -> Option<LatmConfig> {
     if frame.len() < 4 || frame[0] != 0x56 || frame[1] & 0xE0 != 0xE0 {
         return None;
     }
-    let mut r = filmcraft_bitstream::BitReader::new(&frame[3..]);
+    let mut r = craft_bitstream::BitReader::new(&frame[3..]);
     if r.read_bits(1).ok()? == 1 {
         return None; // useSameStreamMux
     }
@@ -666,7 +666,7 @@ pub fn latm_split(frame: &[u8], last: &mut Option<LatmConfig>) -> Option<(Vec<u8
     if frame.len() < 4 || frame[0] != 0x56 || frame[1] & 0xE0 != 0xE0 {
         return None;
     }
-    let mut r = filmcraft_bitstream::BitReader::new(&frame[3..]);
+    let mut r = craft_bitstream::BitReader::new(&frame[3..]);
     let same = r.read_bits(1).ok()? == 1;
     let cfg = if same {
         last.clone()?

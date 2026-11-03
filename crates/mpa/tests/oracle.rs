@@ -11,7 +11,7 @@
 use std::path::{Path, PathBuf};
 use std::process::{Command, Stdio};
 
-use filmcraft_bitstream::BitWriter;
+use craft_bitstream::BitWriter;
 use filmcraft_mpa::{Decoder, Mode, parse_header};
 
 /// A stream from an encoder.

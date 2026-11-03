@@ -145,7 +145,7 @@ pub struct AviSource {
 
 /// Whether an Annex B access unit holds an H.264 IDR or HEVC IRAP picture.
 fn random_access(data: &[u8], hevc: bool) -> bool {
-    filmcraft_bitstream::annexb_nals(data).iter().any(|n| match n.first() {
+    craft_bitstream::annexb_nals(data).iter().any(|n| match n.first() {
         Some(h) if hevc => (16..=23).contains(&((h >> 1) & 0x3F)),
         Some(h) => h & 0x1F == 5,
         None => false,

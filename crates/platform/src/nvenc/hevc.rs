@@ -11,7 +11,7 @@
 //! completeness flags are 1 and the parameter sets are only in the record, never in the samples
 //! (the `hvc1` sample entry).
 
-use filmcraft_bitstream::unescape_rbsp;
+use craft_bitstream::unescape_rbsp;
 use filmcraft_hevc::params::Sps;
 use filmcraft_isobmff::{HevcConfig, HevcNalArray};
 

@@ -93,7 +93,7 @@ pub fn h264_disposable(sample: &[u8], length_size: usize) -> bool {
 /// [`h264_disposable`] for an Annex B (start-code) sample.
 pub fn h264_disposable_annexb(sample: &[u8]) -> bool {
     let mut slices = 0;
-    for n in filmcraft_bitstream::annexb_nals(sample) {
+    for n in craft_bitstream::annexb_nals(sample) {
         let Some(&h) = n.first() else { continue };
         if (1..=5).contains(&(h & 0x1f)) {
             if h & 0x60 != 0 {
@@ -267,7 +267,7 @@ pub fn mjpeg_factory(e: &SampleEntry) -> Option<Result<Box<dyn VideoDecoder>>> {
 /// Our pure-Rust H.264 decoder (frame-threaded).
 pub struct H264Decoder {
     avcc: Vec<u8>,
-    dec: filmcraft_h264::Decoder,
+    dec: craft_h264::Decoder,
     length_size: usize,
     draft: bool,
     /// Worker threads (a background decoder gets fewer).
@@ -280,8 +280,8 @@ impl H264Decoder {
         if filmcraft_media::cancel::background() { BACKGROUND_H264_THREADS.min(h264_threads()) } else { h264_threads() }
     }
 
-    fn make_inner(avcc: &[u8], threads: usize) -> Result<filmcraft_h264::Decoder> {
-        let mut dec = filmcraft_h264::Decoder::with_threads(threads);
+    fn make_inner(avcc: &[u8], threads: usize) -> Result<craft_h264::Decoder> {
+        let mut dec = craft_h264::Decoder::with_threads(threads);
         if !avcc.is_empty() {
             dec.configure_avcc(avcc).map_err(h264_error)?;
         }
@@ -299,9 +299,9 @@ impl H264Decoder {
     pub fn annexb() -> Self {
         recycle_h264_planes();
         let threads = Self::threads_now();
-        Self { avcc: Vec::new(), dec: filmcraft_h264::Decoder::with_threads(threads), length_size: 0, draft: false, threads }
+        Self { avcc: Vec::new(), dec: craft_h264::Decoder::with_threads(threads), length_size: 0, draft: false, threads }
     }
-    fn convert(p: filmcraft_h264::Picture) -> DecodedFrame {
+    fn convert(p: craft_h264::Picture) -> DecodedFrame {
         use std::sync::Arc;
         let draft = p.draft;
         let (w, h) = (p.width as usize, p.height as usize);
@@ -326,9 +326,9 @@ impl H264Decoder {
 /// An H.264 decoder error as a [`CodecError`]: a feature the decoder does not implement (High
 /// 4:2:2, field pictures...) is [`CodecError::Unsupported`], so the media pool shows the
 /// unreadable slate instead of a black picture (#626); anything else is a decode error.
-fn h264_error(e: filmcraft_h264::Error) -> CodecError {
+fn h264_error(e: craft_h264::Error) -> CodecError {
     match e {
-        filmcraft_h264::Error::Unsupported(what) => CodecError::Unsupported(format!("H.264: {what}")),
+        craft_h264::Error::Unsupported(what) => CodecError::Unsupported(format!("H.264: {what}")),
         e => CodecError::Decode(e.to_string()),
     }
 }
@@ -368,7 +368,7 @@ impl VideoDecoder for H264Decoder {
         // so is a non-IDR one with a recovery point SEI of recovery_frame_cnt 0 (open GOP), the
         // same rule as the transport stream splitter's `key`.
         (self.length_size == 0).then(|| {
-            filmcraft_bitstream::annexb_nals(sample).iter().any(|n| match n.first().map(|h| h & 0x1f) {
+            craft_bitstream::annexb_nals(sample).iter().any(|n| match n.first().map(|h| h & 0x1f) {
                 Some(5) => true,
                 Some(6) => filmcraft_mpegts::sei_has_recovery_point(n),
                 _ => false,
@@ -380,12 +380,12 @@ impl VideoDecoder for H264Decoder {
 /// The H.264 decoder's output planes come from the frames the caches evicted
 /// (`filmcraft_frame::pool`) instead of the allocator.
 fn recycle_h264_planes() {
-    filmcraft_h264::set_plane_allocator(filmcraft_frame::pool::take_u8);
+    craft_h264::set_plane_allocator(filmcraft_frame::pool::take_u8);
 }
 
 /// Worker threads each H.264 decoder uses (frame threading; 1 on wasm).
 pub fn h264_threads() -> usize {
-    filmcraft_h264::default_threads()
+    craft_h264::default_threads()
 }
 
 pub fn h264_factory(e: &SampleEntry) -> Option<Result<Box<dyn VideoDecoder>>> {
@@ -480,8 +480,7 @@ impl VideoDecoder for HevcDecoder {
     fn is_random_access(&self, sample: &[u8]) -> Option<bool> {
         // Annex B samples carry their parameter sets: an IDR / CRA / BLA access unit is a
         // starting point.
-        (self.length_size == 0)
-            .then(|| filmcraft_bitstream::annexb_nals(sample).iter().any(|n| n.first().is_some_and(|h| (16..=21).contains(&((h >> 1) & 0x3F)))))
+        (self.length_size == 0).then(|| craft_bitstream::annexb_nals(sample).iter().any(|n| n.first().is_some_and(|h| (16..=21).contains(&((h >> 1) & 0x3F)))))
     }
 }
 

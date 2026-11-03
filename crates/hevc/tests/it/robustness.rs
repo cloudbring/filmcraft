@@ -2,7 +2,7 @@
 
 use crate::common;
 
-use filmcraft_bitstream::annexb_nals;
+use craft_bitstream::annexb_nals;
 use filmcraft_hevc::Decoder;
 
 /// Build an hvcC record and length-prefixed samples from an Annex-B stream.

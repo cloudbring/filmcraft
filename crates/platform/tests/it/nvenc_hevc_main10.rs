@@ -5,7 +5,7 @@
 //! hostile inputs are errors. Skips (with SKIPPED) only on a machine without a 10-bit HEVC encoder.
 #![cfg(target_os = "windows")]
 
-use filmcraft_bitstream::unescape_rbsp;
+use craft_bitstream::unescape_rbsp;
 use filmcraft_export::{ColorSignal, rgbf_to_yuv420_10};
 use filmcraft_hevc::params::Sps;
 use filmcraft_isobmff::SampleEntry;

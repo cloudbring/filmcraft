@@ -3,7 +3,7 @@
 ```sh
 cargo test --workspace                          # everything; oracle tests skip without ffmpeg
 cargo nextest run --workspace                   # the same in parallel processes (doctests: cargo test --doc)
-cargo test -p filmcraft-h264                    # one crate
+cargo test -p filmcraft-hevc                    # one workspace crate
 cargo test --release -p filmcraft-hevc          # codec tests are much faster in release
 cargo xtask ci                                  # all gates (fmt, clippy, tests, layers, assets, wasm)
 cargo xtask fixtures                            # pre-generate the ffmpeg fixture matrix
@@ -15,7 +15,12 @@ Integration tests build one binary per crate: a crate with several test files ke
 line in `main.rs`; shared helpers live in `tests/it/common/` or `tests/it/support/`. A test file that
 changes process-wide state (a global switch, pool, panic hook or fault injection) or times a workload
 stays a binary of its own in `tests/`. Select one file's tests with its module path:
-`cargo test -p filmcraft-h264 --test it conformance::`.
+`cargo test -p filmcraft-hevc --test it conformance::`.
+
+`craft-bitstream` and `craft-h264` are shared dependencies, not FilmCraft workspace members.
+Run their unit, conformance, fixture-generation and performance tests in the pinned craft-libs
+checkout; FilmCraft's `cargo xtask fixtures` covers only its remaining workspace generators.
+The migration evidence and pending upstream repoint are recorded in [h264-migration-48.md](h264-migration-48.md).
 
 ## 1. Kinds of tests
 
@@ -50,7 +55,7 @@ Commit `*.proptest-regressions` files so failing cases are re-run.
 
 ### 32-bit parser regressions
 
-The `hostile_lengths` unit tests in `bitstream`, `vp9` and `av1` cover #2801: NAL and superframe
+The `hostile_lengths` unit tests in shared `craft-bitstream`, `vp9` and `av1` cover #2801: NAL and superframe
 offset overflow, tile-size increment overflow and truncating an OBU's LEB128 size to `usize`.
 They also check valid payloads, truncated inputs and bit mutations. The NAL splitter rejects
 prefix widths outside 1–4 bytes with `BitError::InvalidNalLengthSize`, including zero (which
@@ -76,7 +81,7 @@ const fs = require('node:fs');
 })().catch(error => { console.error(error); process.exitCode = 1; });
 EOF
 export CARGO_TARGET_WASM32_WASIP1_RUNNER="node /tmp/filmcraft-wasi-runner.cjs"
-cargo test -p filmcraft-bitstream -p filmcraft-vp9 -p filmcraft-av1 --lib \
+cargo test -p filmcraft-vp9 -p filmcraft-av1 --lib \
   --no-default-features --target wasm32-wasip1 hostile_lengths -- --test-threads=1
 # Repeat with --release: wrapping arithmetic is also dangerous without overflow checks.
 ```
@@ -304,13 +309,13 @@ engine behaviour without a window.
 
 | Benchmark | Command |
 |---|---|
-| H.264 decode, 1080p, threads sweep | `cargo test --release -p filmcraft-h264 --test it perf:: -- --ignored --nocapture` |
+| H.264 decode, 1080p, threads sweep | In the pinned craft-libs checkout: `cargo test --release -p craft-h264 --test it perf:: -- --ignored --nocapture` |
 | HEVC decode, 1080p / 2160p | `cargo test --release -p filmcraft-hevc --test it perf:: -- --ignored --nocapture` |
 | ProRes decode/encode | `cargo test --release -p filmcraft-prores --test it perf:: -- --ignored --nocapture` |
 | Encoder speed / PSNR / bitrate | `cargo run --release -p filmcraft-h264enc --example h264enc_synth -- …` |
 | Export to H.264 + AAC on the CPU (1080p clip through `file.exportMedia`, wall time per run, `--keep out.mp4` to compare files) | `cargo run --release -p filmcraft-engine --example bench_export -- --runs 7` |
 | Decode a real file through the media stack | `cargo run --release -p filmcraft-cli -- bench-decode file.mp4 --frames 120` |
-| Coding-tool coverage of the fixtures | `cargo test --release -p filmcraft-h264 --test it conformance::coverage_report -- --ignored --nocapture` (same for `hevc`) |
+| Coding-tool coverage of the fixtures | `cargo test --release -p filmcraft-hevc --test it conformance::coverage_report -- --ignored --nocapture`; for H.264 run with `-p craft-h264` in the pinned craft-libs checkout |
 | **Whole-app suite**: decode fps per codec, playback, scrubbing, timeline UI, export, project save/open, peak RSS | `cargo xtask bench` ([performance.md](performance.md)) |
 
 `cargo xtask bench` (the example `crates/ui-egui/examples/bench/`) runs six sections, each in its

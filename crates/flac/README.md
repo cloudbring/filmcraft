@@ -1,7 +1,7 @@
 # filmcraft-flac
 
 A clean-room FLAC encoder (Free Lossless Audio Codec, [RFC 9639](https://www.rfc-editor.org/rfc/rfc9639)),
-written from the RFC. Layer L0: it depends only on `filmcraft-bitstream` and `thiserror`, has no
+written from the RFC. Layer L0: it depends only on `craft-bitstream` and `thiserror`, has no
 `unsafe`, and builds for `wasm32-unknown-unknown`.
 
 No libFLAC, FFmpeg or other FLAC implementation was read or ported. ffmpeg is used only as an

@@ -97,7 +97,7 @@ let availability = filmcraft_platform::register(); // Available("VideoToolbox") 
   VA-API decoding is *stateless*: the host parses the stream and keeps the decoded picture buffer,
   and the GPU decodes one picture's slice data at a time into a surface. That host side
   (`vaapi/h264.rs`, `vaapi/hevc.rs`, safe code) is the software decoders' own: their parameter-set
-  and slice-header parsers, POC computation and DPBs (`filmcraft_h264::dpb`, `filmcraft_hevc::dpb`,
+  and slice-header parsers, POC computation and DPBs (`craft_h264::dpb`, `filmcraft_hevc::dpb`,
   generic over what a picture is: H.264 reference marking including MMCOs and reference lists with
   modifications; HEVC reference picture sets and lists, RASL pictures of a CRA the run starts at
   left out; output order). The two decoders therefore make

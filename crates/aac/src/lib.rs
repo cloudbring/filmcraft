@@ -9,7 +9,7 @@
 //! HE-AAC (SBR/PS), Main/SSR/LTP profiles, coupling channels and 960-sample frames are not supported;
 //! for explicitly signalled HE-AAC only the AAC-LC core is decoded (at the core rate).
 //!
-//! Layer L0: depends only on `filmcraft-bitstream` (+ `thiserror`, optional `rayon`); no `unsafe`;
+//! Layer L0: depends only on `craft-bitstream` (+ `thiserror`, optional `rayon`); no `unsafe`;
 //! builds for `wasm32-unknown-unknown`.
 //!
 //! ```
@@ -65,8 +65,8 @@ pub enum Error {
     Eof,
 }
 
-impl From<filmcraft_bitstream::BitError> for Error {
-    fn from(_: filmcraft_bitstream::BitError) -> Self {
+impl From<craft_bitstream::BitError> for Error {
+    fn from(_: craft_bitstream::BitError) -> Self {
         Error::Eof
     }
 }

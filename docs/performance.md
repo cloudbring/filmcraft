@@ -926,7 +926,7 @@ round). On an idle machine the 4K clip needs about two cores.
    all threads (bit-exact each time). A separate deblocking thread was not added: a picture's rows
    are published about two rows after they are reconstructed, so a reference chain advances a few
    rows behind its predecessor and the pool already has more pictures in flight than cores
-   (crates/h264/README.md, "Threading model").
+   ([craft-h264 README](https://github.com/cloudbring/craft-libs/blob/algo/48-craft-h264/crates/h264/README.md), "Threading model").
 5. **Draft decoding** (Settings ▸ Playback ▸ Draft decoding, off by default; `perf.stats`
    `playback.draftDecode`, `decode.draftFrames`, `decode.h264Threads`): while the Program monitor
    plays at 1/2 or 1/4, H.264 non-reference pictures skip deblocking (no other picture can change),

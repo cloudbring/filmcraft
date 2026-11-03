@@ -11,7 +11,7 @@ use crate::tables::{
     NUM_4X4_WIDE, NUM_8X8_HIGH, NUM_8X8_WIDE, SS_SIZE_LOOKUP, TX_4X4, TX_32X32, neighbors, pareto_full, scan,
 };
 use crate::transform;
-use filmcraft_bitstream::BoolDecoder;
+use craft_bitstream::BoolDecoder;
 
 /// Sample rectangle of a block region within its plane.
 #[derive(Clone, Copy)]

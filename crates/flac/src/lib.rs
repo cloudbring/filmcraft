@@ -11,7 +11,7 @@
 //!
 //! Lossless at every compression level; the level (0–8) only trades encoding time for size.
 //!
-//! Layer L0: depends only on `filmcraft-bitstream` (+ `thiserror`); no `unsafe`; builds for
+//! Layer L0: depends only on `craft-bitstream` (+ `thiserror`); no `unsafe`; builds for
 //! `wasm32-unknown-unknown`.
 //!
 //! ```
@@ -140,7 +140,7 @@ impl Encoder {
     }
 
     fn streaminfo_with(&self, min_frame: u32, max_frame: u32, total: u64, md5: [u8; 16]) -> [u8; 34] {
-        let mut w = filmcraft_bitstream::BitWriter::new();
+        let mut w = craft_bitstream::BitWriter::new();
         let bs = u32::from(self.cfg.block_size);
         w.write_bits(bs, 16);
         w.write_bits(bs, 16);

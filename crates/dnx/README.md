@@ -3,7 +3,7 @@
 Clean-room Avid DNxHD / DNxHR (VC-3) decoder and encoder in pure Rust, written from the public
 **SMPTE ST 2019-1:2016** *VC-3 Picture Compression and Data Stream Format* and its
 **Amendment 1:2023** (both free from `pub.smpte.org`). Layer L0: depends only on
-`filmcraft-bitstream`, `thiserror` and (optional, feature `threads`, default on) `rayon`. Builds
+`craft-bitstream`, `thiserror` and (optional, feature `threads`, default on) `rayon`. Builds
 for `wasm32-unknown-unknown`; no `unsafe`.
 
 The constant tables (Annex D quantisation weights, Annex E VLC tables) were extracted from the

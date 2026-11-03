@@ -2,7 +2,7 @@
 
 A clean-room AAC-LC encoder and decoder (ISO/IEC 14496-3, MPEG-4 Audio, Low Complexity profile),
 written from the standard and the public psychoacoustics literature. Layer L0: it depends only on
-`filmcraft-bitstream` and `thiserror` (plus optional `rayon`), has no `unsafe`, and builds for
+`craft-bitstream` and `thiserror` (plus optional `rayon`), has no `unsafe`, and builds for
 `wasm32-unknown-unknown`.
 
 No FFmpeg/FAAC/FDK-AAC/libfaad or other GPL/LGPL code was read or ported. ffmpeg is used only as an

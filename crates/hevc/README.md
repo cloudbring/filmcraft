@@ -2,7 +2,7 @@
 
 Clean-room, pure-Rust (no `unsafe`) H.265 / HEVC decoder, implemented from the public ITU-T
 Rec. H.265 (08/2021, ISO/IEC 23008-2) specification. It is an L0 crate: it depends only on
-`filmcraft-bitstream`, `thiserror`, and optionally `rayon` (default feature `threads`), and builds
+`craft-bitstream`, `thiserror`, and optionally `rayon` (default feature `threads`), and builds
 for `wasm32-unknown-unknown`.
 
 All syntax tables (the CABAC `initValue` tables arranged per `initType` following Table 9-4, default
@@ -59,7 +59,7 @@ WPP, weighted prediction, TMVP, SAO, block kinds...).
 
 ### Architecture
 
-Same design as `filmcraft-h264`: the calling thread parses parameter sets and slice headers and does
+Same design as `craft-h264`: the calling thread parses parameter sets and slice headers and does
 POC / RPS / DPB bookkeeping; the CTU layer of each picture runs as a job (rayon pool). A job
 reconstructs into private planes, deblocks CTB row r once row r+1 is decoded, applies SAO to row r
 once row r+1 is deblocked, and publishes final rows (samples + 16x16 compressed motion for TMVP)

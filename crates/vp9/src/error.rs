@@ -1,11 +1,11 @@
-use filmcraft_bitstream::BitError;
+use craft_bitstream::BitError;
 
 /// Errors produced by the decoder.
 #[derive(Debug, Clone, PartialEq, Eq, thiserror::Error)]
 pub enum Error {
     /// A boolean partition has an invalid marker, padding, or truncated payload.
     #[error("boolean bitstream error: {0}")]
-    Boolean(#[from] filmcraft_bitstream::BoolError),
+    Boolean(#[from] craft_bitstream::BoolError),
     /// The uncompressed header ended early.
     #[error("bitstream error: {0}")]
     Bitstream(#[from] BitError),

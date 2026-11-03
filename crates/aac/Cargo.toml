@@ -14,7 +14,7 @@ default = []
 rayon = ["dep:rayon"]
 
 [dependencies]
-filmcraft-bitstream = { workspace = true }
+craft-bitstream = { workspace = true }
 thiserror = { workspace = true }
 rayon = { workspace = true, optional = true }
 

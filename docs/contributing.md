@@ -233,7 +233,7 @@ stream is cut into blocks (there are tests for this).
 1. **Spec first.** Work only from the public specification (ITU-T, ISO/IEC, IETF RFCs, SMPTE,
    published container specs). Never copy GPL/LGPL code, and follow AGENTS.md §2 on reading other
    implementations. Name the spec edition in the crate README.
-2. Create `crates/<name>` as an L0 crate that depends only on `filmcraft-bitstream` (plus
+2. Create `crates/<name>` as an L0 crate that depends only on `craft-bitstream` (plus
    `thiserror` and optional `rayon` behind a `threads` feature). Add `[lints] workspace = true`, add
    it to `[workspace.dependencies]`, and add it to `LAYERS` in `xtask/src/main.rs`. It must build
    for wasm32.
@@ -246,7 +246,7 @@ stream is cut into blocks (there are tests for this).
    - containers: an `Opener` in `codecs::openers()`;
    - encoders: an `export::VideoEncoder` / audio encoder plus a `Format` in `crates/export`.
 5. Write the README: features, API, test matrix, accuracy and speed numbers, limitations. Use
-   `crates/h264/README.md` as the model.
+   the shared [craft-h264 README](https://github.com/cloudbring/craft-libs/blob/algo/48-craft-h264/crates/h264/README.md) as the model.
 
 ### A panel or widget
 

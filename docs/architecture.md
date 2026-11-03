@@ -28,8 +28,9 @@ Design principles:
  L3  render · gpu · export · golden (test-only)
  L2  edit · codecs · interchange · captions · speech · tts · tts-text
  L1  frame · media · project · audio-dsp · text
- L0  foundation: time · geom · color · bitstream · testkit (dev-dependency only)
-     codecs/containers: isobmff · matroska · mxf · cfb · mpegts · ogg · h264 · h264enc · hevc · vp9 · av1 · mpeg2v · prores · dnx · apv · dng · aac · ac3 · mpa · opus
+     shared dependencies below all workspace layers: craft-bitstream · craft-h264 (craft-libs)
+ L0  foundation: time · geom · color · testkit (dev-dependency only)
+     codecs/containers: isobmff · matroska · mxf · cfb · mpegts · ogg · h264enc · hevc · vp9 · av1 · mpeg2v · prores · dnx · apv · dng · aac · ac3 · mpa · opus
 ```
 
 Crates are named `filmcraft-<dir>` (`crates/time` is `filmcraft-time`). The apps are `filmcraft`
@@ -40,14 +41,15 @@ and `filmcraft-cli`.
 | `time` | L0 | `Tick`, `FrameRate`, `TimeRange`, timecode parse/format (NDF/DF, frames, feet+frames, samples) |
 | `geom` | L0 | `Vec2`, `Rect`, `Affine`, Motion-transform composition |
 | `color` | L0 | colour spaces, transfer functions, YUV↔RGB matrices, LUTs |
-| `bitstream` | L0 | bit reader/writer, Exp-Golomb, emulation prevention |
+| `craft-bitstream` (craft-libs) | shared | bit reader/writer, Exp-Golomb, emulation prevention, VP8/VP9 boolean decoder |
 | `isobmff` | L0 | MP4/MOV demux and mux |
 | `matroska` | L0 | MKV/WebM demux |
 | `mxf` | L0 | MXF demux and mux (SMPTE ST 377-1): OP1a / OP-Atom, index tables, AVC / VC-3 / ProRes / MPEG-2 identification, PCM / AES3 sound, timecode; writer for OP1a / OP-Atom with VC-3, ProRes, AVC and PCM ([README](../crates/mxf/README.md)) |
 | `cfb` | L0 | Compound File Binary ([MS-CFB] structured storage) reader and writer, the container of AAF ([README](../crates/cfb/README.md)) |
 | `mpegts` | L0 | MPEG-2 Systems demux (H.222.0): transport streams (188 / 192-byte BDAV / 204), program streams (MPEG-2 / MPEG-1, VOB, MOD), PSI, PES, PTS / PCR, access-unit index built on open ([README](../crates/mpegts/README.md)) |
 | `ogg` | L0 | Ogg demux (RFC 3533), Ogg Opus timing (RFC 7845 granules, pre-skip, end trimming), Vorbis headers |
-| `h264`, `h264enc` | L0 | H.264 decoder; H.264 encoder |
+| `craft-h264` (craft-libs) | shared | H.264 decoder |
+| `h264enc` | L0 | H.264 encoder |
 | `hevc` | L0 | H.265 Main/Main 10 decoder |
 | `prores` | L0 | ProRes decoder and encoder |
 | `dnx` | L0 | DNxHD / DNxHR (SMPTE ST 2019-1 VC-3) decoder and DNxHR encoder |
@@ -94,7 +96,7 @@ are exempt):
 | Every crate has a layer | A new crate fails the check until it is added to `LAYERS`. |
 | Only downward edges | A crate may not depend on a crate in a higher layer. |
 | Same-layer edges are listed | From L1 up, a same-layer edge must be in `SAME_LAYER`: `media→frame`, `project→media`, `project→frame`, `gpu→render`, `export→render`, `cli→filmcraft`, plus a few reserved for planned crates. |
-| L0 codecs stay standalone | L0 crates other than `time`, `geom`, `color`, `bitstream`, `testkit` may depend on no workspace crate except `filmcraft-bitstream`. External crates such as `thiserror` and `rayon` are allowed. |
+| L0 codecs stay standalone | L0 crates other than `time`, `geom`, `color`, `testkit` may depend on no workspace crate. Shared `craft-bitstream`/`craft-h264` sit below every workspace layer; external crates such as `thiserror` and `rayon` are allowed. |
 | No UI/OS crates below L5 | `egui`, `eframe`, `egui-wgpu`, `winit`, `rfd`, `cpal`, `muda` are allowed only in L5 and L6. |
 
 `cargo xtask wasm` runs `cargo check --target wasm32-unknown-unknown` on every L0–L4 crate, the

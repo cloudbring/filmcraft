@@ -13,7 +13,7 @@ use crate::tables::{
     SEGMENT_TREE, SIZE_GROUP, SS_SIZE_LOOKUP, SUBSIZE_LOOKUP, SWITCHABLE, TX_MODE_SELECT, TX_MODE_TO_BIGGEST_TX_SIZE, TX_SIZE_8_TREE, TX_SIZE_16_TREE,
     TX_SIZE_32_TREE, ZEROMV,
 };
-use filmcraft_bitstream::BoolDecoder;
+use craft_bitstream::BoolDecoder;
 
 mod recon;
 

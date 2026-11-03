@@ -7,8 +7,8 @@ use crate::tables::{
     ALTREF_FRAME, GOLDEN_FRAME, INV_MAP_TABLE, LAST_FRAME, LITERAL_TO_TYPE, MAX_SEGMENTS, MAX_TILE_WIDTH_B64, MIN_TILE_WIDTH_B64, SEGMENTATION_FEATURE_BITS,
     SEGMENTATION_FEATURE_SIGNED, SWITCHABLE, TX_MODE_SELECT, TX_MODE_TO_BIGGEST_TX_SIZE,
 };
-use filmcraft_bitstream::BitReader;
-use filmcraft_bitstream::BoolDecoder;
+use craft_bitstream::BitReader;
+use craft_bitstream::BoolDecoder;
 
 pub const KEY_FRAME: u8 = 0;
 
@@ -706,15 +706,15 @@ mod tests {
         let mut context = FrameContext::default();
         assert_eq!(parse_compressed(&[0; 32], &mut header, &mut context), Ok(()));
         for (data, expected) in [
-            (&[][..], filmcraft_bitstream::BoolError::UnexpectedEof),
-            (&[0][..], filmcraft_bitstream::BoolError::UnexpectedEof),
-            (&[128; 32][..], filmcraft_bitstream::BoolError::InvalidMarker),
+            (&[][..], craft_bitstream::BoolError::UnexpectedEof),
+            (&[0][..], craft_bitstream::BoolError::UnexpectedEof),
+            (&[128; 32][..], craft_bitstream::BoolError::InvalidMarker),
         ] {
             assert_eq!(parse_compressed(data, &mut header, &mut context), Err(Error::Boolean(expected)));
         }
         let mut padding = [0; 32];
         padding[31] = 1;
-        assert_eq!(parse_compressed(&padding, &mut header, &mut context), Err(Error::Boolean(filmcraft_bitstream::BoolError::NonzeroPadding)));
+        assert_eq!(parse_compressed(&padding, &mut header, &mut context), Err(Error::Boolean(craft_bitstream::BoolError::NonzeroPadding)));
     }
 
     #[test]

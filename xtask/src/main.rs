@@ -1,7 +1,7 @@
 //! Workspace automation: `cargo xtask <layers|wasm|ci>`.
 //!
 //! - `layers`: enforces the dependency layering of `docs/architecture.md` §1 (downward-only edges,
-//!   listed same-layer edges, L0 codec crates depend on `bitstream` only, no UI/OS crates below L5).
+//!   listed same-layer edges, L0 codec crates use only shared/external crates, no UI/OS crates below L5).
 //! - `wasm`: `cargo check --target wasm32-unknown-unknown` for every crate in L0–L4, the egui UI
 //!   and the web app.
 //! - `web [--dev] [--serve PORT]`: build the web app (`apps/filmcraft-web`) into
@@ -35,7 +35,6 @@ const LAYERS: &[(&str, u8)] = &[
     ("time", 0),
     ("geom", 0),
     ("color", 0),
-    ("bitstream", 0),
     ("isobmff", 0),
     ("avi", 0),
     ("matroska", 0),
@@ -47,7 +46,6 @@ const LAYERS: &[(&str, u8)] = &[
     ("mpa", 0),
     ("ogg", 0),
     ("riff", 0),
-    ("h264", 0),
     ("h264enc", 0),
     ("hevc", 0),
     ("vp8", 0),
@@ -92,8 +90,8 @@ const LAYERS: &[(&str, u8)] = &[
     ("web", 6),
 ];
 
-/// L0 crates that are not codecs/containers (no `bitstream`-only restriction).
-const L0_FOUNDATION: &[&str] = &["time", "geom", "color", "bitstream", "testkit"];
+/// L0 crates that are not codecs/containers (workspace dependencies allowed).
+const L0_FOUNDATION: &[&str] = &["time", "geom", "color", "testkit"];
 
 /// Allowed same-layer edges (from, to).
 const SAME_LAYER: &[(&str, &str)] = &[
@@ -166,8 +164,8 @@ fn layers() -> Result<(), String> {
             }
             let Some(dl) = layer_of(d) else { continue };
             let (a, b) = (short(&name), short(d));
-            if l == 0 && !L0_FOUNDATION.contains(&a) && b != "bitstream" {
-                errors.push(format!("{a} (L0 codec/container) may depend only on bitstream, found {b}"));
+            if l == 0 && !L0_FOUNDATION.contains(&a) {
+                errors.push(format!("{a} (L0 codec/container) may depend only on shared/external crates, found {b}"));
             } else if dl > l {
                 errors.push(format!("{a} (L{l}) depends upward on {b} (L{dl})"));
             } else if dl == l && l > 0 && !SAME_LAYER.contains(&(a, b)) {
@@ -437,7 +435,6 @@ mod serve_tests {
 
 /// (crate, test target, test) whose ignored test builds that crate's fixture matrix.
 const FIXTURE_GENERATORS: &[(&str, &str, &str)] = &[
-    ("h264", "it", "conformance::generate_fixtures"),
     ("hevc", "it", "conformance::generate_fixtures"),
     ("isobmff", "it", "oracle_demux::generate_fixtures"),
     ("matroska", "oracle", "generate_fixtures"),

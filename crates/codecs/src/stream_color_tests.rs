@@ -6,7 +6,7 @@
 use std::io::Cursor;
 use std::sync::Arc;
 
-use filmcraft_bitstream::{BitWriter, escape_rbsp};
+use craft_bitstream::{BitWriter, escape_rbsp};
 use filmcraft_color::{ColorInfo, ColorSpace, Matrix, Primaries, Range, Transfer};
 use filmcraft_isobmff::{Av1Config, AvcConfig, Brand, CodecConfig, HevcConfig, HevcNalArray, Mp4Writer, SampleEntry, TrackConfig, WriteSample, WriterOptions};
 use filmcraft_matroska::{MkvWriter, MuxOptions, TrackKind, TrackSpec};

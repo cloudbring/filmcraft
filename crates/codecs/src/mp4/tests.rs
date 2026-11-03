@@ -235,7 +235,7 @@ fn hevc_pixel_format_comes_from_hvcc() {
 
 /// A High-profile SPS NAL unit (ITU-T H.264 §7.3.2.1.1) with the given chroma format and bit depth, 16×16.
 fn high_sps(profile: u8, chroma: u32, bits: u32) -> Vec<u8> {
-    let mut w = filmcraft_bitstream::BitWriter::new();
+    let mut w = craft_bitstream::BitWriter::new();
     w.write_bits(0x67, 8);
     w.write_bits(profile as u32, 8);
     w.write_bits(0, 8); // constraint flags
@@ -280,7 +280,7 @@ fn avc_pixel_format_comes_from_avcc_not_the_profile() {
 
 /// An HEVC Main SPS NAL unit (ITU-T H.265 §7.3.2.2) with the given chroma format and bit depth, 64×64.
 fn hevc_sps(chroma: u32, bits: u32) -> Vec<u8> {
-    let mut w = filmcraft_bitstream::BitWriter::new();
+    let mut w = craft_bitstream::BitWriter::new();
     w.write_bits(0, 4); // vps id
     w.write_bits(0, 3); // max_sub_layers_minus1
     w.write_bits(1, 1); // temporal_id_nesting
@@ -327,7 +327,7 @@ fn hevc_sps(chroma: u32, bits: u32) -> Vec<u8> {
     w.write_bits(0, 1); // extensions
     w.rbsp_trailing();
     let mut nal = vec![33 << 1, 1];
-    nal.extend(filmcraft_bitstream::escape_rbsp(&w.finish()));
+    nal.extend(craft_bitstream::escape_rbsp(&w.finish()));
     nal
 }
 

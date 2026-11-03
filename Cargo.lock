@@ -1059,6 +1059,14 @@ dependencies = [
 ]
 
 [[package]]
+name = "craft-bitstream"
+version = "0.1.0"
+source = "git+https://github.com/cloudbring/craft-libs?branch=algo%2F48-craft-h264#935b3523ef56b00f97ff6bba4b989108e3a51a33"
+dependencies = [
+ "craft-media 0.1.0 (git+https://github.com/cloudbring/craft-libs?branch=algo%2F48-craft-h264)",
+]
+
+[[package]]
 name = "craft-docpath"
 version = "0.1.0"
 source = "git+https://github.com/storytold/craft-libs?rev=c5a1cbfb5f9049f9270955caffb5bee5997aebf7#c5a1cbfb5f9049f9270955caffb5bee5997aebf7"
@@ -1067,6 +1075,16 @@ source = "git+https://github.com/storytold/craft-libs?rev=c5a1cbfb5f9049f9270955
 name = "craft-fonts-build"
 version = "0.1.0"
 source = "git+https://github.com/storytold/craft-libs?rev=c5a1cbfb5f9049f9270955caffb5bee5997aebf7#c5a1cbfb5f9049f9270955caffb5bee5997aebf7"
+
+[[package]]
+name = "craft-h264"
+version = "0.1.0"
+source = "git+https://github.com/cloudbring/craft-libs?branch=algo%2F48-craft-h264#935b3523ef56b00f97ff6bba4b989108e3a51a33"
+dependencies = [
+ "craft-bitstream",
+ "rayon",
+ "thiserror 2.0.21",
+]
 
 [[package]]
 name = "craft-i18n"
@@ -1089,6 +1107,14 @@ dependencies = [
  "unicode-bidi",
  "windows-registry",
  "writeable",
+]
+
+[[package]]
+name = "craft-media"
+version = "0.1.0"
+source = "git+https://github.com/cloudbring/craft-libs?branch=algo%2F48-craft-h264#935b3523ef56b00f97ff6bba4b989108e3a51a33"
+dependencies = [
+ "thiserror 2.0.21",
 ]
 
 [[package]]
@@ -1868,7 +1894,7 @@ dependencies = [
 name = "filmcraft-aac"
 version = "0.17.0"
 dependencies = [
- "filmcraft-bitstream",
+ "craft-bitstream",
  "filmcraft-testkit",
  "rayon",
  "thiserror 2.0.21",
@@ -1886,7 +1912,7 @@ dependencies = [
 name = "filmcraft-apv"
 version = "0.17.0"
 dependencies = [
- "filmcraft-bitstream",
+ "craft-bitstream",
  "filmcraft-testkit",
  "rayon",
  "thiserror 2.0.21",
@@ -1920,7 +1946,7 @@ dependencies = [
 name = "filmcraft-av1"
 version = "0.17.0"
 dependencies = [
- "filmcraft-bitstream",
+ "craft-bitstream",
  "filmcraft-testkit",
  "rayon",
  "rustix 1.1.5",
@@ -1932,13 +1958,6 @@ name = "filmcraft-avi"
 version = "0.17.0"
 dependencies = [
  "filmcraft-testkit",
-]
-
-[[package]]
-name = "filmcraft-bitstream"
-version = "0.17.0"
-dependencies = [
- "craft-media",
 ]
 
 [[package]]
@@ -1984,16 +2003,16 @@ dependencies = [
 name = "filmcraft-codecs"
 version = "0.17.0"
 dependencies = [
+ "craft-bitstream",
+ "craft-h264",
  "filmcraft-aac",
  "filmcraft-ac3",
  "filmcraft-apv",
  "filmcraft-av1",
  "filmcraft-avi",
- "filmcraft-bitstream",
  "filmcraft-color",
  "filmcraft-dnx",
  "filmcraft-frame",
- "filmcraft-h264",
  "filmcraft-hevc",
  "filmcraft-isobmff",
  "filmcraft-matroska",
@@ -2039,7 +2058,7 @@ dependencies = [
 name = "filmcraft-dnx"
 version = "0.17.0"
 dependencies = [
- "filmcraft-bitstream",
+ "craft-bitstream",
  "filmcraft-testkit",
  "rayon",
  "thiserror 2.0.21",
@@ -2129,7 +2148,7 @@ dependencies = [
 name = "filmcraft-flac"
 version = "0.17.0"
 dependencies = [
- "filmcraft-bitstream",
+ "craft-bitstream",
  "filmcraft-testkit",
  "thiserror 2.0.21",
 ]
@@ -2204,20 +2223,10 @@ dependencies = [
 ]
 
 [[package]]
-name = "filmcraft-h264"
-version = "0.17.0"
-dependencies = [
- "filmcraft-bitstream",
- "filmcraft-testkit",
- "rayon",
- "thiserror 2.0.21",
-]
-
-[[package]]
 name = "filmcraft-h264enc"
 version = "0.17.0"
 dependencies = [
- "filmcraft-bitstream",
+ "craft-bitstream",
  "filmcraft-testkit",
  "rayon",
  "thiserror 2.0.21",
@@ -2227,7 +2236,7 @@ dependencies = [
 name = "filmcraft-hevc"
 version = "0.17.0"
 dependencies = [
- "filmcraft-bitstream",
+ "craft-bitstream",
  "filmcraft-testkit",
  "rayon",
  "thiserror 2.0.21",
@@ -2254,7 +2263,7 @@ dependencies = [
 name = "filmcraft-isobmff"
 version = "0.17.0"
 dependencies = [
- "craft-media",
+ "craft-media 0.1.0 (git+https://github.com/storytold/craft-libs?rev=c5a1cbfb5f9049f9270955caffb5bee5997aebf7)",
  "filmcraft-testkit",
  "proptest",
  "serde_json",
@@ -2264,7 +2273,7 @@ dependencies = [
 name = "filmcraft-matroska"
 version = "0.17.0"
 dependencies = [
- "craft-media",
+ "craft-media 0.1.0 (git+https://github.com/storytold/craft-libs?rev=c5a1cbfb5f9049f9270955caffb5bee5997aebf7)",
  "filmcraft-testkit",
  "serde_json",
 ]
@@ -2289,7 +2298,7 @@ dependencies = [
 name = "filmcraft-mpa"
 version = "0.17.0"
 dependencies = [
- "filmcraft-bitstream",
+ "craft-bitstream",
  "filmcraft-testkit",
  "thiserror 2.0.21",
 ]
@@ -2337,12 +2346,12 @@ dependencies = [
 name = "filmcraft-platform"
 version = "0.17.0"
 dependencies = [
- "filmcraft-bitstream",
+ "craft-bitstream",
+ "craft-h264",
  "filmcraft-codecs",
  "filmcraft-color",
  "filmcraft-export",
  "filmcraft-frame",
- "filmcraft-h264",
  "filmcraft-hevc",
  "filmcraft-isobmff",
  "filmcraft-media",
@@ -2378,7 +2387,7 @@ dependencies = [
 name = "filmcraft-prores"
 version = "0.17.0"
 dependencies = [
- "filmcraft-bitstream",
+ "craft-bitstream",
  "filmcraft-testkit",
  "rayon",
  "thiserror 2.0.21",
@@ -2531,7 +2540,7 @@ dependencies = [
 name = "filmcraft-vp8"
 version = "0.17.0"
 dependencies = [
- "filmcraft-bitstream",
+ "craft-bitstream",
  "filmcraft-testkit",
  "thiserror 2.0.21",
 ]
@@ -2540,7 +2549,7 @@ dependencies = [
 name = "filmcraft-vp9"
 version = "0.17.0"
 dependencies = [
- "filmcraft-bitstream",
+ "craft-bitstream",
  "filmcraft-testkit",
  "rayon",
  "thiserror 2.0.21",

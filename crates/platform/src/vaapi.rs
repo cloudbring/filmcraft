@@ -60,7 +60,7 @@ pub trait Accel: Send {
 
 #[cfg(target_os = "linux")]
 mod linux {
-    use filmcraft_bitstream::unescape_rbsp;
+    use craft_bitstream::unescape_rbsp;
     use filmcraft_codecs::hw::{NalCodec, NalStreamInfo};
     use filmcraft_codecs::{CodecError, DecodedFrame, Result, VideoDecoder};
 
@@ -130,7 +130,7 @@ mod linux {
                     }
                     let profiles = h264_profiles(info.profile_idc).ok_or_else(|| format!("H.264 profile_idc {} is not taken", info.profile_idc))?;
                     let rbsp = parameter_set(&info.parameter_sets, 1, |h| h & 0x1f == 7).ok_or("no SPS")?;
-                    let sps = filmcraft_h264::params::Sps::parse(&rbsp).map_err(|e| e.to_string())?;
+                    let sps = craft_h264::params::Sps::parse(&rbsp).map_err(|e| e.to_string())?;
                     sps.check_supported().map_err(|e| e.to_string())?;
                     let mbs = (sps.pic_width_in_mbs, sps.frame_height_in_mbs());
                     // the DPB, the picture being decoded, and one spare

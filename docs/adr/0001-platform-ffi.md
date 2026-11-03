@@ -212,7 +212,7 @@ hold; VA-API differs from the other two backends in three ways.
   declarations, the H.264 front end (`vaapi::h264`) and the decoder (`VaDecoder`) are safe code.
 - **Decoding is stateless:** the host parses the stream and keeps the decoded picture buffer; the GPU
   only decodes slice data. FilmCraft does that host side with the software decoders' own parsers and
-  DPBs (`filmcraft_h264::dpb` and `filmcraft_hevc::dpb` are generic over what a picture is), so the two decoders decide alike by
+  DPBs (`craft_h264::dpb` and `filmcraft_hevc::dpb` are generic over what a picture is), so the two decoders decide alike by
   construction, and the front end is tested on every OS against a stand-in for the hardware. The
   one place they cannot agree is concealment: pictures predicted from frames that were never decoded
   (the leading pictures of an open H.264 GOP after a seek) are concealed by both but can differ;

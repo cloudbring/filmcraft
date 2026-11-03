@@ -2,7 +2,7 @@
 
 A clean-room, pure-Rust H.264/AVC encoder for FilmCraft's export path, written from the public
 ITU-T H.264 specification (04/2013 edition) and general encoder literature. Layer L0: it depends only on
-`filmcraft-bitstream`, `thiserror` and (optionally, feature `threads`, on by default) `rayon`. No `unsafe`,
+`craft-bitstream`, `thiserror` and (optionally, feature `threads`, on by default) `rayon`. No `unsafe`,
 builds for `wasm32-unknown-unknown` with or without `threads`.
 
 ## Usage

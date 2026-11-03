@@ -2,10 +2,10 @@
 
 Clean-room, pure-Rust (no `unsafe`) VP9 decoder, implemented from the public *VP9 Bitstream &
 Decoding Process Specification* v0.6 (WebM project). It is an L0 crate: it depends only on
-`filmcraft-bitstream`, `thiserror`, and optionally `rayon` (default feature `threads`), and builds
+`craft-bitstream`, `thiserror`, and optionally `rayon` (default feature `threads`), and builds
 for `wasm32-unknown-unknown` with and without `threads`.
 
-Boolean decoding is shared with VP8 through `filmcraft-bitstream::BoolDecoder`. Compressed
+Boolean decoding is shared with VP8 through `craft-bitstream::BoolDecoder`. Compressed
 headers and tiles reject nonzero marker bits, exhausted payloads, and nonzero trailing padding.
 
 The constant tables (probability defaults, scans, coefficient bands, quantizer lookups, Pareto

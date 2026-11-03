@@ -1,7 +1,7 @@
 # filmcraft-mpa
 
 Clean-room MPEG-1 / MPEG-2 Audio Layer I and Layer II decoder (MP1 / MP2) in pure Rust. Layer L0:
-depends only on `filmcraft-bitstream` and `thiserror`. Builds for `wasm32-unknown-unknown`; no
+depends only on `craft-bitstream` and `thiserror`. Builds for `wasm32-unknown-unknown`; no
 `unsafe`. No GPL/LGPL code (FFmpeg, libmad, mpg123, twolame) was consulted; FFmpeg (and twolame,
 when installed) are used only as external fixture generators and test oracles.
 

@@ -1,7 +1,7 @@
 # filmcraft-vp8
 
 Clean-room, pure-Rust (no `unsafe`) VP8 decoder, implemented from RFC 6386, *VP8 Data Format and
-Decoding Guide*, sections 1-19. It is an L0 crate: it depends only on `filmcraft-bitstream`
+Decoding Guide*, sections 1-19. It is an L0 crate: it depends only on `craft-bitstream`
 (the shared VP8/VP9 boolean decoder) and `thiserror`, and builds for
 `wasm32-unknown-unknown`.
 

@@ -63,9 +63,9 @@ pub struct MxfSource {
 /// positions: the rank of (IDR period, POC) (8.2.1.1, picture order count type 0; types 1 and 2
 /// never reorder for the streams written by AVC encoders we have seen, so they keep stored order).
 pub fn avc_presentation_order(heads: &[Vec<u8>]) -> Option<Vec<i64>> {
-    use filmcraft_bitstream::{annexb_nals, unescape_rbsp};
-    use filmcraft_h264::params::{Pps, Sps};
-    use filmcraft_h264::slice::{NalHeader, SliceHeader};
+    use craft_bitstream::{annexb_nals, unescape_rbsp};
+    use craft_h264::params::{Pps, Sps};
+    use craft_h264::slice::{NalHeader, SliceHeader};
     let mut spss: Vec<Option<Sps>> = vec![None; 32];
     let mut ppss: Vec<Option<Pps>> = vec![None; 256];
     let (mut prev_msb, mut prev_lsb) = (0i64, 0i64);
@@ -90,8 +90,8 @@ pub fn avc_presentation_order(heads: &[Vec<u8>]) -> Option<Vec<i64>> {
                 1 | 5 => {
                     let mut sps_of = None;
                     let (sh, _, _) = SliceHeader::parse(&rbsp, hdr, |id| {
-                        let pps = ppss.get(id as usize).and_then(Option::as_ref).ok_or(filmcraft_h264::Error::MissingParameterSet("PPS".into()))?;
-                        let sps = spss.get(pps.sps_id as usize).and_then(Option::as_ref).ok_or(filmcraft_h264::Error::MissingParameterSet("SPS".into()))?;
+                        let pps = ppss.get(id as usize).and_then(Option::as_ref).ok_or(craft_h264::Error::MissingParameterSet("PPS".into()))?;
+                        let sps = spss.get(pps.sps_id as usize).and_then(Option::as_ref).ok_or(craft_h264::Error::MissingParameterSet("SPS".into()))?;
                         sps_of = Some(sps);
                         Ok((pps, sps))
                     })

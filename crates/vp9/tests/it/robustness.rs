@@ -14,7 +14,7 @@ fn nonzero_tile_padding_is_rejected() {
     frame.push(1);
     for threads in [1, 4] {
         let mut decoder = Decoder::with_threads(threads);
-        assert!(matches!(decoder.decode(&frame, 0), Err(filmcraft_vp9::Error::Boolean(filmcraft_bitstream::BoolError::NonzeroPadding))));
+        assert!(matches!(decoder.decode(&frame, 0), Err(filmcraft_vp9::Error::Boolean(craft_bitstream::BoolError::NonzeroPadding))));
     }
 }
 

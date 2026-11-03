@@ -11,11 +11,14 @@ rust-version = "1.95"
 repository = "https://github.com/storytold/filmcraft"
 
 [workspace.dependencies]
+# TODO(#48): repoint to storytold/craft-libs once craft-h264 merges
+craft-bitstream = { git = "https://github.com/cloudbring/craft-libs", branch = "algo/48-craft-h264" }
+craft-h264 = { git = "https://github.com/cloudbring/craft-libs", branch = "algo/48-craft-h264" }
+
 # internal
 filmcraft-time = { path = "crates/time" }
 filmcraft-geom = { path = "crates/geom" }
 filmcraft-color = { path = "crates/color" }
-filmcraft-bitstream = { path = "crates/bitstream" }
 filmcraft-isobmff = { path = "crates/isobmff" }
 filmcraft-avi = { path = "crates/avi" }
 filmcraft-matroska = { path = "crates/matroska" }
@@ -26,7 +29,6 @@ filmcraft-mpeg2v = { path = "crates/mpeg2v" }
 filmcraft-ac3 = { path = "crates/ac3" }
 filmcraft-mpa = { path = "crates/mpa" }
 filmcraft-ogg = { path = "crates/ogg" }
-filmcraft-h264 = { path = "crates/h264" }
 filmcraft-hevc = { path = "crates/hevc" }
 filmcraft-vp8 = { path = "crates/vp8" }
 filmcraft-vp9 = { path = "crates/vp9" }
@@ -112,7 +114,7 @@ opt-level = 1
 debug = "line-tables-only"
 
 # Codec hot loops: debug-build tests (RFC/oracle vectors) are minutes slower below opt-level 3.
-[profile.dev.package.filmcraft-h264]
+[profile.dev.package.craft-h264]
 opt-level = 3
 
 [profile.dev.package.filmcraft-h264enc]

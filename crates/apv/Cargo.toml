@@ -10,7 +10,7 @@ default = ["threads"]
 threads = ["dep:rayon"]
 
 [dependencies]
-filmcraft-bitstream.workspace = true
+craft-bitstream.workspace = true
 rayon = { workspace = true, optional = true }
 thiserror.workspace = true
 

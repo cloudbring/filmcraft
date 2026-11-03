@@ -2,7 +2,7 @@
 
 Clean-room, pure-Rust (no `unsafe`) AV1 decoder, implemented from the public **AV1 Bitstream &
 Decoding Process Specification, version 1.0.0 with Errata 1** (AOMediaCodec/av1-spec, git
-commit `5e04f3f`, 2023-06-12). It is an L0 crate: it depends only on `filmcraft-bitstream`,
+commit `5e04f3f`, 2023-06-12). It is an L0 crate: it depends only on `craft-bitstream`,
 `thiserror` and (optional, feature `threads`) `rayon`, and builds for `wasm32-unknown-unknown`.
 
 All constant tables (default CDFs, scan orders, quantiser lookups, filter taps, …) and the

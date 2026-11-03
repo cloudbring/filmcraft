@@ -4,7 +4,7 @@ Clean-room Advanced Professional Video (APV) decoder and encoder in pure Rust, i
 from the public **IETF RFC 9924** specification (*Advanced Professional Video*, February 2026,
 ISSN 2070-1721).
 
-Layer L0: depends only on `filmcraft-bitstream`, `thiserror`, and (optional, feature `threads`,
+Layer L0: depends only on `craft-bitstream`, `thiserror`, and (optional, feature `threads`,
 default on) `rayon`. Builds for `wasm32-unknown-unknown`; `unsafe_code = "forbid"`.
 
 ## API
