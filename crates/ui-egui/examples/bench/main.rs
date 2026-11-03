@@ -19,13 +19,14 @@ mod fixtures;
 #[allow(dead_code)]
 mod playback;
 mod sections;
+mod waveform;
 
 use std::path::{Path, PathBuf};
 use std::process::Command;
 
 use serde_json::{Value, json};
 
-pub const SECTIONS: &[&str] = &["decode", "seek", "playback", "scrub", "timeline", "export", "project"];
+pub const SECTIONS: &[&str] = &["decode", "seek", "playback", "scrub", "timeline", "waveform", "export", "project"];
 
 #[derive(Clone)]
 pub struct Opts {
@@ -88,6 +89,7 @@ fn run_section(name: &str, o: &Opts) -> Value {
         "playback" => sections::playback(o),
         "scrub" => sections::scrub(o),
         "timeline" => sections::timeline(o),
+        "waveform" => waveform::run(o),
         "export" => sections::export(o),
         "project" => sections::project(o),
         _ => panic!("unknown section {name} (one of {})", SECTIONS.join(", ")),
@@ -239,6 +241,16 @@ pub fn section_markdown(v: &Value) -> String {
         return s;
     }
     let (cols, prec): (&[(&str, &str)], usize) = match name {
+        "waveform" => (
+            &[
+                ("method", "method"),
+                ("visible_s", "visible seconds"),
+                ("columns", "columns"),
+                ("repaint_p50_ms", "repaint p50 ms"),
+                ("repaint_p95_ms", "repaint p95 ms"),
+            ],
+            4,
+        ),
         "decode" => (
             &[
                 ("fixture", "fixture"),

@@ -73,6 +73,7 @@ pub mod state;
 pub mod theme;
 mod theme_favorites;
 pub mod updates_ui;
+pub mod waveform_peaks;
 pub mod widgets;
 
 use std::collections::HashMap;

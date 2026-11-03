@@ -3,6 +3,70 @@
 The egui frontend draws panels and dialogs, and dispatches project changes through the engine.
 Interactive controls keep stable automation ids regardless of the interface language.
 
+## Waveform peak pyramid (#106)
+
+Timeline clips and the Source monitor share an immutable `PeakPyramid` cached per media item
+and audio stream. Nested-sequence caches retain their existing content-key invalidation.
+Decoding/mixing appends the original zero-inclusive min/max pair for each 256-sample bucket
+at 48 kHz, including the final partial bucket, and builds completed binary ancestors immediately.
+Building is O(N) overall, amortized O(1) per append; no PCM copy is retained. Source amplitude
+is accumulated during building rather than scanned on the first paint.
+
+A column keeps its previous time-to-bucket rounding and half-open range. Small ranges scan
+at most eight base buckets; larger ranges use aligned power-of-two blocks, at most two per
+level, for exact O(log N) queries. Boundary buckets are never broadened to a coarser level.
+This preserves trimming, scroll offsets, speed/reverse/hold mapping, gain, and linear/log display.
+
+For N base buckets the pyramid stores `2*N - N.count_ones()` pairs of two `f32`s. One hour
+of 48 kHz audio is 675,000 buckets: 10,799,928 bytes of pair payload (10.30 MiB), plus about
+480 bytes of level descriptors. The two-hour benchmark uses 21,599,928 bytes of pairs.
+This is just under twice the flat-cache payload; stereo does not double it because FilmCraft
+already displays the first channel of each audio stream. Separately cached streams each pay
+this cost. While appending, vector capacities are bounded by `4*N + 4*levels` pairs; publishing
+calls `finish()` to release spare capacity. Tiny inputs have the usual fixed Vec overhead.
+
+The existing benchmark runner includes a `waveform` section, with synthetic peaks for a
+two-hour 48 kHz stereo clip, 1,000 columns, five zooms, and nonzero scroll offsets. It times
+CPU repaint work (egui pass, column queries, mesh construction/submission), not decoding,
+full editor layout, tessellation, or GPU rendering. Each case warms up ten frames and times
+200 frames. Pyramid construction is outside the repaint measurement and reported separately.
+Use `--only flat` to reproduce the old scan, or omit it to measure the pyramid:
+
+```sh
+export CARGO_TARGET_DIR="$PWD/target-106" CARGO_PROFILE_DEV_DEBUG=0 CARGO_PROFILE_TEST_DEBUG=0 CARGO_INCREMENTAL=0
+cargo +stable run --config 'profile.dev.package.filmcraft-ui-egui.opt-level=3' \
+  -p filmcraft-ui-egui --example bench -- --section waveform --cpu --only flat --repeat 3
+cargo +stable run --config 'profile.dev.package.filmcraft-ui-egui.opt-level=3' \
+  -p filmcraft-ui-egui --example bench -- --section waveform --cpu --repeat 3
+```
+
+Tests compare all ranges after every append, randomized ranges, and every drawn column of
+randomized timeline/monitor zooms and scroll offsets against the original flat scan. A real
+timeline-painter test compares its exact mesh with the flat-scan mesh at five zooms in both
+linear and dynamic modes. Existing stream-selection, nested-sequence refresh, and project-reset
+tests continue to exercise cache behavior.
+
+Measured on November 3, 2026, Apple M6/arm64, rustup stable rustc 1.99.0, with the command
+above (UI crate opt-level 3, dependency opt-level 2, debug information/incremental disabled).
+The original pre-change flat baseline was 0.2243/0.0513/0.0217/0.0087/0.0112 ms at the five
+zooms below. The matched final runs rerun that same flat scan with `--only flat`; values are
+the median of five runs' frame p50/p95 timings, under shared-machine load (15.92/24.50/24.30).
+
+| Visible span | Flat p50 ms | Pyramid p50 ms | Flat p95 ms | Pyramid p95 ms |
+| --- | ---: | ---: | ---: | ---: |
+| 2 hours | 0.234709 | 0.025500 | 0.384500 | 0.030875 |
+| 30 minutes | 0.072333 | 0.024500 | 0.084375 | 0.033250 |
+| 5 minutes | 0.022542 | 0.019500 | 0.044667 | 0.026458 |
+| 30 seconds | 0.012709 | 0.012458 | 0.014250 | 0.014500 |
+| 1 second | 0.011292 | 0.011542 | 0.012250 | 0.012834 |
+
+Building the two-hour pyramid from decoded buckets took 6.47 ms once (PCM decoding excluded).
+Whole-clip repaint p50 improves 9.2×; close zooms remain approximately unchanged.
+Validation: `cargo +stable test -p filmcraft-ui-egui` passed 1,077 tests, zero failures, six
+pre-existing ignored; scoped `cargo +stable clippy -p filmcraft-ui-egui --all-targets -- -D warnings`,
+formatting, layers and assets checks passed. Full-workspace tests/clippy and the workspace wasm
+gate were skipped because the shared disk fell below 7 GiB free; `target-106` was removed.
+
 ## Export range warnings
 
 The Export panel shows the selected range's length in sequence frames and seconds beside Range

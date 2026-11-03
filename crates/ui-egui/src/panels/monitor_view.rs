@@ -728,12 +728,12 @@ pub fn waveform(
 
 /// The lowest and highest sample of `peaks` under the waveform column from `f0` to `f1` (fractions
 /// of the shown range `shown`): the narrower the range, the fewer peak buckets a column covers.
-fn column_peak(peaks: &[(f32, f32)], shown: (Tick, Tick), f0: f64, f1: f64) -> (f32, f32) {
+fn column_peak(peaks: &crate::waveform_peaks::PeakPyramid, shown: (Tick, Tick), f0: f64, f1: f64) -> (f32, f32) {
     let spp = 256.0 * TICKS_PER_SAMPLE_48K;
     let (start, len) = (shown.0.0.max(0) as f64, (shown.1 - shown.0).0.max(1) as f64);
     let s0 = ((start + len * f0) / spp) as usize;
-    let s1 = (((start + len * f1) / spp) as usize).max(s0 + 1);
-    peaks.iter().skip(s0).take(s1 - s0).fold((0f32, 0f32), |(l, h), (a, b)| (l.min(*a), h.max(*b)))
+    let s1 = (((start + len * f1) / spp) as usize).max(s0.saturating_add(1));
+    peaks.range(s0..s1)
 }
 
 /// Ticks per 48 kHz sample (the waveform peaks are 256-sample min/max pairs at 48 kHz).
@@ -1054,9 +1054,34 @@ mod tests {
     }
 
     #[test]
+    fn randomized_monitor_columns_match_flat_at_every_zoom_and_scroll() {
+        use crate::waveform_peaks::tests::{flat, random, random_peaks};
+
+        let mut seed = 106;
+        for _ in 0..64 {
+            let len = (random(&mut seed) % 8192) as usize;
+            let peaks = random_peaks(&mut seed, len);
+            let total = len.max(1) as f64 * 256.0 * TICKS_PER_SAMPLE_48K;
+            for zoom in [1.0, 4.0, 16.0, 256.0, 4096.0] {
+                let duration = total / zoom;
+                let scroll = (random(&mut seed) % 10000) as f64 / 10000.0 * total * 1.1;
+                let shown = (Tick(scroll as i64), Tick((scroll + duration) as i64));
+                let (start, length) = (shown.0.0.max(0) as f64, (shown.1 - shown.0).0.max(1) as f64);
+                for column in 0..318 {
+                    let f0 = (column as f32 - 0.25) / 317.5;
+                    let f1 = (column as f32 + 0.75) / 317.5;
+                    let first = ((start + length * f0 as f64) / (256.0 * TICKS_PER_SAMPLE_48K)) as usize;
+                    let end = (((start + length * f1 as f64) / (256.0 * TICKS_PER_SAMPLE_48K)) as usize).max(first + 1);
+                    assert_eq!(column_peak(&peaks, shown, f0 as f64, f1 as f64), flat(&peaks, first..end), "column {column}, zoom {zoom}, scroll {scroll}");
+                }
+            }
+        }
+    }
+
+    #[test]
     fn zooming_in_resolves_the_waveform_in_finer_columns() {
         // a square wave: four loud peak buckets, then four silent ones, 800 buckets in all
-        let peaks: Vec<(f32, f32)> = (0..800).map(|i| if (i / 4) % 2 == 0 { (-1.0, 1.0) } else { (0.0, 0.0) }).collect();
+        let peaks: crate::waveform_peaks::PeakPyramid = (0..800).map(|i| if (i / 4) % 2 == 0 { (-1.0, 1.0) } else { (0.0, 0.0) }).collect();
         let bucket = 256.0 * TICKS_PER_SAMPLE_48K;
         let at = |b: f64| Tick((b * bucket) as i64);
         let silent = |shown: (Tick, Tick)| (0..100).filter(|x| column_peak(&peaks, shown, *x as f64 / 100.0, (*x + 1) as f64 / 100.0).1 == 0.0).count();
