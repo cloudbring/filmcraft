@@ -21,166 +21,26 @@
 //! - `ci`: fmt check, clippy -D warnings, tests (`cargo nextest run` when installed) and doctests,
 //!   the i18n report, layers, assets, wasm.
 
-mod ico;
 mod parity;
-mod version;
+mod task_policy;
 
 use std::process::{Command, ExitCode};
 
-use serde_json::Value;
+use task_policy::short;
 
-/// (crate name without the `filmcraft-` prefix, layer).
-const LAYERS: &[(&str, u8)] = &[
-    ("testkit", 0),
-    ("time", 0),
-    ("geom", 0),
-    ("color", 0),
-    ("bitstream", 0),
-    ("isobmff", 0),
-    ("avi", 0),
-    ("matroska", 0),
-    ("mxf", 0),
-    ("cfb", 0),
-    ("mpegts", 0),
-    ("mpeg2v", 0),
-    ("ac3", 0),
-    ("mpa", 0),
-    ("ogg", 0),
-    ("riff", 0),
-    ("h264", 0),
-    ("h264enc", 0),
-    ("hevc", 0),
-    ("vp8", 0),
-    ("vp9", 0),
-    ("prores", 0),
-    ("mjpeg", 0),
-    ("dnx", 0),
-    ("apv", 0),
-    ("dng", 0),
-    ("av1", 0),
-    ("aac", 0),
-    ("flac", 0),
-    ("opus", 0),
-    ("frame", 1),
-    ("media", 1),
-    ("project", 1),
-    ("audio-dsp", 1),
-    ("text", 1),
-    ("edit", 2),
-    ("codecs", 2),
-    ("keyframe", 2),
-    ("effects", 2),
-    ("audio", 2),
-    ("captions", 2),
-    ("speech", 2),
-    ("tts", 2),
-    ("tts-text", 2),
-    ("interchange", 2),
-    ("render", 3),
-    ("gpu", 3),
-    ("golden", 3),
-    ("scopes", 3),
-    ("playback", 3),
-    ("export", 3),
-    ("format", 3),
-    ("engine", 4),
-    ("platform", 5),
-    ("ui-egui", 5),
-    ("automation", 5),
-    ("filmcraft", 6),
-    ("cli", 6),
-    ("web", 6),
-];
+const USAGE: &str = "usage: cargo xtask <layers|assets|wasm|web [--dev] [--serve PORT]|fixtures [crate…]|parity [--area menus|effects|transitions] [--reference FILE] [--out FILE] [--min PERCENT]|ico OUT IN…|version [set X.Y.Z]|ci|bench [args]|bench-playback [args]>";
 
-/// L0 crates that are not codecs/containers (no `bitstream`-only restriction).
-const L0_FOUNDATION: &[&str] = &["time", "geom", "color", "bitstream", "testkit"];
-
-/// Allowed same-layer edges (from, to).
-const SAME_LAYER: &[(&str, &str)] = &[
-    ("media", "frame"),
-    ("project", "media"),
-    ("project", "frame"),
-    ("effects", "keyframe"),
-    ("audio", "keyframe"),
-    ("playback", "render"),
-    ("playback", "gpu"),
-    ("export", "render"),
-    ("scopes", "gpu"),
-    ("gpu", "render"),
-    ("cli", "filmcraft"),
-    ("tts", "tts-text"),
-];
-
-/// Crates that must not appear below L5 (UI toolkits, windowing, OS audio/menus).
-const UI_ONLY: &[&str] = &["craft-ui", "egui", "eframe", "egui-wgpu", "winit", "rfd", "cpal", "muda"];
-
-fn short(name: &str) -> &str {
-    name.strip_prefix("filmcraft-").unwrap_or(name)
+fn usage() -> String {
+    format!(
+        "{USAGE}\n\nShared task syntax:\n  {}\n  {}\n  {}\n",
+        craft_xtask::version::cli_help(),
+        craft_xtask::ico::cli_help(),
+        craft_xtask::layers::cli_help(),
+    )
 }
 
-fn layer_of(name: &str) -> Option<u8> {
-    LAYERS.iter().find(|(n, _)| *n == short(name)).map(|(_, l)| *l)
-}
-
-fn metadata() -> Result<Value, String> {
-    let out = Command::new(env!("CARGO")).args(["metadata", "--format-version", "1", "--no-deps"]).output().map_err(|e| e.to_string())?;
-    if !out.status.success() {
-        return Err(String::from_utf8_lossy(&out.stderr).into());
-    }
-    serde_json::from_slice(&out.stdout).map_err(|e| e.to_string())
-}
-
-fn workspace_crates(md: &Value) -> Vec<(String, Vec<String>)> {
-    md["packages"]
-        .as_array()
-        .into_iter()
-        .flatten()
-        .filter(|p| p["name"] != "xtask")
-        .map(|p| {
-            let deps = p["dependencies"]
-                .as_array()
-                .into_iter()
-                .flatten()
-                .filter(|d| d["kind"].is_null() || d["kind"] == "build")
-                .filter_map(|d| d["name"].as_str().map(str::to_string))
-                .collect();
-            (p["name"].as_str().unwrap_or_default().to_string(), deps)
-        })
-        .collect()
-}
-
-fn layers() -> Result<(), String> {
-    let md = metadata()?;
-    let mut errors = Vec::new();
-    for (name, deps) in workspace_crates(&md) {
-        let Some(l) = layer_of(&name) else {
-            errors.push(format!("{name}: not assigned a layer (add it to xtask LAYERS and docs/architecture.md §1)"));
-            continue;
-        };
-        for d in &deps {
-            if l < 5 && UI_ONLY.contains(&d.as_str()) {
-                errors.push(format!("{name} (L{l}) depends on UI/OS crate `{d}`"));
-            }
-            if !d.starts_with("filmcraft-") {
-                continue;
-            }
-            let Some(dl) = layer_of(d) else { continue };
-            let (a, b) = (short(&name), short(d));
-            if l == 0 && !L0_FOUNDATION.contains(&a) && b != "bitstream" {
-                errors.push(format!("{a} (L0 codec/container) may depend only on bitstream, found {b}"));
-            } else if dl > l {
-                errors.push(format!("{a} (L{l}) depends upward on {b} (L{dl})"));
-            } else if dl == l && l > 0 && !SAME_LAYER.contains(&(a, b)) {
-                errors.push(format!("{a} → {b}: same-layer edge (L{l}) not in the allowed list"));
-            }
-        }
-    }
-    if errors.is_empty() {
-        println!("layers: ok");
-        Ok(())
-    } else {
-        Err(errors.join("\n"))
-    }
+fn layers(args: &[String]) -> Result<(), String> {
+    craft_xtask::layers::run(&task_policy::configs(root()).layers, args)
 }
 
 /// File extensions that count as assets (AGENTS.md §1).
@@ -260,13 +120,14 @@ fn run(cmd: &mut Command) -> Result<(), String> {
 const WEB_CRATES: &[&str] = &["filmcraft-ui-egui", "filmcraft-web"];
 
 fn wasm() -> Result<(), String> {
-    let md = metadata()?;
+    let cfg = task_policy::configs(root()).layers;
+    let crates = craft_xtask::layers::from_metadata(&craft_xtask::Cargo { root: root(), ..Default::default() }.metadata(false)?)?;
     let mut cmd = Command::new(env!("CARGO"));
     cmd.args(["check", "--target", "wasm32-unknown-unknown", "--keep-going"]);
     let mut n = 0;
-    for (name, _) in workspace_crates(&md) {
-        if layer_of(&name).is_some_and(|l| l <= 4) || WEB_CRATES.contains(&name.as_str()) {
-            cmd.args(["-p", &name]);
+    for c in crates {
+        if cfg.layers.iter().take(5).any(|(_, m)| m.contains(&c.name)) || WEB_CRATES.contains(&c.name.as_str()) {
+            cmd.args(["-p", &c.name]);
             n += 1;
         }
     }
@@ -495,7 +356,7 @@ fn ci() -> Result<(), String> {
     let tested = tests();
     i18n_report(true);
     tested?;
-    layers()?;
+    layers(&[])?;
     assets()?;
     wasm()
 }
@@ -550,11 +411,13 @@ fn root() -> std::path::PathBuf {
 
 fn main() -> ExitCode {
     let task = std::env::args().nth(1).unwrap_or_default();
+    let rest: Vec<String> = std::env::args().skip(2).collect();
+    let configs = task_policy::configs(root());
     let r = match task.as_str() {
-        "layers" => layers(),
+        "layers" => layers(&rest),
         "wasm" => wasm(),
         "assets" => assets(),
-        "fixtures" => fixtures(&std::env::args().skip(2).collect::<Vec<_>>()),
+        "fixtures" => fixtures(&rest),
         "ci" => ci(),
         "i18n-report" => {
             i18n_report(false);
@@ -562,23 +425,15 @@ fn main() -> ExitCode {
         }
         "bench" => bench(),
         "bench-playback" => bench_playback(),
-        "web" => web(&std::env::args().skip(2).collect::<Vec<_>>()),
-        "version" => {
-            let rest: Vec<String> = std::env::args().skip(2).collect();
-            version::run(&root(), &rest.iter().map(String::as_str).collect::<Vec<_>>())
+        "web" => web(&rest),
+        "version" => craft_xtask::version::run(&configs.version, &rest),
+        "parity" => parity::run(&root(), &rest.iter().map(String::as_str).collect::<Vec<_>>()),
+        "ico" => craft_xtask::ico::run(&configs.ico, &rest),
+        "-h" | "--help" | "help" => {
+            print!("{}", usage());
+            Ok(())
         }
-        "parity" => {
-            let rest: Vec<String> = std::env::args().skip(2).collect();
-            parity::run(&root(), &rest.iter().map(String::as_str).collect::<Vec<_>>())
-        }
-        "ico" => {
-            let rest: Vec<String> = std::env::args().skip(2).collect();
-            ico::run(&rest.iter().map(String::as_str).collect::<Vec<_>>())
-        }
-        _ => Err(
-            "usage: cargo xtask <layers|assets|wasm|web [--dev] [--serve PORT]|fixtures [crate…]|parity [--area menus|effects|transitions] [--reference FILE] [--out FILE] [--min PERCENT]|ico OUT IN…|version [set X.Y.Z]|ci|bench [args]|bench-playback [args]>"
-                .into(),
-        ),
+        _ => Err(usage()),
     };
     match r {
         Ok(()) => ExitCode::SUCCESS,
