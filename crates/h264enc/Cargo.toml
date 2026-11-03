@@ -16,6 +16,7 @@ threads = ["dep:rayon"]
 [dependencies]
 filmcraft-bitstream = { workspace = true }
 thiserror = { workspace = true }
+wide = { workspace = true }
 rayon = { workspace = true, optional = true }
 
 [dev-dependencies]

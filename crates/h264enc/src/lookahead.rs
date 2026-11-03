@@ -1,6 +1,7 @@
 //! Cheap half-resolution analysis used for rate control, scene-cut detection and adaptive quantisation.
 
-use crate::dsp::{block_var, sad, satd};
+use crate::distortion::{sad, satd};
+use crate::dsp::block_var;
 use crate::picture::Frame;
 
 /// Half-resolution luma (2x2 box filtered) of the macroblock-aligned picture.

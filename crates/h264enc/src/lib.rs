@@ -23,6 +23,7 @@ mod cabac;
 mod cabac_mb;
 mod cavlc;
 mod deblock;
+mod distortion;
 mod dsp;
 mod intra;
 mod lookahead;

@@ -2,7 +2,7 @@
 
 A clean-room, pure-Rust H.264/AVC encoder for FilmCraft's export path, written from the public
 ITU-T H.264 specification (04/2013 edition) and general encoder literature. Layer L0: it depends only on
-`filmcraft-bitstream`, `thiserror` and (optionally, feature `threads`, on by default) `rayon`. No `unsafe`,
+`filmcraft-bitstream`, `thiserror`, `wide` and (optionally, feature `threads`, on by default) `rayon`. No `unsafe`,
 builds for `wasm32-unknown-unknown` with or without `threads`.
 
 ## Usage
@@ -53,6 +53,56 @@ for p in enc.flush() { /* ... */ }
 | Threading | slice-parallel encoding (MB-row slices, `disable_deblocking_filter_idc = 2` with >1 slice so each slice is also deblocked in parallel), parallel half-sample interpolation and lookahead |
 
 ## Verification
+
+### Distortion kernels (#99)
+
+`src/distortion.rs` centralizes SAD, SATD and SSE/SSD for motion search, intra/inter mode
+decision, RD-lite and lookahead. SAD and SSE support widths 4/8/16 and heights up to 16,
+including 4x4, 8x8, 16x16, 16x8 and 8x16. SATD supports dimensions divisible by four
+through 16x16, always summing **halved 4x4 Hadamards**: the 8x8 score is four 4x4
+scores, not a new 8x8 transform. This preserves the existing mode decisions.
+
+All vector types are 128-bit (`wide`, permissively licensed, no default features): NEON
+on AArch64, SSE2 on x86-64, wasm SIMD128 only with `-C target-feature=+simd128`, and a
+scalar fallback otherwise. No target-specific intrinsics or unsafe code are added.
+Bounds and checked stride arithmetic are validated before the loops; invalid geometry
+receives the maximum cost rather than a partial score. The maximum 16x16 SAD is 65,280,
+which fits the unsigned 16-bit reduction; SSE widens signed 16-bit differences into
+32-bit dot products before accumulation (maximum block SSE 16,646,400).
+
+Differential tests cover all 65,536 constant byte pairs for all nine 4/8/16-by-4/8/16
+block shapes, deterministic random blocks with independent strides and unaligned starts, exact-length
+buffers, zero/full blocks, checkerboards, single-pixel impulses, overflow bounds and
+invalid geometry. The existing four pinned coded-slice hashes remain unchanged.
+Run `cargo test --release -p filmcraft-h264enc --lib distortion` and the optional
+`cargo test --release -p filmcraft-h264enc --lib benchmark_kernels -- --ignored --nocapture`.
+
+Measured on 2026-11-03, Apple M6/AArch64, rustup stable rustc 1.99.0, release defaults:
+`THREADS=1 cargo run --release -p filmcraft-h264enc --example h264enc_synth --
+1920 1080 30 high balanced 2 qp26 1 synth`. All 30 input frames are distinct; input
+generation is outside the encode timer. Five interleaved runs of the pre-change
+encoder and the SIMD encoder gave median **21.2 -> 23.5 fps** (about 11% faster).
+Baseline times were 1.417/1.400/1.393/1.419/1.460 s; SIMD times were
+1.256/1.259/1.334/1.281/1.274 s. Both executables were built with explicit rustup
+`RUSTC`/`RUSTDOC` paths (the baseline from a temporary HEAD source snapshot).
+This is a shared machine, not a claim of a stable platform-wide gain.
+Every run produced the same 2,804,462-byte stream,
+compared byte-for-byte against the pre-change output. No distortion-time percentage
+was measured. The optional microbenchmark compares against the deliberately simple
+test reference, not the previous compiler-autovectorized production loops.
+
+Validation on that toolchain: h264enc debug, release and release without default
+features each passed 37 tests (one ignored microbenchmark, separately run and passed),
+with strict external ffmpeg/ffprobe oracles enabled. Workspace clippy (all targets,
+warnings denied), formatting, layers, assets (69) and wasm (49 crates) passed, as did
+h264enc checks for wasm without default features, wasm SIMD128 and x86-64 SSE2.
+The full workspace test run stopped at the unrelated DNx oracle tests: 806 passed,
+two failed and 15 ignored before stopping. Both failures
+(`oracle_decode::decode_matches_ffmpeg`, `oracle_encode::encode_decodes_in_ffmpeg`)
+were reproduced against the unchanged pre-change DNx source with the same oracles;
+the remaining workspace tests were not reached.
+
+### Encoder conformance
 
 `cargo test --release -p filmcraft-h264enc` (ffmpeg/ffprobe used only as external oracles; tests skip when
 absent). Every stream is decoded with `ffmpeg -v warning -err_detect +crccheck+bitstream+buffer+explode -f rawvideo`
