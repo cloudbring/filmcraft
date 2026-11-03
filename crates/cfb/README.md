@@ -1,8 +1,8 @@
 # filmcraft-cfb
 
 A clean-room reader and writer for the Compound File Binary format (Microsoft "structured
-storage"), the low-level container of AAF files. Layer L0: no dependencies beyond `std`, no
-`unsafe`, builds for `wasm32-unknown-unknown`. No third-party implementation (the AAF SDK's
+storage"), the low-level container of AAF files. The reader delegates to `craft-cfb`; the writer
+remains in this crate. Layer L0, no `unsafe`, builds for `wasm32-unknown-unknown`. No third-party implementation (the AAF SDK's
 structured storage code, libgsf, olefile, POI…) was consulted.
 
 ## Specification
@@ -22,8 +22,7 @@ let props = cf.read_path("Header-2/properties")?;       // a stream
 for &child in &cf.entries[header].children { /* sorted siblings */ }
 ```
 
-- Accepts version 3 (512-byte sectors) and version 4 (4096-byte sectors) files; other sector
-  shifts between 7 and 16 are tolerated.
+- Accepts version 3 (512-byte sectors) and version 4 (4096-byte sectors) files.
 - Every chain (DIFAT, FAT, mini FAT, directory, streams) is bounds-checked and cycle-checked; a
   directory tree that references an entry twice is rejected. Damaged or truncated files return
   `Error::Invalid`, never panic or loop.

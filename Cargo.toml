@@ -74,6 +74,8 @@ rayon = "1"
 proptest = "1"
 roxmltree = "0.21"
 craft-docpath = { version = "0.1.0", git = "https://github.com/storytold/craft-libs", rev = "c5a1cbfb5f9049f9270955caffb5bee5997aebf7" }
+# TODO: repoint to storytold/craft-libs after upstream merge
+craft-cfb = { git = "https://github.com/cloudbring/craft-libs", branch = "algo/integration" }
 craft-media = { version = "0.1.0", git = "https://github.com/storytold/craft-libs", rev = "c5a1cbfb5f9049f9270955caffb5bee5997aebf7", default-features = false }
 
 # ui

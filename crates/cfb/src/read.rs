@@ -1,6 +1,8 @@
-//! Reading compound files ([MS-CFB] §2.2–2.6).
+//! Compatibility adapter for the shared Compound File Binary reader.
 
-use crate::{ENDOFCHAIN, Error, MAXREGSECT, MINI_SECTOR_SIZE, NOSTREAM, Result, SIGNATURE, compare_names};
+use std::{collections::HashMap, fmt, sync::Arc};
+
+use crate::{Error, Result, compare_names};
 
 /// Directory entry object type (§2.6.1).
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
@@ -8,339 +10,123 @@ pub enum EntryKind {
     Root,
     Storage,
     Stream,
-    /// Unallocated (type 0) or an unknown type.
+    /// Unallocated or unrecognized directory entry.
     Unknown,
 }
 
-/// One directory entry.
+/// One reachable directory entry.
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub struct Entry {
     pub name: String,
     pub kind: EntryKind,
-    /// Class id of a storage (AAF: the class of the object stored in it).
     pub clsid: [u8; 16],
     pub state_bits: u32,
-    /// FILETIME stamps (0 when not set).
     pub created: u64,
     pub modified: u64,
-    /// First sector (regular or mini) of a stream; the mini stream's for the root.
     pub start: u32,
     pub size: u64,
-    /// Child entries of a storage, in the in-order position of its sibling tree. For a well-formed
-    /// file that is sorted by [`compare_names`]; the reader does not validate the tree's order, so
-    /// a hostile file may give any order (lookups by name do not depend on it).
     pub children: Vec<usize>,
-    left: u32,
-    right: u32,
-    child: u32,
 }
 
 /// A parsed compound file over borrowed bytes.
-#[derive(Clone, Debug)]
+#[derive(Clone)]
 pub struct CompoundFile<'a> {
-    data: &'a [u8],
-    /// Major version: 3 (512-byte sectors) or 4 (4096-byte sectors).
+    shared: Arc<craft_cfb::Cfb<'a>>,
+    paths: Vec<String>,
     pub version: u16,
-    /// Header CLSID (normally zero).
     pub header_clsid: [u8; 16],
-    sector_size: usize,
-    mini_cutoff: u64,
-    fat: Vec<u32>,
-    minifat: Vec<u32>,
-    mini_stream: Vec<u8>,
     pub entries: Vec<Entry>,
 }
 
-fn u16_at(b: &[u8], at: usize) -> u16 {
-    u16::from_le_bytes([b[at], b[at + 1]])
-}
-fn u32_at(b: &[u8], at: usize) -> u32 {
-    u32::from_le_bytes([b[at], b[at + 1], b[at + 2], b[at + 3]])
-}
-fn u64_at(b: &[u8], at: usize) -> u64 {
-    u64::from_le_bytes(b[at..at + 8].try_into().unwrap_or([0; 8]))
+impl fmt::Debug for CompoundFile<'_> {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        f.debug_struct("CompoundFile")
+            .field("version", &self.version)
+            .field("header_clsid", &self.header_clsid)
+            .field("entries", &self.entries)
+            .finish_non_exhaustive()
+    }
 }
 
-/// Byte range `[start, end)` of unit `index + skip` of `unit` bytes each, or `None` when the
-/// arithmetic overflows `usize` (reachable on 32-bit targets such as wasm32).
+fn map_error(error: craft_cfb::Error) -> Error {
+    match error.0 {
+        "truncated CFB header" | "missing CFB signature" | "unsupported byte order" => Error::NotCfb,
+        message => Error::Invalid(message.to_string()),
+    }
+}
+
+#[cfg(test)]
 pub(crate) fn span(index: usize, skip: usize, unit: usize) -> Option<(usize, usize)> {
     let start = index.checked_add(skip)?.checked_mul(unit)?;
     Some((start, start.checked_add(unit)?))
 }
 
-fn invalid(s: impl Into<String>) -> Error {
-    Error::Invalid(s.into())
-}
-
 impl<'a> CompoundFile<'a> {
-    /// Parse the header, FAT, mini FAT, directory and mini stream of `data`.
-    pub fn open(data: &'a [u8]) -> Result<CompoundFile<'a>> {
-        if data.len() < 512 || data[..8] != SIGNATURE || u16_at(data, 28) != 0xFFFE {
-            return Err(Error::NotCfb);
+    pub fn open(data: &'a [u8]) -> Result<Self> {
+        let shared = Arc::new(craft_cfb::Cfb::open(data).map_err(map_error)?);
+        let version = u16::from_le_bytes(data.get(26..28).and_then(|bytes| bytes.try_into().ok()).ok_or(Error::NotCfb)?);
+        let header_clsid = data.get(8..24).and_then(|bytes| bytes.try_into().ok()).ok_or(Error::NotCfb)?;
+        let mut entries = Vec::new();
+        let mut paths = Vec::new();
+        let mut indices = HashMap::new();
+        for item in shared.entries() {
+            let index = entries.len();
+            let path = item.path().to_string();
+            indices.insert(path.clone(), index);
+            paths.push(path);
+            entries.push(Entry {
+                name: item.name().to_string(),
+                kind: match item.kind() {
+                    craft_cfb::EntryKind::Root => EntryKind::Root,
+                    craft_cfb::EntryKind::Storage => EntryKind::Storage,
+                    craft_cfb::EntryKind::Stream => EntryKind::Stream,
+                },
+                clsid: item.clsid(),
+                state_bits: item.state_bits(),
+                created: item.created(),
+                modified: item.modified(),
+                start: item.start_sector(),
+                size: item.size(),
+                children: Vec::new(),
+            });
         }
-        let version = u16_at(data, 26);
-        let shift = u16_at(data, 30);
-        if !(7..=16).contains(&shift) {
-            return Err(invalid(format!("sector shift {shift}")));
+        for (index, path) in paths.iter().enumerate().skip(1) {
+            let parent = path.rsplit_once('/').map_or("", |(parent, _)| parent);
+            let parent_index = indices.get(parent).copied().ok_or_else(|| Error::Invalid("missing parent storage".into()))?;
+            let parent_entry: &mut Entry = entries.get_mut(parent_index).ok_or_else(|| Error::Invalid("missing parent storage".into()))?;
+            parent_entry.children.push(index);
         }
-        let mini_shift = u16_at(data, 32);
-        if 1usize.checked_shl(mini_shift as u32) != Some(MINI_SECTOR_SIZE) {
-            return Err(invalid(format!("mini sector shift {mini_shift}")));
-        }
-        let sector_size = 1usize << shift;
-        let n_fat = u32_at(data, 44) as usize;
-        let first_dir = u32_at(data, 48);
-        let mini_cutoff = u32_at(data, 56) as u64;
-        let first_minifat = u32_at(data, 60);
-        let first_difat = u32_at(data, 68);
-        let mut header_clsid = [0u8; 16];
-        header_clsid.copy_from_slice(&data[8..24]);
-        let max_sectors = data.len() / sector_size + 1;
-        if n_fat > max_sectors {
-            return Err(invalid(format!("{n_fat} FAT sectors in a {}-byte file", data.len())));
-        }
-        let mut cf = CompoundFile {
-            data,
-            version,
-            header_clsid,
-            sector_size,
-            mini_cutoff,
-            fat: Vec::new(),
-            minifat: Vec::new(),
-            mini_stream: Vec::new(),
-            entries: Vec::new(),
-        };
-        // FAT sector numbers: 109 in the header, then the DIFAT chain.
-        let mut fat_sectors: Vec<u32> = (0..109).map(|i| u32_at(data, 76 + i * 4)).filter(|&s| s <= MAXREGSECT).collect();
-        let mut d = first_difat;
-        let mut seen = 0;
-        while d <= MAXREGSECT && fat_sectors.len() < n_fat {
-            seen += 1;
-            // a DIFAT chain cannot have more sectors than the file holds; the header's DIFAT sector
-            // count (up to 2^32 - 1) is not trusted, or a self-pointing sector loops that often
-            if seen > max_sectors {
-                return Err(invalid(format!("DIFAT chain loops: more than {max_sectors} sectors in a {}-byte file", data.len())));
-            }
-            let s = cf.sector(d)?;
-            let per = sector_size / 4 - 1;
-            for i in 0..per {
-                let v = u32_at(s, i * 4);
-                if v <= MAXREGSECT {
-                    fat_sectors.push(v);
-                }
-            }
-            d = u32_at(s, per * 4);
-        }
-        fat_sectors.truncate(n_fat);
-        let mut fat = Vec::with_capacity(fat_sectors.len() * sector_size / 4);
-        for s in fat_sectors {
-            let b = cf.sector(s)?;
-            fat.extend((0..sector_size / 4).map(|i| u32_at(b, i * 4)));
-        }
-        cf.fat = fat;
-        // Directory.
-        let dir = cf.read_chain(first_dir, None)?;
-        let n_entries = dir.len() / 128;
-        if n_entries == 0 {
-            return Err(invalid("empty directory"));
-        }
-        for i in 0..n_entries {
-            cf.entries.push(parse_entry(&dir[i * 128..(i + 1) * 128], version));
-        }
-        if cf.entries[0].kind != EntryKind::Root {
-            return Err(invalid("first directory entry is not the root"));
-        }
-        // Mini FAT and mini stream.
-        if first_minifat <= MAXREGSECT {
-            let mf = cf.read_chain(first_minifat, None)?;
-            cf.minifat = mf.as_chunks::<4>().0.iter().map(|c| u32::from_le_bytes([c[0], c[1], c[2], c[3]])).collect();
-        }
-        let root = &cf.entries[0];
-        if root.start <= MAXREGSECT && root.size > 0 {
-            let size = root.size.min(data.len() as u64) as usize;
-            cf.mini_stream = cf.read_chain(root.start, Some(size))?;
-        }
-        cf.build_tree()?;
-        Ok(cf)
-    }
-
-    /// Sector `n` (a whole sector; a truncated last sector is an error).
-    fn sector(&self, n: u32) -> Result<&'a [u8]> {
-        if n > MAXREGSECT {
-            return Err(invalid(format!("sector {n} is outside the file")));
-        }
-        // sector 0 follows the header sector
-        let (start, end) = usize::try_from(n).ok().and_then(|i| span(i, 1, self.sector_size)).ok_or_else(|| invalid("sector number overflow"))?;
-        self.data.get(start..end).ok_or_else(|| invalid(format!("sector {n} is outside the file")))
-    }
-
-    /// Concatenate a regular sector chain; `limit` stops once that many bytes are read.
-    fn read_chain(&self, start: u32, limit: Option<usize>) -> Result<Vec<u8>> {
-        // `limit` is at most the file length (callers check), and an unlimited chain holds at most
-        // `max_steps` sectors, so this capacity is bounded by the file's own size.
-        let max_steps = self.data.len() / self.sector_size + 1;
-        let mut out = Vec::with_capacity(limit.unwrap_or(0).min(self.data.len()));
-        let mut s = start;
-        let mut steps = 0usize;
-        // A chain cannot visit more sectors than the file holds. Not `self.fat.len()`: the FAT can
-        // be far longer (one FAT sector named by many header / DIFAT slots), and a looping chain
-        // would then append a whole sector per FAT entry (hundreds of MB, or an abort).
-        while s != ENDOFCHAIN {
-            if s > MAXREGSECT {
-                return Err(invalid(format!("bad sector {s:#x} in a chain")));
-            }
-            steps += 1;
-            if steps > max_steps {
-                return Err(invalid(format!("sector chain loops: more than {max_steps} sectors in a {}-byte file", self.data.len())));
-            }
-            let b = self.sector(s)?;
-            out.extend_from_slice(b);
-            if limit.is_some_and(|l| out.len() >= l) {
-                break;
-            }
-            // a free entry (`FREESECT`) is above `MAXREGSECT` and is rejected at the top of the loop
-            s = *self.fat.get(s as usize).ok_or_else(|| invalid(format!("sector {s} has no FAT entry")))?;
-        }
-        if let Some(l) = limit {
-            if out.len() < l {
-                return Err(invalid("stream is truncated"));
-            }
-            out.truncate(l);
-        }
-        Ok(out)
-    }
-
-    fn read_mini_chain(&self, start: u32, size: usize) -> Result<Vec<u8>> {
-        let mut out = Vec::with_capacity(size);
-        let mut s = start;
-        let mut steps = 0usize;
-        while out.len() < size {
-            if s > MAXREGSECT {
-                return Err(invalid("mini stream chain ends early"));
-            }
-            steps += 1;
-            if steps > self.minifat.len().max(1) {
-                return Err(invalid("mini sector chain loops"));
-            }
-            let b = usize::try_from(s)
-                .ok()
-                .and_then(|i| span(i, 0, MINI_SECTOR_SIZE))
-                .and_then(|(start, end)| self.mini_stream.get(start..end))
-                .ok_or_else(|| invalid("mini sector outside the mini stream"))?;
-            out.extend_from_slice(b);
-            s = *self.minifat.get(s as usize).ok_or_else(|| invalid("mini sector has no mini FAT entry"))?;
-        }
-        out.truncate(size);
-        Ok(out)
-    }
-
-    fn build_tree(&mut self) -> Result<()> {
-        let n = self.entries.len();
-        let mut owner = vec![false; n];
-        owner[0] = true;
-        for parent in 0..n {
-            if !matches!(self.entries[parent].kind, EntryKind::Root | EntryKind::Storage) {
-                continue;
-            }
-            let mut kids = Vec::new();
-            // in-order walk of the sibling tree, iterative, cycle-safe
-            let mut stack: Vec<u32> = Vec::new();
-            let mut cur = self.entries[parent].child;
-            // terminates without a step counter: every push claims an unclaimed entry in `owner`
-            while cur != NOSTREAM || !stack.is_empty() {
-                while cur != NOSTREAM {
-                    let i = cur as usize;
-                    if i >= n || owner[i] {
-                        return Err(invalid(format!("directory entry {cur} is referenced twice or does not exist")));
-                    }
-                    owner[i] = true;
-                    stack.push(cur);
-                    cur = self.entries[i].left;
-                }
-                if let Some(top) = stack.pop() {
-                    kids.push(top as usize);
-                    cur = self.entries[top as usize].right;
-                }
-            }
-            self.entries[parent].children = kids;
-        }
-        Ok(())
+        Ok(Self { shared, paths, version, header_clsid, entries })
     }
 
     pub fn root(&self) -> &Entry {
         &self.entries[0]
     }
-
     pub fn entry(&self, id: usize) -> Option<&Entry> {
         self.entries.get(id)
     }
-
-    /// Child of storage `parent` named `name` (case-insensitive as in §2.6.4).
     pub fn child(&self, parent: usize, name: &str) -> Option<usize> {
-        self.entries.get(parent)?.children.iter().copied().find(|&c| compare_names(&self.entries[c].name, name).is_eq())
+        self.entries.get(parent)?.children.iter().copied().find(|&id| self.entries.get(id).is_some_and(|entry| compare_names(&entry.name, name).is_eq()))
     }
-
-    /// Entry at a `/`-separated path below the root (`""` is the root).
     pub fn find(&self, path: &str) -> Result<usize> {
-        let mut cur = 0;
-        for part in path.split('/').filter(|p| !p.is_empty()) {
-            cur = self.child(cur, part).ok_or_else(|| Error::NotFound(path.to_string()))?;
+        let mut current = 0;
+        for part in path.split('/').filter(|part| !part.is_empty()) {
+            current = self.child(current, part).ok_or_else(|| Error::NotFound(path.to_string()))?;
         }
-        Ok(cur)
+        Ok(current)
     }
-
-    /// Contents of stream `id`.
     pub fn read(&self, id: usize) -> Result<Vec<u8>> {
-        let e = self.entries.get(id).ok_or_else(|| Error::NotFound(format!("entry {id}")))?;
-        if e.kind != EntryKind::Stream {
-            return Err(invalid(format!("{:?} is not a stream", e.name)));
+        let entry = self.entries.get(id).ok_or_else(|| Error::NotFound(format!("entry {id}")))?;
+        if entry.kind != EntryKind::Stream {
+            return Err(Error::Invalid(format!("{:?} is not a stream", entry.name)));
         }
-        let size = usize::try_from(e.size).map_err(|_| invalid("stream too large"))?;
-        if size == 0 {
-            return Ok(Vec::new());
-        }
-        if size as u64 > self.data.len() as u64 {
-            return Err(invalid(format!("stream {:?} is larger than the file", e.name)));
-        }
-        if e.size < self.mini_cutoff { self.read_mini_chain(e.start, size) } else { self.read_chain(e.start, Some(size)) }
+        let path = self.paths.get(id).ok_or_else(|| Error::NotFound(format!("entry {id}")))?;
+        self.shared.read_stream(path).map_err(map_error)
     }
-
-    /// Contents of the stream at `path`.
     pub fn read_path(&self, path: &str) -> Result<Vec<u8>> {
         self.read(self.find(path)?)
     }
-
-    /// Sector size in bytes (512 or 4096).
     pub fn sector_size(&self) -> usize {
-        self.sector_size
-    }
-}
-
-fn parse_entry(b: &[u8], version: u16) -> Entry {
-    let name_len = (u16_at(b, 64) as usize).min(64);
-    let units: Vec<u16> = (0..name_len / 2).map(|i| u16_at(b, i * 2)).take_while(|&u| u != 0).collect();
-    let kind = match b[66] {
-        5 => EntryKind::Root,
-        1 => EntryKind::Storage,
-        2 => EntryKind::Stream,
-        _ => EntryKind::Unknown,
-    };
-    let mut clsid = [0u8; 16];
-    clsid.copy_from_slice(&b[80..96]);
-    let size = u64_at(b, 120);
-    Entry {
-        name: String::from_utf16_lossy(&units),
-        kind,
-        clsid,
-        state_bits: u32_at(b, 96),
-        created: u64_at(b, 100),
-        modified: u64_at(b, 108),
-        start: u32_at(b, 116),
-        // version 3 files may leave garbage in the high 32 bits (§2.6.3)
-        size: if version == 3 { size & 0xFFFF_FFFF } else { size },
-        children: Vec::new(),
-        left: u32_at(b, 68),
-        right: u32_at(b, 72),
-        child: u32_at(b, 76),
+        if self.version == 3 { 512 } else { 4096 }
     }
 }

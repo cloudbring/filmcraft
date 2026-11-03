@@ -13,7 +13,7 @@
 //! - [`Writer`] builds a tree of storages and streams and lays it out in one pass
 //!   ([`Writer::finish`]): stream sectors, mini stream, mini FAT, directory, FAT and DIFAT.
 //!
-//! Layer L0: no dependencies beyond `std`, no `unsafe`, builds for `wasm32-unknown-unknown`.
+//! Layer L0: uses the shared `craft-cfb` reader, no `unsafe`, builds for `wasm32-unknown-unknown`.
 
 #![cfg_attr(not(test), deny(clippy::unwrap_used, clippy::expect_used, clippy::panic, clippy::unimplemented, clippy::todo, clippy::unreachable))]
 

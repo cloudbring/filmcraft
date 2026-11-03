@@ -1059,6 +1059,11 @@ dependencies = [
 ]
 
 [[package]]
+name = "craft-cfb"
+version = "0.1.0"
+source = "git+https://github.com/cloudbring/craft-libs?branch=algo%2Fintegration#099c8fdd7ae3cceb75ada20c03f429a8434d22d9"
+
+[[package]]
 name = "craft-docpath"
 version = "0.1.0"
 source = "git+https://github.com/storytold/craft-libs?rev=c5a1cbfb5f9049f9270955caffb5bee5997aebf7#c5a1cbfb5f9049f9270955caffb5bee5997aebf7"
@@ -1957,6 +1962,9 @@ dependencies = [
 [[package]]
 name = "filmcraft-cfb"
 version = "0.17.0"
+dependencies = [
+ "craft-cfb",
+]
 
 [[package]]
 name = "filmcraft-cli"
