@@ -11,6 +11,8 @@ rust-version = "1.95"
 repository = "https://github.com/storytold/filmcraft"
 
 [workspace.dependencies]
+# TODO(#41): repoint to storytold/craft-libs once craft-audio-rt merges
+craft-audio-rt = { git = "https://github.com/cloudbring/craft-libs", branch = "algo/41-craft-audio-rt" }
 # internal
 filmcraft-time = { path = "crates/time" }
 filmcraft-geom = { path = "crates/geom" }

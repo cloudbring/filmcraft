@@ -165,6 +165,12 @@ dependencies = [
 ]
 
 [[package]]
+name = "allocation-counter"
+version = "0.8.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "beb9e990c0a33699f1984d85a6abead615ccc72dd8130bf3e15dcabe2ca149c9"
+
+[[package]]
 name = "allocator-api2"
 version = "0.2.21"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1059,6 +1065,14 @@ dependencies = [
 ]
 
 [[package]]
+name = "craft-audio-rt"
+version = "0.1.0"
+source = "git+https://github.com/cloudbring/craft-libs?branch=algo%2F41-craft-audio-rt#6fbc2cddfe07d574d8f45db6da9e32207a59bd75"
+dependencies = [
+ "rtrb",
+]
+
+[[package]]
 name = "craft-docpath"
 version = "0.1.0"
 source = "git+https://github.com/storytold/craft-libs?rev=c5a1cbfb5f9049f9270955caffb5bee5997aebf7#c5a1cbfb5f9049f9270955caffb5bee5997aebf7"
@@ -1833,9 +1847,11 @@ dependencies = [
 name = "filmcraft"
 version = "0.17.0"
 dependencies = [
+ "allocation-counter",
  "arboard",
  "chrono",
  "cpal",
+ "craft-audio-rt",
  "craft-update",
  "eframe",
  "egui",
@@ -2489,7 +2505,9 @@ dependencies = [
 name = "filmcraft-ui-egui"
 version = "0.17.0"
 dependencies = [
+ "allocation-counter",
  "cpu-time",
+ "craft-audio-rt",
  "craft-ui",
  "craft-update",
  "eframe",
@@ -5658,6 +5676,12 @@ dependencies = [
  "subtle",
  "zeroize",
 ]
+
+[[package]]
+name = "rtrb"
+version = "0.3.6"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "342e1478a6e1c839e7405033eabfdc954d4d5dabd39f34e83420a43a95acfb04"
 
 [[package]]
 name = "rustc-hash"

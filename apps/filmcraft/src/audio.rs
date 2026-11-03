@@ -6,26 +6,27 @@
 //! [`AudioOut::recover`], keeping the played-frame clock and the play-ahead mixer, so sound
 //! resumes where it stopped instead of playback going silent (#840).
 
-use std::panic::{AssertUnwindSafe, catch_unwind};
 use std::sync::atomic::{AtomicBool, AtomicU64, Ordering};
 use std::time::{Duration, Instant};
 
-use std::sync::{Arc, Mutex, PoisonError, TryLockError};
+use std::sync::{Arc, Mutex, PoisonError};
 
+use crate::audio_callback::{Callback, Fill};
 use cpal::traits::{DeviceTrait, HostTrait, StreamTrait};
+use craft_audio_rt::{Spsc, SpscConsumer, StallBeat, StallDetector};
 use filmcraft_engine::settings::AudioHardwarePrefs;
 use filmcraft_ui_egui::{AudioDevices, AudioOut};
 
-/// The playback mixer callback handed to [`AudioOut::start`].
-type Fill = Box<dyn FnMut(&mut [f32], usize) + Send>;
+const MAX_CONVERSION_SAMPLES: usize = 1_048_576;
 
 pub struct CpalOut {
     stream: Option<cpal::Stream>,
-    /// The running playback's mixer, shared with the stream so a restarted stream continues it.
-    fill: Option<Arc<Mutex<Fill>>>,
+    /// After the old stream is dropped, its callback returns the mixer for a restart.
+    fill: Option<SpscConsumer<Fill>>,
     played: Arc<AtomicU64>,
     health: Arc<Health>,
     watchdog: Watchdog,
+    stall: StallDetector,
     /// Time base for the watchdog.
     epoch: Instant,
     rate: u32,
@@ -157,6 +158,7 @@ fn output_device(h: &cpal::Host, name: &str, cache: &Mutex<Option<(String, Strin
 
 impl CpalOut {
     pub fn new() -> Self {
+        let (stall, _) = StallDetector::new(STALL_RESTART, Instant::now());
         let host = cpal::default_host();
         let fallback = Mutex::new(None);
         let choice = output_device(&host, "", &fallback);
@@ -174,6 +176,7 @@ impl CpalOut {
             played: Arc::new(AtomicU64::new(0)),
             health: Arc::new(Health::default()),
             watchdog: Watchdog::default(),
+            stall,
             epoch: Instant::now(),
             rate: cfg.as_ref().map_or(48_000, |c| c.sample_rate().0),
             channels: cfg.as_ref().map_or(2, |c| c.channels()),
@@ -189,7 +192,13 @@ impl CpalOut {
         stream_config(&self.hw, self.document_rate, dev)
     }
 
-    fn converted_stream<T>(&self, dev: &cpal::Device, config: &cpal::StreamConfig, fill: Arc<Mutex<Fill>>) -> Result<cpal::Stream, cpal::BuildStreamError>
+    fn converted_stream<T>(
+        &self,
+        dev: &cpal::Device,
+        config: &cpal::StreamConfig,
+        mut callback: Callback,
+        beat: StallBeat,
+    ) -> Result<cpal::Stream, cpal::BuildStreamError>
     where
         T: cpal::SizedSample + cpal::FromSample<f32>,
     {
@@ -197,21 +206,19 @@ impl CpalOut {
         let played = self.played.clone();
         let health = self.health.clone();
         let error_health = health.clone();
-        let mut scratch = Vec::new();
+        let mut scratch = vec![0.0; MAX_CONVERSION_SAMPLES];
         dev.build_output_stream(
             config,
             move |buf: &mut [T], _| {
-                // Reuse the conversion buffer. A pathological driver buffer must not panic the audio thread.
-                if buf.len() > 1_048_576 || scratch.try_reserve(buf.len().saturating_sub(scratch.len())).is_err() {
+                beat.beat();
+                if buf.len() > scratch.len() {
                     buf.fill(T::EQUILIBRIUM);
-                    if !health.failed.swap(true, Ordering::SeqCst) {
-                        eprintln!("filmcraft: unable to allocate the audio conversion buffer");
-                    }
+                    health.failed.store(true, Ordering::Relaxed);
                     return;
                 }
-                scratch.resize(buf.len(), 0.0);
-                render(&fill, &mut scratch, channels, &played, &health);
-                convert_samples(&scratch, buf);
+                let block = &mut scratch[..buf.len()];
+                callback.render(block, channels, &played, &health.failed);
+                convert_samples(block, buf);
             },
             move |e| stream_error(&error_health, e),
             None,
@@ -220,7 +227,7 @@ impl CpalOut {
 
     /// Open the configured output device and play `fill` on it. `expect` is the (sample rate,
     /// channels) a restarted stream must keep: the mixer was set up for them.
-    fn open(&mut self, fill: Arc<Mutex<Fill>>, expect: Option<(u32, u16)>) -> Result<(), String> {
+    fn open(&mut self, fill: Fill, expect: Option<(u32, u16)>) -> Result<(), String> {
         let host = host(&self.hw.device_class);
         let DeviceChoice { device: dev, fallback } = output_device(&host, &self.hw.default_output, &self.fallback).ok_or("no output device")?;
         self.note = fallback;
@@ -242,42 +249,51 @@ impl CpalOut {
         }
         self.rate = cfg.sample_rate().0;
         self.channels = cfg.channels();
+        let (stall, beat) = StallDetector::new(STALL_RESTART, Instant::now());
+        let (sender, receiver) = Spsc::new(1).split();
+        let callback = Callback::new(fill, sender);
         let stream = match cfg.sample_format() {
             cpal::SampleFormat::F32 => {
                 let played = self.played.clone();
                 let health = self.health.clone();
                 let error_health = health.clone();
+                let mut callback = callback;
                 dev.build_output_stream(
                     &config,
-                    move |buf: &mut [f32], _| render(&fill, buf, channels, &played, &health),
+                    move |buf: &mut [f32], _| {
+                        beat.beat();
+                        callback.render(buf, channels, &played, &health.failed);
+                    },
                     move |e| stream_error(&error_health, e),
                     None,
                 )
             }
-            cpal::SampleFormat::I8 => self.converted_stream::<i8>(&dev, &config, fill),
-            cpal::SampleFormat::I16 => self.converted_stream::<i16>(&dev, &config, fill),
-            cpal::SampleFormat::I24 => self.converted_stream::<cpal::I24>(&dev, &config, fill),
-            cpal::SampleFormat::I32 => self.converted_stream::<i32>(&dev, &config, fill),
-            cpal::SampleFormat::I64 => self.converted_stream::<i64>(&dev, &config, fill),
-            cpal::SampleFormat::U8 => self.converted_stream::<u8>(&dev, &config, fill),
-            cpal::SampleFormat::U16 => self.converted_stream::<u16>(&dev, &config, fill),
-            cpal::SampleFormat::U32 => self.converted_stream::<u32>(&dev, &config, fill),
-            cpal::SampleFormat::U64 => self.converted_stream::<u64>(&dev, &config, fill),
-            cpal::SampleFormat::F64 => self.converted_stream::<f64>(&dev, &config, fill),
+            cpal::SampleFormat::I8 => self.converted_stream::<i8>(&dev, &config, callback, beat),
+            cpal::SampleFormat::I16 => self.converted_stream::<i16>(&dev, &config, callback, beat),
+            cpal::SampleFormat::I24 => self.converted_stream::<cpal::I24>(&dev, &config, callback, beat),
+            cpal::SampleFormat::I32 => self.converted_stream::<i32>(&dev, &config, callback, beat),
+            cpal::SampleFormat::I64 => self.converted_stream::<i64>(&dev, &config, callback, beat),
+            cpal::SampleFormat::U8 => self.converted_stream::<u8>(&dev, &config, callback, beat),
+            cpal::SampleFormat::U16 => self.converted_stream::<u16>(&dev, &config, callback, beat),
+            cpal::SampleFormat::U32 => self.converted_stream::<u32>(&dev, &config, callback, beat),
+            cpal::SampleFormat::U64 => self.converted_stream::<u64>(&dev, &config, callback, beat),
+            cpal::SampleFormat::F64 => self.converted_stream::<f64>(&dev, &config, callback, beat),
             other => return Err(format!("unsupported sample format {other:?}")),
         }
         .map_err(|e| e.to_string())?;
         stream.play().map_err(|e| e.to_string())?;
         self.stream = Some(stream);
+        self.fill = Some(receiver);
+        self.stall = stall;
         Ok(())
     }
 
     /// Replace a dropped stream with a new one on the same mixer, clock and format.
     fn restart(&mut self) -> Result<(), String> {
-        let fill = self.fill.clone().ok_or("nothing is playing")?;
         let expect = (self.rate, self.channels);
         // The old stream (and its audio thread) goes first: only one stream ever runs the mixer.
         self.stream = None;
+        let fill = self.fill.as_mut().and_then(SpscConsumer::pop).ok_or("the audio callback did not return its mixer")?;
         self.health.clear_errors();
         self.open(fill, Some(expect))
     }
@@ -359,28 +375,6 @@ impl Watchdog {
     }
 }
 
-/// One device callback: run the shared mixer into `buf` and advance the clock. Never panics: a
-/// panicking mixer plays silence and fails the stream, and a mixer held by another stream (never
-/// expected: a restart drops the old stream first) plays silence without advancing the clock.
-fn render(fill: &Mutex<Fill>, buf: &mut [f32], channels: usize, played: &AtomicU64, health: &Health) {
-    let mut guard = match fill.try_lock() {
-        Ok(guard) => guard,
-        Err(TryLockError::Poisoned(poisoned)) => poisoned.into_inner(),
-        Err(TryLockError::WouldBlock) => {
-            buf.fill(0.0);
-            return;
-        }
-    };
-    if health.failed.load(Ordering::SeqCst) || catch_unwind(AssertUnwindSafe(|| (*guard)(buf, channels))).is_err() {
-        buf.fill(0.0);
-        if !health.failed.swap(true, Ordering::SeqCst) {
-            eprintln!("filmcraft: the audio mixer failed; playing without sound");
-        }
-        return;
-    }
-    played.fetch_add((buf.len() / channels.max(1)) as u64, Ordering::SeqCst);
-}
-
 fn stream_error(health: &Health, e: cpal::StreamError) {
     match e {
         cpal::StreamError::DeviceNotAvailable => health.lost.store(true, Ordering::SeqCst),
@@ -405,9 +399,8 @@ impl AudioOut for CpalOut {
         self.played.store(0, Ordering::SeqCst);
         self.health = Arc::new(Health::default());
         self.watchdog.reset(self.epoch.elapsed());
-        let fill = Arc::new(Mutex::new(fill));
-        self.open(fill.clone(), None)?;
-        self.fill = Some(fill);
+        self.stall.observe(false, Instant::now());
+        self.open(fill, None)?;
         Ok(self.rate)
     }
     fn stop(&mut self) {
@@ -419,7 +412,7 @@ impl AudioOut for CpalOut {
             return;
         }
         let lost = self.health.lost.swap(false, Ordering::SeqCst);
-        let errored = self.health.errored.swap(false, Ordering::SeqCst);
+        let errored = self.health.errored.swap(false, Ordering::SeqCst) || self.stall.observe(true, Instant::now());
         match self.watchdog.check(self.epoch.elapsed(), self.played.load(Ordering::SeqCst), errored, lost) {
             Verdict::Healthy => {}
             Verdict::Restart => {
@@ -567,41 +560,5 @@ mod tests {
         assert_eq!(w.check(ms(20), 0, false, true), Verdict::GiveUp);
         // sporadic failures far apart keep being recovered
         assert_eq!(w.check(ms(10_006), 0, false, true), Verdict::Restart);
-    }
-
-    #[test]
-    fn the_device_callback_never_panics_and_counts_played_frames() {
-        let (played, health) = (AtomicU64::new(0), Health::default());
-        let fill: Mutex<Fill> = Mutex::new(Box::new(|buf: &mut [f32], _| buf.fill(0.25)));
-        let mut buf = [1.0_f32; 8];
-        render(&fill, &mut buf, 2, &played, &health);
-        assert_eq!((buf, played.load(Ordering::SeqCst)), ([0.25; 8], 4));
-        // a mixer still held elsewhere plays silence without moving the clock
-        {
-            let _held = fill.lock().unwrap();
-            render(&fill, &mut buf, 2, &played, &health);
-        }
-        assert_eq!((buf, played.load(Ordering::SeqCst)), ([0.0; 8], 4));
-        // zero channels from a broken driver must not divide by zero
-        render(&fill, &mut buf, 0, &played, &health);
-        assert_eq!(played.load(Ordering::SeqCst), 12);
-    }
-
-    #[test]
-    fn a_panicking_mixer_plays_silence_and_fails_the_stream() {
-        let (played, health) = (AtomicU64::new(0), Health::default());
-        let fill: Mutex<Fill> = Mutex::new(Box::new(|buf: &mut [f32], _| {
-            buf.fill(0.5);
-            panic!("mixer bug");
-        }));
-        let mut buf = [1.0_f32; 4];
-        render(&fill, &mut buf, 2, &played, &health);
-        assert_eq!(buf, [0.0; 4]);
-        assert_eq!(played.load(Ordering::SeqCst), 0);
-        assert!(health.failed.load(Ordering::SeqCst));
-        // later callbacks stay silent instead of re-entering the broken mixer
-        buf = [1.0; 4];
-        render(&fill, &mut buf, 2, &played, &health);
-        assert_eq!(buf, [0.0; 4]);
     }
 }

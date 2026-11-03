@@ -1,13 +1,12 @@
 //! Audio during scrubbing (#211): Settings ▸ Audio ▸ "Play audio while scrubbing in Source and
 //! Program Monitors" (`audio.scrubAudio`, Shift+S).
 //!
-//! While the playhead moves with a mouse button down (the Timeline ruler, a monitor's scrub bar,
-//! a dragged timecode) and playback is stopped, a short grain of the sequence's sound plays from
-//! the new position. One output stream stays open for the whole scrub: each move only re-aims it,
-//! so the device is not reopened every frame. The stream closes when the button is released and
-//! the grain has played, when the setting is off, or when playback starts.
+//! A worker mixes each grain before the device callback reads it. The stream remains open during
+//! a scrub; each new position invalidates buffered samples from the old one without reopening it.
 
-use std::sync::{Arc, Mutex, PoisonError};
+use craft_audio_rt::{Triple, TripleAudio, TripleEdit};
+#[cfg(not(target_arch = "wasm32"))]
+use std::sync::Arc;
 
 use filmcraft_time::Tick;
 
@@ -20,7 +19,7 @@ const RAMP_S: f64 = 0.004;
 /// How long the stream stays open after the last move once the button is up.
 const LINGER_S: f64 = 0.25;
 
-/// What the audio callback plays next: `left` of `total` frames from `cursor`.
+/// What the mix worker plays next: `left` of `total` frames from `cursor`.
 #[derive(Clone, Copy, Debug, Default, PartialEq)]
 struct Grain {
     cursor: i64,
@@ -28,13 +27,27 @@ struct Grain {
     total: i64,
 }
 
-#[derive(Default)]
 pub struct ScrubAudio {
-    grain: Arc<Mutex<Grain>>,
+    grain: Option<TripleEdit<Grain>>,
+    #[cfg(not(target_arch = "wasm32"))]
+    reset: Option<Arc<crate::play_ahead::ResetState>>,
     /// The scrub stream is open.
     open: bool,
     last_tick: Option<Tick>,
     last_move: f64,
+}
+
+impl Default for ScrubAudio {
+    fn default() -> Self {
+        Self {
+            grain: None,
+            #[cfg(not(target_arch = "wasm32"))]
+            reset: None,
+            open: false,
+            last_tick: None,
+            last_move: 0.0,
+        }
+    }
 }
 
 impl ScrubAudio {
@@ -45,6 +58,11 @@ impl ScrubAudio {
     /// The output device was stopped under the stream: the next grain reopens it.
     pub(crate) fn device_stopped(&mut self) {
         self.open = false;
+        self.grain = None;
+        #[cfg(not(target_arch = "wasm32"))]
+        {
+            self.reset = None;
+        }
     }
 }
 
@@ -65,7 +83,7 @@ impl FilmcraftApp {
         if self.playback.playing || self.source_playback.clock.playing {
             // playback (Program or Source) owns the device: it stopped the scrub stream when it
             // started, and the scrub must not stop it when the button is released
-            self.scrub.open = false;
+            self.scrub.device_stopped();
             return false;
         }
         let on = self.session.prefs.audio.scrub_audio;
@@ -76,7 +94,7 @@ impl FilmcraftApp {
             if let Some(a) = self.audio.as_mut() {
                 a.stop();
             }
-            self.scrub.open = false;
+            self.scrub.device_stopped();
         }
         self.scrub.open
     }
@@ -90,18 +108,37 @@ impl FilmcraftApp {
             return;
         }
         let total = ((GRAIN_S * sr as f64) as i64).max(1);
-        {
-            let mut g = self.scrub.grain.lock().unwrap_or_else(PoisonError::into_inner);
-            *g = Grain { cursor: at.to_units_floor(sr as i64), left: total, total };
-        }
+        let next = Grain { cursor: at.to_units_floor(sr as i64), left: total, total };
         self.scrub.last_move = now;
         if self.scrub.open {
+            if let Some(edit) = self.scrub.grain.as_mut() {
+                *edit.edit_mut() = next;
+                if edit.publish() {
+                    #[cfg(not(target_arch = "wasm32"))]
+                    if let Some(reset) = &self.scrub.reset {
+                        reset.request();
+                    }
+                }
+            }
             return;
         }
+        let (mut edit, audio) = Triple::new(Grain::default(), Grain::default(), Grain::default()).split();
+        *edit.edit_mut() = next;
+        if !edit.publish() {
+            return;
+        }
+        self.scrub.grain = Some(edit);
         let mix = crate::playback_mix(&self.session, seq_id, sr);
-        let fill = grain_fill(mix, self.scrub.grain.clone(), ((RAMP_S * sr as f64) as i64).max(1));
+        let fill = grain_fill(mix, audio, ((RAMP_S * sr as f64) as i64).max(1));
         let Some(a) = self.audio.as_mut() else { return };
-        a.stop();
+        #[cfg(not(target_arch = "wasm32"))]
+        let fill = {
+            let mut worker = fill;
+            let (callback, reset) =
+                crate::play_ahead::spawn_resettable(move |_, buf, ch| worker(buf, ch), 0, sr, a.channels(), Arc::new(crate::play_ahead::AudioStats::default()));
+            self.scrub.reset = Some(reset);
+            callback
+        };
         match a.start(fill) {
             Ok(_) => self.scrub.open = true,
             Err(e) => log::warn!("audio output unavailable for scrubbing: {e}"),
@@ -110,18 +147,22 @@ impl FilmcraftApp {
 }
 
 /// The scrub stream's callback: the rest of the current grain (faded at its ends), then silence.
-fn grain_fill(mut mix: impl FnMut(i64, &mut [f32], usize) + Send + 'static, grain: Arc<Mutex<Grain>>, ramp: i64) -> Box<dyn FnMut(&mut [f32], usize) + Send> {
+fn grain_fill(
+    mut mix: impl FnMut(i64, &mut [f32], usize) + Send + 'static,
+    mut grain: TripleAudio<Grain>,
+    ramp: i64,
+) -> Box<dyn FnMut(&mut [f32], usize) + Send> {
+    let mut current = Grain::default();
     Box::new(move |buf: &mut [f32], ch: usize| {
         let ch = ch.max(1);
         let n = (buf.len() / ch) as i64;
-        let (g, take) = {
-            let mut g = grain.lock().unwrap_or_else(PoisonError::into_inner);
-            let now = *g;
-            let take = g.left.clamp(0, n);
-            g.cursor = g.cursor.saturating_add(take);
-            g.left -= take;
-            (now, take)
-        };
+        if grain.poll() {
+            current = *grain.current();
+        }
+        let g = current;
+        let take = g.left.clamp(0, n);
+        current.cursor = current.cursor.saturating_add(take);
+        current.left -= take;
         buf.fill(0.0);
         let Some(part) = buf.get_mut(..(take as usize).saturating_mul(ch)) else { return };
         if part.is_empty() {
@@ -140,6 +181,7 @@ fn grain_fill(mut mix: impl FnMut(i64, &mut [f32], usize) + Send + 'static, grai
 #[cfg(test)]
 mod tests {
     use super::*;
+    use std::sync::{Arc, Mutex};
 
     fn run(fill: &mut Box<dyn FnMut(&mut [f32], usize) + Send>, frames: usize) -> Vec<f32> {
         let mut buf = vec![9.0; frames * 2];
@@ -149,14 +191,16 @@ mod tests {
 
     #[test]
     fn a_grain_plays_once_from_its_cursor_then_silence() {
-        let grain = Arc::new(Mutex::new(Grain { cursor: 1000, left: 300, total: 300 }));
+        let (mut edit, grain) = Triple::new(Grain::default(), Grain::default(), Grain::default()).split();
+        *edit.edit_mut() = Grain { cursor: 1000, left: 300, total: 300 };
+        assert!(edit.publish());
         let starts = Arc::new(Mutex::new(Vec::new()));
         let seen = starts.clone();
         let mix = move |c: i64, b: &mut [f32], _: usize| {
             seen.lock().unwrap().push(c);
             b.fill(1.0);
         };
-        let mut fill = grain_fill(mix, grain.clone(), 10);
+        let mut fill = grain_fill(mix, grain, 10);
         let a = run(&mut fill, 256);
         let b = run(&mut fill, 256);
         let c = run(&mut fill, 256);
@@ -167,7 +211,8 @@ mod tests {
         assert!(b[44 * 2..].iter().all(|s| *s == 0.0), "then silence");
         assert!(c.iter().all(|s| *s == 0.0));
         // a new move re-aims it
-        *grain.lock().unwrap() = Grain { cursor: 5000, left: 300, total: 300 };
+        *edit.edit_mut() = Grain { cursor: 5000, left: 300, total: 300 };
+        assert!(edit.publish());
         run(&mut fill, 256);
         assert_eq!(starts.lock().unwrap().last(), Some(&5000));
     }
@@ -227,7 +272,16 @@ mod tests {
         assert_eq!(loudness(&fill), 0.0, "one grain, then silence");
         app.session.set_playhead(rate.tick_of(72));
         assert!(app.scrub_tick(0.04, true));
-        assert!(loudness(&fill) > 0.0, "the next move plays again on the same stream");
+        // The first callback discards the old buffered grain and acknowledges the reset.
+        let mut heard = false;
+        for _ in 0..50 {
+            if loudness(&fill) > 0.0 {
+                heard = true;
+                break;
+            }
+            std::thread::sleep(std::time::Duration::from_millis(2));
+        }
+        assert!(heard, "the next move plays again on the same stream");
         assert!(app.scrub_tick(0.05, false), "lingers briefly after release");
         assert!(!app.scrub_tick(0.05 + LINGER_S, false), "then closes");
         assert!(fill.lock().unwrap().is_none());

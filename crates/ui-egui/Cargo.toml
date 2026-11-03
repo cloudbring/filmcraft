@@ -10,6 +10,7 @@ rust-version.workspace = true
 workspace = true
 
 [dependencies]
+craft-audio-rt = { workspace = true }
 craft-ui = { workspace = true }
 filmcraft-time = { workspace = true }
 filmcraft-geom = { workspace = true }
@@ -47,6 +48,7 @@ rustix = { version = "1", default-features = false, features = ["std", "time"] }
 cpu-time = "1"
 
 [dev-dependencies]
+allocation-counter = "0.8.1"
 pollster = "1"
 filmcraft-codecs = { workspace = true }
 # the bench registers OS hardware decoders as the desktop app does (dev-dependency only: ui-egui

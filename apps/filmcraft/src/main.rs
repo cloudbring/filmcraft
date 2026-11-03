@@ -27,6 +27,7 @@ mod app_nap;
 mod appearance;
 mod args;
 mod audio;
+mod audio_callback;
 mod audio_in;
 mod control_server;
 #[cfg(target_os = "linux")]
