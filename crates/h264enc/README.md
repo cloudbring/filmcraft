@@ -102,6 +102,75 @@ two failed and 15 ignored before stopping. Both failures
 were reproduced against the unchanged pre-change DNx source with the same oracles;
 the remaining workspace tests were not reached.
 
+### Cached sub-pel reference planes (#111)
+
+The prepared baseline `dc23d047` already implements the requested amortisation:
+`Encoder::finalise_job` extends the reconstructed reference's edges and calls
+`build_hpel` once before inserting it into the decoded-picture buffer. The H, V
+and HV planes cover the padded reference and are shared by every block and slice;
+their storage is recycled with the reference-picture pool. Search does not run
+the six-tap filter per candidate. A second block/row cache would duplicate this work.
+
+`RefPic::luma_ref` returns direct, strided plane views for integer/half-pel
+candidates. Quarter-pel candidates use the two samples selected by `QPEL_SRC`
+and `(a + b + 1) >> 1`, as in ITU-T H.264 (04/2013), section 8.4.2.2.1.
+In particular, odd/odd phases average the appropriate H/V samples, not four
+half-grid neighbours. HV filtering retains unrounded horizontal intermediates
+until the final `(+512) >> 10` and clipping. Candidate costs use #99's SIMD SATD.
+The candidate set, traversal, visited-set behaviour, MV penalties and strict
+less-than tie-breaking are unchanged.
+
+This ticket therefore adds a regression lock, not another production cache.
+An independent test oracle filters the clamped integer reference afresh for
+every candidate, without using `build_hpel`, `QPEL_SRC` or cached samples.
+It checks prediction bytes, motion compensation and SIMD SATD on 36,288 blocks:
+all 16 fractional phases, nine rectangular 4/8/16 block sizes, fourteen interior,
+edge and corner placements (including negative motion vectors), three picture
+sizes including 2x2, and six random/constant/checkerboard/impulse patterns.
+Reusing the planes across changing reference pictures is covered. Integer/half
+positions also assert that the prediction scratch buffer is untouched.
+
+Run `cargo test --release -p filmcraft-h264enc --lib cached_plane_costs`.
+The optional `benchmark_cached_plane_costs` ignored test compares cached costs
+with the deliberately simple per-candidate oracle; it does not represent the
+pre-change production encoder. A fused quarter-pel-average/SATD experiment was
+discarded because it regressed the cached-cost microbenchmark and the paired
+end-to-end benchmark. No production hot-loop changes from that experiment remain.
+
+Measured on 2026-11-03 with the same #99 command and explicit rustup stable
+`RUSTC`, `RUSTDOC` and toolchain-first `PATH`, using
+`CARGO_TARGET_DIR=/Users/emm/ArtCraft/worktrees/filmcraft-111/target-111`:
+
+```sh
+THREADS=1 cargo run --release -p filmcraft-h264enc --example h264enc_synth -- \
+  1920 1080 30 high balanced 2 qp26 1 synth
+```
+
+Five interleaved baseline/final runs measured median **23.1 -> 23.8 fps**;
+baseline seconds were 1.298/1.347/1.283/1.221/1.316, final seconds were
+1.298/1.258/1.344/1.262/1.234. The median paired time ratio was **1.000x**.
+Production code is unchanged, so the median-FPS difference is measurement noise,
+not an optimisation gain. The baseline and final executables are themselves
+byte-identical (SHA-256 `8e0aa600827efcfbea7387b132aeb3b302725a9467b4e782ec20ea12fe8a6559`).
+All ten streams were byte-identical (2,804,462 bytes;
+SHA-256 `c0eefc741a0a932fede31e2f349ca75277e9f7e81341467df5751f8eec4a7494`).
+Each decoded to 30 frames with ffmpeg 9.0.2, no diagnostics or reconstruction
+mismatches, 38.40 dB mean luma PSNR and 22,435.7 kbit/s. PSNR and bitrate deltas
+are zero; no candidate-set or tie-breaking changes were made.
+
+Validation: h264enc debug, release and release without default features each
+passed 38 tests, including all four existing pinned hashes and strict external
+ffmpeg/ffprobe oracles (`FILMCRAFT_REQUIRE_ORACLES=1`); two timing-only tests were
+ignored by default and the new cached-plane benchmark was run separately and
+passed. Workspace clippy (`--all-targets -- -D warnings`), fmt, layers, assets
+(69 attributed assets), and wasm (49 crates) passed with the rustup toolchain.
+The full workspace test run stopped after 326 passed, one failed and three
+ignored: the unchanged AV1 `hostile_streams_never_panic` fixture generator asks
+for 64x48, but this ffmpeg distribution bundles SVT-AV1 1.8, whose minimum is
+64x64. This is an oracle-environment failure before AV1 decoding, unrelated to
+h264enc; the remaining workspace suites were not reached. No unrelated codec
+or test changes were made.
+
 ### Encoder conformance
 
 `cargo test --release -p filmcraft-h264enc` (ffmpeg/ffprobe used only as external oracles; tests skip when
