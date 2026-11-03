@@ -1059,6 +1059,14 @@ dependencies = [
 ]
 
 [[package]]
+name = "craft-atomic"
+version = "0.1.0"
+source = "git+https://github.com/storytold/craft-libs?rev=c5a1cbfb5f9049f9270955caffb5bee5997aebf7#c5a1cbfb5f9049f9270955caffb5bee5997aebf7"
+dependencies = [
+ "rustix 1.1.5",
+]
+
+[[package]]
 name = "craft-docpath"
 version = "0.1.0"
 source = "git+https://github.com/storytold/craft-libs?rev=c5a1cbfb5f9049f9270955caffb5bee5997aebf7#c5a1cbfb5f9049f9270955caffb5bee5997aebf7"
@@ -1836,6 +1844,7 @@ dependencies = [
  "arboard",
  "chrono",
  "cpal",
+ "craft-atomic",
  "craft-update",
  "eframe",
  "egui",
@@ -2139,6 +2148,7 @@ name = "filmcraft-format"
 version = "0.17.0"
 dependencies = [
  "chrono",
+ "craft-atomic",
  "filmcraft-media",
  "filmcraft-project",
  "filmcraft-time",
@@ -4746,7 +4756,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "7d8fae84b431384b68627d0f9b3b1245fcf9f46f6c0e3dc902e9dce64edd1967"
 dependencies = [
  "libc",
- "windows-sys 0.61.2",
+ "windows-sys 0.45.0",
 ]
 
 [[package]]

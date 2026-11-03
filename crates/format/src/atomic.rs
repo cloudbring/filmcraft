@@ -1,30 +1,8 @@
 //! Crash-safe file replacement.
 
-use std::fs::{self, File, OpenOptions};
+use std::fs::{self, File};
 use std::io::{self, Write};
 use std::path::{Path, PathBuf};
-use std::sync::atomic::{AtomicU64, Ordering};
-
-static COUNTER: AtomicU64 = AtomicU64::new(0);
-
-/// Most bytes of the target's file name kept in a temp name; the rest of the 255-byte limit is
-/// left for the leading dot, pid, counter and `.tmp`.
-const MAX_STEM_BYTES: usize = 200;
-
-/// The temp file a save of `path` goes through (same directory, so the rename never crosses file
-/// systems). Hidden, and unique per process and call.
-fn temp_path(path: &Path) -> PathBuf {
-    let dir = parent_dir(path);
-    let name = path.file_name().map(|n| n.to_string_lossy().into_owned()).unwrap_or_else(|| "project".into());
-    // Keep the whole temp name under the 255-byte file name limit, cutting at a char boundary.
-    let mut end = name.len().min(MAX_STEM_BYTES);
-    while !name.is_char_boundary(end) {
-        end -= 1;
-    }
-    let name = &name[..end];
-    let n = COUNTER.fetch_add(1, Ordering::Relaxed);
-    dir.join(format!(".{name}.{}-{n}.tmp", std::process::id()))
-}
 
 fn parent_dir(path: &Path) -> PathBuf {
     match path.parent() {
@@ -35,35 +13,10 @@ fn parent_dir(path: &Path) -> PathBuf {
 
 /// Replace `path` with `data` atomically and durably:
 /// write `data` to a temp file in the same directory, `fsync` it, rename it over `path`, then
-/// `fsync` the directory so the rename itself survives a power cut. If anything fails the temp file
-/// is removed and `path` is untouched.
+/// attempt to `fsync` the directory. If staging or rename fails, the temp file is removed and
+/// `path` is untouched.
 pub fn atomic_write(path: &Path, data: &[u8]) -> io::Result<()> {
-    // `rename` replaces the inode, so a new staging file must inherit an existing project's
-    // access mode instead of silently broadening a private file to the process default.
-    let permissions = match fs::metadata(path) {
-        Ok(meta) => Some(meta.permissions()),
-        Err(e) if e.kind() == io::ErrorKind::NotFound => None,
-        Err(e) => return Err(e),
-    };
-    let tmp = temp_path(path);
-    let r = (|| {
-        {
-            // closed before the rename
-            let mut f = OpenOptions::new().write(true).create_new(true).open(&tmp)?;
-            if let Some(permissions) = permissions.as_ref() {
-                f.set_permissions(permissions.clone())?;
-            }
-            f.write_all(data)?;
-            f.sync_all()?;
-        }
-        fs::rename(&tmp, path)
-    })();
-    if let Err(e) = r {
-        let _ = fs::remove_file(&tmp);
-        return Err(e);
-    }
-    sync_dir(&parent_dir(path));
-    Ok(())
+    craft_atomic::atomic_write(path, data)
 }
 
 /// Publish a complete new file without replacing an occupied final path, including a symlink.
@@ -107,6 +60,7 @@ fn sync_dir(dir: &Path) {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use std::fs::OpenOptions;
 
     fn tmpdir(tag: &str) -> PathBuf {
         let d = std::env::temp_dir().join(format!("filmcraft-atomic-{tag}-{}", std::process::id()));
@@ -123,7 +77,8 @@ mod tests {
         atomic_write(&p, b"new").unwrap();
         assert_eq!(fs::read(&p).unwrap(), b"new");
         let multi = d.join(format!("{}.fcproj", "é".repeat(120)));
-        assert!(temp_path(&multi).file_name().unwrap().len() <= 255);
+        atomic_write(&multi, b"multibyte").unwrap();
+        assert_eq!(fs::read(&multi).unwrap(), b"multibyte");
         fs::remove_dir_all(&d).unwrap();
     }
 
@@ -192,8 +147,13 @@ mod tests {
             std::os::unix::fs::symlink(&p, &link).unwrap();
             assert_eq!(atomic_write_new(&link, b"replacement").unwrap_err().kind(), io::ErrorKind::AlreadyExists);
             assert_eq!(fs::read(&p).unwrap(), b"complete");
+            let dangling = d.join("dangling.wav");
+            let missing = d.join("missing.wav");
+            std::os::unix::fs::symlink(&missing, &dangling).unwrap();
+            assert_eq!(atomic_write_new(&dangling, b"replacement").unwrap_err().kind(), io::ErrorKind::AlreadyExists);
+            assert!(!missing.exists());
         }
-        let expected = if cfg!(unix) { 2 } else { 1 };
+        let expected = if cfg!(unix) { 3 } else { 1 };
         assert_eq!(fs::read_dir(&d).unwrap().count(), expected, "staging file remained after publication");
         fs::remove_dir_all(&d).unwrap();
     }
@@ -234,5 +194,76 @@ mod tests {
         let d = tmpdir("missing");
         assert!(atomic_write(&d.join("nope/a.fcproj"), b"x").is_err());
         fs::remove_dir_all(&d).unwrap();
+    }
+
+    #[test]
+    fn failed_replacement_staging_keeps_old_file() {
+        let d = tmpdir("failed-replacement");
+        let path = d.join("project.fcproj");
+        fs::write(&path, b"old").unwrap();
+        let result = craft_atomic::atomic_write_with(&path, |file| {
+            file.write_all(b"partial")?;
+            Err(io::Error::other("simulated write failure"))
+        });
+        assert!(result.is_err());
+        assert_eq!(fs::read(&path).unwrap(), b"old");
+        assert_eq!(fs::read_dir(&d).unwrap().count(), 1);
+        fs::remove_dir_all(d).unwrap();
+    }
+
+    #[test]
+    fn failed_sync_keeps_old_file() {
+        use craft_atomic::{AtomicFs, NewFilePermissions, RealFs, RenameRetry};
+        struct SyncFailure;
+        impl AtomicFs for SyncFailure {
+            fn create_new(&self, path: &Path, permissions: NewFilePermissions) -> io::Result<File> {
+                RealFs.create_new(path, permissions)
+            }
+            fn sync(&self, _file: &File) -> io::Result<()> {
+                Err(io::Error::other("simulated sync failure"))
+            }
+            fn rename(&self, from: &Path, to: &Path) -> io::Result<()> {
+                RealFs.rename(from, to)
+            }
+            fn hard_link(&self, from: &Path, to: &Path) -> io::Result<()> {
+                RealFs.hard_link(from, to)
+            }
+            fn remove(&self, path: &Path) -> io::Result<()> {
+                RealFs.remove(path)
+            }
+            fn sync_dir(&self, dir: &Path) -> io::Result<()> {
+                RealFs.sync_dir(dir)
+            }
+            fn set_permissions(&self, file: &File, permissions: fs::Permissions) -> io::Result<()> {
+                RealFs.set_permissions(file, permissions)
+            }
+        }
+        let d = tmpdir("failed-sync");
+        let path = d.join("project.fcproj");
+        fs::write(&path, b"old").unwrap();
+        assert!(craft_atomic::atomic_write_custom(&SyncFailure, RenameRetry::platform(), &path, b"new").is_err());
+        assert_eq!(fs::read(&path).unwrap(), b"old");
+        assert_eq!(fs::read_dir(&d).unwrap().count(), 1);
+        fs::remove_dir_all(d).unwrap();
+    }
+
+    #[test]
+    fn concurrent_saves_publish_whole_payloads() {
+        let d = tmpdir("concurrent");
+        let path = d.join("project.fcproj");
+        let writers: Vec<_> = (0..8)
+            .map(|index| {
+                let path = path.clone();
+                std::thread::spawn(move || atomic_write(&path, &vec![index; 32768]))
+            })
+            .collect();
+        for writer in writers {
+            writer.join().unwrap().unwrap();
+        }
+        let data = fs::read(&path).unwrap();
+        assert_eq!(data.len(), 32768);
+        assert!(data.iter().all(|byte| *byte == data[0]));
+        assert_eq!(fs::read_dir(&d).unwrap().count(), 1);
+        fs::remove_dir_all(d).unwrap();
     }
 }

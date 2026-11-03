@@ -11,7 +11,7 @@
 //!   JSON document, so every historical shape only needs one small function. Newer files are refused
 //!   with [`FormatError::TooNew`] instead of being half-read (and later overwritten with data loss).
 //! - **Atomic saves.** [`atomic_write`] writes a temp file in the destination directory, fsyncs it,
-//!   renames it over the target and fsyncs the directory: a crash or power cut during a save leaves
+//!   renames it over the target and attempts to fsync the directory: a crash or power cut during a save leaves
 //!   either the old file or the new one, never a torn mix.
 //! - **Auto-save naming/rotation** lives in [`autosave`] (`<name>-YYYY-MM-DD_HH-MM-SS.fcproj` in an
 //!   `Auto-Save` folder next to the project, oldest pruned beyond the version limit).

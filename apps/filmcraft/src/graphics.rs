@@ -206,19 +206,11 @@ fn attempt_json(mode: Mode, started: u64) -> String {
     serde_json::json!({ "mode": mode.name(), "started": started }).to_string()
 }
 
-/// Write `text` beside `path` (a name only this process uses) and rename it into place, so a
-/// start that dies mid-write, or another instance reading, never sees half a file.
 fn write_atomic(path: &Path, text: &str) -> std::io::Result<()> {
     if let Some(dir) = path.parent() {
         std::fs::create_dir_all(dir)?;
     }
-    let mut tmp = path.as_os_str().to_owned();
-    tmp.push(format!(".{}.tmp", std::process::id()));
-    let tmp = PathBuf::from(tmp);
-    std::fs::write(&tmp, text)?;
-    std::fs::rename(&tmp, path).inspect_err(|_| {
-        let _ = std::fs::remove_file(&tmp);
-    })
+    craft_atomic::atomic_write(path, text.as_bytes())
 }
 
 fn remove_quietly(path: &Path) {
