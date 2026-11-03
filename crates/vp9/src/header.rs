@@ -1,7 +1,6 @@
 //! Uncompressed header (6.2) and compressed header (6.3) parsing, plus the state that persists
 //! between frames (loop filter deltas, segmentation parameters, colour configuration).
 
-use crate::boolcoder::BoolDecoder;
 use crate::error::{Error, Result, ensure};
 use crate::probs::FrameContext;
 use crate::tables::{
@@ -9,6 +8,7 @@ use crate::tables::{
     SEGMENTATION_FEATURE_SIGNED, SWITCHABLE, TX_MODE_SELECT, TX_MODE_TO_BIGGEST_TX_SIZE,
 };
 use filmcraft_bitstream::BitReader;
+use filmcraft_bitstream::BoolDecoder;
 
 pub const KEY_FRAME: u8 = 0;
 
@@ -639,7 +639,7 @@ fn read_inter_frame_probs(bd: &mut BoolDecoder, h: &mut FrameHeader, fc: &mut Fr
 
 /// Parse the compressed header (6.3) into `h` and the probabilities `fc`.
 pub fn parse_compressed(data: &[u8], h: &mut FrameHeader, fc: &mut FrameContext) -> Result<()> {
-    let mut bd = BoolDecoder::new(data);
+    let mut bd = BoolDecoder::new_vp9(data)?;
     // read_tx_mode (6.3.1)
     h.tx_mode = if h.lossless {
         0
@@ -660,6 +660,7 @@ pub fn parse_compressed(data: &[u8], h: &mut FrameHeader, fc: &mut FrameContext)
     if !h.frame_is_intra {
         read_inter_frame_probs(&mut bd, h, fc);
     }
+    bd.finish_vp9()?;
     Ok(())
 }
 
@@ -698,6 +699,23 @@ pub fn split_superframe(data: &[u8]) -> Vec<&[u8]> {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn compressed_boolean_partition_validation() {
+        let mut header = FrameHeader { lossless: true, frame_is_intra: true, ..FrameHeader::default() };
+        let mut context = FrameContext::default();
+        assert_eq!(parse_compressed(&[0; 32], &mut header, &mut context), Ok(()));
+        for (data, expected) in [
+            (&[][..], filmcraft_bitstream::BoolError::UnexpectedEof),
+            (&[0][..], filmcraft_bitstream::BoolError::UnexpectedEof),
+            (&[128; 32][..], filmcraft_bitstream::BoolError::InvalidMarker),
+        ] {
+            assert_eq!(parse_compressed(data, &mut header, &mut context), Err(Error::Boolean(expected)));
+        }
+        let mut padding = [0; 32];
+        padding[31] = 1;
+        assert_eq!(parse_compressed(&padding, &mut header, &mut context), Err(Error::Boolean(filmcraft_bitstream::BoolError::NonzeroPadding)));
+    }
 
     #[test]
     fn hostile_lengths_superframe_size_does_not_wrap() {

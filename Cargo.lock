@@ -2531,6 +2531,7 @@ dependencies = [
 name = "filmcraft-vp8"
 version = "0.17.0"
 dependencies = [
+ "filmcraft-bitstream",
  "filmcraft-testkit",
  "thiserror 2.0.21",
 ]

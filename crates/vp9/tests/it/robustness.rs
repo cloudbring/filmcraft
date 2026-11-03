@@ -5,6 +5,19 @@ use crate::common;
 use filmcraft_vp9::Decoder;
 use std::time::{Duration, Instant};
 
+#[test]
+fn nonzero_tile_padding_is_rejected() {
+    let Some((ivf, _)) = common::ensure(common::fixture("default_good")) else { return };
+    let data = std::fs::read(ivf).unwrap();
+    let frames = common::ivf_frames(&data);
+    let mut frame = frames[0].to_vec();
+    frame.push(1);
+    for threads in [1, 4] {
+        let mut decoder = Decoder::with_threads(threads);
+        assert!(matches!(decoder.decode(&frame, 0), Err(filmcraft_vp9::Error::Boolean(filmcraft_bitstream::BoolError::NonzeroPadding))));
+    }
+}
+
 fn xorshift(seed: &mut u64) -> u64 {
     *seed ^= *seed << 13;
     *seed ^= *seed >> 7;

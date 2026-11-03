@@ -5,6 +5,9 @@ Decoding Process Specification* v0.6 (WebM project). It is an L0 crate: it depen
 `filmcraft-bitstream`, `thiserror`, and optionally `rayon` (default feature `threads`), and builds
 for `wasm32-unknown-unknown` with and without `threads`.
 
+Boolean decoding is shared with VP8 through `filmcraft-bitstream::BoolDecoder`. Compressed
+headers and tiles reject nonzero marker bits, exhausted payloads, and nonzero trailing padding.
+
 The constant tables (probability defaults, scans, coefficient bands, quantizer lookups, Pareto
 table, interpolation filters, `mv_ref_blocks`...) were extracted from the specification text by
 [`tools/extract_tables.py`](tools/extract_tables.py) into `src/spec_tables.rs`. The 1D inverse
@@ -211,6 +214,6 @@ compensation ~15 %, inverse transforms ~8 %, intra prediction ~6 %.
   verified separately; libvpx through ffmpeg cannot change size mid-stream and the synthetic
   splice cannot keep the compound streams' probability contexts intact).
 - Frames larger than 16384x16384 are rejected (`Error::Invalid`) to bound memory.
-- Damaged streams are decoded as far as the data allows (the boolean decoder reads zeros past the
-  end, as specified); there is no concealment beyond that, and inter frames whose reference slots
-  are empty return `Error::MissingReference`.
+- Damaged boolean partitions return `Error::Boolean` after validating marker, consumption and
+  padding. There is no concealment, and inter frames whose reference slots are empty return
+  `Error::MissingReference`.

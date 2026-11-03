@@ -1,7 +1,7 @@
 //! Frame tag (9.1, 19.1) and the frame header in the first partition (9.2-9.11, 19.2).
 
-use crate::boolcoder::BoolDecoder;
 use crate::error::{Error, Result, ensure};
+use filmcraft_bitstream::BoolDecoder;
 
 /// The uncompressed data chunk at the start of every frame (9.1).
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]

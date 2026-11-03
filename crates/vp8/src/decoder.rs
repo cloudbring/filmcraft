@@ -4,7 +4,6 @@
 use std::sync::Arc;
 
 use crate::Picture;
-use crate::boolcoder::BoolDecoder;
 use crate::error::{Error, Result, ensure};
 use crate::header::{EntropyContext, FrameHeader, FrameTag, LfDeltas, Segmentation, read_header};
 use crate::loopfilter::{self, Kind, Params};
@@ -19,6 +18,7 @@ use crate::tables::{
     SEGMENT_TREE, SMALL_MV_TREE, SPLIT_COUNTS, SPLIT_MAPS, SUB_MV_REF_TREE, TM_PRED, UV_MODE_TREE, V_PRED, YMODE_TREE, ZERO_4X4, ZIGZAG,
 };
 use crate::transform;
+use filmcraft_bitstream::BoolDecoder;
 
 /// Largest frame dimension in macroblocks (14-bit sizes).
 const MAX_MBS: usize = 16384 / 16 + 1;

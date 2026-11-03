@@ -1,8 +1,11 @@
-//! Bit-level reading and writing: a re-export of [`craft_media::bitstream`] from craft-libs.
+//! Bit-level reading and writing, including the shared VP8/VP9 boolean decoder.
 
 #![cfg_attr(not(test), deny(clippy::unwrap_used, clippy::expect_used, clippy::panic, clippy::unimplemented, clippy::todo, clippy::unreachable))]
 
 pub use craft_media::bitstream::*;
+
+mod boolcoder;
+pub use boolcoder::{BoolDecoder, BoolError};
 
 #[cfg(test)]
 mod tests {

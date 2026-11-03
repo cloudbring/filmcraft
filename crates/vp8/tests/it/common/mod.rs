@@ -69,12 +69,7 @@ pub fn fixture(name: &str) -> &'static Fixture {
 }
 
 pub fn ffmpeg() -> Option<PathBuf> {
-    for p in ["/opt/homebrew/bin/ffmpeg", "/usr/local/bin/ffmpeg", "/usr/bin/ffmpeg"] {
-        if Path::new(p).exists() {
-            return Some(PathBuf::from(p));
-        }
-    }
-    None
+    filmcraft_testkit::ffmpeg_or_skip("VP8 fixtures")
 }
 
 pub fn fixtures_dir() -> PathBuf {

@@ -2,7 +2,6 @@
 //! decodes all tiles of one tile column (tile columns are independent of each other; tile rows
 //! of a column are decoded in order).
 
-use crate::boolcoder::BoolDecoder;
 use crate::frame::{Frame, MiGrid, MiInfo, Mv};
 use crate::header::{FrameHeader, Segmentation};
 use crate::probs::{Counts, FrameContext};
@@ -14,6 +13,7 @@ use crate::tables::{
     SEGMENT_TREE, SIZE_GROUP, SS_SIZE_LOOKUP, SUBSIZE_LOOKUP, SWITCHABLE, TX_MODE_SELECT, TX_MODE_TO_BIGGEST_TX_SIZE, TX_SIZE_8_TREE, TX_SIZE_16_TREE,
     TX_SIZE_32_TREE, ZEROMV,
 };
+use filmcraft_bitstream::BoolDecoder;
 
 mod recon;
 
@@ -194,7 +194,13 @@ impl<'a> TileDecoder<'a> {
 
     /// decode_tile (6.4.2) for one tile of this column. Returns false if the data ran out badly.
     pub fn decode_tile(&mut self, data: &[u8], mi_row_start: usize, mi_row_end: usize) -> bool {
-        let mut bd = BoolDecoder::new(data);
+        let mut bd = match BoolDecoder::new_vp9(data) {
+            Ok(decoder) => decoder,
+            Err(error) => {
+                self.error = Some(error.into());
+                return false;
+            }
+        };
         let (cs, ce) = (self.strip.mi_col_start, self.strip.mi_col_end);
         for r in (mi_row_start..mi_row_end).step_by(8) {
             // clear_left_context
@@ -209,6 +215,10 @@ impl<'a> TileDecoder<'a> {
             for c in (cs..ce).step_by(8) {
                 self.decode_partition(&mut bd, r, c, BLOCK_64X64);
             }
+        }
+        if let Err(error) = bd.finish_vp9() {
+            self.error.get_or_insert(error.into());
+            return false;
         }
         true
     }
