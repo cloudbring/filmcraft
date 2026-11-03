@@ -13,4 +13,5 @@ workspace = true
 [dependencies]
 
 [dev-dependencies]
+allocation-counter = "0.8.1"
 filmcraft-testkit = { workspace = true }

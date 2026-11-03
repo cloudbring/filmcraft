@@ -15,6 +15,30 @@ model).
   the stream is cut into blocks (tested for every effect with 0/1/random-size blocks).
 - Recursive state is flushed below ~1e-30, so no denormals without CPU FTZ flags.
 
+## Streaming rate conversion (`resample`)
+
+`StreamResampler::new(from, to)` retains the pull-based planar mixer API: `process(out, frames,
+pull)` returns exactly the requested number of output frames. It uses an in-tree 256-tap squared
+Blackman–Harris windowed sinc with 129 normalized phase tables, interpolated in double precision.
+The cutoff is 90% of the smaller Nyquist frequency. Unity rates bypass the filter bit-exactly.
+The kernel is prepared once per rate pair; callers already recreate the stream when rates change.
+The same high-quality kernel is used throughout; this API has no preview/export quality switch.
+
+Absolute rational coordinates avoid phase or duration drift across blocks and seeks. Contiguous
+pulls retain overlapping history and read 128 source frames ahead, compensating filter latency
+without shifting timeline audio. Finite sources return silence outside their extent, including
+the final lookahead (tail flush); `output_frames(source_frames)` computes the exact rounded-up
+duration once, not per block. There is no separate push or flush operation in this pull API.
+
+The owned-block `process` wrapper allocates, as does its mixer callback. Normal playback runs it
+on `ui-egui::play_ahead`'s mixing worker, not the device callback. The legacy scrubbing mixer also
+uses that allocating API; it is not realtime-safe. For callback-safe sources, use
+`with_capacity(from, to, channels, max_output_frames)` and `process_into` with caller-owned output
+planes and an in-place source filler. That path allocates neither during processing nor seeks;
+an allocation-counter regression covers the first block, unity, down/up-conversion and seeks.
+Invalid coordinates or insufficient capacity produce silence. Sizes are bounded, and invalid
+samples are replaced with silence. The crate remains dependency-free in production.
+
 ## Loudness (`loudness`)
 
 `LoudnessMeter::new(sample_rate, channels)` → `process(&[&[f32]])` / `process_interleaved`, then
