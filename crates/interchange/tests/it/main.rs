@@ -5,6 +5,7 @@ mod edl;
 mod fcp7;
 mod fcpxml;
 mod file_urls;
+mod hash_oracle;
 mod media_marker_export;
 mod nested_sequence_markers;
 mod otio;
