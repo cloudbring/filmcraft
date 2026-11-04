@@ -1,0 +1,17 @@
+# Standalone workspace (not a member of the filmcraft workspace): re-measure harness for
+# artcraft-algorithms#192 claim "filmcraft waveform repaint 9.2x" (#106).
+[workspace]
+
+[package]
+name = "perf-remeasure"
+version = "0.0.0"
+edition = "2024"
+publish = false
+
+[dependencies]
+# Paired harness, craft-libs algo/integration, ticket #189.
+craft-bench = { git = "https://github.com/cloudbring/craft-libs", rev = "94c6d76e5bc2c936d3db5ce5e19d70213e8390c0" }
+serde_json = "1"
+
+[profile.release]
+debug = false

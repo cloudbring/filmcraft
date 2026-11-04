@@ -1,0 +1,7327 @@
+{
+  "schema_version": 1,
+  "name": "filmcraft waveform repaint, music",
+  "revs": {
+    "old": "eb59ec09daaea519c9c8fffa404a594ae50d00e0",
+    "new": "529c5c1e8e4b6be393e147bc6316a4643dda8529"
+  },
+  "fingerprint": {
+    "os": "macos",
+    "arch": "aarch64",
+    "kernel": "Darwin 27.0.0",
+    "cpu_model": "Apple M6",
+    "logical_cores": 12,
+    "physical_cores": 12,
+    "ram_bytes": 34359738368,
+    "rustc": "rustc 1.99.0 (b940084d7 2026-09-28) (Homebrew)",
+    "profile": "release",
+    "opt_level": "3",
+    "debug_assertions": false,
+    "date": "2026-11-04T23:21:55+00:00"
+  },
+  "config": {
+    "requested_repetitions": 40,
+    "runs_per_side": 40,
+    "warmup_runs": 2,
+    "resamples": 4000,
+    "seed": 12648430,
+    "output_checked": true,
+    "cpu_time": "process"
+  },
+  "guard": {
+    "contended": false,
+    "reasons": [],
+    "load_before": 3.68,
+    "load_after": 3.68,
+    "logical_cores": 12,
+    "max_load_per_core": 0.5,
+    "load_threshold": 6.0,
+    "throttle_before": {
+      "speed_limit_pct": null,
+      "throttle_count": null
+    },
+    "throttle_after": {
+      "speed_limit_pct": null,
+      "throttle_count": null
+    }
+  },
+  "contended": false,
+  "publishable": true,
+  "inputs": [
+    {
+      "name": "music/native(240s)/whole/w1000",
+      "wall": {
+        "old": {
+          "n": 40,
+          "median_ns": 126083.5,
+          "mad_ns": 708.0,
+          "min_ns": 119292.0,
+          "max_ns": 132041.0
+        },
+        "new": {
+          "n": 40,
+          "median_ns": 58250.5,
+          "mad_ns": 1270.5,
+          "min_ns": 54209.0,
+          "max_ns": 83584.0
+        },
+        "ratio": {
+          "point": 0.46199938929360307,
+          "ci_lo": 0.45824167367492047,
+          "ci_hi": 0.4738730158730159
+        }
+      },
+      "cpu": {
+        "old": {
+          "n": 40,
+          "median_ns": 126000.0,
+          "mad_ns": 1000.0,
+          "min_ns": 119000.0,
+          "max_ns": 132000.0
+        },
+        "new": {
+          "n": 40,
+          "median_ns": 59000.0,
+          "mad_ns": 1000.0,
+          "min_ns": 55000.0,
+          "max_ns": 78000.0
+        },
+        "ratio": {
+          "point": 0.46825396825396826,
+          "ci_lo": 0.45849802371541504,
+          "ci_hi": 0.4777327935222672
+        }
+      }
+    },
+    {
+      "name": "music/native(240s)/whole/w3840",
+      "wall": {
+        "old": {
+          "n": 40,
+          "median_ns": 224604.0,
+          "mad_ns": 2479.5,
+          "min_ns": 211833.0,
+          "max_ns": 251041.0
+        },
+        "new": {
+          "n": 40,
+          "median_ns": 192916.5,
+          "mad_ns": 5687.5,
+          "min_ns": 182291.0,
+          "max_ns": 228334.0
+        },
+        "ratio": {
+          "point": 0.8589183629855212,
+          "ci_lo": 0.847257462852666,
+          "ci_hi": 0.8917518231996177
+        }
+      },
+      "cpu": {
+        "old": {
+          "n": 40,
+          "median_ns": 225000.0,
+          "mad_ns": 2000.0,
+          "min_ns": 212000.0,
+          "max_ns": 235000.0
+        },
+        "new": {
+          "n": 40,
+          "median_ns": 192500.0,
+          "mad_ns": 5500.0,
+          "min_ns": 183000.0,
+          "max_ns": 215000.0
+        },
+        "ratio": {
+          "point": 0.8555555555555555,
+          "ci_lo": 0.8481925568900126,
+          "ci_hi": 0.8888888888888888
+        }
+      }
+    },
+    {
+      "name": "music/native(240s)/1/4/w1000",
+      "wall": {
+        "old": {
+          "n": 40,
+          "median_ns": 58729.5,
+          "mad_ns": 1603.5,
+          "min_ns": 55125.0,
+          "max_ns": 61667.0
+        },
+        "new": {
+          "n": 40,
+          "median_ns": 50583.0,
+          "mad_ns": 1583.5,
+          "min_ns": 46750.0,
+          "max_ns": 66666.0
+        },
+        "ratio": {
+          "point": 0.861287768497944,
+          "ci_lo": 0.8450245614669771,
+          "ci_hi": 0.8834613737469083
+        }
+      },
+      "cpu": {
+        "old": {
+          "n": 40,
+          "median_ns": 59000.0,
+          "mad_ns": 2000.0,
+          "min_ns": 54000.0,
+          "max_ns": 62000.0
+        },
+        "new": {
+          "n": 40,
+          "median_ns": 51000.0,
+          "mad_ns": 2000.0,
+          "min_ns": 46000.0,
+          "max_ns": 61000.0
+        },
+        "ratio": {
+          "point": 0.864406779661017,
+          "ci_lo": 0.8389830508474576,
+          "ci_hi": 0.8793103448275862
+        }
+      }
+    },
+    {
+      "name": "music/native(240s)/1/16/w1000",
+      "wall": {
+        "old": {
+          "n": 40,
+          "median_ns": 41999.5,
+          "mad_ns": 1333.5,
+          "min_ns": 39708.0,
+          "max_ns": 48791.0
+        },
+        "new": {
+          "n": 40,
+          "median_ns": 43979.0,
+          "mad_ns": 1250.0,
+          "min_ns": 42417.0,
+          "max_ns": 48833.0
+        },
+        "ratio": {
+          "point": 1.0471315134703985,
+          "ci_lo": 1.0234724160987225,
+          "ci_hi": 1.105629162147229
+        }
+      },
+      "cpu": {
+        "old": {
+          "n": 40,
+          "median_ns": 42000.0,
+          "mad_ns": 1000.0,
+          "min_ns": 40000.0,
+          "max_ns": 49000.0
+        },
+        "new": {
+          "n": 40,
+          "median_ns": 44000.0,
+          "mad_ns": 1000.0,
+          "min_ns": 42000.0,
+          "max_ns": 49000.0
+        },
+        "ratio": {
+          "point": 1.0476190476190477,
+          "ci_lo": 1.0232558139534884,
+          "ci_hi": 1.0975609756097562
+        }
+      }
+    },
+    {
+      "name": "music/native(240s)/30s/w1000",
+      "wall": {
+        "old": {
+          "n": 40,
+          "median_ns": 46270.5,
+          "mad_ns": 1291.5,
+          "min_ns": 43750.0,
+          "max_ns": 67000.0
+        },
+        "new": {
+          "n": 40,
+          "median_ns": 42270.5,
+          "mad_ns": 1291.5,
+          "min_ns": 39667.0,
+          "max_ns": 48167.0
+        },
+        "ratio": {
+          "point": 0.9135518310802779,
+          "ci_lo": 0.8931737636400849,
+          "ci_hi": 0.9559775280898877
+        }
+      },
+      "cpu": {
+        "old": {
+          "n": 40,
+          "median_ns": 46000.0,
+          "mad_ns": 1500.0,
+          "min_ns": 44000.0,
+          "max_ns": 57000.0
+        },
+        "new": {
+          "n": 40,
+          "median_ns": 42000.0,
+          "mad_ns": 1500.0,
+          "min_ns": 39000.0,
+          "max_ns": 47000.0
+        },
+        "ratio": {
+          "point": 0.9130434782608695,
+          "ci_lo": 0.8936170212765957,
+          "ci_hi": 0.9555555555555556
+        }
+      }
+    },
+    {
+      "name": "music/native(240s)/1s/w1000",
+      "wall": {
+        "old": {
+          "n": 40,
+          "median_ns": 36104.5,
+          "mad_ns": 937.5,
+          "min_ns": 34125.0,
+          "max_ns": 42583.0
+        },
+        "new": {
+          "n": 40,
+          "median_ns": 38229.0,
+          "mad_ns": 1124.5,
+          "min_ns": 35792.0,
+          "max_ns": 40417.0
+        },
+        "ratio": {
+          "point": 1.0588430805024305,
+          "ci_lo": 1.0298006872852234,
+          "ci_hi": 1.0944741532976827
+        }
+      },
+      "cpu": {
+        "old": {
+          "n": 40,
+          "median_ns": 36000.0,
+          "mad_ns": 1000.0,
+          "min_ns": 34000.0,
+          "max_ns": 42000.0
+        },
+        "new": {
+          "n": 40,
+          "median_ns": 39000.0,
+          "mad_ns": 1000.0,
+          "min_ns": 36000.0,
+          "max_ns": 41000.0
+        },
+        "ratio": {
+          "point": 1.0833333333333333,
+          "ci_lo": 1.0416666666666667,
+          "ci_hi": 1.1142857142857143
+        }
+      }
+    },
+    {
+      "name": "music/2h-tiled(7200s)/whole/w1000",
+      "wall": {
+        "old": {
+          "n": 40,
+          "median_ns": 2611562.5,
+          "mad_ns": 26916.5,
+          "min_ns": 2474042.0,
+          "max_ns": 2979958.0
+        },
+        "new": {
+          "n": 40,
+          "median_ns": 61312.5,
+          "mad_ns": 5124.5,
+          "min_ns": 53416.0,
+          "max_ns": 120750.0
+        },
+        "ratio": {
+          "point": 0.023477324398707672,
+          "ci_lo": 0.022479852150592918,
+          "ci_hi": 0.02514873893928965
+        }
+      },
+      "cpu": {
+        "old": {
+          "n": 40,
+          "median_ns": 2612000.0,
+          "mad_ns": 16500.0,
+          "min_ns": 2475000.0,
+          "max_ns": 2763000.0
+        },
+        "new": {
+          "n": 40,
+          "median_ns": 61500.0,
+          "mad_ns": 5500.0,
+          "min_ns": 53000.0,
+          "max_ns": 121000.0
+        },
+        "ratio": {
+          "point": 0.023545176110260337,
+          "ci_lo": 0.02277947932618683,
+          "ci_hi": 0.025459418070444103
+        }
+      }
+    },
+    {
+      "name": "music/2h-tiled(7200s)/whole/w3840",
+      "wall": {
+        "old": {
+          "n": 40,
+          "median_ns": 2706791.0,
+          "mad_ns": 36667.0,
+          "min_ns": 2564167.0,
+          "max_ns": 3072333.0
+        },
+        "new": {
+          "n": 40,
+          "median_ns": 221916.5,
+          "mad_ns": 12083.5,
+          "min_ns": 199667.0,
+          "max_ns": 478667.0
+        },
+        "ratio": {
+          "point": 0.08198508861600323,
+          "ci_lo": 0.08014697885848757,
+          "ci_hi": 0.08587070892364271
+        }
+      },
+      "cpu": {
+        "old": {
+          "n": 40,
+          "median_ns": 2707000.0,
+          "mad_ns": 28500.0,
+          "min_ns": 2564000.0,
+          "max_ns": 2882000.0
+        },
+        "new": {
+          "n": 40,
+          "median_ns": 223000.0,
+          "mad_ns": 12000.0,
+          "min_ns": 200000.0,
+          "max_ns": 453000.0
+        },
+        "ratio": {
+          "point": 0.0823790173623938,
+          "ci_lo": 0.08016254155892132,
+          "ci_hi": 0.08657584948836407
+        }
+      }
+    },
+    {
+      "name": "music/2h-tiled(7200s)/1/4/w1000",
+      "wall": {
+        "old": {
+          "n": 40,
+          "median_ns": 679604.5,
+          "mad_ns": 4791.5,
+          "min_ns": 643625.0,
+          "max_ns": 703083.0
+        },
+        "new": {
+          "n": 40,
+          "median_ns": 58542.0,
+          "mad_ns": 3791.5,
+          "min_ns": 53125.0,
+          "max_ns": 132541.0
+        },
+        "ratio": {
+          "point": 0.0861412777578724,
+          "ci_lo": 0.08338986435491497,
+          "ci_hi": 0.09236700644289678
+        }
+      },
+      "cpu": {
+        "old": {
+          "n": 40,
+          "median_ns": 680000.0,
+          "mad_ns": 5000.0,
+          "min_ns": 644000.0,
+          "max_ns": 694000.0
+        },
+        "new": {
+          "n": 40,
+          "median_ns": 58500.0,
+          "mad_ns": 4000.0,
+          "min_ns": 53000.0,
+          "max_ns": 133000.0
+        },
+        "ratio": {
+          "point": 0.08602941176470588,
+          "ci_lo": 0.0838235294117647,
+          "ci_hi": 0.09338235294117647
+        }
+      }
+    },
+    {
+      "name": "music/2h-tiled(7200s)/1/16/w1000",
+      "wall": {
+        "old": {
+          "n": 40,
+          "median_ns": 191916.5,
+          "mad_ns": 979.0,
+          "min_ns": 190708.0,
+          "max_ns": 233167.0
+        },
+        "new": {
+          "n": 40,
+          "median_ns": 58270.5,
+          "mad_ns": 3416.5,
+          "min_ns": 53500.0,
+          "max_ns": 97250.0
+        },
+        "ratio": {
+          "point": 0.3036242324135757,
+          "ci_lo": 0.2863462190011905,
+          "ci_hi": 0.3088125
+        }
+      },
+      "cpu": {
+        "old": {
+          "n": 40,
+          "median_ns": 192000.0,
+          "mad_ns": 1500.0,
+          "min_ns": 190000.0,
+          "max_ns": 220000.0
+        },
+        "new": {
+          "n": 40,
+          "median_ns": 59000.0,
+          "mad_ns": 4000.0,
+          "min_ns": 52000.0,
+          "max_ns": 94000.0
+        },
+        "ratio": {
+          "point": 0.3072916666666667,
+          "ci_lo": 0.2871287128712871,
+          "ci_hi": 0.30809399477806787
+        }
+      }
+    },
+    {
+      "name": "music/2h-tiled(7200s)/30s/w1000",
+      "wall": {
+        "old": {
+          "n": 40,
+          "median_ns": 48979.5,
+          "mad_ns": 1250.0,
+          "min_ns": 46167.0,
+          "max_ns": 65917.0
+        },
+        "new": {
+          "n": 40,
+          "median_ns": 44833.5,
+          "mad_ns": 895.5,
+          "min_ns": 41917.0,
+          "max_ns": 75917.0
+        },
+        "ratio": {
+          "point": 0.9153523412856399,
+          "ci_lo": 0.9083485220295492,
+          "ci_hi": 0.9221585776463825
+        }
+      },
+      "cpu": {
+        "old": {
+          "n": 40,
+          "median_ns": 49000.0,
+          "mad_ns": 1000.0,
+          "min_ns": 46000.0,
+          "max_ns": 60000.0
+        },
+        "new": {
+          "n": 40,
+          "median_ns": 45000.0,
+          "mad_ns": 1000.0,
+          "min_ns": 42000.0,
+          "max_ns": 57000.0
+        },
+        "ratio": {
+          "point": 0.9183673469387755,
+          "ci_lo": 0.8979591836734694,
+          "ci_hi": 0.9183673469387755
+        }
+      }
+    },
+    {
+      "name": "music/2h-tiled(7200s)/1s/w1000",
+      "wall": {
+        "old": {
+          "n": 40,
+          "median_ns": 35937.5,
+          "mad_ns": 896.0,
+          "min_ns": 34833.0,
+          "max_ns": 41875.0
+        },
+        "new": {
+          "n": 40,
+          "median_ns": 38770.5,
+          "mad_ns": 978.5,
+          "min_ns": 37708.0,
+          "max_ns": 45125.0
+        },
+        "ratio": {
+          "point": 1.0788313043478261,
+          "ci_lo": 1.037546748459655,
+          "ci_hi": 1.1245420158781707
+        }
+      },
+      "cpu": {
+        "old": {
+          "n": 40,
+          "median_ns": 36000.0,
+          "mad_ns": 1000.0,
+          "min_ns": 35000.0,
+          "max_ns": 43000.0
+        },
+        "new": {
+          "n": 40,
+          "median_ns": 39000.0,
+          "mad_ns": 1000.0,
+          "min_ns": 38000.0,
+          "max_ns": 46000.0
+        },
+        "ratio": {
+          "point": 1.0833333333333333,
+          "ci_lo": 1.0405405405405406,
+          "ci_hi": 1.1111111111111112
+        }
+      }
+    }
+  ],
+  "aggregate": {
+    "inputs": 12,
+    "wall": {
+      "point": 0.4008498450963644,
+      "ci_lo": 0.39772265830405756,
+      "ci_hi": 0.40622406214221085
+    },
+    "cpu": {
+      "point": 0.4029179683089461,
+      "ci_lo": 0.39864333707671445,
+      "ci_hi": 0.40761894276792415
+    }
+  },
+  "runs": [
+    {
+      "order": 0,
+      "input": "music/native(240s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 56792,
+      "cpu_ns": 61000
+    },
+    {
+      "order": 1,
+      "input": "music/native(240s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 49083,
+      "cpu_ns": 49000
+    },
+    {
+      "order": 2,
+      "input": "music/native(240s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 48250,
+      "cpu_ns": 49000
+    },
+    {
+      "order": 3,
+      "input": "music/native(240s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 55667,
+      "cpu_ns": 56000
+    },
+    {
+      "order": 4,
+      "input": "music/native(240s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 43417,
+      "cpu_ns": 44000
+    },
+    {
+      "order": 5,
+      "input": "music/native(240s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 41042,
+      "cpu_ns": 41000
+    },
+    {
+      "order": 6,
+      "input": "music/native(240s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 40250,
+      "cpu_ns": 40000
+    },
+    {
+      "order": 7,
+      "input": "music/native(240s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 42750,
+      "cpu_ns": 43000
+    },
+    {
+      "order": 8,
+      "input": "music/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 42542,
+      "cpu_ns": 43000
+    },
+    {
+      "order": 9,
+      "input": "music/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 46875,
+      "cpu_ns": 47000
+    },
+    {
+      "order": 10,
+      "input": "music/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 46167,
+      "cpu_ns": 47000
+    },
+    {
+      "order": 11,
+      "input": "music/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 41917,
+      "cpu_ns": 43000
+    },
+    {
+      "order": 12,
+      "input": "music/native(240s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 215583,
+      "cpu_ns": 215000
+    },
+    {
+      "order": 13,
+      "input": "music/native(240s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 186792,
+      "cpu_ns": 188000
+    },
+    {
+      "order": 14,
+      "input": "music/native(240s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 182834,
+      "cpu_ns": 183000
+    },
+    {
+      "order": 15,
+      "input": "music/native(240s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 212917,
+      "cpu_ns": 213000
+    },
+    {
+      "order": 16,
+      "input": "music/native(240s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 215208,
+      "cpu_ns": 217000
+    },
+    {
+      "order": 17,
+      "input": "music/native(240s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 183750,
+      "cpu_ns": 184000
+    },
+    {
+      "order": 18,
+      "input": "music/native(240s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 190333,
+      "cpu_ns": 190000
+    },
+    {
+      "order": 19,
+      "input": "music/native(240s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 212417,
+      "cpu_ns": 212000
+    },
+    {
+      "order": 20,
+      "input": "music/native(240s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 55125,
+      "cpu_ns": 54000
+    },
+    {
+      "order": 21,
+      "input": "music/native(240s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 48500,
+      "cpu_ns": 48000
+    },
+    {
+      "order": 22,
+      "input": "music/native(240s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 47667,
+      "cpu_ns": 48000
+    },
+    {
+      "order": 23,
+      "input": "music/native(240s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 55375,
+      "cpu_ns": 56000
+    },
+    {
+      "order": 24,
+      "input": "music/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 215333,
+      "cpu_ns": 216000
+    },
+    {
+      "order": 25,
+      "input": "music/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2564667,
+      "cpu_ns": 2565000
+    },
+    {
+      "order": 26,
+      "input": "music/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2590292,
+      "cpu_ns": 2591000
+    },
+    {
+      "order": 27,
+      "input": "music/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 208292,
+      "cpu_ns": 208000
+    },
+    {
+      "order": 28,
+      "input": "music/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 643625,
+      "cpu_ns": 645000
+    },
+    {
+      "order": 29,
+      "input": "music/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 59917,
+      "cpu_ns": 60000
+    },
+    {
+      "order": 30,
+      "input": "music/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 53125,
+      "cpu_ns": 54000
+    },
+    {
+      "order": 31,
+      "input": "music/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 689209,
+      "cpu_ns": 675000
+    },
+    {
+      "order": 32,
+      "input": "music/native(240s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 51000,
+      "cpu_ns": 51000
+    },
+    {
+      "order": 33,
+      "input": "music/native(240s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 57625,
+      "cpu_ns": 58000
+    },
+    {
+      "order": 34,
+      "input": "music/native(240s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 56792,
+      "cpu_ns": 57000
+    },
+    {
+      "order": 35,
+      "input": "music/native(240s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 48125,
+      "cpu_ns": 48000
+    },
+    {
+      "order": 36,
+      "input": "music/native(240s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 46750,
+      "cpu_ns": 46000
+    },
+    {
+      "order": 37,
+      "input": "music/native(240s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 56000,
+      "cpu_ns": 56000
+    },
+    {
+      "order": 38,
+      "input": "music/native(240s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 55583,
+      "cpu_ns": 56000
+    },
+    {
+      "order": 39,
+      "input": "music/native(240s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 46875,
+      "cpu_ns": 47000
+    },
+    {
+      "order": 40,
+      "input": "music/native(240s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 55667,
+      "cpu_ns": 55000
+    },
+    {
+      "order": 41,
+      "input": "music/native(240s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 46750,
+      "cpu_ns": 46000
+    },
+    {
+      "order": 42,
+      "input": "music/native(240s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 46916,
+      "cpu_ns": 48000
+    },
+    {
+      "order": 43,
+      "input": "music/native(240s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 55917,
+      "cpu_ns": 56000
+    },
+    {
+      "order": 44,
+      "input": "music/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 39875,
+      "cpu_ns": 40000
+    },
+    {
+      "order": 45,
+      "input": "music/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 35875,
+      "cpu_ns": 36000
+    },
+    {
+      "order": 46,
+      "input": "music/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 35417,
+      "cpu_ns": 36000
+    },
+    {
+      "order": 47,
+      "input": "music/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 38542,
+      "cpu_ns": 39000
+    },
+    {
+      "order": 48,
+      "input": "music/native(240s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 119459,
+      "cpu_ns": 120000
+    },
+    {
+      "order": 49,
+      "input": "music/native(240s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 63000,
+      "cpu_ns": 63000
+    },
+    {
+      "order": 50,
+      "input": "music/native(240s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 54209,
+      "cpu_ns": 55000
+    },
+    {
+      "order": 51,
+      "input": "music/native(240s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 119292,
+      "cpu_ns": 120000
+    },
+    {
+      "order": 52,
+      "input": "music/native(240s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 212208,
+      "cpu_ns": 212000
+    },
+    {
+      "order": 53,
+      "input": "music/native(240s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 188042,
+      "cpu_ns": 189000
+    },
+    {
+      "order": 54,
+      "input": "music/native(240s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 183792,
+      "cpu_ns": 184000
+    },
+    {
+      "order": 55,
+      "input": "music/native(240s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 216250,
+      "cpu_ns": 216000
+    },
+    {
+      "order": 56,
+      "input": "music/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2565042,
+      "cpu_ns": 2565000
+    },
+    {
+      "order": 57,
+      "input": "music/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 217125,
+      "cpu_ns": 217000
+    },
+    {
+      "order": 58,
+      "input": "music/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 201250,
+      "cpu_ns": 202000
+    },
+    {
+      "order": 59,
+      "input": "music/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2572958,
+      "cpu_ns": 2574000
+    },
+    {
+      "order": 60,
+      "input": "music/native(240s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 43917,
+      "cpu_ns": 44000
+    },
+    {
+      "order": 61,
+      "input": "music/native(240s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 40250,
+      "cpu_ns": 40000
+    },
+    {
+      "order": 62,
+      "input": "music/native(240s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 39750,
+      "cpu_ns": 40000
+    },
+    {
+      "order": 63,
+      "input": "music/native(240s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 43750,
+      "cpu_ns": 44000
+    },
+    {
+      "order": 64,
+      "input": "music/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 35542,
+      "cpu_ns": 36000
+    },
+    {
+      "order": 65,
+      "input": "music/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 38958,
+      "cpu_ns": 39000
+    },
+    {
+      "order": 66,
+      "input": "music/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 37833,
+      "cpu_ns": 38000
+    },
+    {
+      "order": 67,
+      "input": "music/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 35292,
+      "cpu_ns": 36000
+    },
+    {
+      "order": 68,
+      "input": "music/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 78834,
+      "cpu_ns": 79000
+    },
+    {
+      "order": 69,
+      "input": "music/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2521792,
+      "cpu_ns": 2508000
+    },
+    {
+      "order": 70,
+      "input": "music/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2490000,
+      "cpu_ns": 2490000
+    },
+    {
+      "order": 71,
+      "input": "music/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 65875,
+      "cpu_ns": 67000
+    },
+    {
+      "order": 72,
+      "input": "music/native(240s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 58791,
+      "cpu_ns": 59000
+    },
+    {
+      "order": 73,
+      "input": "music/native(240s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 119792,
+      "cpu_ns": 120000
+    },
+    {
+      "order": 74,
+      "input": "music/native(240s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 119333,
+      "cpu_ns": 120000
+    },
+    {
+      "order": 75,
+      "input": "music/native(240s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 54667,
+      "cpu_ns": 55000
+    },
+    {
+      "order": 76,
+      "input": "music/native(240s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 40417,
+      "cpu_ns": 41000
+    },
+    {
+      "order": 77,
+      "input": "music/native(240s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 43250,
+      "cpu_ns": 43000
+    },
+    {
+      "order": 78,
+      "input": "music/native(240s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 42417,
+      "cpu_ns": 42000
+    },
+    {
+      "order": 79,
+      "input": "music/native(240s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 39708,
+      "cpu_ns": 40000
+    },
+    {
+      "order": 80,
+      "input": "music/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 644125,
+      "cpu_ns": 645000
+    },
+    {
+      "order": 81,
+      "input": "music/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 61959,
+      "cpu_ns": 63000
+    },
+    {
+      "order": 82,
+      "input": "music/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 53666,
+      "cpu_ns": 54000
+    },
+    {
+      "order": 83,
+      "input": "music/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 652042,
+      "cpu_ns": 652000
+    },
+    {
+      "order": 84,
+      "input": "music/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 190708,
+      "cpu_ns": 191000
+    },
+    {
+      "order": 85,
+      "input": "music/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 62125,
+      "cpu_ns": 63000
+    },
+    {
+      "order": 86,
+      "input": "music/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 54041,
+      "cpu_ns": 54000
+    },
+    {
+      "order": 87,
+      "input": "music/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 200541,
+      "cpu_ns": 201000
+    },
+    {
+      "order": 88,
+      "input": "music/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 191167,
+      "cpu_ns": 191000
+    },
+    {
+      "order": 89,
+      "input": "music/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 53500,
+      "cpu_ns": 52000
+    },
+    {
+      "order": 90,
+      "input": "music/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 53583,
+      "cpu_ns": 53000
+    },
+    {
+      "order": 91,
+      "input": "music/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 191250,
+      "cpu_ns": 191000
+    },
+    {
+      "order": 92,
+      "input": "music/native(240s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 44166,
+      "cpu_ns": 44000
+    },
+    {
+      "order": 93,
+      "input": "music/native(240s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 41583,
+      "cpu_ns": 42000
+    },
+    {
+      "order": 94,
+      "input": "music/native(240s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 40542,
+      "cpu_ns": 40000
+    },
+    {
+      "order": 95,
+      "input": "music/native(240s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 43959,
+      "cpu_ns": 44000
+    },
+    {
+      "order": 96,
+      "input": "music/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 39750,
+      "cpu_ns": 40000
+    },
+    {
+      "order": 97,
+      "input": "music/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 41500,
+      "cpu_ns": 41000
+    },
+    {
+      "order": 98,
+      "input": "music/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 35250,
+      "cpu_ns": 35000
+    },
+    {
+      "order": 99,
+      "input": "music/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 38542,
+      "cpu_ns": 39000
+    },
+    {
+      "order": 100,
+      "input": "music/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 35125,
+      "cpu_ns": 35000
+    },
+    {
+      "order": 101,
+      "input": "music/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 37792,
+      "cpu_ns": 38000
+    },
+    {
+      "order": 102,
+      "input": "music/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 37708,
+      "cpu_ns": 38000
+    },
+    {
+      "order": 103,
+      "input": "music/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 34958,
+      "cpu_ns": 35000
+    },
+    {
+      "order": 104,
+      "input": "music/native(240s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 42958,
+      "cpu_ns": 43000
+    },
+    {
+      "order": 105,
+      "input": "music/native(240s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 42041,
+      "cpu_ns": 43000
+    },
+    {
+      "order": 106,
+      "input": "music/native(240s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 44166,
+      "cpu_ns": 44000
+    },
+    {
+      "order": 107,
+      "input": "music/native(240s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 42583,
+      "cpu_ns": 42000
+    },
+    {
+      "order": 108,
+      "input": "music/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 35459,
+      "cpu_ns": 36000
+    },
+    {
+      "order": 109,
+      "input": "music/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 38042,
+      "cpu_ns": 38000
+    },
+    {
+      "order": 110,
+      "input": "music/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 37792,
+      "cpu_ns": 38000
+    },
+    {
+      "order": 111,
+      "input": "music/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 35000,
+      "cpu_ns": 35000
+    },
+    {
+      "order": 112,
+      "input": "music/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2494083,
+      "cpu_ns": 2494000
+    },
+    {
+      "order": 113,
+      "input": "music/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 56792,
+      "cpu_ns": 58000
+    },
+    {
+      "order": 114,
+      "input": "music/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 53500,
+      "cpu_ns": 54000
+    },
+    {
+      "order": 115,
+      "input": "music/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2509459,
+      "cpu_ns": 2493000
+    },
+    {
+      "order": 116,
+      "input": "music/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 191833,
+      "cpu_ns": 192000
+    },
+    {
+      "order": 117,
+      "input": "music/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 62167,
+      "cpu_ns": 61000
+    },
+    {
+      "order": 118,
+      "input": "music/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 54666,
+      "cpu_ns": 55000
+    },
+    {
+      "order": 119,
+      "input": "music/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 191709,
+      "cpu_ns": 192000
+    },
+    {
+      "order": 120,
+      "input": "music/native(240s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 186792,
+      "cpu_ns": 186000
+    },
+    {
+      "order": 121,
+      "input": "music/native(240s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 214125,
+      "cpu_ns": 214000
+    },
+    {
+      "order": 122,
+      "input": "music/native(240s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 212917,
+      "cpu_ns": 213000
+    },
+    {
+      "order": 123,
+      "input": "music/native(240s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 182291,
+      "cpu_ns": 183000
+    },
+    {
+      "order": 124,
+      "input": "music/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2564667,
+      "cpu_ns": 2565000
+    },
+    {
+      "order": 125,
+      "input": "music/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 223625,
+      "cpu_ns": 224000
+    },
+    {
+      "order": 126,
+      "input": "music/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 201250,
+      "cpu_ns": 202000
+    },
+    {
+      "order": 127,
+      "input": "music/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2571958,
+      "cpu_ns": 2573000
+    },
+    {
+      "order": 128,
+      "input": "music/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 38417,
+      "cpu_ns": 38000
+    },
+    {
+      "order": 129,
+      "input": "music/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 35541,
+      "cpu_ns": 36000
+    },
+    {
+      "order": 130,
+      "input": "music/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 35125,
+      "cpu_ns": 35000
+    },
+    {
+      "order": 131,
+      "input": "music/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 38333,
+      "cpu_ns": 39000
+    },
+    {
+      "order": 132,
+      "input": "music/native(240s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 36375,
+      "cpu_ns": 37000
+    },
+    {
+      "order": 133,
+      "input": "music/native(240s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 34250,
+      "cpu_ns": 34000
+    },
+    {
+      "order": 134,
+      "input": "music/native(240s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 34125,
+      "cpu_ns": 34000
+    },
+    {
+      "order": 135,
+      "input": "music/native(240s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 35792,
+      "cpu_ns": 36000
+    },
+    {
+      "order": 136,
+      "input": "music/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 57834,
+      "cpu_ns": 58000
+    },
+    {
+      "order": 137,
+      "input": "music/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 191541,
+      "cpu_ns": 192000
+    },
+    {
+      "order": 138,
+      "input": "music/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 191417,
+      "cpu_ns": 192000
+    },
+    {
+      "order": 139,
+      "input": "music/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 54917,
+      "cpu_ns": 56000
+    },
+    {
+      "order": 140,
+      "input": "music/native(240s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 120708,
+      "cpu_ns": 121000
+    },
+    {
+      "order": 141,
+      "input": "music/native(240s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 83584,
+      "cpu_ns": 72000
+    },
+    {
+      "order": 142,
+      "input": "music/native(240s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 60333,
+      "cpu_ns": 60000
+    },
+    {
+      "order": 143,
+      "input": "music/native(240s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 119500,
+      "cpu_ns": 119000
+    },
+    {
+      "order": 144,
+      "input": "music/native(240s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 40833,
+      "cpu_ns": 41000
+    },
+    {
+      "order": 145,
+      "input": "music/native(240s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 43917,
+      "cpu_ns": 44000
+    },
+    {
+      "order": 146,
+      "input": "music/native(240s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 43208,
+      "cpu_ns": 43000
+    },
+    {
+      "order": 147,
+      "input": "music/native(240s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 40125,
+      "cpu_ns": 40000
+    },
+    {
+      "order": 148,
+      "input": "music/native(240s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 37042,
+      "cpu_ns": 38000
+    },
+    {
+      "order": 149,
+      "input": "music/native(240s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 34875,
+      "cpu_ns": 35000
+    },
+    {
+      "order": 150,
+      "input": "music/native(240s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 37125,
+      "cpu_ns": 37000
+    },
+    {
+      "order": 151,
+      "input": "music/native(240s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 36417,
+      "cpu_ns": 37000
+    },
+    {
+      "order": 152,
+      "input": "music/native(240s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 44917,
+      "cpu_ns": 45000
+    },
+    {
+      "order": 153,
+      "input": "music/native(240s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 41125,
+      "cpu_ns": 42000
+    },
+    {
+      "order": 154,
+      "input": "music/native(240s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 39875,
+      "cpu_ns": 40000
+    },
+    {
+      "order": 155,
+      "input": "music/native(240s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 44125,
+      "cpu_ns": 44000
+    },
+    {
+      "order": 156,
+      "input": "music/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 46250,
+      "cpu_ns": 46000
+    },
+    {
+      "order": 157,
+      "input": "music/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 41959,
+      "cpu_ns": 43000
+    },
+    {
+      "order": 158,
+      "input": "music/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 42250,
+      "cpu_ns": 42000
+    },
+    {
+      "order": 159,
+      "input": "music/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 46250,
+      "cpu_ns": 47000
+    },
+    {
+      "order": 160,
+      "input": "music/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 55958,
+      "cpu_ns": 56000
+    },
+    {
+      "order": 161,
+      "input": "music/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 191292,
+      "cpu_ns": 191000
+    },
+    {
+      "order": 162,
+      "input": "music/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 191250,
+      "cpu_ns": 190000
+    },
+    {
+      "order": 163,
+      "input": "music/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 54416,
+      "cpu_ns": 54000
+    },
+    {
+      "order": 164,
+      "input": "music/native(240s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 44000,
+      "cpu_ns": 45000
+    },
+    {
+      "order": 165,
+      "input": "music/native(240s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 40375,
+      "cpu_ns": 41000
+    },
+    {
+      "order": 166,
+      "input": "music/native(240s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 40042,
+      "cpu_ns": 40000
+    },
+    {
+      "order": 167,
+      "input": "music/native(240s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 44042,
+      "cpu_ns": 45000
+    },
+    {
+      "order": 168,
+      "input": "music/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2578334,
+      "cpu_ns": 2577000
+    },
+    {
+      "order": 169,
+      "input": "music/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 213542,
+      "cpu_ns": 213000
+    },
+    {
+      "order": 170,
+      "input": "music/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 199667,
+      "cpu_ns": 200000
+    },
+    {
+      "order": 171,
+      "input": "music/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2629750,
+      "cpu_ns": 2622000
+    },
+    {
+      "order": 172,
+      "input": "music/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 191375,
+      "cpu_ns": 191000
+    },
+    {
+      "order": 173,
+      "input": "music/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 58458,
+      "cpu_ns": 59000
+    },
+    {
+      "order": 174,
+      "input": "music/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 54792,
+      "cpu_ns": 55000
+    },
+    {
+      "order": 175,
+      "input": "music/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 191292,
+      "cpu_ns": 192000
+    },
+    {
+      "order": 176,
+      "input": "music/native(240s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 34667,
+      "cpu_ns": 35000
+    },
+    {
+      "order": 177,
+      "input": "music/native(240s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 36750,
+      "cpu_ns": 37000
+    },
+    {
+      "order": 178,
+      "input": "music/native(240s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 36416,
+      "cpu_ns": 36000
+    },
+    {
+      "order": 179,
+      "input": "music/native(240s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 34458,
+      "cpu_ns": 34000
+    },
+    {
+      "order": 180,
+      "input": "music/native(240s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 44041,
+      "cpu_ns": 45000
+    },
+    {
+      "order": 181,
+      "input": "music/native(240s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 41250,
+      "cpu_ns": 41000
+    },
+    {
+      "order": 182,
+      "input": "music/native(240s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 40333,
+      "cpu_ns": 40000
+    },
+    {
+      "order": 183,
+      "input": "music/native(240s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 43000,
+      "cpu_ns": 43000
+    },
+    {
+      "order": 184,
+      "input": "music/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 214958,
+      "cpu_ns": 214000
+    },
+    {
+      "order": 185,
+      "input": "music/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2647792,
+      "cpu_ns": 2620000
+    },
+    {
+      "order": 186,
+      "input": "music/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2692459,
+      "cpu_ns": 2650000
+    },
+    {
+      "order": 187,
+      "input": "music/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 256583,
+      "cpu_ns": 257000
+    },
+    {
+      "order": 188,
+      "input": "music/native(240s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 65542,
+      "cpu_ns": 66000
+    },
+    {
+      "order": 189,
+      "input": "music/native(240s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 119750,
+      "cpu_ns": 120000
+    },
+    {
+      "order": 190,
+      "input": "music/native(240s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 119416,
+      "cpu_ns": 120000
+    },
+    {
+      "order": 191,
+      "input": "music/native(240s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 54625,
+      "cpu_ns": 55000
+    },
+    {
+      "order": 192,
+      "input": "music/native(240s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 211833,
+      "cpu_ns": 213000
+    },
+    {
+      "order": 193,
+      "input": "music/native(240s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 189459,
+      "cpu_ns": 189000
+    },
+    {
+      "order": 194,
+      "input": "music/native(240s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 184208,
+      "cpu_ns": 185000
+    },
+    {
+      "order": 195,
+      "input": "music/native(240s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 216000,
+      "cpu_ns": 216000
+    },
+    {
+      "order": 196,
+      "input": "music/native(240s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 43291,
+      "cpu_ns": 43000
+    },
+    {
+      "order": 197,
+      "input": "music/native(240s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 40459,
+      "cpu_ns": 41000
+    },
+    {
+      "order": 198,
+      "input": "music/native(240s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 39708,
+      "cpu_ns": 40000
+    },
+    {
+      "order": 199,
+      "input": "music/native(240s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 42834,
+      "cpu_ns": 43000
+    },
+    {
+      "order": 200,
+      "input": "music/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 80500,
+      "cpu_ns": 80000
+    },
+    {
+      "order": 201,
+      "input": "music/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 643959,
+      "cpu_ns": 644000
+    },
+    {
+      "order": 202,
+      "input": "music/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 643917,
+      "cpu_ns": 644000
+    },
+    {
+      "order": 203,
+      "input": "music/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 53875,
+      "cpu_ns": 53000
+    },
+    {
+      "order": 204,
+      "input": "music/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 36292,
+      "cpu_ns": 36000
+    },
+    {
+      "order": 205,
+      "input": "music/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 39584,
+      "cpu_ns": 40000
+    },
+    {
+      "order": 206,
+      "input": "music/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 38583,
+      "cpu_ns": 38000
+    },
+    {
+      "order": 207,
+      "input": "music/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 35083,
+      "cpu_ns": 35000
+    },
+    {
+      "order": 208,
+      "input": "music/native(240s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 34333,
+      "cpu_ns": 34000
+    },
+    {
+      "order": 209,
+      "input": "music/native(240s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 36417,
+      "cpu_ns": 36000
+    },
+    {
+      "order": 210,
+      "input": "music/native(240s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 36167,
+      "cpu_ns": 37000
+    },
+    {
+      "order": 211,
+      "input": "music/native(240s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 34250,
+      "cpu_ns": 34000
+    },
+    {
+      "order": 212,
+      "input": "music/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2493458,
+      "cpu_ns": 2482000
+    },
+    {
+      "order": 213,
+      "input": "music/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 84875,
+      "cpu_ns": 85000
+    },
+    {
+      "order": 214,
+      "input": "music/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 53416,
+      "cpu_ns": 53000
+    },
+    {
+      "order": 215,
+      "input": "music/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2537084,
+      "cpu_ns": 2508000
+    },
+    {
+      "order": 216,
+      "input": "music/native(240s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 190333,
+      "cpu_ns": 191000
+    },
+    {
+      "order": 217,
+      "input": "music/native(240s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 215542,
+      "cpu_ns": 216000
+    },
+    {
+      "order": 218,
+      "input": "music/native(240s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 215250,
+      "cpu_ns": 216000
+    },
+    {
+      "order": 219,
+      "input": "music/native(240s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 183917,
+      "cpu_ns": 183000
+    },
+    {
+      "order": 220,
+      "input": "music/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 653417,
+      "cpu_ns": 653000
+    },
+    {
+      "order": 221,
+      "input": "music/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 59458,
+      "cpu_ns": 60000
+    },
+    {
+      "order": 222,
+      "input": "music/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 54000,
+      "cpu_ns": 54000
+    },
+    {
+      "order": 223,
+      "input": "music/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 643750,
+      "cpu_ns": 644000
+    },
+    {
+      "order": 224,
+      "input": "music/native(240s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 191042,
+      "cpu_ns": 191000
+    },
+    {
+      "order": 225,
+      "input": "music/native(240s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 229917,
+      "cpu_ns": 231000
+    },
+    {
+      "order": 226,
+      "input": "music/native(240s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 211875,
+      "cpu_ns": 212000
+    },
+    {
+      "order": 227,
+      "input": "music/native(240s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 183792,
+      "cpu_ns": 185000
+    },
+    {
+      "order": 228,
+      "input": "music/native(240s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 48208,
+      "cpu_ns": 48000
+    },
+    {
+      "order": 229,
+      "input": "music/native(240s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 57625,
+      "cpu_ns": 58000
+    },
+    {
+      "order": 230,
+      "input": "music/native(240s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 56500,
+      "cpu_ns": 57000
+    },
+    {
+      "order": 231,
+      "input": "music/native(240s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 47958,
+      "cpu_ns": 49000
+    },
+    {
+      "order": 232,
+      "input": "music/native(240s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 44542,
+      "cpu_ns": 44000
+    },
+    {
+      "order": 233,
+      "input": "music/native(240s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 43959,
+      "cpu_ns": 44000
+    },
+    {
+      "order": 234,
+      "input": "music/native(240s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 41042,
+      "cpu_ns": 42000
+    },
+    {
+      "order": 235,
+      "input": "music/native(240s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 44166,
+      "cpu_ns": 44000
+    },
+    {
+      "order": 236,
+      "input": "music/native(240s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 35000,
+      "cpu_ns": 35000
+    },
+    {
+      "order": 237,
+      "input": "music/native(240s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 37666,
+      "cpu_ns": 38000
+    },
+    {
+      "order": 238,
+      "input": "music/native(240s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 37458,
+      "cpu_ns": 39000
+    },
+    {
+      "order": 239,
+      "input": "music/native(240s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 34500,
+      "cpu_ns": 35000
+    },
+    {
+      "order": 240,
+      "input": "music/native(240s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 41083,
+      "cpu_ns": 41000
+    },
+    {
+      "order": 241,
+      "input": "music/native(240s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 43291,
+      "cpu_ns": 44000
+    },
+    {
+      "order": 242,
+      "input": "music/native(240s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 42708,
+      "cpu_ns": 42000
+    },
+    {
+      "order": 243,
+      "input": "music/native(240s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 40125,
+      "cpu_ns": 41000
+    },
+    {
+      "order": 244,
+      "input": "music/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 59583,
+      "cpu_ns": 60000
+    },
+    {
+      "order": 245,
+      "input": "music/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2488458,
+      "cpu_ns": 2488000
+    },
+    {
+      "order": 246,
+      "input": "music/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2580583,
+      "cpu_ns": 2550000
+    },
+    {
+      "order": 247,
+      "input": "music/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 81125,
+      "cpu_ns": 77000
+    },
+    {
+      "order": 248,
+      "input": "music/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 65917,
+      "cpu_ns": 60000
+    },
+    {
+      "order": 249,
+      "input": "music/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 75917,
+      "cpu_ns": 57000
+    },
+    {
+      "order": 250,
+      "input": "music/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 48792,
+      "cpu_ns": 50000
+    },
+    {
+      "order": 251,
+      "input": "music/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 49583,
+      "cpu_ns": 49000
+    },
+    {
+      "order": 252,
+      "input": "music/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2565458,
+      "cpu_ns": 2565000
+    },
+    {
+      "order": 253,
+      "input": "music/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 261500,
+      "cpu_ns": 261000
+    },
+    {
+      "order": 254,
+      "input": "music/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 200625,
+      "cpu_ns": 200000
+    },
+    {
+      "order": 255,
+      "input": "music/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2565083,
+      "cpu_ns": 2565000
+    },
+    {
+      "order": 256,
+      "input": "music/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 38167,
+      "cpu_ns": 38000
+    },
+    {
+      "order": 257,
+      "input": "music/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 36000,
+      "cpu_ns": 36000
+    },
+    {
+      "order": 258,
+      "input": "music/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 35167,
+      "cpu_ns": 35000
+    },
+    {
+      "order": 259,
+      "input": "music/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 38042,
+      "cpu_ns": 38000
+    },
+    {
+      "order": 260,
+      "input": "music/native(240s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 40583,
+      "cpu_ns": 41000
+    },
+    {
+      "order": 261,
+      "input": "music/native(240s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 45458,
+      "cpu_ns": 46000
+    },
+    {
+      "order": 262,
+      "input": "music/native(240s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 44334,
+      "cpu_ns": 45000
+    },
+    {
+      "order": 263,
+      "input": "music/native(240s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 39958,
+      "cpu_ns": 40000
+    },
+    {
+      "order": 264,
+      "input": "music/native(240s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 39750,
+      "cpu_ns": 39000
+    },
+    {
+      "order": 265,
+      "input": "music/native(240s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 43917,
+      "cpu_ns": 45000
+    },
+    {
+      "order": 266,
+      "input": "music/native(240s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 43917,
+      "cpu_ns": 44000
+    },
+    {
+      "order": 267,
+      "input": "music/native(240s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 39667,
+      "cpu_ns": 39000
+    },
+    {
+      "order": 268,
+      "input": "music/native(240s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 37459,
+      "cpu_ns": 37000
+    },
+    {
+      "order": 269,
+      "input": "music/native(240s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 34417,
+      "cpu_ns": 35000
+    },
+    {
+      "order": 270,
+      "input": "music/native(240s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 34334,
+      "cpu_ns": 34000
+    },
+    {
+      "order": 271,
+      "input": "music/native(240s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 36209,
+      "cpu_ns": 37000
+    },
+    {
+      "order": 272,
+      "input": "music/native(240s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 119917,
+      "cpu_ns": 120000
+    },
+    {
+      "order": 273,
+      "input": "music/native(240s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 61167,
+      "cpu_ns": 62000
+    },
+    {
+      "order": 274,
+      "input": "music/native(240s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 54750,
+      "cpu_ns": 55000
+    },
+    {
+      "order": 275,
+      "input": "music/native(240s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 119458,
+      "cpu_ns": 120000
+    },
+    {
+      "order": 276,
+      "input": "music/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 77417,
+      "cpu_ns": 78000
+    },
+    {
+      "order": 277,
+      "input": "music/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 191417,
+      "cpu_ns": 192000
+    },
+    {
+      "order": 278,
+      "input": "music/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 191333,
+      "cpu_ns": 191000
+    },
+    {
+      "order": 279,
+      "input": "music/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 54958,
+      "cpu_ns": 55000
+    },
+    {
+      "order": 280,
+      "input": "music/native(240s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 43625,
+      "cpu_ns": 44000
+    },
+    {
+      "order": 281,
+      "input": "music/native(240s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 41333,
+      "cpu_ns": 41000
+    },
+    {
+      "order": 282,
+      "input": "music/native(240s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 40166,
+      "cpu_ns": 41000
+    },
+    {
+      "order": 283,
+      "input": "music/native(240s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 43625,
+      "cpu_ns": 44000
+    },
+    {
+      "order": 284,
+      "input": "music/native(240s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 35292,
+      "cpu_ns": 35000
+    },
+    {
+      "order": 285,
+      "input": "music/native(240s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 38125,
+      "cpu_ns": 38000
+    },
+    {
+      "order": 286,
+      "input": "music/native(240s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 36458,
+      "cpu_ns": 37000
+    },
+    {
+      "order": 287,
+      "input": "music/native(240s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 34500,
+      "cpu_ns": 35000
+    },
+    {
+      "order": 288,
+      "input": "music/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 35166,
+      "cpu_ns": 35000
+    },
+    {
+      "order": 289,
+      "input": "music/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 38125,
+      "cpu_ns": 38000
+    },
+    {
+      "order": 290,
+      "input": "music/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 38041,
+      "cpu_ns": 38000
+    },
+    {
+      "order": 291,
+      "input": "music/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 34833,
+      "cpu_ns": 35000
+    },
+    {
+      "order": 292,
+      "input": "music/native(240s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 119541,
+      "cpu_ns": 120000
+    },
+    {
+      "order": 293,
+      "input": "music/native(240s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 55500,
+      "cpu_ns": 55000
+    },
+    {
+      "order": 294,
+      "input": "music/native(240s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 54916,
+      "cpu_ns": 55000
+    },
+    {
+      "order": 295,
+      "input": "music/native(240s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 119292,
+      "cpu_ns": 120000
+    },
+    {
+      "order": 296,
+      "input": "music/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 643875,
+      "cpu_ns": 644000
+    },
+    {
+      "order": 297,
+      "input": "music/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 69041,
+      "cpu_ns": 70000
+    },
+    {
+      "order": 298,
+      "input": "music/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 53625,
+      "cpu_ns": 54000
+    },
+    {
+      "order": 299,
+      "input": "music/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 681875,
+      "cpu_ns": 671000
+    },
+    {
+      "order": 300,
+      "input": "music/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2480750,
+      "cpu_ns": 2481000
+    },
+    {
+      "order": 301,
+      "input": "music/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 64000,
+      "cpu_ns": 65000
+    },
+    {
+      "order": 302,
+      "input": "music/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 53583,
+      "cpu_ns": 54000
+    },
+    {
+      "order": 303,
+      "input": "music/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2474042,
+      "cpu_ns": 2475000
+    },
+    {
+      "order": 304,
+      "input": "music/native(240s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 36583,
+      "cpu_ns": 37000
+    },
+    {
+      "order": 305,
+      "input": "music/native(240s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 35125,
+      "cpu_ns": 35000
+    },
+    {
+      "order": 306,
+      "input": "music/native(240s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 34584,
+      "cpu_ns": 35000
+    },
+    {
+      "order": 307,
+      "input": "music/native(240s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 36167,
+      "cpu_ns": 37000
+    },
+    {
+      "order": 308,
+      "input": "music/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 47375,
+      "cpu_ns": 47000
+    },
+    {
+      "order": 309,
+      "input": "music/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 43708,
+      "cpu_ns": 44000
+    },
+    {
+      "order": 310,
+      "input": "music/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 43084,
+      "cpu_ns": 43000
+    },
+    {
+      "order": 311,
+      "input": "music/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 46958,
+      "cpu_ns": 48000
+    },
+    {
+      "order": 312,
+      "input": "music/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 42292,
+      "cpu_ns": 43000
+    },
+    {
+      "order": 313,
+      "input": "music/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 46625,
+      "cpu_ns": 46000
+    },
+    {
+      "order": 314,
+      "input": "music/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 46500,
+      "cpu_ns": 46000
+    },
+    {
+      "order": 315,
+      "input": "music/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 42167,
+      "cpu_ns": 42000
+    },
+    {
+      "order": 316,
+      "input": "music/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 191417,
+      "cpu_ns": 191000
+    },
+    {
+      "order": 317,
+      "input": "music/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 59958,
+      "cpu_ns": 61000
+    },
+    {
+      "order": 318,
+      "input": "music/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 55625,
+      "cpu_ns": 56000
+    },
+    {
+      "order": 319,
+      "input": "music/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 191375,
+      "cpu_ns": 192000
+    },
+    {
+      "order": 320,
+      "input": "music/native(240s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 56458,
+      "cpu_ns": 57000
+    },
+    {
+      "order": 321,
+      "input": "music/native(240s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 50209,
+      "cpu_ns": 50000
+    },
+    {
+      "order": 322,
+      "input": "music/native(240s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 46958,
+      "cpu_ns": 48000
+    },
+    {
+      "order": 323,
+      "input": "music/native(240s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 56000,
+      "cpu_ns": 56000
+    },
+    {
+      "order": 324,
+      "input": "music/native(240s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 185875,
+      "cpu_ns": 186000
+    },
+    {
+      "order": 325,
+      "input": "music/native(240s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 213625,
+      "cpu_ns": 214000
+    },
+    {
+      "order": 326,
+      "input": "music/native(240s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 213458,
+      "cpu_ns": 215000
+    },
+    {
+      "order": 327,
+      "input": "music/native(240s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 184833,
+      "cpu_ns": 185000
+    },
+    {
+      "order": 328,
+      "input": "music/native(240s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 40125,
+      "cpu_ns": 41000
+    },
+    {
+      "order": 329,
+      "input": "music/native(240s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 44250,
+      "cpu_ns": 44000
+    },
+    {
+      "order": 330,
+      "input": "music/native(240s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 43500,
+      "cpu_ns": 44000
+    },
+    {
+      "order": 331,
+      "input": "music/native(240s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 40083,
+      "cpu_ns": 40000
+    },
+    {
+      "order": 332,
+      "input": "music/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 57791,
+      "cpu_ns": 58000
+    },
+    {
+      "order": 333,
+      "input": "music/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2507792,
+      "cpu_ns": 2493000
+    },
+    {
+      "order": 334,
+      "input": "music/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2474458,
+      "cpu_ns": 2475000
+    },
+    {
+      "order": 335,
+      "input": "music/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 60459,
+      "cpu_ns": 60000
+    },
+    {
+      "order": 336,
+      "input": "music/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 46500,
+      "cpu_ns": 47000
+    },
+    {
+      "order": 337,
+      "input": "music/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 43084,
+      "cpu_ns": 43000
+    },
+    {
+      "order": 338,
+      "input": "music/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 42625,
+      "cpu_ns": 43000
+    },
+    {
+      "order": 339,
+      "input": "music/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 46584,
+      "cpu_ns": 48000
+    },
+    {
+      "order": 340,
+      "input": "music/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 38500,
+      "cpu_ns": 38000
+    },
+    {
+      "order": 341,
+      "input": "music/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 35583,
+      "cpu_ns": 35000
+    },
+    {
+      "order": 342,
+      "input": "music/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 35167,
+      "cpu_ns": 36000
+    },
+    {
+      "order": 343,
+      "input": "music/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 38166,
+      "cpu_ns": 38000
+    },
+    {
+      "order": 344,
+      "input": "music/native(240s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 43375,
+      "cpu_ns": 44000
+    },
+    {
+      "order": 345,
+      "input": "music/native(240s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 43292,
+      "cpu_ns": 44000
+    },
+    {
+      "order": 346,
+      "input": "music/native(240s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 43042,
+      "cpu_ns": 43000
+    },
+    {
+      "order": 347,
+      "input": "music/native(240s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 40000,
+      "cpu_ns": 40000
+    },
+    {
+      "order": 348,
+      "input": "music/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2566750,
+      "cpu_ns": 2567000
+    },
+    {
+      "order": 349,
+      "input": "music/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 231000,
+      "cpu_ns": 232000
+    },
+    {
+      "order": 350,
+      "input": "music/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 200458,
+      "cpu_ns": 201000
+    },
+    {
+      "order": 351,
+      "input": "music/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2564458,
+      "cpu_ns": 2565000
+    },
+    {
+      "order": 352,
+      "input": "music/native(240s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 34500,
+      "cpu_ns": 35000
+    },
+    {
+      "order": 353,
+      "input": "music/native(240s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 36583,
+      "cpu_ns": 37000
+    },
+    {
+      "order": 354,
+      "input": "music/native(240s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 36291,
+      "cpu_ns": 37000
+    },
+    {
+      "order": 355,
+      "input": "music/native(240s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 34541,
+      "cpu_ns": 35000
+    },
+    {
+      "order": 356,
+      "input": "music/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 38250,
+      "cpu_ns": 38000
+    },
+    {
+      "order": 357,
+      "input": "music/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 35584,
+      "cpu_ns": 36000
+    },
+    {
+      "order": 358,
+      "input": "music/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 35334,
+      "cpu_ns": 36000
+    },
+    {
+      "order": 359,
+      "input": "music/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 38083,
+      "cpu_ns": 38000
+    },
+    {
+      "order": 360,
+      "input": "music/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 192000,
+      "cpu_ns": 192000
+    },
+    {
+      "order": 361,
+      "input": "music/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 59292,
+      "cpu_ns": 59000
+    },
+    {
+      "order": 362,
+      "input": "music/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 54792,
+      "cpu_ns": 55000
+    },
+    {
+      "order": 363,
+      "input": "music/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 191417,
+      "cpu_ns": 191000
+    },
+    {
+      "order": 364,
+      "input": "music/native(240s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 44417,
+      "cpu_ns": 44000
+    },
+    {
+      "order": 365,
+      "input": "music/native(240s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 42500,
+      "cpu_ns": 42000
+    },
+    {
+      "order": 366,
+      "input": "music/native(240s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 42166,
+      "cpu_ns": 42000
+    },
+    {
+      "order": 367,
+      "input": "music/native(240s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 67000,
+      "cpu_ns": 57000
+    },
+    {
+      "order": 368,
+      "input": "music/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 43792,
+      "cpu_ns": 45000
+    },
+    {
+      "order": 369,
+      "input": "music/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 38083,
+      "cpu_ns": 38000
+    },
+    {
+      "order": 370,
+      "input": "music/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 36208,
+      "cpu_ns": 37000
+    },
+    {
+      "order": 371,
+      "input": "music/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 38042,
+      "cpu_ns": 38000
+    },
+    {
+      "order": 372,
+      "input": "music/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 58500,
+      "cpu_ns": 59000
+    },
+    {
+      "order": 373,
+      "input": "music/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 191208,
+      "cpu_ns": 191000
+    },
+    {
+      "order": 374,
+      "input": "music/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 191334,
+      "cpu_ns": 191000
+    },
+    {
+      "order": 375,
+      "input": "music/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 54916,
+      "cpu_ns": 55000
+    },
+    {
+      "order": 376,
+      "input": "music/native(240s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 44500,
+      "cpu_ns": 45000
+    },
+    {
+      "order": 377,
+      "input": "music/native(240s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 42917,
+      "cpu_ns": 44000
+    },
+    {
+      "order": 378,
+      "input": "music/native(240s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 41333,
+      "cpu_ns": 41000
+    },
+    {
+      "order": 379,
+      "input": "music/native(240s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 44584,
+      "cpu_ns": 45000
+    },
+    {
+      "order": 380,
+      "input": "music/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 42541,
+      "cpu_ns": 43000
+    },
+    {
+      "order": 381,
+      "input": "music/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 46792,
+      "cpu_ns": 47000
+    },
+    {
+      "order": 382,
+      "input": "music/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 46625,
+      "cpu_ns": 47000
+    },
+    {
+      "order": 383,
+      "input": "music/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 42291,
+      "cpu_ns": 42000
+    },
+    {
+      "order": 384,
+      "input": "music/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 63375,
+      "cpu_ns": 64000
+    },
+    {
+      "order": 385,
+      "input": "music/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 643875,
+      "cpu_ns": 644000
+    },
+    {
+      "order": 386,
+      "input": "music/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 643792,
+      "cpu_ns": 645000
+    },
+    {
+      "order": 387,
+      "input": "music/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 54584,
+      "cpu_ns": 55000
+    },
+    {
+      "order": 388,
+      "input": "music/native(240s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 40625,
+      "cpu_ns": 41000
+    },
+    {
+      "order": 389,
+      "input": "music/native(240s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 43583,
+      "cpu_ns": 44000
+    },
+    {
+      "order": 390,
+      "input": "music/native(240s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 42958,
+      "cpu_ns": 44000
+    },
+    {
+      "order": 391,
+      "input": "music/native(240s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 40084,
+      "cpu_ns": 40000
+    },
+    {
+      "order": 392,
+      "input": "music/native(240s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 56542,
+      "cpu_ns": 57000
+    },
+    {
+      "order": 393,
+      "input": "music/native(240s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 48833,
+      "cpu_ns": 49000
+    },
+    {
+      "order": 394,
+      "input": "music/native(240s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 50250,
+      "cpu_ns": 51000
+    },
+    {
+      "order": 395,
+      "input": "music/native(240s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 59500,
+      "cpu_ns": 59000
+    },
+    {
+      "order": 396,
+      "input": "music/native(240s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 119958,
+      "cpu_ns": 120000
+    },
+    {
+      "order": 397,
+      "input": "music/native(240s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 57917,
+      "cpu_ns": 59000
+    },
+    {
+      "order": 398,
+      "input": "music/native(240s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 54500,
+      "cpu_ns": 55000
+    },
+    {
+      "order": 399,
+      "input": "music/native(240s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 119458,
+      "cpu_ns": 120000
+    },
+    {
+      "order": 400,
+      "input": "music/native(240s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 48834,
+      "cpu_ns": 49000
+    },
+    {
+      "order": 401,
+      "input": "music/native(240s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 55625,
+      "cpu_ns": 57000
+    },
+    {
+      "order": 402,
+      "input": "music/native(240s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 59709,
+      "cpu_ns": 60000
+    },
+    {
+      "order": 403,
+      "input": "music/native(240s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 50750,
+      "cpu_ns": 51000
+    },
+    {
+      "order": 404,
+      "input": "music/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 37042,
+      "cpu_ns": 37000
+    },
+    {
+      "order": 405,
+      "input": "music/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 39875,
+      "cpu_ns": 40000
+    },
+    {
+      "order": 406,
+      "input": "music/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 38292,
+      "cpu_ns": 38000
+    },
+    {
+      "order": 407,
+      "input": "music/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 35459,
+      "cpu_ns": 35000
+    },
+    {
+      "order": 408,
+      "input": "music/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 191459,
+      "cpu_ns": 192000
+    },
+    {
+      "order": 409,
+      "input": "music/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 57125,
+      "cpu_ns": 58000
+    },
+    {
+      "order": 410,
+      "input": "music/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 54625,
+      "cpu_ns": 54000
+    },
+    {
+      "order": 411,
+      "input": "music/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 191500,
+      "cpu_ns": 191000
+    },
+    {
+      "order": 412,
+      "input": "music/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 214375,
+      "cpu_ns": 214000
+    },
+    {
+      "order": 413,
+      "input": "music/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2565417,
+      "cpu_ns": 2567000
+    },
+    {
+      "order": 414,
+      "input": "music/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2564167,
+      "cpu_ns": 2564000
+    },
+    {
+      "order": 415,
+      "input": "music/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 205084,
+      "cpu_ns": 206000
+    },
+    {
+      "order": 416,
+      "input": "music/native(240s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 44125,
+      "cpu_ns": 45000
+    },
+    {
+      "order": 417,
+      "input": "music/native(240s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 41042,
+      "cpu_ns": 41000
+    },
+    {
+      "order": 418,
+      "input": "music/native(240s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 40333,
+      "cpu_ns": 40000
+    },
+    {
+      "order": 419,
+      "input": "music/native(240s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 44000,
+      "cpu_ns": 44000
+    },
+    {
+      "order": 420,
+      "input": "music/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 57708,
+      "cpu_ns": 57000
+    },
+    {
+      "order": 421,
+      "input": "music/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2497916,
+      "cpu_ns": 2491000
+    },
+    {
+      "order": 422,
+      "input": "music/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2505959,
+      "cpu_ns": 2506000
+    },
+    {
+      "order": 423,
+      "input": "music/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 63208,
+      "cpu_ns": 64000
+    },
+    {
+      "order": 424,
+      "input": "music/native(240s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 225666,
+      "cpu_ns": 226000
+    },
+    {
+      "order": 425,
+      "input": "music/native(240s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 199416,
+      "cpu_ns": 201000
+    },
+    {
+      "order": 426,
+      "input": "music/native(240s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 196667,
+      "cpu_ns": 197000
+    },
+    {
+      "order": 427,
+      "input": "music/native(240s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 226709,
+      "cpu_ns": 227000
+    },
+    {
+      "order": 428,
+      "input": "music/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 68875,
+      "cpu_ns": 70000
+    },
+    {
+      "order": 429,
+      "input": "music/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 682917,
+      "cpu_ns": 683000
+    },
+    {
+      "order": 430,
+      "input": "music/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 685709,
+      "cpu_ns": 686000
+    },
+    {
+      "order": 431,
+      "input": "music/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 56792,
+      "cpu_ns": 57000
+    },
+    {
+      "order": 432,
+      "input": "music/native(240s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 43041,
+      "cpu_ns": 43000
+    },
+    {
+      "order": 433,
+      "input": "music/native(240s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 47167,
+      "cpu_ns": 47000
+    },
+    {
+      "order": 434,
+      "input": "music/native(240s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 46750,
+      "cpu_ns": 48000
+    },
+    {
+      "order": 435,
+      "input": "music/native(240s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 42792,
+      "cpu_ns": 43000
+    },
+    {
+      "order": 436,
+      "input": "music/native(240s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 59083,
+      "cpu_ns": 59000
+    },
+    {
+      "order": 437,
+      "input": "music/native(240s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 126459,
+      "cpu_ns": 127000
+    },
+    {
+      "order": 438,
+      "input": "music/native(240s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 126000,
+      "cpu_ns": 127000
+    },
+    {
+      "order": 439,
+      "input": "music/native(240s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 57333,
+      "cpu_ns": 57000
+    },
+    {
+      "order": 440,
+      "input": "music/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 45500,
+      "cpu_ns": 46000
+    },
+    {
+      "order": 441,
+      "input": "music/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 49084,
+      "cpu_ns": 49000
+    },
+    {
+      "order": 442,
+      "input": "music/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 51916,
+      "cpu_ns": 53000
+    },
+    {
+      "order": 443,
+      "input": "music/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 45000,
+      "cpu_ns": 44000
+    },
+    {
+      "order": 444,
+      "input": "music/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 232459,
+      "cpu_ns": 233000
+    },
+    {
+      "order": 445,
+      "input": "music/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2785667,
+      "cpu_ns": 2744000
+    },
+    {
+      "order": 446,
+      "input": "music/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2707708,
+      "cpu_ns": 2707000
+    },
+    {
+      "order": 447,
+      "input": "music/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 248959,
+      "cpu_ns": 250000
+    },
+    {
+      "order": 448,
+      "input": "music/native(240s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 66041,
+      "cpu_ns": 66000
+    },
+    {
+      "order": 449,
+      "input": "music/native(240s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 126208,
+      "cpu_ns": 127000
+    },
+    {
+      "order": 450,
+      "input": "music/native(240s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 125833,
+      "cpu_ns": 126000
+    },
+    {
+      "order": 451,
+      "input": "music/native(240s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 57583,
+      "cpu_ns": 58000
+    },
+    {
+      "order": 452,
+      "input": "music/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 46292,
+      "cpu_ns": 47000
+    },
+    {
+      "order": 453,
+      "input": "music/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 49250,
+      "cpu_ns": 49000
+    },
+    {
+      "order": 454,
+      "input": "music/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 48708,
+      "cpu_ns": 49000
+    },
+    {
+      "order": 455,
+      "input": "music/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 45083,
+      "cpu_ns": 45000
+    },
+    {
+      "order": 456,
+      "input": "music/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 48625,
+      "cpu_ns": 50000
+    },
+    {
+      "order": 457,
+      "input": "music/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 44667,
+      "cpu_ns": 45000
+    },
+    {
+      "order": 458,
+      "input": "music/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 44833,
+      "cpu_ns": 45000
+    },
+    {
+      "order": 459,
+      "input": "music/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 48584,
+      "cpu_ns": 49000
+    },
+    {
+      "order": 460,
+      "input": "music/native(240s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 40417,
+      "cpu_ns": 41000
+    },
+    {
+      "order": 461,
+      "input": "music/native(240s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 36375,
+      "cpu_ns": 37000
+    },
+    {
+      "order": 462,
+      "input": "music/native(240s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 36250,
+      "cpu_ns": 36000
+    },
+    {
+      "order": 463,
+      "input": "music/native(240s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 40042,
+      "cpu_ns": 41000
+    },
+    {
+      "order": 464,
+      "input": "music/native(240s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 43208,
+      "cpu_ns": 43000
+    },
+    {
+      "order": 465,
+      "input": "music/native(240s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 45959,
+      "cpu_ns": 46000
+    },
+    {
+      "order": 466,
+      "input": "music/native(240s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 44917,
+      "cpu_ns": 45000
+    },
+    {
+      "order": 467,
+      "input": "music/native(240s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 41958,
+      "cpu_ns": 42000
+    },
+    {
+      "order": 468,
+      "input": "music/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 202292,
+      "cpu_ns": 203000
+    },
+    {
+      "order": 469,
+      "input": "music/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 76792,
+      "cpu_ns": 77000
+    },
+    {
+      "order": 470,
+      "input": "music/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 57666,
+      "cpu_ns": 58000
+    },
+    {
+      "order": 471,
+      "input": "music/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 201750,
+      "cpu_ns": 202000
+    },
+    {
+      "order": 472,
+      "input": "music/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 75917,
+      "cpu_ns": 76000
+    },
+    {
+      "order": 473,
+      "input": "music/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2611083,
+      "cpu_ns": 2612000
+    },
+    {
+      "order": 474,
+      "input": "music/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2637000,
+      "cpu_ns": 2624000
+    },
+    {
+      "order": 475,
+      "input": "music/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 61167,
+      "cpu_ns": 61000
+    },
+    {
+      "order": 476,
+      "input": "music/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 37792,
+      "cpu_ns": 39000
+    },
+    {
+      "order": 477,
+      "input": "music/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 40875,
+      "cpu_ns": 41000
+    },
+    {
+      "order": 478,
+      "input": "music/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 40375,
+      "cpu_ns": 40000
+    },
+    {
+      "order": 479,
+      "input": "music/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 37375,
+      "cpu_ns": 37000
+    },
+    {
+      "order": 480,
+      "input": "music/native(240s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 39791,
+      "cpu_ns": 40000
+    },
+    {
+      "order": 481,
+      "input": "music/native(240s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 36416,
+      "cpu_ns": 36000
+    },
+    {
+      "order": 482,
+      "input": "music/native(240s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 36333,
+      "cpu_ns": 37000
+    },
+    {
+      "order": 483,
+      "input": "music/native(240s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 40041,
+      "cpu_ns": 40000
+    },
+    {
+      "order": 484,
+      "input": "music/native(240s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 59791,
+      "cpu_ns": 60000
+    },
+    {
+      "order": 485,
+      "input": "music/native(240s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 126209,
+      "cpu_ns": 127000
+    },
+    {
+      "order": 486,
+      "input": "music/native(240s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 125875,
+      "cpu_ns": 126000
+    },
+    {
+      "order": 487,
+      "input": "music/native(240s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 57084,
+      "cpu_ns": 58000
+    },
+    {
+      "order": 488,
+      "input": "music/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 679625,
+      "cpu_ns": 680000
+    },
+    {
+      "order": 489,
+      "input": "music/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 102750,
+      "cpu_ns": 103000
+    },
+    {
+      "order": 490,
+      "input": "music/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 55916,
+      "cpu_ns": 56000
+    },
+    {
+      "order": 491,
+      "input": "music/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 681042,
+      "cpu_ns": 681000
+    },
+    {
+      "order": 492,
+      "input": "music/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 56834,
+      "cpu_ns": 57000
+    },
+    {
+      "order": 493,
+      "input": "music/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 698291,
+      "cpu_ns": 690000
+    },
+    {
+      "order": 494,
+      "input": "music/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 702292,
+      "cpu_ns": 692000
+    },
+    {
+      "order": 495,
+      "input": "music/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 106792,
+      "cpu_ns": 108000
+    },
+    {
+      "order": 496,
+      "input": "music/native(240s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 48791,
+      "cpu_ns": 49000
+    },
+    {
+      "order": 497,
+      "input": "music/native(240s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 48833,
+      "cpu_ns": 49000
+    },
+    {
+      "order": 498,
+      "input": "music/native(240s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 47916,
+      "cpu_ns": 48000
+    },
+    {
+      "order": 499,
+      "input": "music/native(240s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 46542,
+      "cpu_ns": 47000
+    },
+    {
+      "order": 500,
+      "input": "music/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 41875,
+      "cpu_ns": 43000
+    },
+    {
+      "order": 501,
+      "input": "music/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 45125,
+      "cpu_ns": 46000
+    },
+    {
+      "order": 502,
+      "input": "music/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 44833,
+      "cpu_ns": 46000
+    },
+    {
+      "order": 503,
+      "input": "music/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 40500,
+      "cpu_ns": 41000
+    },
+    {
+      "order": 504,
+      "input": "music/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 52791,
+      "cpu_ns": 54000
+    },
+    {
+      "order": 505,
+      "input": "music/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 52500,
+      "cpu_ns": 53000
+    },
+    {
+      "order": 506,
+      "input": "music/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 56166,
+      "cpu_ns": 53000
+    },
+    {
+      "order": 507,
+      "input": "music/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 44875,
+      "cpu_ns": 45000
+    },
+    {
+      "order": 508,
+      "input": "music/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 44834,
+      "cpu_ns": 45000
+    },
+    {
+      "order": 509,
+      "input": "music/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 60084,
+      "cpu_ns": 55000
+    },
+    {
+      "order": 510,
+      "input": "music/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 54875,
+      "cpu_ns": 52000
+    },
+    {
+      "order": 511,
+      "input": "music/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 44416,
+      "cpu_ns": 44000
+    },
+    {
+      "order": 512,
+      "input": "music/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 42208,
+      "cpu_ns": 42000
+    },
+    {
+      "order": 513,
+      "input": "music/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 37834,
+      "cpu_ns": 38000
+    },
+    {
+      "order": 514,
+      "input": "music/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 37208,
+      "cpu_ns": 37000
+    },
+    {
+      "order": 515,
+      "input": "music/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 40292,
+      "cpu_ns": 40000
+    },
+    {
+      "order": 516,
+      "input": "music/native(240s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 127459,
+      "cpu_ns": 128000
+    },
+    {
+      "order": 517,
+      "input": "music/native(240s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 70834,
+      "cpu_ns": 71000
+    },
+    {
+      "order": 518,
+      "input": "music/native(240s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 57834,
+      "cpu_ns": 58000
+    },
+    {
+      "order": 519,
+      "input": "music/native(240s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 126750,
+      "cpu_ns": 127000
+    },
+    {
+      "order": 520,
+      "input": "music/native(240s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 126209,
+      "cpu_ns": 126000
+    },
+    {
+      "order": 521,
+      "input": "music/native(240s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 58000,
+      "cpu_ns": 58000
+    },
+    {
+      "order": 522,
+      "input": "music/native(240s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 57750,
+      "cpu_ns": 58000
+    },
+    {
+      "order": 523,
+      "input": "music/native(240s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 126375,
+      "cpu_ns": 127000
+    },
+    {
+      "order": 524,
+      "input": "music/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 345792,
+      "cpu_ns": 346000
+    },
+    {
+      "order": 525,
+      "input": "music/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2707208,
+      "cpu_ns": 2708000
+    },
+    {
+      "order": 526,
+      "input": "music/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2875000,
+      "cpu_ns": 2782000
+    },
+    {
+      "order": 527,
+      "input": "music/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 478667,
+      "cpu_ns": 453000
+    },
+    {
+      "order": 528,
+      "input": "music/native(240s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 61416,
+      "cpu_ns": 62000
+    },
+    {
+      "order": 529,
+      "input": "music/native(240s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 66666,
+      "cpu_ns": 59000
+    },
+    {
+      "order": 530,
+      "input": "music/native(240s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 66166,
+      "cpu_ns": 61000
+    },
+    {
+      "order": 531,
+      "input": "music/native(240s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 58916,
+      "cpu_ns": 59000
+    },
+    {
+      "order": 532,
+      "input": "music/native(240s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 47834,
+      "cpu_ns": 47000
+    },
+    {
+      "order": 533,
+      "input": "music/native(240s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 47042,
+      "cpu_ns": 48000
+    },
+    {
+      "order": 534,
+      "input": "music/native(240s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 46416,
+      "cpu_ns": 46000
+    },
+    {
+      "order": 535,
+      "input": "music/native(240s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 42541,
+      "cpu_ns": 43000
+    },
+    {
+      "order": 536,
+      "input": "music/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 132541,
+      "cpu_ns": 133000
+    },
+    {
+      "order": 537,
+      "input": "music/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 679500,
+      "cpu_ns": 680000
+    },
+    {
+      "order": 538,
+      "input": "music/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 685750,
+      "cpu_ns": 686000
+    },
+    {
+      "order": 539,
+      "input": "music/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 59458,
+      "cpu_ns": 59000
+    },
+    {
+      "order": 540,
+      "input": "music/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 55791,
+      "cpu_ns": 56000
+    },
+    {
+      "order": 541,
+      "input": "music/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 686125,
+      "cpu_ns": 687000
+    },
+    {
+      "order": 542,
+      "input": "music/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 686125,
+      "cpu_ns": 687000
+    },
+    {
+      "order": 543,
+      "input": "music/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 56333,
+      "cpu_ns": 56000
+    },
+    {
+      "order": 544,
+      "input": "music/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2627167,
+      "cpu_ns": 2627000
+    },
+    {
+      "order": 545,
+      "input": "music/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 120750,
+      "cpu_ns": 121000
+    },
+    {
+      "order": 546,
+      "input": "music/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 56667,
+      "cpu_ns": 57000
+    },
+    {
+      "order": 547,
+      "input": "music/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2645583,
+      "cpu_ns": 2630000
+    },
+    {
+      "order": 548,
+      "input": "music/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 292458,
+      "cpu_ns": 293000
+    },
+    {
+      "order": 549,
+      "input": "music/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2707000,
+      "cpu_ns": 2707000
+    },
+    {
+      "order": 550,
+      "input": "music/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2715375,
+      "cpu_ns": 2716000
+    },
+    {
+      "order": 551,
+      "input": "music/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 220333,
+      "cpu_ns": 220000
+    },
+    {
+      "order": 552,
+      "input": "music/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 682125,
+      "cpu_ns": 683000
+    },
+    {
+      "order": 553,
+      "input": "music/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 84208,
+      "cpu_ns": 85000
+    },
+    {
+      "order": 554,
+      "input": "music/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 56292,
+      "cpu_ns": 57000
+    },
+    {
+      "order": 555,
+      "input": "music/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 682125,
+      "cpu_ns": 682000
+    },
+    {
+      "order": 556,
+      "input": "music/native(240s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 59209,
+      "cpu_ns": 59000
+    },
+    {
+      "order": 557,
+      "input": "music/native(240s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 52250,
+      "cpu_ns": 53000
+    },
+    {
+      "order": 558,
+      "input": "music/native(240s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 50792,
+      "cpu_ns": 51000
+    },
+    {
+      "order": 559,
+      "input": "music/native(240s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 61333,
+      "cpu_ns": 61000
+    },
+    {
+      "order": 560,
+      "input": "music/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2634042,
+      "cpu_ns": 2623000
+    },
+    {
+      "order": 561,
+      "input": "music/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 68084,
+      "cpu_ns": 68000
+    },
+    {
+      "order": 562,
+      "input": "music/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 55875,
+      "cpu_ns": 56000
+    },
+    {
+      "order": 563,
+      "input": "music/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2611000,
+      "cpu_ns": 2611000
+    },
+    {
+      "order": 564,
+      "input": "music/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 55417,
+      "cpu_ns": 55000
+    },
+    {
+      "order": 565,
+      "input": "music/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2611208,
+      "cpu_ns": 2612000
+    },
+    {
+      "order": 566,
+      "input": "music/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2626542,
+      "cpu_ns": 2621000
+    },
+    {
+      "order": 567,
+      "input": "music/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 69250,
+      "cpu_ns": 70000
+    },
+    {
+      "order": 568,
+      "input": "music/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 64709,
+      "cpu_ns": 65000
+    },
+    {
+      "order": 569,
+      "input": "music/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 679625,
+      "cpu_ns": 680000
+    },
+    {
+      "order": 570,
+      "input": "music/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 679459,
+      "cpu_ns": 680000
+    },
+    {
+      "order": 571,
+      "input": "music/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 57500,
+      "cpu_ns": 58000
+    },
+    {
+      "order": 572,
+      "input": "music/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 202416,
+      "cpu_ns": 202000
+    },
+    {
+      "order": 573,
+      "input": "music/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 93709,
+      "cpu_ns": 94000
+    },
+    {
+      "order": 574,
+      "input": "music/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 57875,
+      "cpu_ns": 58000
+    },
+    {
+      "order": 575,
+      "input": "music/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 202125,
+      "cpu_ns": 202000
+    },
+    {
+      "order": 576,
+      "input": "music/native(240s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 58667,
+      "cpu_ns": 59000
+    },
+    {
+      "order": 577,
+      "input": "music/native(240s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 52375,
+      "cpu_ns": 52000
+    },
+    {
+      "order": 578,
+      "input": "music/native(240s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 51333,
+      "cpu_ns": 52000
+    },
+    {
+      "order": 579,
+      "input": "music/native(240s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 58708,
+      "cpu_ns": 60000
+    },
+    {
+      "order": 580,
+      "input": "music/native(240s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 37250,
+      "cpu_ns": 37000
+    },
+    {
+      "order": 581,
+      "input": "music/native(240s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 39959,
+      "cpu_ns": 40000
+    },
+    {
+      "order": 582,
+      "input": "music/native(240s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 39667,
+      "cpu_ns": 39000
+    },
+    {
+      "order": 583,
+      "input": "music/native(240s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 36500,
+      "cpu_ns": 36000
+    },
+    {
+      "order": 584,
+      "input": "music/native(240s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 46709,
+      "cpu_ns": 47000
+    },
+    {
+      "order": 585,
+      "input": "music/native(240s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 46958,
+      "cpu_ns": 48000
+    },
+    {
+      "order": 586,
+      "input": "music/native(240s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 46500,
+      "cpu_ns": 47000
+    },
+    {
+      "order": 587,
+      "input": "music/native(240s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 42042,
+      "cpu_ns": 42000
+    },
+    {
+      "order": 588,
+      "input": "music/native(240s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 46500,
+      "cpu_ns": 47000
+    },
+    {
+      "order": 589,
+      "input": "music/native(240s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 43291,
+      "cpu_ns": 43000
+    },
+    {
+      "order": 590,
+      "input": "music/native(240s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 42666,
+      "cpu_ns": 43000
+    },
+    {
+      "order": 591,
+      "input": "music/native(240s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 45875,
+      "cpu_ns": 46000
+    },
+    {
+      "order": 592,
+      "input": "music/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 238833,
+      "cpu_ns": 239000
+    },
+    {
+      "order": 593,
+      "input": "music/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2718375,
+      "cpu_ns": 2718000
+    },
+    {
+      "order": 594,
+      "input": "music/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2734459,
+      "cpu_ns": 2735000
+    },
+    {
+      "order": 595,
+      "input": "music/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 222125,
+      "cpu_ns": 223000
+    },
+    {
+      "order": 596,
+      "input": "music/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 37750,
+      "cpu_ns": 38000
+    },
+    {
+      "order": 597,
+      "input": "music/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 40666,
+      "cpu_ns": 41000
+    },
+    {
+      "order": 598,
+      "input": "music/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 40375,
+      "cpu_ns": 41000
+    },
+    {
+      "order": 599,
+      "input": "music/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 37167,
+      "cpu_ns": 38000
+    },
+    {
+      "order": 600,
+      "input": "music/native(240s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 45541,
+      "cpu_ns": 45000
+    },
+    {
+      "order": 601,
+      "input": "music/native(240s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 43291,
+      "cpu_ns": 43000
+    },
+    {
+      "order": 602,
+      "input": "music/native(240s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 45375,
+      "cpu_ns": 45000
+    },
+    {
+      "order": 603,
+      "input": "music/native(240s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 45667,
+      "cpu_ns": 45000
+    },
+    {
+      "order": 604,
+      "input": "music/native(240s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 45709,
+      "cpu_ns": 47000
+    },
+    {
+      "order": 605,
+      "input": "music/native(240s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 42625,
+      "cpu_ns": 43000
+    },
+    {
+      "order": 606,
+      "input": "music/native(240s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 42667,
+      "cpu_ns": 43000
+    },
+    {
+      "order": 607,
+      "input": "music/native(240s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 48625,
+      "cpu_ns": 49000
+    },
+    {
+      "order": 608,
+      "input": "music/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 62167,
+      "cpu_ns": 62000
+    },
+    {
+      "order": 609,
+      "input": "music/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 703083,
+      "cpu_ns": 694000
+    },
+    {
+      "order": 610,
+      "input": "music/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 685875,
+      "cpu_ns": 685000
+    },
+    {
+      "order": 611,
+      "input": "music/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 58500,
+      "cpu_ns": 58000
+    },
+    {
+      "order": 612,
+      "input": "music/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 60500,
+      "cpu_ns": 60000
+    },
+    {
+      "order": 613,
+      "input": "music/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2620667,
+      "cpu_ns": 2621000
+    },
+    {
+      "order": 614,
+      "input": "music/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2626584,
+      "cpu_ns": 2627000
+    },
+    {
+      "order": 615,
+      "input": "music/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 60667,
+      "cpu_ns": 61000
+    },
+    {
+      "order": 616,
+      "input": "music/native(240s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 58458,
+      "cpu_ns": 58000
+    },
+    {
+      "order": 617,
+      "input": "music/native(240s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 59042,
+      "cpu_ns": 59000
+    },
+    {
+      "order": 618,
+      "input": "music/native(240s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 51417,
+      "cpu_ns": 52000
+    },
+    {
+      "order": 619,
+      "input": "music/native(240s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 61667,
+      "cpu_ns": 62000
+    },
+    {
+      "order": 620,
+      "input": "music/native(240s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 39209,
+      "cpu_ns": 39000
+    },
+    {
+      "order": 621,
+      "input": "music/native(240s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 42583,
+      "cpu_ns": 42000
+    },
+    {
+      "order": 622,
+      "input": "music/native(240s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 36375,
+      "cpu_ns": 37000
+    },
+    {
+      "order": 623,
+      "input": "music/native(240s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 38292,
+      "cpu_ns": 39000
+    },
+    {
+      "order": 624,
+      "input": "music/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 231583,
+      "cpu_ns": 232000
+    },
+    {
+      "order": 625,
+      "input": "music/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2739666,
+      "cpu_ns": 2734000
+    },
+    {
+      "order": 626,
+      "input": "music/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2707958,
+      "cpu_ns": 2707000
+    },
+    {
+      "order": 627,
+      "input": "music/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 238292,
+      "cpu_ns": 239000
+    },
+    {
+      "order": 628,
+      "input": "music/native(240s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 38333,
+      "cpu_ns": 39000
+    },
+    {
+      "order": 629,
+      "input": "music/native(240s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 36792,
+      "cpu_ns": 37000
+    },
+    {
+      "order": 630,
+      "input": "music/native(240s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 36541,
+      "cpu_ns": 36000
+    },
+    {
+      "order": 631,
+      "input": "music/native(240s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 38208,
+      "cpu_ns": 39000
+    },
+    {
+      "order": 632,
+      "input": "music/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 685167,
+      "cpu_ns": 686000
+    },
+    {
+      "order": 633,
+      "input": "music/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 79167,
+      "cpu_ns": 79000
+    },
+    {
+      "order": 634,
+      "input": "music/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 56667,
+      "cpu_ns": 57000
+    },
+    {
+      "order": 635,
+      "input": "music/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 679542,
+      "cpu_ns": 679000
+    },
+    {
+      "order": 636,
+      "input": "music/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 45333,
+      "cpu_ns": 45000
+    },
+    {
+      "order": 637,
+      "input": "music/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 49875,
+      "cpu_ns": 49000
+    },
+    {
+      "order": 638,
+      "input": "music/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 48917,
+      "cpu_ns": 50000
+    },
+    {
+      "order": 639,
+      "input": "music/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 44667,
+      "cpu_ns": 44000
+    },
+    {
+      "order": 640,
+      "input": "music/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 74209,
+      "cpu_ns": 75000
+    },
+    {
+      "order": 641,
+      "input": "music/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 201583,
+      "cpu_ns": 202000
+    },
+    {
+      "order": 642,
+      "input": "music/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 201875,
+      "cpu_ns": 201000
+    },
+    {
+      "order": 643,
+      "input": "music/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 58084,
+      "cpu_ns": 59000
+    },
+    {
+      "order": 644,
+      "input": "music/native(240s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 43166,
+      "cpu_ns": 43000
+    },
+    {
+      "order": 645,
+      "input": "music/native(240s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 46791,
+      "cpu_ns": 47000
+    },
+    {
+      "order": 646,
+      "input": "music/native(240s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 46250,
+      "cpu_ns": 47000
+    },
+    {
+      "order": 647,
+      "input": "music/native(240s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 43416,
+      "cpu_ns": 43000
+    },
+    {
+      "order": 648,
+      "input": "music/native(240s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 42333,
+      "cpu_ns": 43000
+    },
+    {
+      "order": 649,
+      "input": "music/native(240s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 46417,
+      "cpu_ns": 46000
+    },
+    {
+      "order": 650,
+      "input": "music/native(240s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 46417,
+      "cpu_ns": 47000
+    },
+    {
+      "order": 651,
+      "input": "music/native(240s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 42208,
+      "cpu_ns": 42000
+    },
+    {
+      "order": 652,
+      "input": "music/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 37875,
+      "cpu_ns": 38000
+    },
+    {
+      "order": 653,
+      "input": "music/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 41917,
+      "cpu_ns": 43000
+    },
+    {
+      "order": 654,
+      "input": "music/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 40167,
+      "cpu_ns": 40000
+    },
+    {
+      "order": 655,
+      "input": "music/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 37084,
+      "cpu_ns": 37000
+    },
+    {
+      "order": 656,
+      "input": "music/native(240s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 35958,
+      "cpu_ns": 36000
+    },
+    {
+      "order": 657,
+      "input": "music/native(240s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 38333,
+      "cpu_ns": 39000
+    },
+    {
+      "order": 658,
+      "input": "music/native(240s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 38084,
+      "cpu_ns": 38000
+    },
+    {
+      "order": 659,
+      "input": "music/native(240s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 35917,
+      "cpu_ns": 36000
+    },
+    {
+      "order": 660,
+      "input": "music/native(240s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 47000,
+      "cpu_ns": 48000
+    },
+    {
+      "order": 661,
+      "input": "music/native(240s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 48167,
+      "cpu_ns": 47000
+    },
+    {
+      "order": 662,
+      "input": "music/native(240s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 42541,
+      "cpu_ns": 42000
+    },
+    {
+      "order": 663,
+      "input": "music/native(240s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 46584,
+      "cpu_ns": 47000
+    },
+    {
+      "order": 664,
+      "input": "music/native(240s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 200250,
+      "cpu_ns": 200000
+    },
+    {
+      "order": 665,
+      "input": "music/native(240s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 226208,
+      "cpu_ns": 227000
+    },
+    {
+      "order": 666,
+      "input": "music/native(240s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 225375,
+      "cpu_ns": 225000
+    },
+    {
+      "order": 667,
+      "input": "music/native(240s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 196375,
+      "cpu_ns": 197000
+    },
+    {
+      "order": 668,
+      "input": "music/native(240s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 59250,
+      "cpu_ns": 59000
+    },
+    {
+      "order": 669,
+      "input": "music/native(240s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 127000,
+      "cpu_ns": 127000
+    },
+    {
+      "order": 670,
+      "input": "music/native(240s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 132041,
+      "cpu_ns": 132000
+    },
+    {
+      "order": 671,
+      "input": "music/native(240s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 58042,
+      "cpu_ns": 58000
+    },
+    {
+      "order": 672,
+      "input": "music/native(240s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 59125,
+      "cpu_ns": 59000
+    },
+    {
+      "order": 673,
+      "input": "music/native(240s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 126167,
+      "cpu_ns": 126000
+    },
+    {
+      "order": 674,
+      "input": "music/native(240s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 125959,
+      "cpu_ns": 126000
+    },
+    {
+      "order": 675,
+      "input": "music/native(240s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 57458,
+      "cpu_ns": 58000
+    },
+    {
+      "order": 676,
+      "input": "music/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2768333,
+      "cpu_ns": 2736000
+    },
+    {
+      "order": 677,
+      "input": "music/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 388209,
+      "cpu_ns": 355000
+    },
+    {
+      "order": 678,
+      "input": "music/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 235708,
+      "cpu_ns": 236000
+    },
+    {
+      "order": 679,
+      "input": "music/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2706791,
+      "cpu_ns": 2707000
+    },
+    {
+      "order": 680,
+      "input": "music/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 49291,
+      "cpu_ns": 50000
+    },
+    {
+      "order": 681,
+      "input": "music/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 45958,
+      "cpu_ns": 46000
+    },
+    {
+      "order": 682,
+      "input": "music/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 44958,
+      "cpu_ns": 44000
+    },
+    {
+      "order": 683,
+      "input": "music/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 48959,
+      "cpu_ns": 50000
+    },
+    {
+      "order": 684,
+      "input": "music/native(240s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 78583,
+      "cpu_ns": 78000
+    },
+    {
+      "order": 685,
+      "input": "music/native(240s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 126500,
+      "cpu_ns": 127000
+    },
+    {
+      "order": 686,
+      "input": "music/native(240s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 125708,
+      "cpu_ns": 126000
+    },
+    {
+      "order": 687,
+      "input": "music/native(240s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 57834,
+      "cpu_ns": 59000
+    },
+    {
+      "order": 688,
+      "input": "music/native(240s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 46291,
+      "cpu_ns": 46000
+    },
+    {
+      "order": 689,
+      "input": "music/native(240s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 45000,
+      "cpu_ns": 46000
+    },
+    {
+      "order": 690,
+      "input": "music/native(240s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 43625,
+      "cpu_ns": 44000
+    },
+    {
+      "order": 691,
+      "input": "music/native(240s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 46583,
+      "cpu_ns": 48000
+    },
+    {
+      "order": 692,
+      "input": "music/native(240s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 46417,
+      "cpu_ns": 46000
+    },
+    {
+      "order": 693,
+      "input": "music/native(240s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 43458,
+      "cpu_ns": 45000
+    },
+    {
+      "order": 694,
+      "input": "music/native(240s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 42583,
+      "cpu_ns": 42000
+    },
+    {
+      "order": 695,
+      "input": "music/native(240s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 45916,
+      "cpu_ns": 46000
+    },
+    {
+      "order": 696,
+      "input": "music/native(240s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 37416,
+      "cpu_ns": 37000
+    },
+    {
+      "order": 697,
+      "input": "music/native(240s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 38625,
+      "cpu_ns": 39000
+    },
+    {
+      "order": 698,
+      "input": "music/native(240s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 38417,
+      "cpu_ns": 38000
+    },
+    {
+      "order": 699,
+      "input": "music/native(240s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 36500,
+      "cpu_ns": 36000
+    },
+    {
+      "order": 700,
+      "input": "music/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 221708,
+      "cpu_ns": 223000
+    },
+    {
+      "order": 701,
+      "input": "music/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2714417,
+      "cpu_ns": 2715000
+    },
+    {
+      "order": 702,
+      "input": "music/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2747250,
+      "cpu_ns": 2728000
+    },
+    {
+      "order": 703,
+      "input": "music/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 220792,
+      "cpu_ns": 222000
+    },
+    {
+      "order": 704,
+      "input": "music/native(240s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 226250,
+      "cpu_ns": 227000
+    },
+    {
+      "order": 705,
+      "input": "music/native(240s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 201625,
+      "cpu_ns": 202000
+    },
+    {
+      "order": 706,
+      "input": "music/native(240s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 195917,
+      "cpu_ns": 197000
+    },
+    {
+      "order": 707,
+      "input": "music/native(240s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 225125,
+      "cpu_ns": 225000
+    },
+    {
+      "order": 708,
+      "input": "music/native(240s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 38375,
+      "cpu_ns": 39000
+    },
+    {
+      "order": 709,
+      "input": "music/native(240s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 36792,
+      "cpu_ns": 37000
+    },
+    {
+      "order": 710,
+      "input": "music/native(240s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 36125,
+      "cpu_ns": 36000
+    },
+    {
+      "order": 711,
+      "input": "music/native(240s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 38291,
+      "cpu_ns": 39000
+    },
+    {
+      "order": 712,
+      "input": "music/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2706791,
+      "cpu_ns": 2706000
+    },
+    {
+      "order": 713,
+      "input": "music/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 224042,
+      "cpu_ns": 224000
+    },
+    {
+      "order": 714,
+      "input": "music/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 215167,
+      "cpu_ns": 215000
+    },
+    {
+      "order": 715,
+      "input": "music/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2707167,
+      "cpu_ns": 2707000
+    },
+    {
+      "order": 716,
+      "input": "music/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2631709,
+      "cpu_ns": 2620000
+    },
+    {
+      "order": 717,
+      "input": "music/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 103542,
+      "cpu_ns": 103000
+    },
+    {
+      "order": 718,
+      "input": "music/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 56167,
+      "cpu_ns": 56000
+    },
+    {
+      "order": 719,
+      "input": "music/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2611125,
+      "cpu_ns": 2612000
+    },
+    {
+      "order": 720,
+      "input": "music/native(240s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 224375,
+      "cpu_ns": 225000
+    },
+    {
+      "order": 721,
+      "input": "music/native(240s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 200334,
+      "cpu_ns": 201000
+    },
+    {
+      "order": 722,
+      "input": "music/native(240s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 193250,
+      "cpu_ns": 194000
+    },
+    {
+      "order": 723,
+      "input": "music/native(240s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 224625,
+      "cpu_ns": 225000
+    },
+    {
+      "order": 724,
+      "input": "music/native(240s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 38875,
+      "cpu_ns": 39000
+    },
+    {
+      "order": 725,
+      "input": "music/native(240s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 36750,
+      "cpu_ns": 37000
+    },
+    {
+      "order": 726,
+      "input": "music/native(240s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 36458,
+      "cpu_ns": 38000
+    },
+    {
+      "order": 727,
+      "input": "music/native(240s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 38958,
+      "cpu_ns": 39000
+    },
+    {
+      "order": 728,
+      "input": "music/native(240s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 43292,
+      "cpu_ns": 44000
+    },
+    {
+      "order": 729,
+      "input": "music/native(240s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 46333,
+      "cpu_ns": 47000
+    },
+    {
+      "order": 730,
+      "input": "music/native(240s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 45875,
+      "cpu_ns": 45000
+    },
+    {
+      "order": 731,
+      "input": "music/native(240s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 43000,
+      "cpu_ns": 44000
+    },
+    {
+      "order": 732,
+      "input": "music/native(240s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 59125,
+      "cpu_ns": 59000
+    },
+    {
+      "order": 733,
+      "input": "music/native(240s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 126500,
+      "cpu_ns": 127000
+    },
+    {
+      "order": 734,
+      "input": "music/native(240s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 126209,
+      "cpu_ns": 126000
+    },
+    {
+      "order": 735,
+      "input": "music/native(240s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 57250,
+      "cpu_ns": 58000
+    },
+    {
+      "order": 736,
+      "input": "music/native(240s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 198291,
+      "cpu_ns": 199000
+    },
+    {
+      "order": 737,
+      "input": "music/native(240s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 225625,
+      "cpu_ns": 226000
+    },
+    {
+      "order": 738,
+      "input": "music/native(240s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 224000,
+      "cpu_ns": 224000
+    },
+    {
+      "order": 739,
+      "input": "music/native(240s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 194417,
+      "cpu_ns": 194000
+    },
+    {
+      "order": 740,
+      "input": "music/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 45958,
+      "cpu_ns": 46000
+    },
+    {
+      "order": 741,
+      "input": "music/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 49459,
+      "cpu_ns": 50000
+    },
+    {
+      "order": 742,
+      "input": "music/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 48875,
+      "cpu_ns": 49000
+    },
+    {
+      "order": 743,
+      "input": "music/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 45000,
+      "cpu_ns": 46000
+    },
+    {
+      "order": 744,
+      "input": "music/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 49000,
+      "cpu_ns": 49000
+    },
+    {
+      "order": 745,
+      "input": "music/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 44708,
+      "cpu_ns": 45000
+    },
+    {
+      "order": 746,
+      "input": "music/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 44625,
+      "cpu_ns": 45000
+    },
+    {
+      "order": 747,
+      "input": "music/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 48875,
+      "cpu_ns": 49000
+    },
+    {
+      "order": 748,
+      "input": "music/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 227416,
+      "cpu_ns": 227000
+    },
+    {
+      "order": 749,
+      "input": "music/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2707000,
+      "cpu_ns": 2707000
+    },
+    {
+      "order": 750,
+      "input": "music/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2726167,
+      "cpu_ns": 2714000
+    },
+    {
+      "order": 751,
+      "input": "music/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 218583,
+      "cpu_ns": 220000
+    },
+    {
+      "order": 752,
+      "input": "music/native(240s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 45833,
+      "cpu_ns": 46000
+    },
+    {
+      "order": 753,
+      "input": "music/native(240s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 43083,
+      "cpu_ns": 44000
+    },
+    {
+      "order": 754,
+      "input": "music/native(240s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 42166,
+      "cpu_ns": 42000
+    },
+    {
+      "order": 755,
+      "input": "music/native(240s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 45375,
+      "cpu_ns": 45000
+    },
+    {
+      "order": 756,
+      "input": "music/native(240s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 226166,
+      "cpu_ns": 225000
+    },
+    {
+      "order": 757,
+      "input": "music/native(240s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 194166,
+      "cpu_ns": 194000
+    },
+    {
+      "order": 758,
+      "input": "music/native(240s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 192167,
+      "cpu_ns": 192000
+    },
+    {
+      "order": 759,
+      "input": "music/native(240s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 224000,
+      "cpu_ns": 225000
+    },
+    {
+      "order": 760,
+      "input": "music/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 85750,
+      "cpu_ns": 86000
+    },
+    {
+      "order": 761,
+      "input": "music/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 202041,
+      "cpu_ns": 202000
+    },
+    {
+      "order": 762,
+      "input": "music/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 202000,
+      "cpu_ns": 202000
+    },
+    {
+      "order": 763,
+      "input": "music/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 58750,
+      "cpu_ns": 59000
+    },
+    {
+      "order": 764,
+      "input": "music/native(240s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 51042,
+      "cpu_ns": 51000
+    },
+    {
+      "order": 765,
+      "input": "music/native(240s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 60458,
+      "cpu_ns": 61000
+    },
+    {
+      "order": 766,
+      "input": "music/native(240s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 59917,
+      "cpu_ns": 61000
+    },
+    {
+      "order": 767,
+      "input": "music/native(240s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 50666,
+      "cpu_ns": 51000
+    },
+    {
+      "order": 768,
+      "input": "music/native(240s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 223542,
+      "cpu_ns": 224000
+    },
+    {
+      "order": 769,
+      "input": "music/native(240s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 196542,
+      "cpu_ns": 197000
+    },
+    {
+      "order": 770,
+      "input": "music/native(240s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 192583,
+      "cpu_ns": 192000
+    },
+    {
+      "order": 771,
+      "input": "music/native(240s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 225417,
+      "cpu_ns": 225000
+    },
+    {
+      "order": 772,
+      "input": "music/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 86542,
+      "cpu_ns": 87000
+    },
+    {
+      "order": 773,
+      "input": "music/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 679583,
+      "cpu_ns": 680000
+    },
+    {
+      "order": 774,
+      "input": "music/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 679500,
+      "cpu_ns": 679000
+    },
+    {
+      "order": 775,
+      "input": "music/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 57584,
+      "cpu_ns": 58000
+    },
+    {
+      "order": 776,
+      "input": "music/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 61042,
+      "cpu_ns": 61000
+    },
+    {
+      "order": 777,
+      "input": "music/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 202083,
+      "cpu_ns": 203000
+    },
+    {
+      "order": 778,
+      "input": "music/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 202125,
+      "cpu_ns": 202000
+    },
+    {
+      "order": 779,
+      "input": "music/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 58250,
+      "cpu_ns": 58000
+    },
+    {
+      "order": 780,
+      "input": "music/native(240s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 126750,
+      "cpu_ns": 127000
+    },
+    {
+      "order": 781,
+      "input": "music/native(240s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 59625,
+      "cpu_ns": 60000
+    },
+    {
+      "order": 782,
+      "input": "music/native(240s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 58459,
+      "cpu_ns": 59000
+    },
+    {
+      "order": 783,
+      "input": "music/native(240s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 126541,
+      "cpu_ns": 127000
+    },
+    {
+      "order": 784,
+      "input": "music/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 679667,
+      "cpu_ns": 680000
+    },
+    {
+      "order": 785,
+      "input": "music/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 58584,
+      "cpu_ns": 59000
+    },
+    {
+      "order": 786,
+      "input": "music/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 56125,
+      "cpu_ns": 56000
+    },
+    {
+      "order": 787,
+      "input": "music/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 679541,
+      "cpu_ns": 680000
+    },
+    {
+      "order": 788,
+      "input": "music/native(240s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 42208,
+      "cpu_ns": 43000
+    },
+    {
+      "order": 789,
+      "input": "music/native(240s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 46083,
+      "cpu_ns": 46000
+    },
+    {
+      "order": 790,
+      "input": "music/native(240s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 45833,
+      "cpu_ns": 46000
+    },
+    {
+      "order": 791,
+      "input": "music/native(240s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 42208,
+      "cpu_ns": 43000
+    },
+    {
+      "order": 792,
+      "input": "music/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2625125,
+      "cpu_ns": 2617000
+    },
+    {
+      "order": 793,
+      "input": "music/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 76167,
+      "cpu_ns": 77000
+    },
+    {
+      "order": 794,
+      "input": "music/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 57125,
+      "cpu_ns": 56000
+    },
+    {
+      "order": 795,
+      "input": "music/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2612125,
+      "cpu_ns": 2612000
+    },
+    {
+      "order": 796,
+      "input": "music/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 49125,
+      "cpu_ns": 49000
+    },
+    {
+      "order": 797,
+      "input": "music/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 45459,
+      "cpu_ns": 45000
+    },
+    {
+      "order": 798,
+      "input": "music/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 44834,
+      "cpu_ns": 45000
+    },
+    {
+      "order": 799,
+      "input": "music/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 48875,
+      "cpu_ns": 50000
+    },
+    {
+      "order": 800,
+      "input": "music/native(240s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 60500,
+      "cpu_ns": 60000
+    },
+    {
+      "order": 801,
+      "input": "music/native(240s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 53250,
+      "cpu_ns": 53000
+    },
+    {
+      "order": 802,
+      "input": "music/native(240s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 50375,
+      "cpu_ns": 50000
+    },
+    {
+      "order": 803,
+      "input": "music/native(240s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 60584,
+      "cpu_ns": 61000
+    },
+    {
+      "order": 804,
+      "input": "music/native(240s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 50500,
+      "cpu_ns": 50000
+    },
+    {
+      "order": 805,
+      "input": "music/native(240s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 60125,
+      "cpu_ns": 60000
+    },
+    {
+      "order": 806,
+      "input": "music/native(240s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 60166,
+      "cpu_ns": 60000
+    },
+    {
+      "order": 807,
+      "input": "music/native(240s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 50875,
+      "cpu_ns": 52000
+    },
+    {
+      "order": 808,
+      "input": "music/native(240s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 50583,
+      "cpu_ns": 51000
+    },
+    {
+      "order": 809,
+      "input": "music/native(240s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 59208,
+      "cpu_ns": 59000
+    },
+    {
+      "order": 810,
+      "input": "music/native(240s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 58709,
+      "cpu_ns": 59000
+    },
+    {
+      "order": 811,
+      "input": "music/native(240s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 50708,
+      "cpu_ns": 51000
+    },
+    {
+      "order": 812,
+      "input": "music/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 64583,
+      "cpu_ns": 65000
+    },
+    {
+      "order": 813,
+      "input": "music/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 201792,
+      "cpu_ns": 202000
+    },
+    {
+      "order": 814,
+      "input": "music/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 201750,
+      "cpu_ns": 202000
+    },
+    {
+      "order": 815,
+      "input": "music/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 58542,
+      "cpu_ns": 59000
+    },
+    {
+      "order": 816,
+      "input": "music/native(240s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 62333,
+      "cpu_ns": 63000
+    },
+    {
+      "order": 817,
+      "input": "music/native(240s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 126833,
+      "cpu_ns": 127000
+    },
+    {
+      "order": 818,
+      "input": "music/native(240s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 125917,
+      "cpu_ns": 126000
+    },
+    {
+      "order": 819,
+      "input": "music/native(240s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 57958,
+      "cpu_ns": 59000
+    },
+    {
+      "order": 820,
+      "input": "music/native(240s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 58750,
+      "cpu_ns": 59000
+    },
+    {
+      "order": 821,
+      "input": "music/native(240s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 52042,
+      "cpu_ns": 52000
+    },
+    {
+      "order": 822,
+      "input": "music/native(240s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 50583,
+      "cpu_ns": 51000
+    },
+    {
+      "order": 823,
+      "input": "music/native(240s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 59042,
+      "cpu_ns": 59000
+    },
+    {
+      "order": 824,
+      "input": "music/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 61750,
+      "cpu_ns": 62000
+    },
+    {
+      "order": 825,
+      "input": "music/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2611625,
+      "cpu_ns": 2612000
+    },
+    {
+      "order": 826,
+      "input": "music/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2639958,
+      "cpu_ns": 2631000
+    },
+    {
+      "order": 827,
+      "input": "music/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 61458,
+      "cpu_ns": 62000
+    },
+    {
+      "order": 828,
+      "input": "music/native(240s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 47458,
+      "cpu_ns": 48000
+    },
+    {
+      "order": 829,
+      "input": "music/native(240s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 43875,
+      "cpu_ns": 44000
+    },
+    {
+      "order": 830,
+      "input": "music/native(240s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 42833,
+      "cpu_ns": 44000
+    },
+    {
+      "order": 831,
+      "input": "music/native(240s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 47417,
+      "cpu_ns": 47000
+    },
+    {
+      "order": 832,
+      "input": "music/native(240s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 54167,
+      "cpu_ns": 55000
+    },
+    {
+      "order": 833,
+      "input": "music/native(240s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 59417,
+      "cpu_ns": 59000
+    },
+    {
+      "order": 834,
+      "input": "music/native(240s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 59416,
+      "cpu_ns": 60000
+    },
+    {
+      "order": 835,
+      "input": "music/native(240s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 51917,
+      "cpu_ns": 53000
+    },
+    {
+      "order": 836,
+      "input": "music/native(240s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 127708,
+      "cpu_ns": 128000
+    },
+    {
+      "order": 837,
+      "input": "music/native(240s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 60250,
+      "cpu_ns": 61000
+    },
+    {
+      "order": 838,
+      "input": "music/native(240s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 57292,
+      "cpu_ns": 57000
+    },
+    {
+      "order": 839,
+      "input": "music/native(240s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 127417,
+      "cpu_ns": 128000
+    },
+    {
+      "order": 840,
+      "input": "music/native(240s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 225666,
+      "cpu_ns": 226000
+    },
+    {
+      "order": 841,
+      "input": "music/native(240s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 199709,
+      "cpu_ns": 200000
+    },
+    {
+      "order": 842,
+      "input": "music/native(240s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 193917,
+      "cpu_ns": 195000
+    },
+    {
+      "order": 843,
+      "input": "music/native(240s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 224792,
+      "cpu_ns": 225000
+    },
+    {
+      "order": 844,
+      "input": "music/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2734708,
+      "cpu_ns": 2728000
+    },
+    {
+      "order": 845,
+      "input": "music/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 330291,
+      "cpu_ns": 330000
+    },
+    {
+      "order": 846,
+      "input": "music/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 214500,
+      "cpu_ns": 214000
+    },
+    {
+      "order": 847,
+      "input": "music/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 3072333,
+      "cpu_ns": 2882000
+    },
+    {
+      "order": 848,
+      "input": "music/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 59083,
+      "cpu_ns": 55000
+    },
+    {
+      "order": 849,
+      "input": "music/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 60417,
+      "cpu_ns": 54000
+    },
+    {
+      "order": 850,
+      "input": "music/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 50667,
+      "cpu_ns": 47000
+    },
+    {
+      "order": 851,
+      "input": "music/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 54917,
+      "cpu_ns": 53000
+    },
+    {
+      "order": 852,
+      "input": "music/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 97250,
+      "cpu_ns": 89000
+    },
+    {
+      "order": 853,
+      "input": "music/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 225083,
+      "cpu_ns": 214000
+    },
+    {
+      "order": 854,
+      "input": "music/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 233167,
+      "cpu_ns": 220000
+    },
+    {
+      "order": 855,
+      "input": "music/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 77000,
+      "cpu_ns": 70000
+    },
+    {
+      "order": 856,
+      "input": "music/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2979958,
+      "cpu_ns": 2763000
+    },
+    {
+      "order": 857,
+      "input": "music/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 118417,
+      "cpu_ns": 111000
+    },
+    {
+      "order": 858,
+      "input": "music/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 67291,
+      "cpu_ns": 67000
+    },
+    {
+      "order": 859,
+      "input": "music/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2641708,
+      "cpu_ns": 2639000
+    },
+    {
+      "order": 860,
+      "input": "music/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 65458,
+      "cpu_ns": 66000
+    },
+    {
+      "order": 861,
+      "input": "music/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2644167,
+      "cpu_ns": 2638000
+    },
+    {
+      "order": 862,
+      "input": "music/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2749917,
+      "cpu_ns": 2691000
+    },
+    {
+      "order": 863,
+      "input": "music/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 76375,
+      "cpu_ns": 77000
+    },
+    {
+      "order": 864,
+      "input": "music/native(240s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 226792,
+      "cpu_ns": 227000
+    },
+    {
+      "order": 865,
+      "input": "music/native(240s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 199084,
+      "cpu_ns": 200000
+    },
+    {
+      "order": 866,
+      "input": "music/native(240s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 192958,
+      "cpu_ns": 193000
+    },
+    {
+      "order": 867,
+      "input": "music/native(240s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 226167,
+      "cpu_ns": 226000
+    },
+    {
+      "order": 868,
+      "input": "music/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 38042,
+      "cpu_ns": 37000
+    },
+    {
+      "order": 869,
+      "input": "music/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 42167,
+      "cpu_ns": 44000
+    },
+    {
+      "order": 870,
+      "input": "music/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 41125,
+      "cpu_ns": 41000
+    },
+    {
+      "order": 871,
+      "input": "music/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 37291,
+      "cpu_ns": 38000
+    },
+    {
+      "order": 872,
+      "input": "music/native(240s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 44000,
+      "cpu_ns": 44000
+    },
+    {
+      "order": 873,
+      "input": "music/native(240s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 48125,
+      "cpu_ns": 49000
+    },
+    {
+      "order": 874,
+      "input": "music/native(240s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 47500,
+      "cpu_ns": 48000
+    },
+    {
+      "order": 875,
+      "input": "music/native(240s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 43250,
+      "cpu_ns": 43000
+    },
+    {
+      "order": 876,
+      "input": "music/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 323750,
+      "cpu_ns": 317000
+    },
+    {
+      "order": 877,
+      "input": "music/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2706666,
+      "cpu_ns": 2707000
+    },
+    {
+      "order": 878,
+      "input": "music/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2706417,
+      "cpu_ns": 2707000
+    },
+    {
+      "order": 879,
+      "input": "music/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 219166,
+      "cpu_ns": 219000
+    },
+    {
+      "order": 880,
+      "input": "music/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 49125,
+      "cpu_ns": 49000
+    },
+    {
+      "order": 881,
+      "input": "music/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 45333,
+      "cpu_ns": 45000
+    },
+    {
+      "order": 882,
+      "input": "music/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 44583,
+      "cpu_ns": 45000
+    },
+    {
+      "order": 883,
+      "input": "music/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 49084,
+      "cpu_ns": 50000
+    },
+    {
+      "order": 884,
+      "input": "music/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 202459,
+      "cpu_ns": 202000
+    },
+    {
+      "order": 885,
+      "input": "music/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 82959,
+      "cpu_ns": 83000
+    },
+    {
+      "order": 886,
+      "input": "music/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 57625,
+      "cpu_ns": 57000
+    },
+    {
+      "order": 887,
+      "input": "music/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 202041,
+      "cpu_ns": 202000
+    },
+    {
+      "order": 888,
+      "input": "music/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 40875,
+      "cpu_ns": 42000
+    },
+    {
+      "order": 889,
+      "input": "music/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 37458,
+      "cpu_ns": 37000
+    },
+    {
+      "order": 890,
+      "input": "music/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 39750,
+      "cpu_ns": 40000
+    },
+    {
+      "order": 891,
+      "input": "music/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 40208,
+      "cpu_ns": 40000
+    },
+    {
+      "order": 892,
+      "input": "music/native(240s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 224667,
+      "cpu_ns": 225000
+    },
+    {
+      "order": 893,
+      "input": "music/native(240s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 202250,
+      "cpu_ns": 202000
+    },
+    {
+      "order": 894,
+      "input": "music/native(240s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 198917,
+      "cpu_ns": 200000
+    },
+    {
+      "order": 895,
+      "input": "music/native(240s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 251041,
+      "cpu_ns": 235000
+    },
+    {
+      "order": 896,
+      "input": "music/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 683625,
+      "cpu_ns": 684000
+    },
+    {
+      "order": 897,
+      "input": "music/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 97417,
+      "cpu_ns": 98000
+    },
+    {
+      "order": 898,
+      "input": "music/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 55917,
+      "cpu_ns": 56000
+    },
+    {
+      "order": 899,
+      "input": "music/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 679667,
+      "cpu_ns": 680000
+    },
+    {
+      "order": 900,
+      "input": "music/native(240s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 63792,
+      "cpu_ns": 63000
+    },
+    {
+      "order": 901,
+      "input": "music/native(240s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 126417,
+      "cpu_ns": 127000
+    },
+    {
+      "order": 902,
+      "input": "music/native(240s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 126208,
+      "cpu_ns": 126000
+    },
+    {
+      "order": 903,
+      "input": "music/native(240s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 58709,
+      "cpu_ns": 59000
+    },
+    {
+      "order": 904,
+      "input": "music/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 69292,
+      "cpu_ns": 69000
+    },
+    {
+      "order": 905,
+      "input": "music/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2611542,
+      "cpu_ns": 2612000
+    },
+    {
+      "order": 906,
+      "input": "music/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2615792,
+      "cpu_ns": 2616000
+    },
+    {
+      "order": 907,
+      "input": "music/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 60709,
+      "cpu_ns": 61000
+    },
+    {
+      "order": 908,
+      "input": "music/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2716375,
+      "cpu_ns": 2713000
+    },
+    {
+      "order": 909,
+      "input": "music/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 252916,
+      "cpu_ns": 253000
+    },
+    {
+      "order": 910,
+      "input": "music/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 212125,
+      "cpu_ns": 212000
+    },
+    {
+      "order": 911,
+      "input": "music/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2706208,
+      "cpu_ns": 2707000
+    },
+    {
+      "order": 912,
+      "input": "music/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 66500,
+      "cpu_ns": 66000
+    },
+    {
+      "order": 913,
+      "input": "music/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 679542,
+      "cpu_ns": 679000
+    },
+    {
+      "order": 914,
+      "input": "music/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 679458,
+      "cpu_ns": 680000
+    },
+    {
+      "order": 915,
+      "input": "music/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 57625,
+      "cpu_ns": 58000
+    },
+    {
+      "order": 916,
+      "input": "music/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 45250,
+      "cpu_ns": 46000
+    },
+    {
+      "order": 917,
+      "input": "music/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 49708,
+      "cpu_ns": 50000
+    },
+    {
+      "order": 918,
+      "input": "music/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 49125,
+      "cpu_ns": 49000
+    },
+    {
+      "order": 919,
+      "input": "music/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 44625,
+      "cpu_ns": 45000
+    },
+    {
+      "order": 920,
+      "input": "music/native(240s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 39291,
+      "cpu_ns": 39000
+    },
+    {
+      "order": 921,
+      "input": "music/native(240s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 37000,
+      "cpu_ns": 37000
+    },
+    {
+      "order": 922,
+      "input": "music/native(240s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 36417,
+      "cpu_ns": 37000
+    },
+    {
+      "order": 923,
+      "input": "music/native(240s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 38250,
+      "cpu_ns": 39000
+    },
+    {
+      "order": 924,
+      "input": "music/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 65333,
+      "cpu_ns": 65000
+    },
+    {
+      "order": 925,
+      "input": "music/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 202125,
+      "cpu_ns": 203000
+    },
+    {
+      "order": 926,
+      "input": "music/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 202042,
+      "cpu_ns": 202000
+    },
+    {
+      "order": 927,
+      "input": "music/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 58291,
+      "cpu_ns": 59000
+    },
+    {
+      "order": 928,
+      "input": "music/native(240s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 38709,
+      "cpu_ns": 39000
+    },
+    {
+      "order": 929,
+      "input": "music/native(240s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 36250,
+      "cpu_ns": 37000
+    },
+    {
+      "order": 930,
+      "input": "music/native(240s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 36084,
+      "cpu_ns": 36000
+    },
+    {
+      "order": 931,
+      "input": "music/native(240s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 38375,
+      "cpu_ns": 39000
+    },
+    {
+      "order": 932,
+      "input": "music/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2611583,
+      "cpu_ns": 2612000
+    },
+    {
+      "order": 933,
+      "input": "music/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 65500,
+      "cpu_ns": 65000
+    },
+    {
+      "order": 934,
+      "input": "music/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 56209,
+      "cpu_ns": 55000
+    },
+    {
+      "order": 935,
+      "input": "music/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2630833,
+      "cpu_ns": 2619000
+    },
+    {
+      "order": 936,
+      "input": "music/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2611792,
+      "cpu_ns": 2612000
+    },
+    {
+      "order": 937,
+      "input": "music/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 57833,
+      "cpu_ns": 59000
+    },
+    {
+      "order": 938,
+      "input": "music/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 54750,
+      "cpu_ns": 55000
+    },
+    {
+      "order": 939,
+      "input": "music/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2611333,
+      "cpu_ns": 2612000
+    },
+    {
+      "order": 940,
+      "input": "music/native(240s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 51792,
+      "cpu_ns": 52000
+    },
+    {
+      "order": 941,
+      "input": "music/native(240s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 60208,
+      "cpu_ns": 61000
+    },
+    {
+      "order": 942,
+      "input": "music/native(240s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 60125,
+      "cpu_ns": 60000
+    },
+    {
+      "order": 943,
+      "input": "music/native(240s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 50417,
+      "cpu_ns": 51000
+    },
+    {
+      "order": 944,
+      "input": "music/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 63834,
+      "cpu_ns": 64000
+    },
+    {
+      "order": 945,
+      "input": "music/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 679583,
+      "cpu_ns": 680000
+    },
+    {
+      "order": 946,
+      "input": "music/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 679584,
+      "cpu_ns": 680000
+    },
+    {
+      "order": 947,
+      "input": "music/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 56500,
+      "cpu_ns": 57000
+    },
+    {
+      "order": 948,
+      "input": "music/native(240s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 44083,
+      "cpu_ns": 44000
+    },
+    {
+      "order": 949,
+      "input": "music/native(240s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 47125,
+      "cpu_ns": 49000
+    },
+    {
+      "order": 950,
+      "input": "music/native(240s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 46709,
+      "cpu_ns": 46000
+    },
+    {
+      "order": 951,
+      "input": "music/native(240s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 42166,
+      "cpu_ns": 42000
+    },
+    {
+      "order": 952,
+      "input": "music/native(240s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 197667,
+      "cpu_ns": 197000
+    },
+    {
+      "order": 953,
+      "input": "music/native(240s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 228750,
+      "cpu_ns": 229000
+    },
+    {
+      "order": 954,
+      "input": "music/native(240s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 224583,
+      "cpu_ns": 224000
+    },
+    {
+      "order": 955,
+      "input": "music/native(240s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 192875,
+      "cpu_ns": 192000
+    },
+    {
+      "order": 956,
+      "input": "music/native(240s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 191417,
+      "cpu_ns": 191000
+    },
+    {
+      "order": 957,
+      "input": "music/native(240s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 228334,
+      "cpu_ns": 229000
+    },
+    {
+      "order": 958,
+      "input": "music/native(240s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 227375,
+      "cpu_ns": 227000
+    },
+    {
+      "order": 959,
+      "input": "music/native(240s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 228334,
+      "cpu_ns": 215000
+    }
+  ]
+}

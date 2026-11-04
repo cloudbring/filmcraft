@@ -1,0 +1,7327 @@
+{
+  "schema_version": 1,
+  "name": "filmcraft waveform repaint, silence",
+  "revs": {
+    "old": "eb59ec09daaea519c9c8fffa404a594ae50d00e0",
+    "new": "529c5c1e8e4b6be393e147bc6316a4643dda8529"
+  },
+  "fingerprint": {
+    "os": "macos",
+    "arch": "aarch64",
+    "kernel": "Darwin 27.0.0",
+    "cpu_model": "Apple M6",
+    "logical_cores": 12,
+    "physical_cores": 12,
+    "ram_bytes": 34359738368,
+    "rustc": "rustc 1.99.0 (b940084d7 2026-09-28) (Homebrew)",
+    "profile": "release",
+    "opt_level": "3",
+    "debug_assertions": false,
+    "date": "2026-11-04T23:21:55+00:00"
+  },
+  "config": {
+    "requested_repetitions": 40,
+    "runs_per_side": 40,
+    "warmup_runs": 2,
+    "resamples": 4000,
+    "seed": 12648430,
+    "output_checked": true,
+    "cpu_time": "process"
+  },
+  "guard": {
+    "contended": false,
+    "reasons": [],
+    "load_before": 3.68,
+    "load_after": 3.68,
+    "logical_cores": 12,
+    "max_load_per_core": 0.5,
+    "load_threshold": 6.0,
+    "throttle_before": {
+      "speed_limit_pct": null,
+      "throttle_count": null
+    },
+    "throttle_after": {
+      "speed_limit_pct": null,
+      "throttle_count": null
+    }
+  },
+  "contended": false,
+  "publishable": true,
+  "inputs": [
+    {
+      "name": "silence/native(120s)/whole/w1000",
+      "wall": {
+        "old": {
+          "n": 40,
+          "median_ns": 18916.0,
+          "mad_ns": 43.0,
+          "min_ns": 18792.0,
+          "max_ns": 20750.0
+        },
+        "new": {
+          "n": 40,
+          "median_ns": 7729.5,
+          "mad_ns": 188.0,
+          "min_ns": 7417.0,
+          "max_ns": 13583.0
+        },
+        "ratio": {
+          "point": 0.40862233030238954,
+          "ci_lo": 0.40531824910128994,
+          "ci_hi": 0.41504635761589403
+        }
+      },
+      "cpu": {
+        "old": {
+          "n": 40,
+          "median_ns": 20000.0,
+          "mad_ns": 500.0,
+          "min_ns": 18000.0,
+          "max_ns": 22000.0
+        },
+        "new": {
+          "n": 40,
+          "median_ns": 8000.0,
+          "mad_ns": 1000.0,
+          "min_ns": 7000.0,
+          "max_ns": 13000.0
+        },
+        "ratio": {
+          "point": 0.4,
+          "ci_lo": 0.4,
+          "ci_hi": 0.42105263157894735
+        }
+      }
+    },
+    {
+      "name": "silence/native(120s)/whole/w3840",
+      "wall": {
+        "old": {
+          "n": 40,
+          "median_ns": 23166.5,
+          "mad_ns": 124.5,
+          "min_ns": 23041.0,
+          "max_ns": 36834.0
+        },
+        "new": {
+          "n": 40,
+          "median_ns": 19083.0,
+          "mad_ns": 166.5,
+          "min_ns": 18750.0,
+          "max_ns": 21417.0
+        },
+        "ratio": {
+          "point": 0.823732544838452,
+          "ci_lo": 0.817854540779154,
+          "ci_hi": 0.8306594594594595
+        }
+      },
+      "cpu": {
+        "old": {
+          "n": 40,
+          "median_ns": 24000.0,
+          "mad_ns": 1000.0,
+          "min_ns": 22000.0,
+          "max_ns": 32000.0
+        },
+        "new": {
+          "n": 40,
+          "median_ns": 20000.0,
+          "mad_ns": 1000.0,
+          "min_ns": 18000.0,
+          "max_ns": 22000.0
+        },
+        "ratio": {
+          "point": 0.8333333333333334,
+          "ci_lo": 0.7916666666666666,
+          "ci_hi": 0.8695652173913043
+        }
+      }
+    },
+    {
+      "name": "silence/native(120s)/1/4/w1000",
+      "wall": {
+        "old": {
+          "n": 40,
+          "median_ns": 6250.0,
+          "mad_ns": 42.0,
+          "min_ns": 6166.0,
+          "max_ns": 11625.0
+        },
+        "new": {
+          "n": 40,
+          "median_ns": 5291.0,
+          "mad_ns": 82.0,
+          "min_ns": 5166.0,
+          "max_ns": 8750.0
+        },
+        "ratio": {
+          "point": 0.84656,
+          "ci_lo": 0.8345255126371006,
+          "ci_hi": 0.8560879685368007
+        }
+      },
+      "cpu": {
+        "old": {
+          "n": 40,
+          "median_ns": 7000.0,
+          "mad_ns": 0.0,
+          "min_ns": 6000.0,
+          "max_ns": 13000.0
+        },
+        "new": {
+          "n": 40,
+          "median_ns": 6000.0,
+          "mad_ns": 1000.0,
+          "min_ns": 4000.0,
+          "max_ns": 10000.0
+        },
+        "ratio": {
+          "point": 0.8571428571428571,
+          "ci_lo": 0.7142857142857143,
+          "ci_hi": 0.8571428571428571
+        }
+      }
+    },
+    {
+      "name": "silence/native(120s)/1/16/w1000",
+      "wall": {
+        "old": {
+          "n": 40,
+          "median_ns": 3750.0,
+          "mad_ns": 42.0,
+          "min_ns": 3625.0,
+          "max_ns": 7458.0
+        },
+        "new": {
+          "n": 40,
+          "median_ns": 4020.5,
+          "mad_ns": 104.5,
+          "min_ns": 3875.0,
+          "max_ns": 15250.0
+        },
+        "ratio": {
+          "point": 1.0721333333333334,
+          "ci_lo": 1.044183592719599,
+          "ci_hi": 1.0938900676302878
+        }
+      },
+      "cpu": {
+        "old": {
+          "n": 40,
+          "median_ns": 4000.0,
+          "mad_ns": 1000.0,
+          "min_ns": 3000.0,
+          "max_ns": 9000.0
+        },
+        "new": {
+          "n": 40,
+          "median_ns": 4000.0,
+          "mad_ns": 1000.0,
+          "min_ns": 3000.0,
+          "max_ns": 11000.0
+        },
+        "ratio": {
+          "point": 1.0,
+          "ci_lo": 1.0,
+          "ci_hi": 1.25
+        }
+      }
+    },
+    {
+      "name": "silence/native(120s)/30s/w1000",
+      "wall": {
+        "old": {
+          "n": 40,
+          "median_ns": 6250.0,
+          "mad_ns": 62.5,
+          "min_ns": 6125.0,
+          "max_ns": 6709.0
+        },
+        "new": {
+          "n": 40,
+          "median_ns": 5291.0,
+          "mad_ns": 83.0,
+          "min_ns": 5167.0,
+          "max_ns": 5833.0
+        },
+        "ratio": {
+          "point": 0.84656,
+          "ci_lo": 0.8377841360673979,
+          "ci_hi": 0.8523111612175873
+        }
+      },
+      "cpu": {
+        "old": {
+          "n": 40,
+          "median_ns": 7000.0,
+          "mad_ns": 500.0,
+          "min_ns": 5000.0,
+          "max_ns": 8000.0
+        },
+        "new": {
+          "n": 40,
+          "median_ns": 5000.0,
+          "mad_ns": 1000.0,
+          "min_ns": 4000.0,
+          "max_ns": 7000.0
+        },
+        "ratio": {
+          "point": 0.7142857142857143,
+          "ci_lo": 0.7142857142857143,
+          "ci_hi": 1.0
+        }
+      }
+    },
+    {
+      "name": "silence/native(120s)/1s/w1000",
+      "wall": {
+        "old": {
+          "n": 40,
+          "median_ns": 3459.0,
+          "mad_ns": 42.0,
+          "min_ns": 3375.0,
+          "max_ns": 3875.0
+        },
+        "new": {
+          "n": 40,
+          "median_ns": 3959.0,
+          "mad_ns": 42.0,
+          "min_ns": 3916.0,
+          "max_ns": 4208.0
+        },
+        "ratio": {
+          "point": 1.144550448106389,
+          "ci_lo": 1.1311428571428572,
+          "ci_hi": 1.156737998843262
+        }
+      },
+      "cpu": {
+        "old": {
+          "n": 40,
+          "median_ns": 4000.0,
+          "mad_ns": 0.0,
+          "min_ns": 3000.0,
+          "max_ns": 5000.0
+        },
+        "new": {
+          "n": 40,
+          "median_ns": 4000.0,
+          "mad_ns": 0.0,
+          "min_ns": 3000.0,
+          "max_ns": 5000.0
+        },
+        "ratio": {
+          "point": 1.0,
+          "ci_lo": 1.0,
+          "ci_hi": 1.0
+        }
+      }
+    },
+    {
+      "name": "silence/2h-tiled(7200s)/whole/w1000",
+      "wall": {
+        "old": {
+          "n": 40,
+          "median_ns": 2388728.5,
+          "mad_ns": 15041.0,
+          "min_ns": 2371375.0,
+          "max_ns": 2929292.0
+        },
+        "new": {
+          "n": 40,
+          "median_ns": 15354.0,
+          "mad_ns": 1374.5,
+          "min_ns": 13792.0,
+          "max_ns": 59042.0
+        },
+        "ratio": {
+          "point": 0.006427687365893613,
+          "ci_lo": 0.006161359477124183,
+          "ci_hi": 0.007026851158131769
+        }
+      },
+      "cpu": {
+        "old": {
+          "n": 40,
+          "median_ns": 2386500.0,
+          "mad_ns": 11000.0,
+          "min_ns": 2371000.0,
+          "max_ns": 2862000.0
+        },
+        "new": {
+          "n": 40,
+          "median_ns": 16000.0,
+          "mad_ns": 1000.0,
+          "min_ns": 13000.0,
+          "max_ns": 59000.0
+        },
+        "ratio": {
+          "point": 0.006704378797402053,
+          "ci_lo": 0.006280092108017585,
+          "ci_hi": 0.007124895222129086
+        }
+      }
+    },
+    {
+      "name": "silence/2h-tiled(7200s)/whole/w3840",
+      "wall": {
+        "old": {
+          "n": 40,
+          "median_ns": 2177208.5,
+          "mad_ns": 11396.5,
+          "min_ns": 2165542.0,
+          "max_ns": 2519833.0
+        },
+        "new": {
+          "n": 40,
+          "median_ns": 51416.5,
+          "mad_ns": 3625.0,
+          "min_ns": 47708.0,
+          "max_ns": 138208.0
+        },
+        "ratio": {
+          "point": 0.023615790586891425,
+          "ci_lo": 0.023111375331011156,
+          "ci_hi": 0.02716861961722078
+        }
+      },
+      "cpu": {
+        "old": {
+          "n": 40,
+          "median_ns": 2177500.0,
+          "mad_ns": 11500.0,
+          "min_ns": 2166000.0,
+          "max_ns": 2507000.0
+        },
+        "new": {
+          "n": 40,
+          "median_ns": 52000.0,
+          "mad_ns": 4000.0,
+          "min_ns": 48000.0,
+          "max_ns": 137000.0
+        },
+        "ratio": {
+          "point": 0.023880597014925373,
+          "ci_lo": 0.023356995649187084,
+          "ci_hi": 0.026424632352941176
+        }
+      }
+    },
+    {
+      "name": "silence/2h-tiled(7200s)/1/4/w1000",
+      "wall": {
+        "old": {
+          "n": 40,
+          "median_ns": 539104.0,
+          "mad_ns": 249.5,
+          "min_ns": 538834.0,
+          "max_ns": 625250.0
+        },
+        "new": {
+          "n": 40,
+          "median_ns": 12937.5,
+          "mad_ns": 688.0,
+          "min_ns": 12166.0,
+          "max_ns": 34959.0
+        },
+        "ratio": {
+          "point": 0.023998152490057576,
+          "ci_lo": 0.023343243335441254,
+          "ci_hi": 0.02678057244159245
+        }
+      },
+      "cpu": {
+        "old": {
+          "n": 40,
+          "median_ns": 540000.0,
+          "mad_ns": 1000.0,
+          "min_ns": 538000.0,
+          "max_ns": 621000.0
+        },
+        "new": {
+          "n": 40,
+          "median_ns": 13000.0,
+          "mad_ns": 1000.0,
+          "min_ns": 12000.0,
+          "max_ns": 28000.0
+        },
+        "ratio": {
+          "point": 0.024074074074074074,
+          "ci_lo": 0.023985239852398525,
+          "ci_hi": 0.027777777777777776
+        }
+      }
+    },
+    {
+      "name": "silence/2h-tiled(7200s)/1/16/w1000",
+      "wall": {
+        "old": {
+          "n": 40,
+          "median_ns": 97541.5,
+          "mad_ns": 125.5,
+          "min_ns": 97333.0,
+          "max_ns": 128625.0
+        },
+        "new": {
+          "n": 40,
+          "median_ns": 10291.5,
+          "mad_ns": 332.5,
+          "min_ns": 9792.0,
+          "max_ns": 24500.0
+        },
+        "ratio": {
+          "point": 0.10550893722159287,
+          "ci_lo": 0.10363076923076923,
+          "ci_hi": 0.10978470340969339
+        }
+      },
+      "cpu": {
+        "old": {
+          "n": 40,
+          "median_ns": 98000.0,
+          "mad_ns": 1000.0,
+          "min_ns": 97000.0,
+          "max_ns": 117000.0
+        },
+        "new": {
+          "n": 40,
+          "median_ns": 11000.0,
+          "mad_ns": 1000.0,
+          "min_ns": 9000.0,
+          "max_ns": 26000.0
+        },
+        "ratio": {
+          "point": 0.11224489795918367,
+          "ci_lo": 0.10204081632653061,
+          "ci_hi": 0.1134020618556701
+        }
+      }
+    },
+    {
+      "name": "silence/2h-tiled(7200s)/30s/w1000",
+      "wall": {
+        "old": {
+          "n": 40,
+          "median_ns": 6042.0,
+          "mad_ns": 42.0,
+          "min_ns": 5958.0,
+          "max_ns": 10542.0
+        },
+        "new": {
+          "n": 40,
+          "median_ns": 4959.0,
+          "mad_ns": 83.0,
+          "min_ns": 4833.0,
+          "max_ns": 8500.0
+        },
+        "ratio": {
+          "point": 0.8207547169811321,
+          "ci_lo": 0.8138033763654419,
+          "ci_hi": 0.8304958059961797
+        }
+      },
+      "cpu": {
+        "old": {
+          "n": 40,
+          "median_ns": 6000.0,
+          "mad_ns": 1000.0,
+          "min_ns": 5000.0,
+          "max_ns": 11000.0
+        },
+        "new": {
+          "n": 40,
+          "median_ns": 5000.0,
+          "mad_ns": 1000.0,
+          "min_ns": 4000.0,
+          "max_ns": 10000.0
+        },
+        "ratio": {
+          "point": 0.8333333333333334,
+          "ci_lo": 0.7142857142857143,
+          "ci_hi": 1.0
+        }
+      }
+    },
+    {
+      "name": "silence/2h-tiled(7200s)/1s/w1000",
+      "wall": {
+        "old": {
+          "n": 40,
+          "median_ns": 3458.0,
+          "mad_ns": 41.0,
+          "min_ns": 3416.0,
+          "max_ns": 3750.0
+        },
+        "new": {
+          "n": 40,
+          "median_ns": 3958.0,
+          "mad_ns": 41.0,
+          "min_ns": 3875.0,
+          "max_ns": 5417.0
+        },
+        "ratio": {
+          "point": 1.1445922498554078,
+          "ci_lo": 1.1308571428571428,
+          "ci_hi": 1.1445922498554078
+        }
+      },
+      "cpu": {
+        "old": {
+          "n": 40,
+          "median_ns": 4000.0,
+          "mad_ns": 0.0,
+          "min_ns": 3000.0,
+          "max_ns": 5000.0
+        },
+        "new": {
+          "n": 40,
+          "median_ns": 4000.0,
+          "mad_ns": 0.0,
+          "min_ns": 3000.0,
+          "max_ns": 6000.0
+        },
+        "ratio": {
+          "point": 1.0,
+          "ci_lo": 1.0,
+          "ci_hi": 1.1428571428571428
+        }
+      }
+    }
+  ],
+  "aggregate": {
+    "inputs": 12,
+    "wall": {
+      "point": 0.26246697682917314,
+      "ci_lo": 0.26119542324670736,
+      "ci_hi": 0.2673708689381547
+    },
+    "cpu": {
+      "point": 0.2544262303305859,
+      "ci_lo": 0.2493989005572122,
+      "ci_hi": 0.26595011263741664
+    }
+  },
+  "runs": [
+    {
+      "order": 0,
+      "input": "silence/native(120s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 7542,
+      "cpu_ns": 10000
+    },
+    {
+      "order": 1,
+      "input": "silence/native(120s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 5666,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 2,
+      "input": "silence/native(120s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 5542,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 3,
+      "input": "silence/native(120s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 6583,
+      "cpu_ns": 7000
+    },
+    {
+      "order": 4,
+      "input": "silence/native(120s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 4125,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 5,
+      "input": "silence/native(120s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 3916,
+      "cpu_ns": 3000
+    },
+    {
+      "order": 6,
+      "input": "silence/native(120s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 3958,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 7,
+      "input": "silence/native(120s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 4208,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 8,
+      "input": "silence/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 5208,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 9,
+      "input": "silence/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 6375,
+      "cpu_ns": 7000
+    },
+    {
+      "order": 10,
+      "input": "silence/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 6333,
+      "cpu_ns": 7000
+    },
+    {
+      "order": 11,
+      "input": "silence/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 5125,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 12,
+      "input": "silence/native(120s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 24458,
+      "cpu_ns": 25000
+    },
+    {
+      "order": 13,
+      "input": "silence/native(120s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 20125,
+      "cpu_ns": 21000
+    },
+    {
+      "order": 14,
+      "input": "silence/native(120s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 19917,
+      "cpu_ns": 19000
+    },
+    {
+      "order": 15,
+      "input": "silence/native(120s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 24333,
+      "cpu_ns": 23000
+    },
+    {
+      "order": 16,
+      "input": "silence/native(120s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 24250,
+      "cpu_ns": 25000
+    },
+    {
+      "order": 17,
+      "input": "silence/native(120s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 19750,
+      "cpu_ns": 19000
+    },
+    {
+      "order": 18,
+      "input": "silence/native(120s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 19916,
+      "cpu_ns": 20000
+    },
+    {
+      "order": 19,
+      "input": "silence/native(120s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 36834,
+      "cpu_ns": 32000
+    },
+    {
+      "order": 20,
+      "input": "silence/native(120s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 11625,
+      "cpu_ns": 13000
+    },
+    {
+      "order": 21,
+      "input": "silence/native(120s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 8750,
+      "cpu_ns": 10000
+    },
+    {
+      "order": 22,
+      "input": "silence/native(120s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 8625,
+      "cpu_ns": 8000
+    },
+    {
+      "order": 23,
+      "input": "silence/native(120s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 10709,
+      "cpu_ns": 11000
+    },
+    {
+      "order": 24,
+      "input": "silence/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 102791,
+      "cpu_ns": 103000
+    },
+    {
+      "order": 25,
+      "input": "silence/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2519833,
+      "cpu_ns": 2507000
+    },
+    {
+      "order": 26,
+      "input": "silence/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2208791,
+      "cpu_ns": 2209000
+    },
+    {
+      "order": 27,
+      "input": "silence/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 108125,
+      "cpu_ns": 91000
+    },
+    {
+      "order": 28,
+      "input": "silence/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 539375,
+      "cpu_ns": 540000
+    },
+    {
+      "order": 29,
+      "input": "silence/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 22166,
+      "cpu_ns": 23000
+    },
+    {
+      "order": 30,
+      "input": "silence/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 12584,
+      "cpu_ns": 13000
+    },
+    {
+      "order": 31,
+      "input": "silence/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 539083,
+      "cpu_ns": 539000
+    },
+    {
+      "order": 32,
+      "input": "silence/native(120s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 5583,
+      "cpu_ns": 7000
+    },
+    {
+      "order": 33,
+      "input": "silence/native(120s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 6333,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 34,
+      "input": "silence/native(120s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 6209,
+      "cpu_ns": 7000
+    },
+    {
+      "order": 35,
+      "input": "silence/native(120s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 5208,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 36,
+      "input": "silence/native(120s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 5167,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 37,
+      "input": "silence/native(120s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 6209,
+      "cpu_ns": 7000
+    },
+    {
+      "order": 38,
+      "input": "silence/native(120s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 6167,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 39,
+      "input": "silence/native(120s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 5209,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 40,
+      "input": "silence/native(120s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 6250,
+      "cpu_ns": 7000
+    },
+    {
+      "order": 41,
+      "input": "silence/native(120s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 5250,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 42,
+      "input": "silence/native(120s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 5250,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 43,
+      "input": "silence/native(120s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 6250,
+      "cpu_ns": 7000
+    },
+    {
+      "order": 44,
+      "input": "silence/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 3958,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 45,
+      "input": "silence/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 3500,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 46,
+      "input": "silence/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 3542,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 47,
+      "input": "silence/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 3917,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 48,
+      "input": "silence/native(120s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 18959,
+      "cpu_ns": 20000
+    },
+    {
+      "order": 49,
+      "input": "silence/native(120s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 13583,
+      "cpu_ns": 13000
+    },
+    {
+      "order": 50,
+      "input": "silence/native(120s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 7833,
+      "cpu_ns": 8000
+    },
+    {
+      "order": 51,
+      "input": "silence/native(120s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 18916,
+      "cpu_ns": 20000
+    },
+    {
+      "order": 52,
+      "input": "silence/native(120s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 23375,
+      "cpu_ns": 23000
+    },
+    {
+      "order": 53,
+      "input": "silence/native(120s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 19083,
+      "cpu_ns": 20000
+    },
+    {
+      "order": 54,
+      "input": "silence/native(120s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 19042,
+      "cpu_ns": 20000
+    },
+    {
+      "order": 55,
+      "input": "silence/native(120s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 23250,
+      "cpu_ns": 23000
+    },
+    {
+      "order": 56,
+      "input": "silence/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2170208,
+      "cpu_ns": 2170000
+    },
+    {
+      "order": 57,
+      "input": "silence/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 64042,
+      "cpu_ns": 65000
+    },
+    {
+      "order": 58,
+      "input": "silence/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 48542,
+      "cpu_ns": 48000
+    },
+    {
+      "order": 59,
+      "input": "silence/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2166083,
+      "cpu_ns": 2166000
+    },
+    {
+      "order": 60,
+      "input": "silence/native(120s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 6333,
+      "cpu_ns": 7000
+    },
+    {
+      "order": 61,
+      "input": "silence/native(120s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 5250,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 62,
+      "input": "silence/native(120s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 5208,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 63,
+      "input": "silence/native(120s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 6250,
+      "cpu_ns": 7000
+    },
+    {
+      "order": 64,
+      "input": "silence/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 3500,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 65,
+      "input": "silence/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 3959,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 66,
+      "input": "silence/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 3958,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 67,
+      "input": "silence/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 3458,
+      "cpu_ns": 3000
+    },
+    {
+      "order": 68,
+      "input": "silence/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 32125,
+      "cpu_ns": 33000
+    },
+    {
+      "order": 69,
+      "input": "silence/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2371542,
+      "cpu_ns": 2372000
+    },
+    {
+      "order": 70,
+      "input": "silence/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2400500,
+      "cpu_ns": 2388000
+    },
+    {
+      "order": 71,
+      "input": "silence/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 24625,
+      "cpu_ns": 24000
+    },
+    {
+      "order": 72,
+      "input": "silence/native(120s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 9875,
+      "cpu_ns": 10000
+    },
+    {
+      "order": 73,
+      "input": "silence/native(120s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 19041,
+      "cpu_ns": 19000
+    },
+    {
+      "order": 74,
+      "input": "silence/native(120s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 18917,
+      "cpu_ns": 20000
+    },
+    {
+      "order": 75,
+      "input": "silence/native(120s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 7791,
+      "cpu_ns": 8000
+    },
+    {
+      "order": 76,
+      "input": "silence/native(120s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 3834,
+      "cpu_ns": 3000
+    },
+    {
+      "order": 77,
+      "input": "silence/native(120s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 4083,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 78,
+      "input": "silence/native(120s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 3958,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 79,
+      "input": "silence/native(120s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 3791,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 80,
+      "input": "silence/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 544625,
+      "cpu_ns": 545000
+    },
+    {
+      "order": 81,
+      "input": "silence/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 22750,
+      "cpu_ns": 23000
+    },
+    {
+      "order": 82,
+      "input": "silence/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 13708,
+      "cpu_ns": 13000
+    },
+    {
+      "order": 83,
+      "input": "silence/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 538916,
+      "cpu_ns": 540000
+    },
+    {
+      "order": 84,
+      "input": "silence/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 97417,
+      "cpu_ns": 97000
+    },
+    {
+      "order": 85,
+      "input": "silence/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 20459,
+      "cpu_ns": 21000
+    },
+    {
+      "order": 86,
+      "input": "silence/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 10417,
+      "cpu_ns": 12000
+    },
+    {
+      "order": 87,
+      "input": "silence/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 97416,
+      "cpu_ns": 97000
+    },
+    {
+      "order": 88,
+      "input": "silence/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 97458,
+      "cpu_ns": 98000
+    },
+    {
+      "order": 89,
+      "input": "silence/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 9959,
+      "cpu_ns": 11000
+    },
+    {
+      "order": 90,
+      "input": "silence/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 9875,
+      "cpu_ns": 9000
+    },
+    {
+      "order": 91,
+      "input": "silence/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 97875,
+      "cpu_ns": 97000
+    },
+    {
+      "order": 92,
+      "input": "silence/native(120s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 6250,
+      "cpu_ns": 7000
+    },
+    {
+      "order": 93,
+      "input": "silence/native(120s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 5417,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 94,
+      "input": "silence/native(120s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 5250,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 95,
+      "input": "silence/native(120s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 6250,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 96,
+      "input": "silence/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 4000,
+      "cpu_ns": 3000
+    },
+    {
+      "order": 97,
+      "input": "silence/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 3458,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 98,
+      "input": "silence/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 3458,
+      "cpu_ns": 3000
+    },
+    {
+      "order": 99,
+      "input": "silence/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 4000,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 100,
+      "input": "silence/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 3416,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 101,
+      "input": "silence/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 3958,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 102,
+      "input": "silence/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 3917,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 103,
+      "input": "silence/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 3458,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 104,
+      "input": "silence/native(120s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 4166,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 105,
+      "input": "silence/native(120s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 3708,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 106,
+      "input": "silence/native(120s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 3625,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 107,
+      "input": "silence/native(120s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 3875,
+      "cpu_ns": 3000
+    },
+    {
+      "order": 108,
+      "input": "silence/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 3417,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 109,
+      "input": "silence/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 3958,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 110,
+      "input": "silence/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 3916,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 111,
+      "input": "silence/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 3417,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 112,
+      "input": "silence/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2381583,
+      "cpu_ns": 2379000
+    },
+    {
+      "order": 113,
+      "input": "silence/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 18458,
+      "cpu_ns": 19000
+    },
+    {
+      "order": 114,
+      "input": "silence/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 14500,
+      "cpu_ns": 16000
+    },
+    {
+      "order": 115,
+      "input": "silence/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2371500,
+      "cpu_ns": 2371000
+    },
+    {
+      "order": 116,
+      "input": "silence/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 97541,
+      "cpu_ns": 97000
+    },
+    {
+      "order": 117,
+      "input": "silence/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 12042,
+      "cpu_ns": 13000
+    },
+    {
+      "order": 118,
+      "input": "silence/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 10042,
+      "cpu_ns": 10000
+    },
+    {
+      "order": 119,
+      "input": "silence/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 97416,
+      "cpu_ns": 97000
+    },
+    {
+      "order": 120,
+      "input": "silence/native(120s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 19209,
+      "cpu_ns": 20000
+    },
+    {
+      "order": 121,
+      "input": "silence/native(120s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 23125,
+      "cpu_ns": 24000
+    },
+    {
+      "order": 122,
+      "input": "silence/native(120s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 23041,
+      "cpu_ns": 23000
+    },
+    {
+      "order": 123,
+      "input": "silence/native(120s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 18917,
+      "cpu_ns": 20000
+    },
+    {
+      "order": 124,
+      "input": "silence/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2184458,
+      "cpu_ns": 2184000
+    },
+    {
+      "order": 125,
+      "input": "silence/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 58167,
+      "cpu_ns": 58000
+    },
+    {
+      "order": 126,
+      "input": "silence/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 48125,
+      "cpu_ns": 48000
+    },
+    {
+      "order": 127,
+      "input": "silence/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2197209,
+      "cpu_ns": 2187000
+    },
+    {
+      "order": 128,
+      "input": "silence/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 4417,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 129,
+      "input": "silence/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 3666,
+      "cpu_ns": 3000
+    },
+    {
+      "order": 130,
+      "input": "silence/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 3666,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 131,
+      "input": "silence/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 4167,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 132,
+      "input": "silence/native(120s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 4167,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 133,
+      "input": "silence/native(120s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 3709,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 134,
+      "input": "silence/native(120s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 3625,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 135,
+      "input": "silence/native(120s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 4125,
+      "cpu_ns": 3000
+    },
+    {
+      "order": 136,
+      "input": "silence/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 10459,
+      "cpu_ns": 11000
+    },
+    {
+      "order": 137,
+      "input": "silence/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 97416,
+      "cpu_ns": 98000
+    },
+    {
+      "order": 138,
+      "input": "silence/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 97459,
+      "cpu_ns": 97000
+    },
+    {
+      "order": 139,
+      "input": "silence/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 10209,
+      "cpu_ns": 11000
+    },
+    {
+      "order": 140,
+      "input": "silence/native(120s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 19000,
+      "cpu_ns": 20000
+    },
+    {
+      "order": 141,
+      "input": "silence/native(120s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 7833,
+      "cpu_ns": 8000
+    },
+    {
+      "order": 142,
+      "input": "silence/native(120s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 7459,
+      "cpu_ns": 8000
+    },
+    {
+      "order": 143,
+      "input": "silence/native(120s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 18875,
+      "cpu_ns": 20000
+    },
+    {
+      "order": 144,
+      "input": "silence/native(120s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 3750,
+      "cpu_ns": 3000
+    },
+    {
+      "order": 145,
+      "input": "silence/native(120s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 4042,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 146,
+      "input": "silence/native(120s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 3875,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 147,
+      "input": "silence/native(120s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 3709,
+      "cpu_ns": 3000
+    },
+    {
+      "order": 148,
+      "input": "silence/native(120s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 3959,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 149,
+      "input": "silence/native(120s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 3417,
+      "cpu_ns": 3000
+    },
+    {
+      "order": 150,
+      "input": "silence/native(120s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 3458,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 151,
+      "input": "silence/native(120s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 3916,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 152,
+      "input": "silence/native(120s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 6167,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 153,
+      "input": "silence/native(120s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 5250,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 154,
+      "input": "silence/native(120s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 5208,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 155,
+      "input": "silence/native(120s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 6208,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 156,
+      "input": "silence/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 6042,
+      "cpu_ns": 7000
+    },
+    {
+      "order": 157,
+      "input": "silence/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 5125,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 158,
+      "input": "silence/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 4917,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 159,
+      "input": "silence/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 6041,
+      "cpu_ns": 7000
+    },
+    {
+      "order": 160,
+      "input": "silence/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 10083,
+      "cpu_ns": 10000
+    },
+    {
+      "order": 161,
+      "input": "silence/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 97500,
+      "cpu_ns": 98000
+    },
+    {
+      "order": 162,
+      "input": "silence/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 97375,
+      "cpu_ns": 98000
+    },
+    {
+      "order": 163,
+      "input": "silence/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 9792,
+      "cpu_ns": 10000
+    },
+    {
+      "order": 164,
+      "input": "silence/native(120s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 6209,
+      "cpu_ns": 7000
+    },
+    {
+      "order": 165,
+      "input": "silence/native(120s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 5292,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 166,
+      "input": "silence/native(120s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 5291,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 167,
+      "input": "silence/native(120s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 6167,
+      "cpu_ns": 7000
+    },
+    {
+      "order": 168,
+      "input": "silence/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2176875,
+      "cpu_ns": 2177000
+    },
+    {
+      "order": 169,
+      "input": "silence/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 55958,
+      "cpu_ns": 57000
+    },
+    {
+      "order": 170,
+      "input": "silence/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 47875,
+      "cpu_ns": 48000
+    },
+    {
+      "order": 171,
+      "input": "silence/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2174291,
+      "cpu_ns": 2174000
+    },
+    {
+      "order": 172,
+      "input": "silence/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 97708,
+      "cpu_ns": 98000
+    },
+    {
+      "order": 173,
+      "input": "silence/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 10708,
+      "cpu_ns": 10000
+    },
+    {
+      "order": 174,
+      "input": "silence/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 9959,
+      "cpu_ns": 11000
+    },
+    {
+      "order": 175,
+      "input": "silence/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 104250,
+      "cpu_ns": 104000
+    },
+    {
+      "order": 176,
+      "input": "silence/native(120s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 3459,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 177,
+      "input": "silence/native(120s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 3958,
+      "cpu_ns": 3000
+    },
+    {
+      "order": 178,
+      "input": "silence/native(120s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 4000,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 179,
+      "input": "silence/native(120s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 3500,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 180,
+      "input": "silence/native(120s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 3958,
+      "cpu_ns": 3000
+    },
+    {
+      "order": 181,
+      "input": "silence/native(120s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 3791,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 182,
+      "input": "silence/native(120s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 3792,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 183,
+      "input": "silence/native(120s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 4000,
+      "cpu_ns": 3000
+    },
+    {
+      "order": 184,
+      "input": "silence/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 49334,
+      "cpu_ns": 49000
+    },
+    {
+      "order": 185,
+      "input": "silence/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2177625,
+      "cpu_ns": 2178000
+    },
+    {
+      "order": 186,
+      "input": "silence/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2208333,
+      "cpu_ns": 2200000
+    },
+    {
+      "order": 187,
+      "input": "silence/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 64000,
+      "cpu_ns": 64000
+    },
+    {
+      "order": 188,
+      "input": "silence/native(120s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 9125,
+      "cpu_ns": 9000
+    },
+    {
+      "order": 189,
+      "input": "silence/native(120s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 19000,
+      "cpu_ns": 19000
+    },
+    {
+      "order": 190,
+      "input": "silence/native(120s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 18833,
+      "cpu_ns": 20000
+    },
+    {
+      "order": 191,
+      "input": "silence/native(120s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 7667,
+      "cpu_ns": 8000
+    },
+    {
+      "order": 192,
+      "input": "silence/native(120s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 23167,
+      "cpu_ns": 23000
+    },
+    {
+      "order": 193,
+      "input": "silence/native(120s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 19083,
+      "cpu_ns": 20000
+    },
+    {
+      "order": 194,
+      "input": "silence/native(120s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 19041,
+      "cpu_ns": 20000
+    },
+    {
+      "order": 195,
+      "input": "silence/native(120s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 23125,
+      "cpu_ns": 23000
+    },
+    {
+      "order": 196,
+      "input": "silence/native(120s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 4042,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 197,
+      "input": "silence/native(120s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 3750,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 198,
+      "input": "silence/native(120s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 3667,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 199,
+      "input": "silence/native(120s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 3916,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 200,
+      "input": "silence/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 15250,
+      "cpu_ns": 15000
+    },
+    {
+      "order": 201,
+      "input": "silence/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 546750,
+      "cpu_ns": 546000
+    },
+    {
+      "order": 202,
+      "input": "silence/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 541584,
+      "cpu_ns": 541000
+    },
+    {
+      "order": 203,
+      "input": "silence/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 12583,
+      "cpu_ns": 13000
+    },
+    {
+      "order": 204,
+      "input": "silence/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 3500,
+      "cpu_ns": 3000
+    },
+    {
+      "order": 205,
+      "input": "silence/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 3958,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 206,
+      "input": "silence/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 3917,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 207,
+      "input": "silence/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 3417,
+      "cpu_ns": 3000
+    },
+    {
+      "order": 208,
+      "input": "silence/native(120s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 3375,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 209,
+      "input": "silence/native(120s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 3959,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 210,
+      "input": "silence/native(120s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 3917,
+      "cpu_ns": 3000
+    },
+    {
+      "order": 211,
+      "input": "silence/native(120s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 3459,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 212,
+      "input": "silence/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2491417,
+      "cpu_ns": 2487000
+    },
+    {
+      "order": 213,
+      "input": "silence/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 21000,
+      "cpu_ns": 22000
+    },
+    {
+      "order": 214,
+      "input": "silence/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 15167,
+      "cpu_ns": 16000
+    },
+    {
+      "order": 215,
+      "input": "silence/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2651709,
+      "cpu_ns": 2652000
+    },
+    {
+      "order": 216,
+      "input": "silence/native(120s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 20750,
+      "cpu_ns": 20000
+    },
+    {
+      "order": 217,
+      "input": "silence/native(120s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 27042,
+      "cpu_ns": 27000
+    },
+    {
+      "order": 218,
+      "input": "silence/native(120s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 27125,
+      "cpu_ns": 28000
+    },
+    {
+      "order": 219,
+      "input": "silence/native(120s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 21417,
+      "cpu_ns": 22000
+    },
+    {
+      "order": 220,
+      "input": "silence/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 625250,
+      "cpu_ns": 621000
+    },
+    {
+      "order": 221,
+      "input": "silence/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 24667,
+      "cpu_ns": 24000
+    },
+    {
+      "order": 222,
+      "input": "silence/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 14292,
+      "cpu_ns": 14000
+    },
+    {
+      "order": 223,
+      "input": "silence/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 572792,
+      "cpu_ns": 574000
+    },
+    {
+      "order": 224,
+      "input": "silence/native(120s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 20500,
+      "cpu_ns": 21000
+    },
+    {
+      "order": 225,
+      "input": "silence/native(120s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 24792,
+      "cpu_ns": 25000
+    },
+    {
+      "order": 226,
+      "input": "silence/native(120s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 24500,
+      "cpu_ns": 24000
+    },
+    {
+      "order": 227,
+      "input": "silence/native(120s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 20083,
+      "cpu_ns": 19000
+    },
+    {
+      "order": 228,
+      "input": "silence/native(120s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 5666,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 229,
+      "input": "silence/native(120s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 6583,
+      "cpu_ns": 7000
+    },
+    {
+      "order": 230,
+      "input": "silence/native(120s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 6583,
+      "cpu_ns": 8000
+    },
+    {
+      "order": 231,
+      "input": "silence/native(120s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 5500,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 232,
+      "input": "silence/native(120s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 6541,
+      "cpu_ns": 7000
+    },
+    {
+      "order": 233,
+      "input": "silence/native(120s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 5833,
+      "cpu_ns": 7000
+    },
+    {
+      "order": 234,
+      "input": "silence/native(120s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 5500,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 235,
+      "input": "silence/native(120s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 6583,
+      "cpu_ns": 8000
+    },
+    {
+      "order": 236,
+      "input": "silence/native(120s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 3666,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 237,
+      "input": "silence/native(120s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 4167,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 238,
+      "input": "silence/native(120s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 4125,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 239,
+      "input": "silence/native(120s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 3791,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 240,
+      "input": "silence/native(120s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 4042,
+      "cpu_ns": 3000
+    },
+    {
+      "order": 241,
+      "input": "silence/native(120s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 4333,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 242,
+      "input": "silence/native(120s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 15250,
+      "cpu_ns": 11000
+    },
+    {
+      "order": 243,
+      "input": "silence/native(120s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 7458,
+      "cpu_ns": 9000
+    },
+    {
+      "order": 244,
+      "input": "silence/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 39000,
+      "cpu_ns": 36000
+    },
+    {
+      "order": 245,
+      "input": "silence/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2567500,
+      "cpu_ns": 2554000
+    },
+    {
+      "order": 246,
+      "input": "silence/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2929292,
+      "cpu_ns": 2862000
+    },
+    {
+      "order": 247,
+      "input": "silence/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 59042,
+      "cpu_ns": 59000
+    },
+    {
+      "order": 248,
+      "input": "silence/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 10459,
+      "cpu_ns": 11000
+    },
+    {
+      "order": 249,
+      "input": "silence/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 8500,
+      "cpu_ns": 9000
+    },
+    {
+      "order": 250,
+      "input": "silence/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 8416,
+      "cpu_ns": 10000
+    },
+    {
+      "order": 251,
+      "input": "silence/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 10542,
+      "cpu_ns": 11000
+    },
+    {
+      "order": 252,
+      "input": "silence/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2503542,
+      "cpu_ns": 2495000
+    },
+    {
+      "order": 253,
+      "input": "silence/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 138208,
+      "cpu_ns": 137000
+    },
+    {
+      "order": 254,
+      "input": "silence/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 60125,
+      "cpu_ns": 57000
+    },
+    {
+      "order": 255,
+      "input": "silence/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2326125,
+      "cpu_ns": 2315000
+    },
+    {
+      "order": 256,
+      "input": "silence/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 5417,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 257,
+      "input": "silence/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 3750,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 258,
+      "input": "silence/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 3666,
+      "cpu_ns": 3000
+    },
+    {
+      "order": 259,
+      "input": "silence/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 4083,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 260,
+      "input": "silence/native(120s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 5750,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 261,
+      "input": "silence/native(120s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 6666,
+      "cpu_ns": 7000
+    },
+    {
+      "order": 262,
+      "input": "silence/native(120s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 6541,
+      "cpu_ns": 7000
+    },
+    {
+      "order": 263,
+      "input": "silence/native(120s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 5500,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 264,
+      "input": "silence/native(120s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 5500,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 265,
+      "input": "silence/native(120s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 6542,
+      "cpu_ns": 7000
+    },
+    {
+      "order": 266,
+      "input": "silence/native(120s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 6500,
+      "cpu_ns": 7000
+    },
+    {
+      "order": 267,
+      "input": "silence/native(120s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 5458,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 268,
+      "input": "silence/native(120s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 4166,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 269,
+      "input": "silence/native(120s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 3667,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 270,
+      "input": "silence/native(120s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 3625,
+      "cpu_ns": 3000
+    },
+    {
+      "order": 271,
+      "input": "silence/native(120s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 4125,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 272,
+      "input": "silence/native(120s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 20083,
+      "cpu_ns": 20000
+    },
+    {
+      "order": 273,
+      "input": "silence/native(120s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 12791,
+      "cpu_ns": 13000
+    },
+    {
+      "order": 274,
+      "input": "silence/native(120s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 8125,
+      "cpu_ns": 7000
+    },
+    {
+      "order": 275,
+      "input": "silence/native(120s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 19916,
+      "cpu_ns": 20000
+    },
+    {
+      "order": 276,
+      "input": "silence/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 24500,
+      "cpu_ns": 26000
+    },
+    {
+      "order": 277,
+      "input": "silence/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 102917,
+      "cpu_ns": 102000
+    },
+    {
+      "order": 278,
+      "input": "silence/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 101917,
+      "cpu_ns": 103000
+    },
+    {
+      "order": 279,
+      "input": "silence/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 10709,
+      "cpu_ns": 11000
+    },
+    {
+      "order": 280,
+      "input": "silence/native(120s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 4375,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 281,
+      "input": "silence/native(120s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 3917,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 282,
+      "input": "silence/native(120s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 3875,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 283,
+      "input": "silence/native(120s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 4083,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 284,
+      "input": "silence/native(120s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 3583,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 285,
+      "input": "silence/native(120s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 4084,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 286,
+      "input": "silence/native(120s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 4084,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 287,
+      "input": "silence/native(120s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 3584,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 288,
+      "input": "silence/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 3583,
+      "cpu_ns": 3000
+    },
+    {
+      "order": 289,
+      "input": "silence/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 3958,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 290,
+      "input": "silence/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 3875,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 291,
+      "input": "silence/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 3416,
+      "cpu_ns": 3000
+    },
+    {
+      "order": 292,
+      "input": "silence/native(120s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 18833,
+      "cpu_ns": 19000
+    },
+    {
+      "order": 293,
+      "input": "silence/native(120s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 7666,
+      "cpu_ns": 8000
+    },
+    {
+      "order": 294,
+      "input": "silence/native(120s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 7541,
+      "cpu_ns": 7000
+    },
+    {
+      "order": 295,
+      "input": "silence/native(120s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 18875,
+      "cpu_ns": 20000
+    },
+    {
+      "order": 296,
+      "input": "silence/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 544833,
+      "cpu_ns": 545000
+    },
+    {
+      "order": 297,
+      "input": "silence/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 27208,
+      "cpu_ns": 28000
+    },
+    {
+      "order": 298,
+      "input": "silence/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 12791,
+      "cpu_ns": 12000
+    },
+    {
+      "order": 299,
+      "input": "silence/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 544000,
+      "cpu_ns": 543000
+    },
+    {
+      "order": 300,
+      "input": "silence/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2394125,
+      "cpu_ns": 2395000
+    },
+    {
+      "order": 301,
+      "input": "silence/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 29125,
+      "cpu_ns": 28000
+    },
+    {
+      "order": 302,
+      "input": "silence/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 15375,
+      "cpu_ns": 15000
+    },
+    {
+      "order": 303,
+      "input": "silence/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2388166,
+      "cpu_ns": 2389000
+    },
+    {
+      "order": 304,
+      "input": "silence/native(120s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 4208,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 305,
+      "input": "silence/native(120s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 3458,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 306,
+      "input": "silence/native(120s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 3416,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 307,
+      "input": "silence/native(120s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 3958,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 308,
+      "input": "silence/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 6042,
+      "cpu_ns": 7000
+    },
+    {
+      "order": 309,
+      "input": "silence/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 5166,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 310,
+      "input": "silence/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 4833,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 311,
+      "input": "silence/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 6042,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 312,
+      "input": "silence/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 4875,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 313,
+      "input": "silence/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 6000,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 314,
+      "input": "silence/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 6000,
+      "cpu_ns": 7000
+    },
+    {
+      "order": 315,
+      "input": "silence/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 4875,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 316,
+      "input": "silence/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 97417,
+      "cpu_ns": 98000
+    },
+    {
+      "order": 317,
+      "input": "silence/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 18125,
+      "cpu_ns": 19000
+    },
+    {
+      "order": 318,
+      "input": "silence/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 10042,
+      "cpu_ns": 9000
+    },
+    {
+      "order": 319,
+      "input": "silence/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 100167,
+      "cpu_ns": 99000
+    },
+    {
+      "order": 320,
+      "input": "silence/native(120s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 6208,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 321,
+      "input": "silence/native(120s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 5292,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 322,
+      "input": "silence/native(120s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 5167,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 323,
+      "input": "silence/native(120s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 6208,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 324,
+      "input": "silence/native(120s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 19333,
+      "cpu_ns": 18000
+    },
+    {
+      "order": 325,
+      "input": "silence/native(120s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 23083,
+      "cpu_ns": 22000
+    },
+    {
+      "order": 326,
+      "input": "silence/native(120s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 23042,
+      "cpu_ns": 23000
+    },
+    {
+      "order": 327,
+      "input": "silence/native(120s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 18917,
+      "cpu_ns": 19000
+    },
+    {
+      "order": 328,
+      "input": "silence/native(120s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 3750,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 329,
+      "input": "silence/native(120s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 4166,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 330,
+      "input": "silence/native(120s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 3917,
+      "cpu_ns": 3000
+    },
+    {
+      "order": 331,
+      "input": "silence/native(120s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 3750,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 332,
+      "input": "silence/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 14292,
+      "cpu_ns": 15000
+    },
+    {
+      "order": 333,
+      "input": "silence/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2384125,
+      "cpu_ns": 2384000
+    },
+    {
+      "order": 334,
+      "input": "silence/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2531333,
+      "cpu_ns": 2464000
+    },
+    {
+      "order": 335,
+      "input": "silence/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 26417,
+      "cpu_ns": 27000
+    },
+    {
+      "order": 336,
+      "input": "silence/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 6250,
+      "cpu_ns": 7000
+    },
+    {
+      "order": 337,
+      "input": "silence/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 5125,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 338,
+      "input": "silence/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 4917,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 339,
+      "input": "silence/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 6166,
+      "cpu_ns": 7000
+    },
+    {
+      "order": 340,
+      "input": "silence/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 3958,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 341,
+      "input": "silence/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 3458,
+      "cpu_ns": 3000
+    },
+    {
+      "order": 342,
+      "input": "silence/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 3458,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 343,
+      "input": "silence/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 3958,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 344,
+      "input": "silence/native(120s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 3875,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 345,
+      "input": "silence/native(120s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 4291,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 346,
+      "input": "silence/native(120s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 3958,
+      "cpu_ns": 3000
+    },
+    {
+      "order": 347,
+      "input": "silence/native(120s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 3750,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 348,
+      "input": "silence/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2165834,
+      "cpu_ns": 2166000
+    },
+    {
+      "order": 349,
+      "input": "silence/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 94042,
+      "cpu_ns": 94000
+    },
+    {
+      "order": 350,
+      "input": "silence/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 50041,
+      "cpu_ns": 50000
+    },
+    {
+      "order": 351,
+      "input": "silence/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2165667,
+      "cpu_ns": 2167000
+    },
+    {
+      "order": 352,
+      "input": "silence/native(120s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 3834,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 353,
+      "input": "silence/native(120s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 4042,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 354,
+      "input": "silence/native(120s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 3917,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 355,
+      "input": "silence/native(120s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 3458,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 356,
+      "input": "silence/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 3958,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 357,
+      "input": "silence/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 3541,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 358,
+      "input": "silence/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 3500,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 359,
+      "input": "silence/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 4000,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 360,
+      "input": "silence/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 97500,
+      "cpu_ns": 99000
+    },
+    {
+      "order": 361,
+      "input": "silence/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 17916,
+      "cpu_ns": 17000
+    },
+    {
+      "order": 362,
+      "input": "silence/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 10333,
+      "cpu_ns": 10000
+    },
+    {
+      "order": 363,
+      "input": "silence/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 97542,
+      "cpu_ns": 99000
+    },
+    {
+      "order": 364,
+      "input": "silence/native(120s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 6291,
+      "cpu_ns": 7000
+    },
+    {
+      "order": 365,
+      "input": "silence/native(120s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 5375,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 366,
+      "input": "silence/native(120s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 5291,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 367,
+      "input": "silence/native(120s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 6375,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 368,
+      "input": "silence/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 4000,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 369,
+      "input": "silence/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 3458,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 370,
+      "input": "silence/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 3458,
+      "cpu_ns": 3000
+    },
+    {
+      "order": 371,
+      "input": "silence/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 3959,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 372,
+      "input": "silence/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 10083,
+      "cpu_ns": 11000
+    },
+    {
+      "order": 373,
+      "input": "silence/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 97459,
+      "cpu_ns": 97000
+    },
+    {
+      "order": 374,
+      "input": "silence/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 97500,
+      "cpu_ns": 98000
+    },
+    {
+      "order": 375,
+      "input": "silence/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 9959,
+      "cpu_ns": 10000
+    },
+    {
+      "order": 376,
+      "input": "silence/native(120s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 6125,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 377,
+      "input": "silence/native(120s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 5291,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 378,
+      "input": "silence/native(120s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 5208,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 379,
+      "input": "silence/native(120s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 6250,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 380,
+      "input": "silence/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 5000,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 381,
+      "input": "silence/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 6084,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 382,
+      "input": "silence/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 6042,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 383,
+      "input": "silence/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 5167,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 384,
+      "input": "silence/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 23709,
+      "cpu_ns": 24000
+    },
+    {
+      "order": 385,
+      "input": "silence/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 539042,
+      "cpu_ns": 538000
+    },
+    {
+      "order": 386,
+      "input": "silence/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 539125,
+      "cpu_ns": 539000
+    },
+    {
+      "order": 387,
+      "input": "silence/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 13584,
+      "cpu_ns": 15000
+    },
+    {
+      "order": 388,
+      "input": "silence/native(120s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 3916,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 389,
+      "input": "silence/native(120s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 4167,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 390,
+      "input": "silence/native(120s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 4000,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 391,
+      "input": "silence/native(120s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 3709,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 392,
+      "input": "silence/native(120s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 6250,
+      "cpu_ns": 7000
+    },
+    {
+      "order": 393,
+      "input": "silence/native(120s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 5291,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 394,
+      "input": "silence/native(120s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 5166,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 395,
+      "input": "silence/native(120s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 6291,
+      "cpu_ns": 7000
+    },
+    {
+      "order": 396,
+      "input": "silence/native(120s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 19083,
+      "cpu_ns": 19000
+    },
+    {
+      "order": 397,
+      "input": "silence/native(120s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 10375,
+      "cpu_ns": 10000
+    },
+    {
+      "order": 398,
+      "input": "silence/native(120s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 7625,
+      "cpu_ns": 8000
+    },
+    {
+      "order": 399,
+      "input": "silence/native(120s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 18875,
+      "cpu_ns": 20000
+    },
+    {
+      "order": 400,
+      "input": "silence/native(120s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 5250,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 401,
+      "input": "silence/native(120s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 6208,
+      "cpu_ns": 7000
+    },
+    {
+      "order": 402,
+      "input": "silence/native(120s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 6292,
+      "cpu_ns": 7000
+    },
+    {
+      "order": 403,
+      "input": "silence/native(120s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 5208,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 404,
+      "input": "silence/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 3458,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 405,
+      "input": "silence/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 3958,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 406,
+      "input": "silence/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 3917,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 407,
+      "input": "silence/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 3459,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 408,
+      "input": "silence/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 97333,
+      "cpu_ns": 97000
+    },
+    {
+      "order": 409,
+      "input": "silence/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 10959,
+      "cpu_ns": 12000
+    },
+    {
+      "order": 410,
+      "input": "silence/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 10083,
+      "cpu_ns": 10000
+    },
+    {
+      "order": 411,
+      "input": "silence/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 97875,
+      "cpu_ns": 97000
+    },
+    {
+      "order": 412,
+      "input": "silence/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 57125,
+      "cpu_ns": 57000
+    },
+    {
+      "order": 413,
+      "input": "silence/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2226792,
+      "cpu_ns": 2212000
+    },
+    {
+      "order": 414,
+      "input": "silence/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2176375,
+      "cpu_ns": 2177000
+    },
+    {
+      "order": 415,
+      "input": "silence/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 65333,
+      "cpu_ns": 66000
+    },
+    {
+      "order": 416,
+      "input": "silence/native(120s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 6375,
+      "cpu_ns": 7000
+    },
+    {
+      "order": 417,
+      "input": "silence/native(120s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 5375,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 418,
+      "input": "silence/native(120s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 5208,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 419,
+      "input": "silence/native(120s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 6125,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 420,
+      "input": "silence/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 18084,
+      "cpu_ns": 17000
+    },
+    {
+      "order": 421,
+      "input": "silence/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2384541,
+      "cpu_ns": 2384000
+    },
+    {
+      "order": 422,
+      "input": "silence/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2383000,
+      "cpu_ns": 2383000
+    },
+    {
+      "order": 423,
+      "input": "silence/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 15250,
+      "cpu_ns": 15000
+    },
+    {
+      "order": 424,
+      "input": "silence/native(120s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 23208,
+      "cpu_ns": 23000
+    },
+    {
+      "order": 425,
+      "input": "silence/native(120s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 19209,
+      "cpu_ns": 20000
+    },
+    {
+      "order": 426,
+      "input": "silence/native(120s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 18958,
+      "cpu_ns": 19000
+    },
+    {
+      "order": 427,
+      "input": "silence/native(120s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 23292,
+      "cpu_ns": 23000
+    },
+    {
+      "order": 428,
+      "input": "silence/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 16167,
+      "cpu_ns": 17000
+    },
+    {
+      "order": 429,
+      "input": "silence/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 539000,
+      "cpu_ns": 539000
+    },
+    {
+      "order": 430,
+      "input": "silence/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 538834,
+      "cpu_ns": 539000
+    },
+    {
+      "order": 431,
+      "input": "silence/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 12625,
+      "cpu_ns": 13000
+    },
+    {
+      "order": 432,
+      "input": "silence/native(120s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 5250,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 433,
+      "input": "silence/native(120s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 6250,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 434,
+      "input": "silence/native(120s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 6166,
+      "cpu_ns": 7000
+    },
+    {
+      "order": 435,
+      "input": "silence/native(120s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 5208,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 436,
+      "input": "silence/native(120s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 7917,
+      "cpu_ns": 9000
+    },
+    {
+      "order": 437,
+      "input": "silence/native(120s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 18792,
+      "cpu_ns": 19000
+    },
+    {
+      "order": 438,
+      "input": "silence/native(120s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 18917,
+      "cpu_ns": 18000
+    },
+    {
+      "order": 439,
+      "input": "silence/native(120s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 7667,
+      "cpu_ns": 9000
+    },
+    {
+      "order": 440,
+      "input": "silence/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 5000,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 441,
+      "input": "silence/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 6042,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 442,
+      "input": "silence/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 6042,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 443,
+      "input": "silence/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 4916,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 444,
+      "input": "silence/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 48917,
+      "cpu_ns": 50000
+    },
+    {
+      "order": 445,
+      "input": "silence/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2198791,
+      "cpu_ns": 2192000
+    },
+    {
+      "order": 446,
+      "input": "silence/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2166459,
+      "cpu_ns": 2167000
+    },
+    {
+      "order": 447,
+      "input": "silence/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 54292,
+      "cpu_ns": 54000
+    },
+    {
+      "order": 448,
+      "input": "silence/native(120s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 9916,
+      "cpu_ns": 11000
+    },
+    {
+      "order": 449,
+      "input": "silence/native(120s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 19000,
+      "cpu_ns": 20000
+    },
+    {
+      "order": 450,
+      "input": "silence/native(120s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 18834,
+      "cpu_ns": 19000
+    },
+    {
+      "order": 451,
+      "input": "silence/native(120s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 7458,
+      "cpu_ns": 7000
+    },
+    {
+      "order": 452,
+      "input": "silence/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 4959,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 453,
+      "input": "silence/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 6083,
+      "cpu_ns": 7000
+    },
+    {
+      "order": 454,
+      "input": "silence/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 6083,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 455,
+      "input": "silence/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 4917,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 456,
+      "input": "silence/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 6000,
+      "cpu_ns": 7000
+    },
+    {
+      "order": 457,
+      "input": "silence/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 4917,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 458,
+      "input": "silence/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 4875,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 459,
+      "input": "silence/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 5958,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 460,
+      "input": "silence/native(120s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 3958,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 461,
+      "input": "silence/native(120s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 3417,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 462,
+      "input": "silence/native(120s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 3458,
+      "cpu_ns": 3000
+    },
+    {
+      "order": 463,
+      "input": "silence/native(120s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 3916,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 464,
+      "input": "silence/native(120s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 3667,
+      "cpu_ns": 3000
+    },
+    {
+      "order": 465,
+      "input": "silence/native(120s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 4167,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 466,
+      "input": "silence/native(120s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 3875,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 467,
+      "input": "silence/native(120s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 3709,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 468,
+      "input": "silence/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 97500,
+      "cpu_ns": 98000
+    },
+    {
+      "order": 469,
+      "input": "silence/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 12042,
+      "cpu_ns": 13000
+    },
+    {
+      "order": 470,
+      "input": "silence/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 10167,
+      "cpu_ns": 10000
+    },
+    {
+      "order": 471,
+      "input": "silence/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 97833,
+      "cpu_ns": 98000
+    },
+    {
+      "order": 472,
+      "input": "silence/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 14959,
+      "cpu_ns": 15000
+    },
+    {
+      "order": 473,
+      "input": "silence/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2375500,
+      "cpu_ns": 2375000
+    },
+    {
+      "order": 474,
+      "input": "silence/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2377833,
+      "cpu_ns": 2377000
+    },
+    {
+      "order": 475,
+      "input": "silence/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 14542,
+      "cpu_ns": 16000
+    },
+    {
+      "order": 476,
+      "input": "silence/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 3500,
+      "cpu_ns": 3000
+    },
+    {
+      "order": 477,
+      "input": "silence/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 4000,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 478,
+      "input": "silence/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 3958,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 479,
+      "input": "silence/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 3459,
+      "cpu_ns": 3000
+    },
+    {
+      "order": 480,
+      "input": "silence/native(120s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 4000,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 481,
+      "input": "silence/native(120s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 3458,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 482,
+      "input": "silence/native(120s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 3417,
+      "cpu_ns": 3000
+    },
+    {
+      "order": 483,
+      "input": "silence/native(120s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 3916,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 484,
+      "input": "silence/native(120s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 7834,
+      "cpu_ns": 7000
+    },
+    {
+      "order": 485,
+      "input": "silence/native(120s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 18917,
+      "cpu_ns": 19000
+    },
+    {
+      "order": 486,
+      "input": "silence/native(120s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 18833,
+      "cpu_ns": 20000
+    },
+    {
+      "order": 487,
+      "input": "silence/native(120s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 7417,
+      "cpu_ns": 7000
+    },
+    {
+      "order": 488,
+      "input": "silence/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 539000,
+      "cpu_ns": 540000
+    },
+    {
+      "order": 489,
+      "input": "silence/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 34959,
+      "cpu_ns": 22000
+    },
+    {
+      "order": 490,
+      "input": "silence/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 21375,
+      "cpu_ns": 18000
+    },
+    {
+      "order": 491,
+      "input": "silence/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 547958,
+      "cpu_ns": 547000
+    },
+    {
+      "order": 492,
+      "input": "silence/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 12666,
+      "cpu_ns": 13000
+    },
+    {
+      "order": 493,
+      "input": "silence/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 541584,
+      "cpu_ns": 542000
+    },
+    {
+      "order": 494,
+      "input": "silence/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 548375,
+      "cpu_ns": 549000
+    },
+    {
+      "order": 495,
+      "input": "silence/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 12208,
+      "cpu_ns": 13000
+    },
+    {
+      "order": 496,
+      "input": "silence/native(120s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 3750,
+      "cpu_ns": 3000
+    },
+    {
+      "order": 497,
+      "input": "silence/native(120s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 3958,
+      "cpu_ns": 3000
+    },
+    {
+      "order": 498,
+      "input": "silence/native(120s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 3916,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 499,
+      "input": "silence/native(120s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 3750,
+      "cpu_ns": 3000
+    },
+    {
+      "order": 500,
+      "input": "silence/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 3458,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 501,
+      "input": "silence/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 3917,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 502,
+      "input": "silence/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 3916,
+      "cpu_ns": 3000
+    },
+    {
+      "order": 503,
+      "input": "silence/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 3458,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 504,
+      "input": "silence/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 4958,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 505,
+      "input": "silence/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 6041,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 506,
+      "input": "silence/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 6000,
+      "cpu_ns": 7000
+    },
+    {
+      "order": 507,
+      "input": "silence/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 4959,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 508,
+      "input": "silence/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 4875,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 509,
+      "input": "silence/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 6042,
+      "cpu_ns": 7000
+    },
+    {
+      "order": 510,
+      "input": "silence/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 6000,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 511,
+      "input": "silence/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 4917,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 512,
+      "input": "silence/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 3875,
+      "cpu_ns": 3000
+    },
+    {
+      "order": 513,
+      "input": "silence/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 3458,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 514,
+      "input": "silence/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 3417,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 515,
+      "input": "silence/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 3917,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 516,
+      "input": "silence/native(120s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 18916,
+      "cpu_ns": 20000
+    },
+    {
+      "order": 517,
+      "input": "silence/native(120s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 7875,
+      "cpu_ns": 7000
+    },
+    {
+      "order": 518,
+      "input": "silence/native(120s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 7708,
+      "cpu_ns": 8000
+    },
+    {
+      "order": 519,
+      "input": "silence/native(120s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 18792,
+      "cpu_ns": 19000
+    },
+    {
+      "order": 520,
+      "input": "silence/native(120s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 18875,
+      "cpu_ns": 18000
+    },
+    {
+      "order": 521,
+      "input": "silence/native(120s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 7834,
+      "cpu_ns": 9000
+    },
+    {
+      "order": 522,
+      "input": "silence/native(120s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 7667,
+      "cpu_ns": 8000
+    },
+    {
+      "order": 523,
+      "input": "silence/native(120s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 18792,
+      "cpu_ns": 19000
+    },
+    {
+      "order": 524,
+      "input": "silence/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 51500,
+      "cpu_ns": 52000
+    },
+    {
+      "order": 525,
+      "input": "silence/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2199667,
+      "cpu_ns": 2200000
+    },
+    {
+      "order": 526,
+      "input": "silence/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2200084,
+      "cpu_ns": 2200000
+    },
+    {
+      "order": 527,
+      "input": "silence/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 55625,
+      "cpu_ns": 56000
+    },
+    {
+      "order": 528,
+      "input": "silence/native(120s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 6417,
+      "cpu_ns": 7000
+    },
+    {
+      "order": 529,
+      "input": "silence/native(120s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 5417,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 530,
+      "input": "silence/native(120s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 5208,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 531,
+      "input": "silence/native(120s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 6250,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 532,
+      "input": "silence/native(120s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 5292,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 533,
+      "input": "silence/native(120s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 6209,
+      "cpu_ns": 7000
+    },
+    {
+      "order": 534,
+      "input": "silence/native(120s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 6292,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 535,
+      "input": "silence/native(120s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 5292,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 536,
+      "input": "silence/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 13459,
+      "cpu_ns": 15000
+    },
+    {
+      "order": 537,
+      "input": "silence/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 542250,
+      "cpu_ns": 543000
+    },
+    {
+      "order": 538,
+      "input": "silence/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 548166,
+      "cpu_ns": 548000
+    },
+    {
+      "order": 539,
+      "input": "silence/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 12500,
+      "cpu_ns": 13000
+    },
+    {
+      "order": 540,
+      "input": "silence/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 12166,
+      "cpu_ns": 12000
+    },
+    {
+      "order": 541,
+      "input": "silence/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 545000,
+      "cpu_ns": 545000
+    },
+    {
+      "order": 542,
+      "input": "silence/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 548041,
+      "cpu_ns": 548000
+    },
+    {
+      "order": 543,
+      "input": "silence/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 12375,
+      "cpu_ns": 12000
+    },
+    {
+      "order": 544,
+      "input": "silence/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2402167,
+      "cpu_ns": 2394000
+    },
+    {
+      "order": 545,
+      "input": "silence/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 16250,
+      "cpu_ns": 16000
+    },
+    {
+      "order": 546,
+      "input": "silence/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 14000,
+      "cpu_ns": 15000
+    },
+    {
+      "order": 547,
+      "input": "silence/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2371583,
+      "cpu_ns": 2372000
+    },
+    {
+      "order": 548,
+      "input": "silence/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 51333,
+      "cpu_ns": 51000
+    },
+    {
+      "order": 549,
+      "input": "silence/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2174375,
+      "cpu_ns": 2175000
+    },
+    {
+      "order": 550,
+      "input": "silence/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2180667,
+      "cpu_ns": 2182000
+    },
+    {
+      "order": 551,
+      "input": "silence/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 49250,
+      "cpu_ns": 50000
+    },
+    {
+      "order": 552,
+      "input": "silence/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 539000,
+      "cpu_ns": 540000
+    },
+    {
+      "order": 553,
+      "input": "silence/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 13667,
+      "cpu_ns": 13000
+    },
+    {
+      "order": 554,
+      "input": "silence/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 12208,
+      "cpu_ns": 13000
+    },
+    {
+      "order": 555,
+      "input": "silence/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 544375,
+      "cpu_ns": 545000
+    },
+    {
+      "order": 556,
+      "input": "silence/native(120s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 6250,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 557,
+      "input": "silence/native(120s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 5333,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 558,
+      "input": "silence/native(120s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 5250,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 559,
+      "input": "silence/native(120s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 6167,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 560,
+      "input": "silence/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2406041,
+      "cpu_ns": 2396000
+    },
+    {
+      "order": 561,
+      "input": "silence/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 15583,
+      "cpu_ns": 16000
+    },
+    {
+      "order": 562,
+      "input": "silence/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 13833,
+      "cpu_ns": 15000
+    },
+    {
+      "order": 563,
+      "input": "silence/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2390625,
+      "cpu_ns": 2391000
+    },
+    {
+      "order": 564,
+      "input": "silence/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 14375,
+      "cpu_ns": 15000
+    },
+    {
+      "order": 565,
+      "input": "silence/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2389291,
+      "cpu_ns": 2389000
+    },
+    {
+      "order": 566,
+      "input": "silence/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2380958,
+      "cpu_ns": 2382000
+    },
+    {
+      "order": 567,
+      "input": "silence/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 14292,
+      "cpu_ns": 15000
+    },
+    {
+      "order": 568,
+      "input": "silence/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 13083,
+      "cpu_ns": 14000
+    },
+    {
+      "order": 569,
+      "input": "silence/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 545708,
+      "cpu_ns": 546000
+    },
+    {
+      "order": 570,
+      "input": "silence/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 541667,
+      "cpu_ns": 542000
+    },
+    {
+      "order": 571,
+      "input": "silence/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 12417,
+      "cpu_ns": 12000
+    },
+    {
+      "order": 572,
+      "input": "silence/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 98292,
+      "cpu_ns": 99000
+    },
+    {
+      "order": 573,
+      "input": "silence/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 14250,
+      "cpu_ns": 15000
+    },
+    {
+      "order": 574,
+      "input": "silence/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 10250,
+      "cpu_ns": 10000
+    },
+    {
+      "order": 575,
+      "input": "silence/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 128625,
+      "cpu_ns": 117000
+    },
+    {
+      "order": 576,
+      "input": "silence/native(120s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 6417,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 577,
+      "input": "silence/native(120s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 5291,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 578,
+      "input": "silence/native(120s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 5250,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 579,
+      "input": "silence/native(120s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 6250,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 580,
+      "input": "silence/native(120s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 3583,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 581,
+      "input": "silence/native(120s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 3959,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 582,
+      "input": "silence/native(120s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 3958,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 583,
+      "input": "silence/native(120s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 3500,
+      "cpu_ns": 3000
+    },
+    {
+      "order": 584,
+      "input": "silence/native(120s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 5291,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 585,
+      "input": "silence/native(120s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 6292,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 586,
+      "input": "silence/native(120s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 6292,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 587,
+      "input": "silence/native(120s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 5291,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 588,
+      "input": "silence/native(120s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 4042,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 589,
+      "input": "silence/native(120s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 3792,
+      "cpu_ns": 3000
+    },
+    {
+      "order": 590,
+      "input": "silence/native(120s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 3792,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 591,
+      "input": "silence/native(120s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 4000,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 592,
+      "input": "silence/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 50500,
+      "cpu_ns": 51000
+    },
+    {
+      "order": 593,
+      "input": "silence/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2165791,
+      "cpu_ns": 2166000
+    },
+    {
+      "order": 594,
+      "input": "silence/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2165958,
+      "cpu_ns": 2166000
+    },
+    {
+      "order": 595,
+      "input": "silence/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 49166,
+      "cpu_ns": 49000
+    },
+    {
+      "order": 596,
+      "input": "silence/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 3500,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 597,
+      "input": "silence/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 3916,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 598,
+      "input": "silence/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 3917,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 599,
+      "input": "silence/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 3500,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 600,
+      "input": "silence/native(120s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 4250,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 601,
+      "input": "silence/native(120s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 3792,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 602,
+      "input": "silence/native(120s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 3708,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 603,
+      "input": "silence/native(120s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 4041,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 604,
+      "input": "silence/native(120s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 3917,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 605,
+      "input": "silence/native(120s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 3750,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 606,
+      "input": "silence/native(120s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 3792,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 607,
+      "input": "silence/native(120s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 3875,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 608,
+      "input": "silence/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 12792,
+      "cpu_ns": 13000
+    },
+    {
+      "order": 609,
+      "input": "silence/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 538917,
+      "cpu_ns": 539000
+    },
+    {
+      "order": 610,
+      "input": "silence/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 539042,
+      "cpu_ns": 539000
+    },
+    {
+      "order": 611,
+      "input": "silence/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 12500,
+      "cpu_ns": 13000
+    },
+    {
+      "order": 612,
+      "input": "silence/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 14292,
+      "cpu_ns": 14000
+    },
+    {
+      "order": 613,
+      "input": "silence/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2376917,
+      "cpu_ns": 2377000
+    },
+    {
+      "order": 614,
+      "input": "silence/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2491125,
+      "cpu_ns": 2447000
+    },
+    {
+      "order": 615,
+      "input": "silence/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 17166,
+      "cpu_ns": 18000
+    },
+    {
+      "order": 616,
+      "input": "silence/native(120s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 6333,
+      "cpu_ns": 7000
+    },
+    {
+      "order": 617,
+      "input": "silence/native(120s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 5333,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 618,
+      "input": "silence/native(120s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 5209,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 619,
+      "input": "silence/native(120s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 6167,
+      "cpu_ns": 7000
+    },
+    {
+      "order": 620,
+      "input": "silence/native(120s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 3917,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 621,
+      "input": "silence/native(120s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 3875,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 622,
+      "input": "silence/native(120s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 3500,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 623,
+      "input": "silence/native(120s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 4042,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 624,
+      "input": "silence/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 74166,
+      "cpu_ns": 67000
+    },
+    {
+      "order": 625,
+      "input": "silence/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2168875,
+      "cpu_ns": 2169000
+    },
+    {
+      "order": 626,
+      "input": "silence/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2165750,
+      "cpu_ns": 2166000
+    },
+    {
+      "order": 627,
+      "input": "silence/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 51166,
+      "cpu_ns": 52000
+    },
+    {
+      "order": 628,
+      "input": "silence/native(120s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 4041,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 629,
+      "input": "silence/native(120s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 3500,
+      "cpu_ns": 3000
+    },
+    {
+      "order": 630,
+      "input": "silence/native(120s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 3459,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 631,
+      "input": "silence/native(120s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 3917,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 632,
+      "input": "silence/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 539000,
+      "cpu_ns": 540000
+    },
+    {
+      "order": 633,
+      "input": "silence/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 16334,
+      "cpu_ns": 17000
+    },
+    {
+      "order": 634,
+      "input": "silence/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 12583,
+      "cpu_ns": 12000
+    },
+    {
+      "order": 635,
+      "input": "silence/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 539083,
+      "cpu_ns": 539000
+    },
+    {
+      "order": 636,
+      "input": "silence/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 5125,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 637,
+      "input": "silence/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 6042,
+      "cpu_ns": 7000
+    },
+    {
+      "order": 638,
+      "input": "silence/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 6000,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 639,
+      "input": "silence/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 4959,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 640,
+      "input": "silence/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 12166,
+      "cpu_ns": 11000
+    },
+    {
+      "order": 641,
+      "input": "silence/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 97500,
+      "cpu_ns": 97000
+    },
+    {
+      "order": 642,
+      "input": "silence/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 97542,
+      "cpu_ns": 98000
+    },
+    {
+      "order": 643,
+      "input": "silence/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 10250,
+      "cpu_ns": 11000
+    },
+    {
+      "order": 644,
+      "input": "silence/native(120s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 5333,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 645,
+      "input": "silence/native(120s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 6208,
+      "cpu_ns": 7000
+    },
+    {
+      "order": 646,
+      "input": "silence/native(120s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 6250,
+      "cpu_ns": 7000
+    },
+    {
+      "order": 647,
+      "input": "silence/native(120s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 5208,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 648,
+      "input": "silence/native(120s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 5208,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 649,
+      "input": "silence/native(120s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 6208,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 650,
+      "input": "silence/native(120s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 6292,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 651,
+      "input": "silence/native(120s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 5167,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 652,
+      "input": "silence/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 3417,
+      "cpu_ns": 3000
+    },
+    {
+      "order": 653,
+      "input": "silence/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 3958,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 654,
+      "input": "silence/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 3916,
+      "cpu_ns": 3000
+    },
+    {
+      "order": 655,
+      "input": "silence/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 3458,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 656,
+      "input": "silence/native(120s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 3459,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 657,
+      "input": "silence/native(120s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 3917,
+      "cpu_ns": 3000
+    },
+    {
+      "order": 658,
+      "input": "silence/native(120s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 3916,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 659,
+      "input": "silence/native(120s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 3417,
+      "cpu_ns": 3000
+    },
+    {
+      "order": 660,
+      "input": "silence/native(120s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 6167,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 661,
+      "input": "silence/native(120s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 5250,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 662,
+      "input": "silence/native(120s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 5208,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 663,
+      "input": "silence/native(120s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 6166,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 664,
+      "input": "silence/native(120s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 19500,
+      "cpu_ns": 19000
+    },
+    {
+      "order": 665,
+      "input": "silence/native(120s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 23291,
+      "cpu_ns": 23000
+    },
+    {
+      "order": 666,
+      "input": "silence/native(120s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 23125,
+      "cpu_ns": 24000
+    },
+    {
+      "order": 667,
+      "input": "silence/native(120s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 18958,
+      "cpu_ns": 19000
+    },
+    {
+      "order": 668,
+      "input": "silence/native(120s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 7708,
+      "cpu_ns": 7000
+    },
+    {
+      "order": 669,
+      "input": "silence/native(120s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 18792,
+      "cpu_ns": 20000
+    },
+    {
+      "order": 670,
+      "input": "silence/native(120s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 18959,
+      "cpu_ns": 18000
+    },
+    {
+      "order": 671,
+      "input": "silence/native(120s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 7709,
+      "cpu_ns": 7000
+    },
+    {
+      "order": 672,
+      "input": "silence/native(120s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 7667,
+      "cpu_ns": 8000
+    },
+    {
+      "order": 673,
+      "input": "silence/native(120s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 18833,
+      "cpu_ns": 20000
+    },
+    {
+      "order": 674,
+      "input": "silence/native(120s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 18875,
+      "cpu_ns": 19000
+    },
+    {
+      "order": 675,
+      "input": "silence/native(120s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 7500,
+      "cpu_ns": 8000
+    },
+    {
+      "order": 676,
+      "input": "silence/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2177542,
+      "cpu_ns": 2178000
+    },
+    {
+      "order": 677,
+      "input": "silence/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 51250,
+      "cpu_ns": 52000
+    },
+    {
+      "order": 678,
+      "input": "silence/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 50209,
+      "cpu_ns": 51000
+    },
+    {
+      "order": 679,
+      "input": "silence/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2214334,
+      "cpu_ns": 2195000
+    },
+    {
+      "order": 680,
+      "input": "silence/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 6500,
+      "cpu_ns": 7000
+    },
+    {
+      "order": 681,
+      "input": "silence/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 5125,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 682,
+      "input": "silence/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 5000,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 683,
+      "input": "silence/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 6000,
+      "cpu_ns": 7000
+    },
+    {
+      "order": 684,
+      "input": "silence/native(120s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 10000,
+      "cpu_ns": 10000
+    },
+    {
+      "order": 685,
+      "input": "silence/native(120s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 18917,
+      "cpu_ns": 18000
+    },
+    {
+      "order": 686,
+      "input": "silence/native(120s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 18958,
+      "cpu_ns": 19000
+    },
+    {
+      "order": 687,
+      "input": "silence/native(120s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 7750,
+      "cpu_ns": 8000
+    },
+    {
+      "order": 688,
+      "input": "silence/native(120s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 6208,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 689,
+      "input": "silence/native(120s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 5292,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 690,
+      "input": "silence/native(120s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 5334,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 691,
+      "input": "silence/native(120s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 6209,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 692,
+      "input": "silence/native(120s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 3917,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 693,
+      "input": "silence/native(120s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 3750,
+      "cpu_ns": 3000
+    },
+    {
+      "order": 694,
+      "input": "silence/native(120s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 3708,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 695,
+      "input": "silence/native(120s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 3875,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 696,
+      "input": "silence/native(120s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 3458,
+      "cpu_ns": 3000
+    },
+    {
+      "order": 697,
+      "input": "silence/native(120s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 3959,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 698,
+      "input": "silence/native(120s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 3959,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 699,
+      "input": "silence/native(120s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 3459,
+      "cpu_ns": 3000
+    },
+    {
+      "order": 700,
+      "input": "silence/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 51333,
+      "cpu_ns": 52000
+    },
+    {
+      "order": 701,
+      "input": "silence/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2165583,
+      "cpu_ns": 2166000
+    },
+    {
+      "order": 702,
+      "input": "silence/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2165542,
+      "cpu_ns": 2166000
+    },
+    {
+      "order": 703,
+      "input": "silence/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 49625,
+      "cpu_ns": 50000
+    },
+    {
+      "order": 704,
+      "input": "silence/native(120s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 23083,
+      "cpu_ns": 24000
+    },
+    {
+      "order": 705,
+      "input": "silence/native(120s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 19083,
+      "cpu_ns": 19000
+    },
+    {
+      "order": 706,
+      "input": "silence/native(120s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 18875,
+      "cpu_ns": 20000
+    },
+    {
+      "order": 707,
+      "input": "silence/native(120s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 23042,
+      "cpu_ns": 23000
+    },
+    {
+      "order": 708,
+      "input": "silence/native(120s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 4000,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 709,
+      "input": "silence/native(120s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 3459,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 710,
+      "input": "silence/native(120s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 3417,
+      "cpu_ns": 3000
+    },
+    {
+      "order": 711,
+      "input": "silence/native(120s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 3958,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 712,
+      "input": "silence/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2165833,
+      "cpu_ns": 2167000
+    },
+    {
+      "order": 713,
+      "input": "silence/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 47916,
+      "cpu_ns": 48000
+    },
+    {
+      "order": 714,
+      "input": "silence/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 47708,
+      "cpu_ns": 48000
+    },
+    {
+      "order": 715,
+      "input": "silence/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2196000,
+      "cpu_ns": 2183000
+    },
+    {
+      "order": 716,
+      "input": "silence/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2371833,
+      "cpu_ns": 2371000
+    },
+    {
+      "order": 717,
+      "input": "silence/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 17083,
+      "cpu_ns": 18000
+    },
+    {
+      "order": 718,
+      "input": "silence/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 13875,
+      "cpu_ns": 15000
+    },
+    {
+      "order": 719,
+      "input": "silence/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2371542,
+      "cpu_ns": 2371000
+    },
+    {
+      "order": 720,
+      "input": "silence/native(120s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 23083,
+      "cpu_ns": 24000
+    },
+    {
+      "order": 721,
+      "input": "silence/native(120s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 18958,
+      "cpu_ns": 20000
+    },
+    {
+      "order": 722,
+      "input": "silence/native(120s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 18875,
+      "cpu_ns": 18000
+    },
+    {
+      "order": 723,
+      "input": "silence/native(120s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 23042,
+      "cpu_ns": 23000
+    },
+    {
+      "order": 724,
+      "input": "silence/native(120s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 4000,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 725,
+      "input": "silence/native(120s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 3458,
+      "cpu_ns": 3000
+    },
+    {
+      "order": 726,
+      "input": "silence/native(120s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 3416,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 727,
+      "input": "silence/native(120s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 3958,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 728,
+      "input": "silence/native(120s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 3708,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 729,
+      "input": "silence/native(120s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 3917,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 730,
+      "input": "silence/native(120s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 3875,
+      "cpu_ns": 3000
+    },
+    {
+      "order": 731,
+      "input": "silence/native(120s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 3750,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 732,
+      "input": "silence/native(120s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 7708,
+      "cpu_ns": 8000
+    },
+    {
+      "order": 733,
+      "input": "silence/native(120s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 18875,
+      "cpu_ns": 19000
+    },
+    {
+      "order": 734,
+      "input": "silence/native(120s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 18916,
+      "cpu_ns": 20000
+    },
+    {
+      "order": 735,
+      "input": "silence/native(120s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 7541,
+      "cpu_ns": 8000
+    },
+    {
+      "order": 736,
+      "input": "silence/native(120s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 19042,
+      "cpu_ns": 19000
+    },
+    {
+      "order": 737,
+      "input": "silence/native(120s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 23042,
+      "cpu_ns": 24000
+    },
+    {
+      "order": 738,
+      "input": "silence/native(120s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 23042,
+      "cpu_ns": 24000
+    },
+    {
+      "order": 739,
+      "input": "silence/native(120s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 19125,
+      "cpu_ns": 18000
+    },
+    {
+      "order": 740,
+      "input": "silence/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 5083,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 741,
+      "input": "silence/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 6000,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 742,
+      "input": "silence/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 6000,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 743,
+      "input": "silence/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 4917,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 744,
+      "input": "silence/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 6000,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 745,
+      "input": "silence/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 4958,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 746,
+      "input": "silence/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 4834,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 747,
+      "input": "silence/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 6000,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 748,
+      "input": "silence/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 51333,
+      "cpu_ns": 52000
+    },
+    {
+      "order": 749,
+      "input": "silence/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2166000,
+      "cpu_ns": 2167000
+    },
+    {
+      "order": 750,
+      "input": "silence/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2166500,
+      "cpu_ns": 2166000
+    },
+    {
+      "order": 751,
+      "input": "silence/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 75250,
+      "cpu_ns": 64000
+    },
+    {
+      "order": 752,
+      "input": "silence/native(120s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 4542,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 753,
+      "input": "silence/native(120s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 3791,
+      "cpu_ns": 3000
+    },
+    {
+      "order": 754,
+      "input": "silence/native(120s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 3750,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 755,
+      "input": "silence/native(120s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 3959,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 756,
+      "input": "silence/native(120s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 26667,
+      "cpu_ns": 26000
+    },
+    {
+      "order": 757,
+      "input": "silence/native(120s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 21250,
+      "cpu_ns": 22000
+    },
+    {
+      "order": 758,
+      "input": "silence/native(120s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 18959,
+      "cpu_ns": 20000
+    },
+    {
+      "order": 759,
+      "input": "silence/native(120s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 23125,
+      "cpu_ns": 24000
+    },
+    {
+      "order": 760,
+      "input": "silence/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 12792,
+      "cpu_ns": 12000
+    },
+    {
+      "order": 761,
+      "input": "silence/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 97833,
+      "cpu_ns": 99000
+    },
+    {
+      "order": 762,
+      "input": "silence/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 97750,
+      "cpu_ns": 98000
+    },
+    {
+      "order": 763,
+      "input": "silence/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 10417,
+      "cpu_ns": 10000
+    },
+    {
+      "order": 764,
+      "input": "silence/native(120s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 5334,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 765,
+      "input": "silence/native(120s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 6208,
+      "cpu_ns": 7000
+    },
+    {
+      "order": 766,
+      "input": "silence/native(120s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 6291,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 767,
+      "input": "silence/native(120s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 5333,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 768,
+      "input": "silence/native(120s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 23083,
+      "cpu_ns": 23000
+    },
+    {
+      "order": 769,
+      "input": "silence/native(120s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 19083,
+      "cpu_ns": 19000
+    },
+    {
+      "order": 770,
+      "input": "silence/native(120s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 19167,
+      "cpu_ns": 20000
+    },
+    {
+      "order": 771,
+      "input": "silence/native(120s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 23125,
+      "cpu_ns": 24000
+    },
+    {
+      "order": 772,
+      "input": "silence/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 14583,
+      "cpu_ns": 14000
+    },
+    {
+      "order": 773,
+      "input": "silence/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 539000,
+      "cpu_ns": 540000
+    },
+    {
+      "order": 774,
+      "input": "silence/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 539542,
+      "cpu_ns": 540000
+    },
+    {
+      "order": 775,
+      "input": "silence/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 12583,
+      "cpu_ns": 13000
+    },
+    {
+      "order": 776,
+      "input": "silence/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 10208,
+      "cpu_ns": 11000
+    },
+    {
+      "order": 777,
+      "input": "silence/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 97875,
+      "cpu_ns": 98000
+    },
+    {
+      "order": 778,
+      "input": "silence/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 97916,
+      "cpu_ns": 97000
+    },
+    {
+      "order": 779,
+      "input": "silence/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 10000,
+      "cpu_ns": 11000
+    },
+    {
+      "order": 780,
+      "input": "silence/native(120s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 18959,
+      "cpu_ns": 20000
+    },
+    {
+      "order": 781,
+      "input": "silence/native(120s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 7708,
+      "cpu_ns": 7000
+    },
+    {
+      "order": 782,
+      "input": "silence/native(120s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 7458,
+      "cpu_ns": 8000
+    },
+    {
+      "order": 783,
+      "input": "silence/native(120s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 18834,
+      "cpu_ns": 19000
+    },
+    {
+      "order": 784,
+      "input": "silence/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 538958,
+      "cpu_ns": 539000
+    },
+    {
+      "order": 785,
+      "input": "silence/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 12625,
+      "cpu_ns": 13000
+    },
+    {
+      "order": 786,
+      "input": "silence/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 12291,
+      "cpu_ns": 13000
+    },
+    {
+      "order": 787,
+      "input": "silence/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 538875,
+      "cpu_ns": 538000
+    },
+    {
+      "order": 788,
+      "input": "silence/native(120s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 3750,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 789,
+      "input": "silence/native(120s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 4209,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 790,
+      "input": "silence/native(120s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 4167,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 791,
+      "input": "silence/native(120s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 3791,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 792,
+      "input": "silence/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2372125,
+      "cpu_ns": 2372000
+    },
+    {
+      "order": 793,
+      "input": "silence/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 16125,
+      "cpu_ns": 16000
+    },
+    {
+      "order": 794,
+      "input": "silence/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 13875,
+      "cpu_ns": 15000
+    },
+    {
+      "order": 795,
+      "input": "silence/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2371375,
+      "cpu_ns": 2371000
+    },
+    {
+      "order": 796,
+      "input": "silence/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 6125,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 797,
+      "input": "silence/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 5000,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 798,
+      "input": "silence/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 5000,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 799,
+      "input": "silence/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 6041,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 800,
+      "input": "silence/native(120s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 6208,
+      "cpu_ns": 7000
+    },
+    {
+      "order": 801,
+      "input": "silence/native(120s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 5416,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 802,
+      "input": "silence/native(120s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 5333,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 803,
+      "input": "silence/native(120s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 6208,
+      "cpu_ns": 7000
+    },
+    {
+      "order": 804,
+      "input": "silence/native(120s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 5250,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 805,
+      "input": "silence/native(120s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 6167,
+      "cpu_ns": 7000
+    },
+    {
+      "order": 806,
+      "input": "silence/native(120s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 6166,
+      "cpu_ns": 7000
+    },
+    {
+      "order": 807,
+      "input": "silence/native(120s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 5250,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 808,
+      "input": "silence/native(120s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 5250,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 809,
+      "input": "silence/native(120s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 6209,
+      "cpu_ns": 7000
+    },
+    {
+      "order": 810,
+      "input": "silence/native(120s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 6209,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 811,
+      "input": "silence/native(120s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 5209,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 812,
+      "input": "silence/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 10667,
+      "cpu_ns": 11000
+    },
+    {
+      "order": 813,
+      "input": "silence/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 97791,
+      "cpu_ns": 98000
+    },
+    {
+      "order": 814,
+      "input": "silence/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 97833,
+      "cpu_ns": 99000
+    },
+    {
+      "order": 815,
+      "input": "silence/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 9959,
+      "cpu_ns": 10000
+    },
+    {
+      "order": 816,
+      "input": "silence/native(120s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 8042,
+      "cpu_ns": 8000
+    },
+    {
+      "order": 817,
+      "input": "silence/native(120s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 18917,
+      "cpu_ns": 20000
+    },
+    {
+      "order": 818,
+      "input": "silence/native(120s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 18875,
+      "cpu_ns": 19000
+    },
+    {
+      "order": 819,
+      "input": "silence/native(120s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 7459,
+      "cpu_ns": 7000
+    },
+    {
+      "order": 820,
+      "input": "silence/native(120s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 6208,
+      "cpu_ns": 7000
+    },
+    {
+      "order": 821,
+      "input": "silence/native(120s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 5292,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 822,
+      "input": "silence/native(120s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 5209,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 823,
+      "input": "silence/native(120s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 6167,
+      "cpu_ns": 7000
+    },
+    {
+      "order": 824,
+      "input": "silence/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 13916,
+      "cpu_ns": 13000
+    },
+    {
+      "order": 825,
+      "input": "silence/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2466500,
+      "cpu_ns": 2445000
+    },
+    {
+      "order": 826,
+      "input": "silence/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2621417,
+      "cpu_ns": 2578000
+    },
+    {
+      "order": 827,
+      "input": "silence/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 27209,
+      "cpu_ns": 27000
+    },
+    {
+      "order": 828,
+      "input": "silence/native(120s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 6709,
+      "cpu_ns": 7000
+    },
+    {
+      "order": 829,
+      "input": "silence/native(120s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 5542,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 830,
+      "input": "silence/native(120s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 5500,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 831,
+      "input": "silence/native(120s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 6583,
+      "cpu_ns": 8000
+    },
+    {
+      "order": 832,
+      "input": "silence/native(120s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 5458,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 833,
+      "input": "silence/native(120s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 6500,
+      "cpu_ns": 7000
+    },
+    {
+      "order": 834,
+      "input": "silence/native(120s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 6500,
+      "cpu_ns": 7000
+    },
+    {
+      "order": 835,
+      "input": "silence/native(120s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 5500,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 836,
+      "input": "silence/native(120s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 19708,
+      "cpu_ns": 20000
+    },
+    {
+      "order": 837,
+      "input": "silence/native(120s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 10208,
+      "cpu_ns": 11000
+    },
+    {
+      "order": 838,
+      "input": "silence/native(120s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 8959,
+      "cpu_ns": 8000
+    },
+    {
+      "order": 839,
+      "input": "silence/native(120s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 20750,
+      "cpu_ns": 22000
+    },
+    {
+      "order": 840,
+      "input": "silence/native(120s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 24542,
+      "cpu_ns": 25000
+    },
+    {
+      "order": 841,
+      "input": "silence/native(120s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 19042,
+      "cpu_ns": 19000
+    },
+    {
+      "order": 842,
+      "input": "silence/native(120s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 19750,
+      "cpu_ns": 21000
+    },
+    {
+      "order": 843,
+      "input": "silence/native(120s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 23667,
+      "cpu_ns": 24000
+    },
+    {
+      "order": 844,
+      "input": "silence/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2195333,
+      "cpu_ns": 2189000
+    },
+    {
+      "order": 845,
+      "input": "silence/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 96750,
+      "cpu_ns": 97000
+    },
+    {
+      "order": 846,
+      "input": "silence/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 48042,
+      "cpu_ns": 49000
+    },
+    {
+      "order": 847,
+      "input": "silence/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2186042,
+      "cpu_ns": 2187000
+    },
+    {
+      "order": 848,
+      "input": "silence/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 6333,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 849,
+      "input": "silence/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 5041,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 850,
+      "input": "silence/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 4875,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 851,
+      "input": "silence/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 6000,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 852,
+      "input": "silence/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 22750,
+      "cpu_ns": 24000
+    },
+    {
+      "order": 853,
+      "input": "silence/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 97459,
+      "cpu_ns": 97000
+    },
+    {
+      "order": 854,
+      "input": "silence/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 97500,
+      "cpu_ns": 98000
+    },
+    {
+      "order": 855,
+      "input": "silence/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 10125,
+      "cpu_ns": 10000
+    },
+    {
+      "order": 856,
+      "input": "silence/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2545542,
+      "cpu_ns": 2445000
+    },
+    {
+      "order": 857,
+      "input": "silence/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 26583,
+      "cpu_ns": 27000
+    },
+    {
+      "order": 858,
+      "input": "silence/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 14875,
+      "cpu_ns": 16000
+    },
+    {
+      "order": 859,
+      "input": "silence/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2393959,
+      "cpu_ns": 2394000
+    },
+    {
+      "order": 860,
+      "input": "silence/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 15333,
+      "cpu_ns": 17000
+    },
+    {
+      "order": 861,
+      "input": "silence/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2395833,
+      "cpu_ns": 2385000
+    },
+    {
+      "order": 862,
+      "input": "silence/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2375250,
+      "cpu_ns": 2376000
+    },
+    {
+      "order": 863,
+      "input": "silence/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 14584,
+      "cpu_ns": 14000
+    },
+    {
+      "order": 864,
+      "input": "silence/native(120s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 23500,
+      "cpu_ns": 24000
+    },
+    {
+      "order": 865,
+      "input": "silence/native(120s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 19250,
+      "cpu_ns": 20000
+    },
+    {
+      "order": 866,
+      "input": "silence/native(120s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 18875,
+      "cpu_ns": 20000
+    },
+    {
+      "order": 867,
+      "input": "silence/native(120s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 23042,
+      "cpu_ns": 23000
+    },
+    {
+      "order": 868,
+      "input": "silence/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 3542,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 869,
+      "input": "silence/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 3958,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 870,
+      "input": "silence/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 3917,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 871,
+      "input": "silence/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 3500,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 872,
+      "input": "silence/native(120s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 5250,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 873,
+      "input": "silence/native(120s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 6208,
+      "cpu_ns": 7000
+    },
+    {
+      "order": 874,
+      "input": "silence/native(120s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 6166,
+      "cpu_ns": 7000
+    },
+    {
+      "order": 875,
+      "input": "silence/native(120s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 5208,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 876,
+      "input": "silence/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 62958,
+      "cpu_ns": 64000
+    },
+    {
+      "order": 877,
+      "input": "silence/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2199625,
+      "cpu_ns": 2189000
+    },
+    {
+      "order": 878,
+      "input": "silence/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2173958,
+      "cpu_ns": 2175000
+    },
+    {
+      "order": 879,
+      "input": "silence/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 61375,
+      "cpu_ns": 62000
+    },
+    {
+      "order": 880,
+      "input": "silence/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 6125,
+      "cpu_ns": 7000
+    },
+    {
+      "order": 881,
+      "input": "silence/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 5000,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 882,
+      "input": "silence/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 4917,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 883,
+      "input": "silence/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 6000,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 884,
+      "input": "silence/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 97583,
+      "cpu_ns": 97000
+    },
+    {
+      "order": 885,
+      "input": "silence/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 12458,
+      "cpu_ns": 13000
+    },
+    {
+      "order": 886,
+      "input": "silence/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 9959,
+      "cpu_ns": 9000
+    },
+    {
+      "order": 887,
+      "input": "silence/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 97458,
+      "cpu_ns": 97000
+    },
+    {
+      "order": 888,
+      "input": "silence/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 3958,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 889,
+      "input": "silence/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 3458,
+      "cpu_ns": 3000
+    },
+    {
+      "order": 890,
+      "input": "silence/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 3458,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 891,
+      "input": "silence/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 3916,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 892,
+      "input": "silence/native(120s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 23208,
+      "cpu_ns": 23000
+    },
+    {
+      "order": 893,
+      "input": "silence/native(120s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 18875,
+      "cpu_ns": 19000
+    },
+    {
+      "order": 894,
+      "input": "silence/native(120s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 18958,
+      "cpu_ns": 19000
+    },
+    {
+      "order": 895,
+      "input": "silence/native(120s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 23083,
+      "cpu_ns": 23000
+    },
+    {
+      "order": 896,
+      "input": "silence/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 538958,
+      "cpu_ns": 540000
+    },
+    {
+      "order": 897,
+      "input": "silence/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 24000,
+      "cpu_ns": 25000
+    },
+    {
+      "order": 898,
+      "input": "silence/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 12625,
+      "cpu_ns": 12000
+    },
+    {
+      "order": 899,
+      "input": "silence/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 538917,
+      "cpu_ns": 540000
+    },
+    {
+      "order": 900,
+      "input": "silence/native(120s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 7834,
+      "cpu_ns": 8000
+    },
+    {
+      "order": 901,
+      "input": "silence/native(120s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 18959,
+      "cpu_ns": 18000
+    },
+    {
+      "order": 902,
+      "input": "silence/native(120s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 18875,
+      "cpu_ns": 20000
+    },
+    {
+      "order": 903,
+      "input": "silence/native(120s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 7500,
+      "cpu_ns": 7000
+    },
+    {
+      "order": 904,
+      "input": "silence/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 15041,
+      "cpu_ns": 15000
+    },
+    {
+      "order": 905,
+      "input": "silence/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2398709,
+      "cpu_ns": 2399000
+    },
+    {
+      "order": 906,
+      "input": "silence/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2378542,
+      "cpu_ns": 2379000
+    },
+    {
+      "order": 907,
+      "input": "silence/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 16208,
+      "cpu_ns": 16000
+    },
+    {
+      "order": 908,
+      "input": "silence/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2301500,
+      "cpu_ns": 2244000
+    },
+    {
+      "order": 909,
+      "input": "silence/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 62375,
+      "cpu_ns": 63000
+    },
+    {
+      "order": 910,
+      "input": "silence/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 47708,
+      "cpu_ns": 49000
+    },
+    {
+      "order": 911,
+      "input": "silence/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2165917,
+      "cpu_ns": 2166000
+    },
+    {
+      "order": 912,
+      "input": "silence/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 17959,
+      "cpu_ns": 17000
+    },
+    {
+      "order": 913,
+      "input": "silence/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 538916,
+      "cpu_ns": 539000
+    },
+    {
+      "order": 914,
+      "input": "silence/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 538875,
+      "cpu_ns": 540000
+    },
+    {
+      "order": 915,
+      "input": "silence/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 12625,
+      "cpu_ns": 12000
+    },
+    {
+      "order": 916,
+      "input": "silence/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 5125,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 917,
+      "input": "silence/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 6041,
+      "cpu_ns": 7000
+    },
+    {
+      "order": 918,
+      "input": "silence/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 6125,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 919,
+      "input": "silence/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 4875,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 920,
+      "input": "silence/native(120s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 4000,
+      "cpu_ns": 3000
+    },
+    {
+      "order": 921,
+      "input": "silence/native(120s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 3416,
+      "cpu_ns": 3000
+    },
+    {
+      "order": 922,
+      "input": "silence/native(120s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 3458,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 923,
+      "input": "silence/native(120s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 3917,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 924,
+      "input": "silence/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 11833,
+      "cpu_ns": 12000
+    },
+    {
+      "order": 925,
+      "input": "silence/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 97458,
+      "cpu_ns": 99000
+    },
+    {
+      "order": 926,
+      "input": "silence/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 97625,
+      "cpu_ns": 97000
+    },
+    {
+      "order": 927,
+      "input": "silence/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 10083,
+      "cpu_ns": 11000
+    },
+    {
+      "order": 928,
+      "input": "silence/native(120s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 3916,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 929,
+      "input": "silence/native(120s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 3459,
+      "cpu_ns": 3000
+    },
+    {
+      "order": 930,
+      "input": "silence/native(120s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 3417,
+      "cpu_ns": 4000
+    },
+    {
+      "order": 931,
+      "input": "silence/native(120s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 3916,
+      "cpu_ns": 5000
+    },
+    {
+      "order": 932,
+      "input": "silence/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2391209,
+      "cpu_ns": 2389000
+    },
+    {
+      "order": 933,
+      "input": "silence/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 19042,
+      "cpu_ns": 19000
+    },
+    {
+      "order": 934,
+      "input": "silence/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 13792,
+      "cpu_ns": 15000
+    },
+    {
+      "order": 935,
+      "input": "silence/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2371542,
+      "cpu_ns": 2372000
+    },
+    {
+      "order": 936,
+      "input": "silence/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2413125,
+      "cpu_ns": 2394000
+    },
+    {
+      "order": 937,
+      "input": "silence/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 16459,
+      "cpu_ns": 16000
+    },
+    {
+      "order": 938,
+      "input": "silence/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 13959,
+      "cpu_ns": 14000
+    },
+    {
+      "order": 939,
+      "input": "silence/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2371541,
+      "cpu_ns": 2372000
+    },
+    {
+      "order": 940,
+      "input": "silence/native(120s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 5500,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 941,
+      "input": "silence/native(120s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 6292,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 942,
+      "input": "silence/native(120s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 6250,
+      "cpu_ns": 7000
+    },
+    {
+      "order": 943,
+      "input": "silence/native(120s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 5250,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 944,
+      "input": "silence/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 14958,
+      "cpu_ns": 15000
+    },
+    {
+      "order": 945,
+      "input": "silence/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 538875,
+      "cpu_ns": 539000
+    },
+    {
+      "order": 946,
+      "input": "silence/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 539000,
+      "cpu_ns": 539000
+    },
+    {
+      "order": 947,
+      "input": "silence/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 12500,
+      "cpu_ns": 13000
+    },
+    {
+      "order": 948,
+      "input": "silence/native(120s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 5292,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 949,
+      "input": "silence/native(120s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 6209,
+      "cpu_ns": 7000
+    },
+    {
+      "order": 950,
+      "input": "silence/native(120s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 6167,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 951,
+      "input": "silence/native(120s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 5208,
+      "cpu_ns": 6000
+    },
+    {
+      "order": 952,
+      "input": "silence/native(120s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 19291,
+      "cpu_ns": 20000
+    },
+    {
+      "order": 953,
+      "input": "silence/native(120s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 23250,
+      "cpu_ns": 23000
+    },
+    {
+      "order": 954,
+      "input": "silence/native(120s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 23041,
+      "cpu_ns": 24000
+    },
+    {
+      "order": 955,
+      "input": "silence/native(120s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 18750,
+      "cpu_ns": 18000
+    },
+    {
+      "order": 956,
+      "input": "silence/native(120s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 18833,
+      "cpu_ns": 19000
+    },
+    {
+      "order": 957,
+      "input": "silence/native(120s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 23166,
+      "cpu_ns": 24000
+    },
+    {
+      "order": 958,
+      "input": "silence/native(120s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 23083,
+      "cpu_ns": 23000
+    },
+    {
+      "order": 959,
+      "input": "silence/native(120s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 19000,
+      "cpu_ns": 19000
+    }
+  ]
+}

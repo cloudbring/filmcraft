@@ -1,0 +1,7327 @@
+{
+  "schema_version": 1,
+  "name": "filmcraft waveform repaint, speech",
+  "revs": {
+    "old": "eb59ec09daaea519c9c8fffa404a594ae50d00e0",
+    "new": "529c5c1e8e4b6be393e147bc6316a4643dda8529"
+  },
+  "fingerprint": {
+    "os": "macos",
+    "arch": "aarch64",
+    "kernel": "Darwin 27.0.0",
+    "cpu_model": "Apple M6",
+    "logical_cores": 12,
+    "physical_cores": 12,
+    "ram_bytes": 34359738368,
+    "rustc": "rustc 1.99.0 (b940084d7 2026-09-28) (Homebrew)",
+    "profile": "release",
+    "opt_level": "3",
+    "debug_assertions": false,
+    "date": "2026-11-04T23:21:54+00:00"
+  },
+  "config": {
+    "requested_repetitions": 40,
+    "runs_per_side": 40,
+    "warmup_runs": 2,
+    "resamples": 4000,
+    "seed": 12648430,
+    "output_checked": true,
+    "cpu_time": "process"
+  },
+  "guard": {
+    "contended": false,
+    "reasons": [],
+    "load_before": 3.68,
+    "load_after": 3.68,
+    "logical_cores": 12,
+    "max_load_per_core": 0.5,
+    "load_threshold": 6.0,
+    "throttle_before": {
+      "speed_limit_pct": null,
+      "throttle_count": null
+    },
+    "throttle_after": {
+      "speed_limit_pct": null,
+      "throttle_count": null
+    }
+  },
+  "contended": false,
+  "publishable": true,
+  "inputs": [
+    {
+      "name": "speech/native(300s)/whole/w1000",
+      "wall": {
+        "old": {
+          "n": 40,
+          "median_ns": 137083.5,
+          "mad_ns": 5729.0,
+          "min_ns": 128291.0,
+          "max_ns": 157000.0
+        },
+        "new": {
+          "n": 40,
+          "median_ns": 46771.0,
+          "mad_ns": 2229.0,
+          "min_ns": 41541.0,
+          "max_ns": 85958.0
+        },
+        "ratio": {
+          "point": 0.3411862113237552,
+          "ci_lo": 0.32813183289480086,
+          "ci_hi": 0.35616175907094644
+        }
+      },
+      "cpu": {
+        "old": {
+          "n": 40,
+          "median_ns": 137500.0,
+          "mad_ns": 5500.0,
+          "min_ns": 127000.0,
+          "max_ns": 151000.0
+        },
+        "new": {
+          "n": 40,
+          "median_ns": 47000.0,
+          "mad_ns": 2000.0,
+          "min_ns": 41000.0,
+          "max_ns": 82000.0
+        },
+        "ratio": {
+          "point": 0.3418181818181818,
+          "ci_lo": 0.32974910394265233,
+          "ci_hi": 0.3592592592592593
+        }
+      }
+    },
+    {
+      "name": "speech/native(300s)/whole/w3840",
+      "wall": {
+        "old": {
+          "n": 40,
+          "median_ns": 207875.0,
+          "mad_ns": 11604.0,
+          "min_ns": 187833.0,
+          "max_ns": 250292.0
+        },
+        "new": {
+          "n": 40,
+          "median_ns": 153708.0,
+          "mad_ns": 6166.0,
+          "min_ns": 141583.0,
+          "max_ns": 198583.0
+        },
+        "ratio": {
+          "point": 0.7394251352976549,
+          "ci_lo": 0.7004629465265975,
+          "ci_hi": 0.7722654582152699
+        }
+      },
+      "cpu": {
+        "old": {
+          "n": 40,
+          "median_ns": 208000.0,
+          "mad_ns": 12000.0,
+          "min_ns": 188000.0,
+          "max_ns": 251000.0
+        },
+        "new": {
+          "n": 40,
+          "median_ns": 154000.0,
+          "mad_ns": 6000.0,
+          "min_ns": 143000.0,
+          "max_ns": 197000.0
+        },
+        "ratio": {
+          "point": 0.7403846153846154,
+          "ci_lo": 0.695852534562212,
+          "ci_hi": 0.772624404993917
+        }
+      }
+    },
+    {
+      "name": "speech/native(300s)/1/4/w1000",
+      "wall": {
+        "old": {
+          "n": 40,
+          "median_ns": 52437.5,
+          "mad_ns": 3479.0,
+          "min_ns": 45459.0,
+          "max_ns": 72125.0
+        },
+        "new": {
+          "n": 40,
+          "median_ns": 39312.5,
+          "mad_ns": 1937.5,
+          "min_ns": 36625.0,
+          "max_ns": 64250.0
+        },
+        "ratio": {
+          "point": 0.7497020262216925,
+          "ci_lo": 0.7184026551529107,
+          "ci_hi": 0.8231850931677018
+        }
+      },
+      "cpu": {
+        "old": {
+          "n": 40,
+          "median_ns": 52500.0,
+          "mad_ns": 3500.0,
+          "min_ns": 46000.0,
+          "max_ns": 68000.0
+        },
+        "new": {
+          "n": 40,
+          "median_ns": 40000.0,
+          "mad_ns": 2000.0,
+          "min_ns": 37000.0,
+          "max_ns": 59000.0
+        },
+        "ratio": {
+          "point": 0.7619047619047619,
+          "ci_lo": 0.7289719626168224,
+          "ci_hi": 0.8252749157915594
+        }
+      }
+    },
+    {
+      "name": "speech/native(300s)/1/16/w1000",
+      "wall": {
+        "old": {
+          "n": 40,
+          "median_ns": 31271.0,
+          "mad_ns": 1979.5,
+          "min_ns": 25958.0,
+          "max_ns": 40083.0
+        },
+        "new": {
+          "n": 40,
+          "median_ns": 32146.0,
+          "mad_ns": 1854.5,
+          "min_ns": 27208.0,
+          "max_ns": 40834.0
+        },
+        "ratio": {
+          "point": 1.0279811966358607,
+          "ci_lo": 0.9575289575289575,
+          "ci_hi": 1.0798085779564182
+        }
+      },
+      "cpu": {
+        "old": {
+          "n": 40,
+          "median_ns": 32000.0,
+          "mad_ns": 2000.0,
+          "min_ns": 27000.0,
+          "max_ns": 40000.0
+        },
+        "new": {
+          "n": 40,
+          "median_ns": 32000.0,
+          "mad_ns": 2000.0,
+          "min_ns": 27000.0,
+          "max_ns": 40000.0
+        },
+        "ratio": {
+          "point": 1.0,
+          "ci_lo": 0.96875,
+          "ci_hi": 1.064516129032258
+        }
+      }
+    },
+    {
+      "name": "speech/native(300s)/30s/w1000",
+      "wall": {
+        "old": {
+          "n": 40,
+          "median_ns": 35249.5,
+          "mad_ns": 2458.0,
+          "min_ns": 29792.0,
+          "max_ns": 55584.0
+        },
+        "new": {
+          "n": 40,
+          "median_ns": 32791.5,
+          "mad_ns": 1604.0,
+          "min_ns": 28125.0,
+          "max_ns": 47375.0
+        },
+        "ratio": {
+          "point": 0.9302685144470134,
+          "ci_lo": 0.8796135744364627,
+          "ci_hi": 0.9807691829374119
+        }
+      },
+      "cpu": {
+        "old": {
+          "n": 40,
+          "median_ns": 36000.0,
+          "mad_ns": 2500.0,
+          "min_ns": 30000.0,
+          "max_ns": 50000.0
+        },
+        "new": {
+          "n": 40,
+          "median_ns": 33000.0,
+          "mad_ns": 2000.0,
+          "min_ns": 28000.0,
+          "max_ns": 47000.0
+        },
+        "ratio": {
+          "point": 0.9166666666666666,
+          "ci_lo": 0.868421052631579,
+          "ci_hi": 0.9852941176470589
+        }
+      }
+    },
+    {
+      "name": "speech/native(300s)/1s/w1000",
+      "wall": {
+        "old": {
+          "n": 40,
+          "median_ns": 18645.5,
+          "mad_ns": 874.5,
+          "min_ns": 17125.0,
+          "max_ns": 23959.0
+        },
+        "new": {
+          "n": 40,
+          "median_ns": 22187.0,
+          "mad_ns": 833.0,
+          "min_ns": 20083.0,
+          "max_ns": 26083.0
+        },
+        "ratio": {
+          "point": 1.189938591080958,
+          "ci_lo": 1.1542329850741506,
+          "ci_hi": 1.2317896417912542
+        }
+      },
+      "cpu": {
+        "old": {
+          "n": 40,
+          "median_ns": 19000.0,
+          "mad_ns": 1000.0,
+          "min_ns": 17000.0,
+          "max_ns": 24000.0
+        },
+        "new": {
+          "n": 40,
+          "median_ns": 22500.0,
+          "mad_ns": 500.0,
+          "min_ns": 20000.0,
+          "max_ns": 27000.0
+        },
+        "ratio": {
+          "point": 1.1842105263157894,
+          "ci_lo": 1.1578947368421053,
+          "ci_hi": 1.2777777777777777
+        }
+      }
+    },
+    {
+      "name": "speech/2h-tiled(7200s)/whole/w1000",
+      "wall": {
+        "old": {
+          "n": 40,
+          "median_ns": 2556354.5,
+          "mad_ns": 71166.5,
+          "min_ns": 2479542.0,
+          "max_ns": 2750250.0
+        },
+        "new": {
+          "n": 40,
+          "median_ns": 63583.0,
+          "mad_ns": 4666.5,
+          "min_ns": 55709.0,
+          "max_ns": 147875.0
+        },
+        "ratio": {
+          "point": 0.024872528438446232,
+          "ci_lo": 0.023899347167234485,
+          "ci_hi": 0.02794033312191381
+        }
+      },
+      "cpu": {
+        "old": {
+          "n": 40,
+          "median_ns": 2542500.0,
+          "mad_ns": 62500.0,
+          "min_ns": 2479000.0,
+          "max_ns": 2734000.0
+        },
+        "new": {
+          "n": 40,
+          "median_ns": 63500.0,
+          "mad_ns": 4500.0,
+          "min_ns": 56000.0,
+          "max_ns": 148000.0
+        },
+        "ratio": {
+          "point": 0.024975417895771877,
+          "ci_lo": 0.02398172820708032,
+          "ci_hi": 0.02808205536745668
+        }
+      }
+    },
+    {
+      "name": "speech/2h-tiled(7200s)/whole/w3840",
+      "wall": {
+        "old": {
+          "n": 40,
+          "median_ns": 2667479.5,
+          "mad_ns": 71916.5,
+          "min_ns": 2584583.0,
+          "max_ns": 2901709.0
+        },
+        "new": {
+          "n": 40,
+          "median_ns": 237416.5,
+          "mad_ns": 10479.0,
+          "min_ns": 215875.0,
+          "max_ns": 477125.0
+        },
+        "ratio": {
+          "point": 0.08900405795058594,
+          "ci_lo": 0.0854442785637935,
+          "ci_hi": 0.09306332084265181
+        }
+      },
+      "cpu": {
+        "old": {
+          "n": 40,
+          "median_ns": 2660500.0,
+          "mad_ns": 70500.0,
+          "min_ns": 2585000.0,
+          "max_ns": 2818000.0
+        },
+        "new": {
+          "n": 40,
+          "median_ns": 237000.0,
+          "mad_ns": 10000.0,
+          "min_ns": 217000.0,
+          "max_ns": 461000.0
+        },
+        "ratio": {
+          "point": 0.0890809998120654,
+          "ci_lo": 0.08586584435566849,
+          "ci_hi": 0.09357105620224238
+        }
+      }
+    },
+    {
+      "name": "speech/2h-tiled(7200s)/1/4/w1000",
+      "wall": {
+        "old": {
+          "n": 40,
+          "median_ns": 652541.5,
+          "mad_ns": 4125.0,
+          "min_ns": 648291.0,
+          "max_ns": 834916.0
+        },
+        "new": {
+          "n": 40,
+          "median_ns": 61000.0,
+          "mad_ns": 4166.5,
+          "min_ns": 55208.0,
+          "max_ns": 155375.0
+        },
+        "ratio": {
+          "point": 0.09348064452605696,
+          "ci_lo": 0.09028170510632008,
+          "ci_hi": 0.09689644683592241
+        }
+      },
+      "cpu": {
+        "old": {
+          "n": 40,
+          "median_ns": 652500.0,
+          "mad_ns": 4500.0,
+          "min_ns": 648000.0,
+          "max_ns": 805000.0
+        },
+        "new": {
+          "n": 40,
+          "median_ns": 62000.0,
+          "mad_ns": 5000.0,
+          "min_ns": 55000.0,
+          "max_ns": 151000.0
+        },
+        "ratio": {
+          "point": 0.0950191570881226,
+          "ci_lo": 0.09160276688902644,
+          "ci_hi": 0.0972644376899696
+        }
+      }
+    },
+    {
+      "name": "speech/2h-tiled(7200s)/1/16/w1000",
+      "wall": {
+        "old": {
+          "n": 40,
+          "median_ns": 198396.0,
+          "mad_ns": 2271.0,
+          "min_ns": 187125.0,
+          "max_ns": 635041.0
+        },
+        "new": {
+          "n": 40,
+          "median_ns": 52479.5,
+          "mad_ns": 4146.0,
+          "min_ns": 46584.0,
+          "max_ns": 166166.0
+        },
+        "ratio": {
+          "point": 0.2645189419141515,
+          "ci_lo": 0.24860263183384979,
+          "ci_hi": 0.2761334604385129
+        }
+      },
+      "cpu": {
+        "old": {
+          "n": 40,
+          "median_ns": 199000.0,
+          "mad_ns": 2500.0,
+          "min_ns": 187000.0,
+          "max_ns": 336000.0
+        },
+        "new": {
+          "n": 40,
+          "median_ns": 53000.0,
+          "mad_ns": 4000.0,
+          "min_ns": 46000.0,
+          "max_ns": 114000.0
+        },
+        "ratio": {
+          "point": 0.2663316582914573,
+          "ci_lo": 0.24874371859296482,
+          "ci_hi": 0.2777777777777778
+        }
+      }
+    },
+    {
+      "name": "speech/2h-tiled(7200s)/30s/w1000",
+      "wall": {
+        "old": {
+          "n": 40,
+          "median_ns": 35479.0,
+          "mad_ns": 2270.5,
+          "min_ns": 29875.0,
+          "max_ns": 44667.0
+        },
+        "new": {
+          "n": 40,
+          "median_ns": 32500.0,
+          "mad_ns": 1770.5,
+          "min_ns": 28750.0,
+          "max_ns": 44041.0
+        },
+        "ratio": {
+          "point": 0.9160348375095126,
+          "ci_lo": 0.870840918666948,
+          "ci_hi": 0.9635282968883573
+        }
+      },
+      "cpu": {
+        "old": {
+          "n": 40,
+          "median_ns": 36000.0,
+          "mad_ns": 2000.0,
+          "min_ns": 30000.0,
+          "max_ns": 45000.0
+        },
+        "new": {
+          "n": 40,
+          "median_ns": 32000.0,
+          "mad_ns": 2000.0,
+          "min_ns": 28000.0,
+          "max_ns": 45000.0
+        },
+        "ratio": {
+          "point": 0.8888888888888888,
+          "ci_lo": 0.8648648648648649,
+          "ci_hi": 0.9571428571428572
+        }
+      }
+    },
+    {
+      "name": "speech/2h-tiled(7200s)/1s/w1000",
+      "wall": {
+        "old": {
+          "n": 40,
+          "median_ns": 26437.0,
+          "mad_ns": 1042.0,
+          "min_ns": 24333.0,
+          "max_ns": 31125.0
+        },
+        "new": {
+          "n": 40,
+          "median_ns": 32229.0,
+          "mad_ns": 958.5,
+          "min_ns": 30209.0,
+          "max_ns": 51334.0
+        },
+        "ratio": {
+          "point": 1.219086885803987,
+          "ci_lo": 1.1720552995391704,
+          "ci_hi": 1.253754680939592
+        }
+      },
+      "cpu": {
+        "old": {
+          "n": 40,
+          "median_ns": 27000.0,
+          "mad_ns": 1000.0,
+          "min_ns": 25000.0,
+          "max_ns": 32000.0
+        },
+        "new": {
+          "n": 40,
+          "median_ns": 32500.0,
+          "mad_ns": 1500.0,
+          "min_ns": 30000.0,
+          "max_ns": 42000.0
+        },
+        "ratio": {
+          "point": 1.2037037037037037,
+          "ci_lo": 1.1851851851851851,
+          "ci_hi": 1.2692307692307692
+        }
+      }
+    }
+  ],
+  "aggregate": {
+    "inputs": 12,
+    "wall": {
+      "point": 0.3919785238368092,
+      "ci_lo": 0.3866993794931545,
+      "ci_hi": 0.39864099658474755
+    },
+    "cpu": {
+      "point": 0.3905929256075688,
+      "ci_lo": 0.3867321368729079,
+      "ci_hi": 0.399339654873137
+    }
+  },
+  "runs": [
+    {
+      "order": 0,
+      "input": "speech/native(300s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 63709,
+      "cpu_ns": 66000
+    },
+    {
+      "order": 1,
+      "input": "speech/native(300s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 48917,
+      "cpu_ns": 49000
+    },
+    {
+      "order": 2,
+      "input": "speech/native(300s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 41583,
+      "cpu_ns": 42000
+    },
+    {
+      "order": 3,
+      "input": "speech/native(300s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 55292,
+      "cpu_ns": 56000
+    },
+    {
+      "order": 4,
+      "input": "speech/native(300s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 38333,
+      "cpu_ns": 39000
+    },
+    {
+      "order": 5,
+      "input": "speech/native(300s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 40000,
+      "cpu_ns": 40000
+    },
+    {
+      "order": 6,
+      "input": "speech/native(300s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 33917,
+      "cpu_ns": 33000
+    },
+    {
+      "order": 7,
+      "input": "speech/native(300s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 33000,
+      "cpu_ns": 33000
+    },
+    {
+      "order": 8,
+      "input": "speech/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 35292,
+      "cpu_ns": 36000
+    },
+    {
+      "order": 9,
+      "input": "speech/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 38750,
+      "cpu_ns": 39000
+    },
+    {
+      "order": 10,
+      "input": "speech/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 35625,
+      "cpu_ns": 35000
+    },
+    {
+      "order": 11,
+      "input": "speech/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 32750,
+      "cpu_ns": 32000
+    },
+    {
+      "order": 12,
+      "input": "speech/native(300s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 244541,
+      "cpu_ns": 245000
+    },
+    {
+      "order": 13,
+      "input": "speech/native(300s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 187792,
+      "cpu_ns": 188000
+    },
+    {
+      "order": 14,
+      "input": "speech/native(300s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 160250,
+      "cpu_ns": 162000
+    },
+    {
+      "order": 15,
+      "input": "speech/native(300s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 226958,
+      "cpu_ns": 227000
+    },
+    {
+      "order": 16,
+      "input": "speech/native(300s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 211292,
+      "cpu_ns": 211000
+    },
+    {
+      "order": 17,
+      "input": "speech/native(300s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 154541,
+      "cpu_ns": 155000
+    },
+    {
+      "order": 18,
+      "input": "speech/native(300s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 149125,
+      "cpu_ns": 149000
+    },
+    {
+      "order": 19,
+      "input": "speech/native(300s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 204917,
+      "cpu_ns": 206000
+    },
+    {
+      "order": 20,
+      "input": "speech/native(300s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 55625,
+      "cpu_ns": 56000
+    },
+    {
+      "order": 21,
+      "input": "speech/native(300s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 42791,
+      "cpu_ns": 43000
+    },
+    {
+      "order": 22,
+      "input": "speech/native(300s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 39667,
+      "cpu_ns": 40000
+    },
+    {
+      "order": 23,
+      "input": "speech/native(300s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 52375,
+      "cpu_ns": 52000
+    },
+    {
+      "order": 24,
+      "input": "speech/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 395459,
+      "cpu_ns": 387000
+    },
+    {
+      "order": 25,
+      "input": "speech/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2768625,
+      "cpu_ns": 2761000
+    },
+    {
+      "order": 26,
+      "input": "speech/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2901709,
+      "cpu_ns": 2813000
+    },
+    {
+      "order": 27,
+      "input": "speech/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 477125,
+      "cpu_ns": 461000
+    },
+    {
+      "order": 28,
+      "input": "speech/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 834916,
+      "cpu_ns": 805000
+    },
+    {
+      "order": 29,
+      "input": "speech/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 155375,
+      "cpu_ns": 151000
+    },
+    {
+      "order": 30,
+      "input": "speech/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 67042,
+      "cpu_ns": 67000
+    },
+    {
+      "order": 31,
+      "input": "speech/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 692833,
+      "cpu_ns": 693000
+    },
+    {
+      "order": 32,
+      "input": "speech/native(300s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 64250,
+      "cpu_ns": 53000
+    },
+    {
+      "order": 33,
+      "input": "speech/native(300s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 72125,
+      "cpu_ns": 68000
+    },
+    {
+      "order": 34,
+      "input": "speech/native(300s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 60542,
+      "cpu_ns": 61000
+    },
+    {
+      "order": 35,
+      "input": "speech/native(300s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 42708,
+      "cpu_ns": 43000
+    },
+    {
+      "order": 36,
+      "input": "speech/native(300s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 39416,
+      "cpu_ns": 40000
+    },
+    {
+      "order": 37,
+      "input": "speech/native(300s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 52500,
+      "cpu_ns": 53000
+    },
+    {
+      "order": 38,
+      "input": "speech/native(300s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 50375,
+      "cpu_ns": 50000
+    },
+    {
+      "order": 39,
+      "input": "speech/native(300s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 38791,
+      "cpu_ns": 39000
+    },
+    {
+      "order": 40,
+      "input": "speech/native(300s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 53417,
+      "cpu_ns": 53000
+    },
+    {
+      "order": 41,
+      "input": "speech/native(300s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 37792,
+      "cpu_ns": 38000
+    },
+    {
+      "order": 42,
+      "input": "speech/native(300s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 37625,
+      "cpu_ns": 38000
+    },
+    {
+      "order": 43,
+      "input": "speech/native(300s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 54916,
+      "cpu_ns": 56000
+    },
+    {
+      "order": 44,
+      "input": "speech/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 37625,
+      "cpu_ns": 38000
+    },
+    {
+      "order": 45,
+      "input": "speech/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 30417,
+      "cpu_ns": 30000
+    },
+    {
+      "order": 46,
+      "input": "speech/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 27584,
+      "cpu_ns": 29000
+    },
+    {
+      "order": 47,
+      "input": "speech/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 35500,
+      "cpu_ns": 35000
+    },
+    {
+      "order": 48,
+      "input": "speech/native(300s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 157000,
+      "cpu_ns": 151000
+    },
+    {
+      "order": 49,
+      "input": "speech/native(300s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 62750,
+      "cpu_ns": 63000
+    },
+    {
+      "order": 50,
+      "input": "speech/native(300s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 48958,
+      "cpu_ns": 49000
+    },
+    {
+      "order": 51,
+      "input": "speech/native(300s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 142667,
+      "cpu_ns": 143000
+    },
+    {
+      "order": 52,
+      "input": "speech/native(300s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 250292,
+      "cpu_ns": 251000
+    },
+    {
+      "order": 53,
+      "input": "speech/native(300s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 186292,
+      "cpu_ns": 187000
+    },
+    {
+      "order": 54,
+      "input": "speech/native(300s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 161458,
+      "cpu_ns": 162000
+    },
+    {
+      "order": 55,
+      "input": "speech/native(300s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 222458,
+      "cpu_ns": 223000
+    },
+    {
+      "order": 56,
+      "input": "speech/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2744750,
+      "cpu_ns": 2745000
+    },
+    {
+      "order": 57,
+      "input": "speech/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 373875,
+      "cpu_ns": 375000
+    },
+    {
+      "order": 58,
+      "input": "speech/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 243583,
+      "cpu_ns": 244000
+    },
+    {
+      "order": 59,
+      "input": "speech/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2772125,
+      "cpu_ns": 2772000
+    },
+    {
+      "order": 60,
+      "input": "speech/native(300s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 55584,
+      "cpu_ns": 50000
+    },
+    {
+      "order": 61,
+      "input": "speech/native(300s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 47375,
+      "cpu_ns": 47000
+    },
+    {
+      "order": 62,
+      "input": "speech/native(300s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 38208,
+      "cpu_ns": 38000
+    },
+    {
+      "order": 63,
+      "input": "speech/native(300s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 43125,
+      "cpu_ns": 41000
+    },
+    {
+      "order": 64,
+      "input": "speech/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 28333,
+      "cpu_ns": 29000
+    },
+    {
+      "order": 65,
+      "input": "speech/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 33917,
+      "cpu_ns": 34000
+    },
+    {
+      "order": 66,
+      "input": "speech/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 32500,
+      "cpu_ns": 32000
+    },
+    {
+      "order": 67,
+      "input": "speech/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 26708,
+      "cpu_ns": 27000
+    },
+    {
+      "order": 68,
+      "input": "speech/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 147875,
+      "cpu_ns": 148000
+    },
+    {
+      "order": 69,
+      "input": "speech/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2649167,
+      "cpu_ns": 2645000
+    },
+    {
+      "order": 70,
+      "input": "speech/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2652500,
+      "cpu_ns": 2650000
+    },
+    {
+      "order": 71,
+      "input": "speech/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 130916,
+      "cpu_ns": 131000
+    },
+    {
+      "order": 72,
+      "input": "speech/native(300s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 73042,
+      "cpu_ns": 73000
+    },
+    {
+      "order": 73,
+      "input": "speech/native(300s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 143875,
+      "cpu_ns": 145000
+    },
+    {
+      "order": 74,
+      "input": "speech/native(300s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 142209,
+      "cpu_ns": 142000
+    },
+    {
+      "order": 75,
+      "input": "speech/native(300s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 47875,
+      "cpu_ns": 49000
+    },
+    {
+      "order": 76,
+      "input": "speech/native(300s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 39292,
+      "cpu_ns": 39000
+    },
+    {
+      "order": 77,
+      "input": "speech/native(300s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 38333,
+      "cpu_ns": 38000
+    },
+    {
+      "order": 78,
+      "input": "speech/native(300s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 33583,
+      "cpu_ns": 34000
+    },
+    {
+      "order": 79,
+      "input": "speech/native(300s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 33792,
+      "cpu_ns": 34000
+    },
+    {
+      "order": 80,
+      "input": "speech/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 691500,
+      "cpu_ns": 691000
+    },
+    {
+      "order": 81,
+      "input": "speech/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 128791,
+      "cpu_ns": 128000
+    },
+    {
+      "order": 82,
+      "input": "speech/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 60292,
+      "cpu_ns": 61000
+    },
+    {
+      "order": 83,
+      "input": "speech/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 688375,
+      "cpu_ns": 689000
+    },
+    {
+      "order": 84,
+      "input": "speech/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 205958,
+      "cpu_ns": 207000
+    },
+    {
+      "order": 85,
+      "input": "speech/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 94291,
+      "cpu_ns": 95000
+    },
+    {
+      "order": 86,
+      "input": "speech/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 52625,
+      "cpu_ns": 53000
+    },
+    {
+      "order": 87,
+      "input": "speech/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 200167,
+      "cpu_ns": 200000
+    },
+    {
+      "order": 88,
+      "input": "speech/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 199416,
+      "cpu_ns": 199000
+    },
+    {
+      "order": 89,
+      "input": "speech/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 49167,
+      "cpu_ns": 49000
+    },
+    {
+      "order": 90,
+      "input": "speech/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 47292,
+      "cpu_ns": 48000
+    },
+    {
+      "order": 91,
+      "input": "speech/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 198417,
+      "cpu_ns": 199000
+    },
+    {
+      "order": 92,
+      "input": "speech/native(300s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 37708,
+      "cpu_ns": 38000
+    },
+    {
+      "order": 93,
+      "input": "speech/native(300s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 40500,
+      "cpu_ns": 41000
+    },
+    {
+      "order": 94,
+      "input": "speech/native(300s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 34333,
+      "cpu_ns": 35000
+    },
+    {
+      "order": 95,
+      "input": "speech/native(300s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 34625,
+      "cpu_ns": 34000
+    },
+    {
+      "order": 96,
+      "input": "speech/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 33750,
+      "cpu_ns": 34000
+    },
+    {
+      "order": 97,
+      "input": "speech/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 27375,
+      "cpu_ns": 27000
+    },
+    {
+      "order": 98,
+      "input": "speech/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 26333,
+      "cpu_ns": 27000
+    },
+    {
+      "order": 99,
+      "input": "speech/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 37917,
+      "cpu_ns": 38000
+    },
+    {
+      "order": 100,
+      "input": "speech/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 26250,
+      "cpu_ns": 26000
+    },
+    {
+      "order": 101,
+      "input": "speech/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 32250,
+      "cpu_ns": 32000
+    },
+    {
+      "order": 102,
+      "input": "speech/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 32000,
+      "cpu_ns": 32000
+    },
+    {
+      "order": 103,
+      "input": "speech/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 26000,
+      "cpu_ns": 26000
+    },
+    {
+      "order": 104,
+      "input": "speech/native(300s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 33250,
+      "cpu_ns": 33000
+    },
+    {
+      "order": 105,
+      "input": "speech/native(300s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 33166,
+      "cpu_ns": 34000
+    },
+    {
+      "order": 106,
+      "input": "speech/native(300s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 29875,
+      "cpu_ns": 30000
+    },
+    {
+      "order": 107,
+      "input": "speech/native(300s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 31083,
+      "cpu_ns": 31000
+    },
+    {
+      "order": 108,
+      "input": "speech/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 26375,
+      "cpu_ns": 27000
+    },
+    {
+      "order": 109,
+      "input": "speech/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 32500,
+      "cpu_ns": 33000
+    },
+    {
+      "order": 110,
+      "input": "speech/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 31792,
+      "cpu_ns": 32000
+    },
+    {
+      "order": 111,
+      "input": "speech/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 25959,
+      "cpu_ns": 26000
+    },
+    {
+      "order": 112,
+      "input": "speech/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2664542,
+      "cpu_ns": 2655000
+    },
+    {
+      "order": 113,
+      "input": "speech/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 112167,
+      "cpu_ns": 113000
+    },
+    {
+      "order": 114,
+      "input": "speech/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 62375,
+      "cpu_ns": 63000
+    },
+    {
+      "order": 115,
+      "input": "speech/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2650625,
+      "cpu_ns": 2650000
+    },
+    {
+      "order": 116,
+      "input": "speech/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 198708,
+      "cpu_ns": 198000
+    },
+    {
+      "order": 117,
+      "input": "speech/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 80917,
+      "cpu_ns": 81000
+    },
+    {
+      "order": 118,
+      "input": "speech/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 48125,
+      "cpu_ns": 49000
+    },
+    {
+      "order": 119,
+      "input": "speech/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 198375,
+      "cpu_ns": 199000
+    },
+    {
+      "order": 120,
+      "input": "speech/native(300s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 166000,
+      "cpu_ns": 165000
+    },
+    {
+      "order": 121,
+      "input": "speech/native(300s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 222792,
+      "cpu_ns": 223000
+    },
+    {
+      "order": 122,
+      "input": "speech/native(300s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 212167,
+      "cpu_ns": 212000
+    },
+    {
+      "order": 123,
+      "input": "speech/native(300s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 157583,
+      "cpu_ns": 158000
+    },
+    {
+      "order": 124,
+      "input": "speech/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2745542,
+      "cpu_ns": 2746000
+    },
+    {
+      "order": 125,
+      "input": "speech/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 447500,
+      "cpu_ns": 447000
+    },
+    {
+      "order": 126,
+      "input": "speech/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 237250,
+      "cpu_ns": 237000
+    },
+    {
+      "order": 127,
+      "input": "speech/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2754083,
+      "cpu_ns": 2746000
+    },
+    {
+      "order": 128,
+      "input": "speech/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 35334,
+      "cpu_ns": 35000
+    },
+    {
+      "order": 129,
+      "input": "speech/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 29875,
+      "cpu_ns": 31000
+    },
+    {
+      "order": 130,
+      "input": "speech/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 28208,
+      "cpu_ns": 29000
+    },
+    {
+      "order": 131,
+      "input": "speech/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 33166,
+      "cpu_ns": 33000
+    },
+    {
+      "order": 132,
+      "input": "speech/native(300s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 25083,
+      "cpu_ns": 26000
+    },
+    {
+      "order": 133,
+      "input": "speech/native(300s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 22750,
+      "cpu_ns": 23000
+    },
+    {
+      "order": 134,
+      "input": "speech/native(300s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 20291,
+      "cpu_ns": 21000
+    },
+    {
+      "order": 135,
+      "input": "speech/native(300s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 23041,
+      "cpu_ns": 23000
+    },
+    {
+      "order": 136,
+      "input": "speech/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 77541,
+      "cpu_ns": 77000
+    },
+    {
+      "order": 137,
+      "input": "speech/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 199459,
+      "cpu_ns": 199000
+    },
+    {
+      "order": 138,
+      "input": "speech/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 199125,
+      "cpu_ns": 199000
+    },
+    {
+      "order": 139,
+      "input": "speech/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 52625,
+      "cpu_ns": 52000
+    },
+    {
+      "order": 140,
+      "input": "speech/native(300s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 145041,
+      "cpu_ns": 146000
+    },
+    {
+      "order": 141,
+      "input": "speech/native(300s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 74375,
+      "cpu_ns": 75000
+    },
+    {
+      "order": 142,
+      "input": "speech/native(300s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 47792,
+      "cpu_ns": 48000
+    },
+    {
+      "order": 143,
+      "input": "speech/native(300s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 142292,
+      "cpu_ns": 142000
+    },
+    {
+      "order": 144,
+      "input": "speech/native(300s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 39208,
+      "cpu_ns": 39000
+    },
+    {
+      "order": 145,
+      "input": "speech/native(300s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 37875,
+      "cpu_ns": 38000
+    },
+    {
+      "order": 146,
+      "input": "speech/native(300s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 33292,
+      "cpu_ns": 33000
+    },
+    {
+      "order": 147,
+      "input": "speech/native(300s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 33292,
+      "cpu_ns": 33000
+    },
+    {
+      "order": 148,
+      "input": "speech/native(300s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 23292,
+      "cpu_ns": 23000
+    },
+    {
+      "order": 149,
+      "input": "speech/native(300s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 20459,
+      "cpu_ns": 21000
+    },
+    {
+      "order": 150,
+      "input": "speech/native(300s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 18750,
+      "cpu_ns": 18000
+    },
+    {
+      "order": 151,
+      "input": "speech/native(300s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 22166,
+      "cpu_ns": 22000
+    },
+    {
+      "order": 152,
+      "input": "speech/native(300s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 44833,
+      "cpu_ns": 46000
+    },
+    {
+      "order": 153,
+      "input": "speech/native(300s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 40625,
+      "cpu_ns": 41000
+    },
+    {
+      "order": 154,
+      "input": "speech/native(300s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 34334,
+      "cpu_ns": 34000
+    },
+    {
+      "order": 155,
+      "input": "speech/native(300s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 37875,
+      "cpu_ns": 39000
+    },
+    {
+      "order": 156,
+      "input": "speech/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 44459,
+      "cpu_ns": 45000
+    },
+    {
+      "order": 157,
+      "input": "speech/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 39750,
+      "cpu_ns": 40000
+    },
+    {
+      "order": 158,
+      "input": "speech/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 34084,
+      "cpu_ns": 34000
+    },
+    {
+      "order": 159,
+      "input": "speech/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 36916,
+      "cpu_ns": 38000
+    },
+    {
+      "order": 160,
+      "input": "speech/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 52666,
+      "cpu_ns": 53000
+    },
+    {
+      "order": 161,
+      "input": "speech/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 198917,
+      "cpu_ns": 200000
+    },
+    {
+      "order": 162,
+      "input": "speech/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 198000,
+      "cpu_ns": 198000
+    },
+    {
+      "order": 163,
+      "input": "speech/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 49125,
+      "cpu_ns": 49000
+    },
+    {
+      "order": 164,
+      "input": "speech/native(300s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 36292,
+      "cpu_ns": 37000
+    },
+    {
+      "order": 165,
+      "input": "speech/native(300s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 33042,
+      "cpu_ns": 33000
+    },
+    {
+      "order": 166,
+      "input": "speech/native(300s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 31792,
+      "cpu_ns": 32000
+    },
+    {
+      "order": 167,
+      "input": "speech/native(300s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 34541,
+      "cpu_ns": 36000
+    },
+    {
+      "order": 168,
+      "input": "speech/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2736625,
+      "cpu_ns": 2737000
+    },
+    {
+      "order": 169,
+      "input": "speech/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 279000,
+      "cpu_ns": 279000
+    },
+    {
+      "order": 170,
+      "input": "speech/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 231708,
+      "cpu_ns": 232000
+    },
+    {
+      "order": 171,
+      "input": "speech/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2747875,
+      "cpu_ns": 2740000
+    },
+    {
+      "order": 172,
+      "input": "speech/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 200625,
+      "cpu_ns": 201000
+    },
+    {
+      "order": 173,
+      "input": "speech/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 53958,
+      "cpu_ns": 55000
+    },
+    {
+      "order": 174,
+      "input": "speech/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 49166,
+      "cpu_ns": 49000
+    },
+    {
+      "order": 175,
+      "input": "speech/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 197292,
+      "cpu_ns": 198000
+    },
+    {
+      "order": 176,
+      "input": "speech/native(300s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 18625,
+      "cpu_ns": 19000
+    },
+    {
+      "order": 177,
+      "input": "speech/native(300s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 22875,
+      "cpu_ns": 22000
+    },
+    {
+      "order": 178,
+      "input": "speech/native(300s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 21833,
+      "cpu_ns": 22000
+    },
+    {
+      "order": 179,
+      "input": "speech/native(300s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 18333,
+      "cpu_ns": 19000
+    },
+    {
+      "order": 180,
+      "input": "speech/native(300s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 32959,
+      "cpu_ns": 33000
+    },
+    {
+      "order": 181,
+      "input": "speech/native(300s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 33500,
+      "cpu_ns": 34000
+    },
+    {
+      "order": 182,
+      "input": "speech/native(300s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 30333,
+      "cpu_ns": 31000
+    },
+    {
+      "order": 183,
+      "input": "speech/native(300s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 30875,
+      "cpu_ns": 32000
+    },
+    {
+      "order": 184,
+      "input": "speech/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 237583,
+      "cpu_ns": 237000
+    },
+    {
+      "order": 185,
+      "input": "speech/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2728375,
+      "cpu_ns": 2729000
+    },
+    {
+      "order": 186,
+      "input": "speech/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2729416,
+      "cpu_ns": 2730000
+    },
+    {
+      "order": 187,
+      "input": "speech/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 229875,
+      "cpu_ns": 230000
+    },
+    {
+      "order": 188,
+      "input": "speech/native(300s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 52583,
+      "cpu_ns": 53000
+    },
+    {
+      "order": 189,
+      "input": "speech/native(300s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 142958,
+      "cpu_ns": 143000
+    },
+    {
+      "order": 190,
+      "input": "speech/native(300s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 140541,
+      "cpu_ns": 141000
+    },
+    {
+      "order": 191,
+      "input": "speech/native(300s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 46750,
+      "cpu_ns": 46000
+    },
+    {
+      "order": 192,
+      "input": "speech/native(300s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 242625,
+      "cpu_ns": 243000
+    },
+    {
+      "order": 193,
+      "input": "speech/native(300s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 181041,
+      "cpu_ns": 182000
+    },
+    {
+      "order": 194,
+      "input": "speech/native(300s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 159167,
+      "cpu_ns": 159000
+    },
+    {
+      "order": 195,
+      "input": "speech/native(300s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 224083,
+      "cpu_ns": 224000
+    },
+    {
+      "order": 196,
+      "input": "speech/native(300s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 31541,
+      "cpu_ns": 31000
+    },
+    {
+      "order": 197,
+      "input": "speech/native(300s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 31667,
+      "cpu_ns": 33000
+    },
+    {
+      "order": 198,
+      "input": "speech/native(300s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 29875,
+      "cpu_ns": 30000
+    },
+    {
+      "order": 199,
+      "input": "speech/native(300s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 30791,
+      "cpu_ns": 31000
+    },
+    {
+      "order": 200,
+      "input": "speech/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 105167,
+      "cpu_ns": 105000
+    },
+    {
+      "order": 201,
+      "input": "speech/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 684875,
+      "cpu_ns": 685000
+    },
+    {
+      "order": 202,
+      "input": "speech/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 703041,
+      "cpu_ns": 691000
+    },
+    {
+      "order": 203,
+      "input": "speech/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 63917,
+      "cpu_ns": 64000
+    },
+    {
+      "order": 204,
+      "input": "speech/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 27959,
+      "cpu_ns": 29000
+    },
+    {
+      "order": 205,
+      "input": "speech/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 34041,
+      "cpu_ns": 34000
+    },
+    {
+      "order": 206,
+      "input": "speech/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 33125,
+      "cpu_ns": 34000
+    },
+    {
+      "order": 207,
+      "input": "speech/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 26833,
+      "cpu_ns": 27000
+    },
+    {
+      "order": 208,
+      "input": "speech/native(300s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 18709,
+      "cpu_ns": 19000
+    },
+    {
+      "order": 209,
+      "input": "speech/native(300s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 22583,
+      "cpu_ns": 23000
+    },
+    {
+      "order": 210,
+      "input": "speech/native(300s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 21541,
+      "cpu_ns": 23000
+    },
+    {
+      "order": 211,
+      "input": "speech/native(300s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 18166,
+      "cpu_ns": 18000
+    },
+    {
+      "order": 212,
+      "input": "speech/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2620666,
+      "cpu_ns": 2621000
+    },
+    {
+      "order": 213,
+      "input": "speech/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 105041,
+      "cpu_ns": 106000
+    },
+    {
+      "order": 214,
+      "input": "speech/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 60208,
+      "cpu_ns": 60000
+    },
+    {
+      "order": 215,
+      "input": "speech/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2750250,
+      "cpu_ns": 2734000
+    },
+    {
+      "order": 216,
+      "input": "speech/native(300s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 188584,
+      "cpu_ns": 189000
+    },
+    {
+      "order": 217,
+      "input": "speech/native(300s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 241417,
+      "cpu_ns": 242000
+    },
+    {
+      "order": 218,
+      "input": "speech/native(300s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 222166,
+      "cpu_ns": 223000
+    },
+    {
+      "order": 219,
+      "input": "speech/native(300s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 160166,
+      "cpu_ns": 160000
+    },
+    {
+      "order": 220,
+      "input": "speech/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 691458,
+      "cpu_ns": 692000
+    },
+    {
+      "order": 221,
+      "input": "speech/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 104125,
+      "cpu_ns": 105000
+    },
+    {
+      "order": 222,
+      "input": "speech/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 61584,
+      "cpu_ns": 62000
+    },
+    {
+      "order": 223,
+      "input": "speech/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 685333,
+      "cpu_ns": 686000
+    },
+    {
+      "order": 224,
+      "input": "speech/native(300s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 154334,
+      "cpu_ns": 154000
+    },
+    {
+      "order": 225,
+      "input": "speech/native(300s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 209834,
+      "cpu_ns": 210000
+    },
+    {
+      "order": 226,
+      "input": "speech/native(300s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 203167,
+      "cpu_ns": 203000
+    },
+    {
+      "order": 227,
+      "input": "speech/native(300s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 151375,
+      "cpu_ns": 151000
+    },
+    {
+      "order": 228,
+      "input": "speech/native(300s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 47666,
+      "cpu_ns": 48000
+    },
+    {
+      "order": 229,
+      "input": "speech/native(300s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 62375,
+      "cpu_ns": 62000
+    },
+    {
+      "order": 230,
+      "input": "speech/native(300s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 55208,
+      "cpu_ns": 56000
+    },
+    {
+      "order": 231,
+      "input": "speech/native(300s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 41250,
+      "cpu_ns": 41000
+    },
+    {
+      "order": 232,
+      "input": "speech/native(300s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 43250,
+      "cpu_ns": 44000
+    },
+    {
+      "order": 233,
+      "input": "speech/native(300s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 39542,
+      "cpu_ns": 39000
+    },
+    {
+      "order": 234,
+      "input": "speech/native(300s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 33917,
+      "cpu_ns": 33000
+    },
+    {
+      "order": 235,
+      "input": "speech/native(300s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 37416,
+      "cpu_ns": 38000
+    },
+    {
+      "order": 236,
+      "input": "speech/native(300s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 23959,
+      "cpu_ns": 24000
+    },
+    {
+      "order": 237,
+      "input": "speech/native(300s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 25917,
+      "cpu_ns": 26000
+    },
+    {
+      "order": 238,
+      "input": "speech/native(300s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 23292,
+      "cpu_ns": 23000
+    },
+    {
+      "order": 239,
+      "input": "speech/native(300s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 21083,
+      "cpu_ns": 21000
+    },
+    {
+      "order": 240,
+      "input": "speech/native(300s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 38125,
+      "cpu_ns": 38000
+    },
+    {
+      "order": 241,
+      "input": "speech/native(300s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 36500,
+      "cpu_ns": 36000
+    },
+    {
+      "order": 242,
+      "input": "speech/native(300s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 36083,
+      "cpu_ns": 37000
+    },
+    {
+      "order": 243,
+      "input": "speech/native(300s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 33083,
+      "cpu_ns": 33000
+    },
+    {
+      "order": 244,
+      "input": "speech/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 116667,
+      "cpu_ns": 114000
+    },
+    {
+      "order": 245,
+      "input": "speech/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2629417,
+      "cpu_ns": 2627000
+    },
+    {
+      "order": 246,
+      "input": "speech/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2627833,
+      "cpu_ns": 2628000
+    },
+    {
+      "order": 247,
+      "input": "speech/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 85916,
+      "cpu_ns": 86000
+    },
+    {
+      "order": 248,
+      "input": "speech/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 44667,
+      "cpu_ns": 45000
+    },
+    {
+      "order": 249,
+      "input": "speech/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 39875,
+      "cpu_ns": 40000
+    },
+    {
+      "order": 250,
+      "input": "speech/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 33583,
+      "cpu_ns": 34000
+    },
+    {
+      "order": 251,
+      "input": "speech/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 38084,
+      "cpu_ns": 38000
+    },
+    {
+      "order": 252,
+      "input": "speech/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2780500,
+      "cpu_ns": 2759000
+    },
+    {
+      "order": 253,
+      "input": "speech/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 452875,
+      "cpu_ns": 453000
+    },
+    {
+      "order": 254,
+      "input": "speech/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 230875,
+      "cpu_ns": 231000
+    },
+    {
+      "order": 255,
+      "input": "speech/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2761750,
+      "cpu_ns": 2753000
+    },
+    {
+      "order": 256,
+      "input": "speech/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 35542,
+      "cpu_ns": 36000
+    },
+    {
+      "order": 257,
+      "input": "speech/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 29625,
+      "cpu_ns": 30000
+    },
+    {
+      "order": 258,
+      "input": "speech/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 28541,
+      "cpu_ns": 28000
+    },
+    {
+      "order": 259,
+      "input": "speech/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 33167,
+      "cpu_ns": 35000
+    },
+    {
+      "order": 260,
+      "input": "speech/native(300s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 34917,
+      "cpu_ns": 35000
+    },
+    {
+      "order": 261,
+      "input": "speech/native(300s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 39333,
+      "cpu_ns": 39000
+    },
+    {
+      "order": 262,
+      "input": "speech/native(300s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 36375,
+      "cpu_ns": 38000
+    },
+    {
+      "order": 263,
+      "input": "speech/native(300s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 33958,
+      "cpu_ns": 34000
+    },
+    {
+      "order": 264,
+      "input": "speech/native(300s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 31583,
+      "cpu_ns": 32000
+    },
+    {
+      "order": 265,
+      "input": "speech/native(300s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 33000,
+      "cpu_ns": 33000
+    },
+    {
+      "order": 266,
+      "input": "speech/native(300s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 32042,
+      "cpu_ns": 32000
+    },
+    {
+      "order": 267,
+      "input": "speech/native(300s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 32750,
+      "cpu_ns": 34000
+    },
+    {
+      "order": 268,
+      "input": "speech/native(300s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 23500,
+      "cpu_ns": 24000
+    },
+    {
+      "order": 269,
+      "input": "speech/native(300s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 21084,
+      "cpu_ns": 21000
+    },
+    {
+      "order": 270,
+      "input": "speech/native(300s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 19708,
+      "cpu_ns": 21000
+    },
+    {
+      "order": 271,
+      "input": "speech/native(300s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 21750,
+      "cpu_ns": 22000
+    },
+    {
+      "order": 272,
+      "input": "speech/native(300s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 147000,
+      "cpu_ns": 147000
+    },
+    {
+      "order": 273,
+      "input": "speech/native(300s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 85958,
+      "cpu_ns": 82000
+    },
+    {
+      "order": 274,
+      "input": "speech/native(300s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 49000,
+      "cpu_ns": 49000
+    },
+    {
+      "order": 275,
+      "input": "speech/native(300s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 142375,
+      "cpu_ns": 141000
+    },
+    {
+      "order": 276,
+      "input": "speech/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 103958,
+      "cpu_ns": 104000
+    },
+    {
+      "order": 277,
+      "input": "speech/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 200292,
+      "cpu_ns": 201000
+    },
+    {
+      "order": 278,
+      "input": "speech/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 635041,
+      "cpu_ns": 336000
+    },
+    {
+      "order": 279,
+      "input": "speech/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 166166,
+      "cpu_ns": 114000
+    },
+    {
+      "order": 280,
+      "input": "speech/native(300s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 39958,
+      "cpu_ns": 40000
+    },
+    {
+      "order": 281,
+      "input": "speech/native(300s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 40083,
+      "cpu_ns": 40000
+    },
+    {
+      "order": 282,
+      "input": "speech/native(300s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 34000,
+      "cpu_ns": 34000
+    },
+    {
+      "order": 283,
+      "input": "speech/native(300s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 37125,
+      "cpu_ns": 37000
+    },
+    {
+      "order": 284,
+      "input": "speech/native(300s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 22041,
+      "cpu_ns": 22000
+    },
+    {
+      "order": 285,
+      "input": "speech/native(300s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 24167,
+      "cpu_ns": 25000
+    },
+    {
+      "order": 286,
+      "input": "speech/native(300s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 22625,
+      "cpu_ns": 23000
+    },
+    {
+      "order": 287,
+      "input": "speech/native(300s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 19333,
+      "cpu_ns": 19000
+    },
+    {
+      "order": 288,
+      "input": "speech/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 28209,
+      "cpu_ns": 30000
+    },
+    {
+      "order": 289,
+      "input": "speech/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 33208,
+      "cpu_ns": 33000
+    },
+    {
+      "order": 290,
+      "input": "speech/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 32583,
+      "cpu_ns": 33000
+    },
+    {
+      "order": 291,
+      "input": "speech/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 27125,
+      "cpu_ns": 27000
+    },
+    {
+      "order": 292,
+      "input": "speech/native(300s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 145583,
+      "cpu_ns": 147000
+    },
+    {
+      "order": 293,
+      "input": "speech/native(300s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 57625,
+      "cpu_ns": 58000
+    },
+    {
+      "order": 294,
+      "input": "speech/native(300s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 48125,
+      "cpu_ns": 48000
+    },
+    {
+      "order": 295,
+      "input": "speech/native(300s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 142500,
+      "cpu_ns": 143000
+    },
+    {
+      "order": 296,
+      "input": "speech/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 654583,
+      "cpu_ns": 655000
+    },
+    {
+      "order": 297,
+      "input": "speech/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 125583,
+      "cpu_ns": 126000
+    },
+    {
+      "order": 298,
+      "input": "speech/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 61666,
+      "cpu_ns": 62000
+    },
+    {
+      "order": 299,
+      "input": "speech/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 650875,
+      "cpu_ns": 652000
+    },
+    {
+      "order": 300,
+      "input": "speech/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2579042,
+      "cpu_ns": 2579000
+    },
+    {
+      "order": 301,
+      "input": "speech/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 139208,
+      "cpu_ns": 140000
+    },
+    {
+      "order": 302,
+      "input": "speech/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 67625,
+      "cpu_ns": 68000
+    },
+    {
+      "order": 303,
+      "input": "speech/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2661083,
+      "cpu_ns": 2635000
+    },
+    {
+      "order": 304,
+      "input": "speech/native(300s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 22791,
+      "cpu_ns": 23000
+    },
+    {
+      "order": 305,
+      "input": "speech/native(300s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 18334,
+      "cpu_ns": 19000
+    },
+    {
+      "order": 306,
+      "input": "speech/native(300s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 17875,
+      "cpu_ns": 18000
+    },
+    {
+      "order": 307,
+      "input": "speech/native(300s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 26083,
+      "cpu_ns": 27000
+    },
+    {
+      "order": 308,
+      "input": "speech/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 43250,
+      "cpu_ns": 43000
+    },
+    {
+      "order": 309,
+      "input": "speech/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 44041,
+      "cpu_ns": 45000
+    },
+    {
+      "order": 310,
+      "input": "speech/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 34416,
+      "cpu_ns": 35000
+    },
+    {
+      "order": 311,
+      "input": "speech/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 36750,
+      "cpu_ns": 37000
+    },
+    {
+      "order": 312,
+      "input": "speech/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 35000,
+      "cpu_ns": 35000
+    },
+    {
+      "order": 313,
+      "input": "speech/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 35667,
+      "cpu_ns": 36000
+    },
+    {
+      "order": 314,
+      "input": "speech/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 32958,
+      "cpu_ns": 34000
+    },
+    {
+      "order": 315,
+      "input": "speech/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 29791,
+      "cpu_ns": 30000
+    },
+    {
+      "order": 316,
+      "input": "speech/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 207833,
+      "cpu_ns": 208000
+    },
+    {
+      "order": 317,
+      "input": "speech/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 80875,
+      "cpu_ns": 82000
+    },
+    {
+      "order": 318,
+      "input": "speech/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 56166,
+      "cpu_ns": 56000
+    },
+    {
+      "order": 319,
+      "input": "speech/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 199958,
+      "cpu_ns": 200000
+    },
+    {
+      "order": 320,
+      "input": "speech/native(300s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 61625,
+      "cpu_ns": 63000
+    },
+    {
+      "order": 321,
+      "input": "speech/native(300s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 54917,
+      "cpu_ns": 55000
+    },
+    {
+      "order": 322,
+      "input": "speech/native(300s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 42083,
+      "cpu_ns": 43000
+    },
+    {
+      "order": 323,
+      "input": "speech/native(300s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 52542,
+      "cpu_ns": 53000
+    },
+    {
+      "order": 324,
+      "input": "speech/native(300s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 198583,
+      "cpu_ns": 197000
+    },
+    {
+      "order": 325,
+      "input": "speech/native(300s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 230333,
+      "cpu_ns": 231000
+    },
+    {
+      "order": 326,
+      "input": "speech/native(300s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 217541,
+      "cpu_ns": 219000
+    },
+    {
+      "order": 327,
+      "input": "speech/native(300s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 177542,
+      "cpu_ns": 177000
+    },
+    {
+      "order": 328,
+      "input": "speech/native(300s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 37375,
+      "cpu_ns": 38000
+    },
+    {
+      "order": 329,
+      "input": "speech/native(300s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 37125,
+      "cpu_ns": 37000
+    },
+    {
+      "order": 330,
+      "input": "speech/native(300s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 32833,
+      "cpu_ns": 34000
+    },
+    {
+      "order": 331,
+      "input": "speech/native(300s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 30792,
+      "cpu_ns": 31000
+    },
+    {
+      "order": 332,
+      "input": "speech/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 85708,
+      "cpu_ns": 86000
+    },
+    {
+      "order": 333,
+      "input": "speech/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2625292,
+      "cpu_ns": 2626000
+    },
+    {
+      "order": 334,
+      "input": "speech/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2626125,
+      "cpu_ns": 2626000
+    },
+    {
+      "order": 335,
+      "input": "speech/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 72083,
+      "cpu_ns": 73000
+    },
+    {
+      "order": 336,
+      "input": "speech/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 43791,
+      "cpu_ns": 44000
+    },
+    {
+      "order": 337,
+      "input": "speech/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 38959,
+      "cpu_ns": 39000
+    },
+    {
+      "order": 338,
+      "input": "speech/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 33250,
+      "cpu_ns": 35000
+    },
+    {
+      "order": 339,
+      "input": "speech/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 36750,
+      "cpu_ns": 37000
+    },
+    {
+      "order": 340,
+      "input": "speech/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 34500,
+      "cpu_ns": 34000
+    },
+    {
+      "order": 341,
+      "input": "speech/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 28584,
+      "cpu_ns": 28000
+    },
+    {
+      "order": 342,
+      "input": "speech/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 27125,
+      "cpu_ns": 27000
+    },
+    {
+      "order": 343,
+      "input": "speech/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 32208,
+      "cpu_ns": 32000
+    },
+    {
+      "order": 344,
+      "input": "speech/native(300s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 30250,
+      "cpu_ns": 30000
+    },
+    {
+      "order": 345,
+      "input": "speech/native(300s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 30583,
+      "cpu_ns": 31000
+    },
+    {
+      "order": 346,
+      "input": "speech/native(300s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 29333,
+      "cpu_ns": 30000
+    },
+    {
+      "order": 347,
+      "input": "speech/native(300s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 28625,
+      "cpu_ns": 29000
+    },
+    {
+      "order": 348,
+      "input": "speech/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2761834,
+      "cpu_ns": 2731000
+    },
+    {
+      "order": 349,
+      "input": "speech/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 439167,
+      "cpu_ns": 439000
+    },
+    {
+      "order": 350,
+      "input": "speech/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 217834,
+      "cpu_ns": 218000
+    },
+    {
+      "order": 351,
+      "input": "speech/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2595542,
+      "cpu_ns": 2596000
+    },
+    {
+      "order": 352,
+      "input": "speech/native(300s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 21208,
+      "cpu_ns": 22000
+    },
+    {
+      "order": 353,
+      "input": "speech/native(300s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 24167,
+      "cpu_ns": 25000
+    },
+    {
+      "order": 354,
+      "input": "speech/native(300s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 22084,
+      "cpu_ns": 23000
+    },
+    {
+      "order": 355,
+      "input": "speech/native(300s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 18916,
+      "cpu_ns": 19000
+    },
+    {
+      "order": 356,
+      "input": "speech/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 32000,
+      "cpu_ns": 32000
+    },
+    {
+      "order": 357,
+      "input": "speech/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 25958,
+      "cpu_ns": 26000
+    },
+    {
+      "order": 358,
+      "input": "speech/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 31125,
+      "cpu_ns": 32000
+    },
+    {
+      "order": 359,
+      "input": "speech/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 30958,
+      "cpu_ns": 31000
+    },
+    {
+      "order": 360,
+      "input": "speech/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 188958,
+      "cpu_ns": 189000
+    },
+    {
+      "order": 361,
+      "input": "speech/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 78041,
+      "cpu_ns": 79000
+    },
+    {
+      "order": 362,
+      "input": "speech/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 49000,
+      "cpu_ns": 49000
+    },
+    {
+      "order": 363,
+      "input": "speech/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 192750,
+      "cpu_ns": 193000
+    },
+    {
+      "order": 364,
+      "input": "speech/native(300s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 41833,
+      "cpu_ns": 42000
+    },
+    {
+      "order": 365,
+      "input": "speech/native(300s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 38042,
+      "cpu_ns": 39000
+    },
+    {
+      "order": 366,
+      "input": "speech/native(300s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 32833,
+      "cpu_ns": 33000
+    },
+    {
+      "order": 367,
+      "input": "speech/native(300s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 36333,
+      "cpu_ns": 37000
+    },
+    {
+      "order": 368,
+      "input": "speech/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 31333,
+      "cpu_ns": 32000
+    },
+    {
+      "order": 369,
+      "input": "speech/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 24917,
+      "cpu_ns": 25000
+    },
+    {
+      "order": 370,
+      "input": "speech/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 24708,
+      "cpu_ns": 26000
+    },
+    {
+      "order": 371,
+      "input": "speech/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 30625,
+      "cpu_ns": 31000
+    },
+    {
+      "order": 372,
+      "input": "speech/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 47959,
+      "cpu_ns": 48000
+    },
+    {
+      "order": 373,
+      "input": "speech/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 188333,
+      "cpu_ns": 189000
+    },
+    {
+      "order": 374,
+      "input": "speech/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 187792,
+      "cpu_ns": 189000
+    },
+    {
+      "order": 375,
+      "input": "speech/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 46875,
+      "cpu_ns": 47000
+    },
+    {
+      "order": 376,
+      "input": "speech/native(300s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 33667,
+      "cpu_ns": 34000
+    },
+    {
+      "order": 377,
+      "input": "speech/native(300s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 31333,
+      "cpu_ns": 31000
+    },
+    {
+      "order": 378,
+      "input": "speech/native(300s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 33500,
+      "cpu_ns": 34000
+    },
+    {
+      "order": 379,
+      "input": "speech/native(300s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 33500,
+      "cpu_ns": 33000
+    },
+    {
+      "order": 380,
+      "input": "speech/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 38916,
+      "cpu_ns": 39000
+    },
+    {
+      "order": 381,
+      "input": "speech/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 41875,
+      "cpu_ns": 42000
+    },
+    {
+      "order": 382,
+      "input": "speech/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 35250,
+      "cpu_ns": 35000
+    },
+    {
+      "order": 383,
+      "input": "speech/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 32083,
+      "cpu_ns": 32000
+    },
+    {
+      "order": 384,
+      "input": "speech/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 99083,
+      "cpu_ns": 99000
+    },
+    {
+      "order": 385,
+      "input": "speech/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 648833,
+      "cpu_ns": 648000
+    },
+    {
+      "order": 386,
+      "input": "speech/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 648625,
+      "cpu_ns": 648000
+    },
+    {
+      "order": 387,
+      "input": "speech/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 57750,
+      "cpu_ns": 58000
+    },
+    {
+      "order": 388,
+      "input": "speech/native(300s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 36666,
+      "cpu_ns": 37000
+    },
+    {
+      "order": 389,
+      "input": "speech/native(300s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 35958,
+      "cpu_ns": 37000
+    },
+    {
+      "order": 390,
+      "input": "speech/native(300s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 30875,
+      "cpu_ns": 31000
+    },
+    {
+      "order": 391,
+      "input": "speech/native(300s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 31250,
+      "cpu_ns": 32000
+    },
+    {
+      "order": 392,
+      "input": "speech/native(300s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 54250,
+      "cpu_ns": 54000
+    },
+    {
+      "order": 393,
+      "input": "speech/native(300s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 42458,
+      "cpu_ns": 43000
+    },
+    {
+      "order": 394,
+      "input": "speech/native(300s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 38000,
+      "cpu_ns": 37000
+    },
+    {
+      "order": 395,
+      "input": "speech/native(300s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 50250,
+      "cpu_ns": 50000
+    },
+    {
+      "order": 396,
+      "input": "speech/native(300s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 137583,
+      "cpu_ns": 138000
+    },
+    {
+      "order": 397,
+      "input": "speech/native(300s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 62875,
+      "cpu_ns": 64000
+    },
+    {
+      "order": 398,
+      "input": "speech/native(300s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 46084,
+      "cpu_ns": 46000
+    },
+    {
+      "order": 399,
+      "input": "speech/native(300s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 133958,
+      "cpu_ns": 134000
+    },
+    {
+      "order": 400,
+      "input": "speech/native(300s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 37542,
+      "cpu_ns": 37000
+    },
+    {
+      "order": 401,
+      "input": "speech/native(300s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 48750,
+      "cpu_ns": 49000
+    },
+    {
+      "order": 402,
+      "input": "speech/native(300s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 47458,
+      "cpu_ns": 48000
+    },
+    {
+      "order": 403,
+      "input": "speech/native(300s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 37083,
+      "cpu_ns": 37000
+    },
+    {
+      "order": 404,
+      "input": "speech/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 26292,
+      "cpu_ns": 27000
+    },
+    {
+      "order": 405,
+      "input": "speech/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 31625,
+      "cpu_ns": 32000
+    },
+    {
+      "order": 406,
+      "input": "speech/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 30542,
+      "cpu_ns": 31000
+    },
+    {
+      "order": 407,
+      "input": "speech/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 25000,
+      "cpu_ns": 25000
+    },
+    {
+      "order": 408,
+      "input": "speech/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 188041,
+      "cpu_ns": 188000
+    },
+    {
+      "order": 409,
+      "input": "speech/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 49000,
+      "cpu_ns": 49000
+    },
+    {
+      "order": 410,
+      "input": "speech/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 46584,
+      "cpu_ns": 46000
+    },
+    {
+      "order": 411,
+      "input": "speech/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 217583,
+      "cpu_ns": 206000
+    },
+    {
+      "order": 412,
+      "input": "speech/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 233125,
+      "cpu_ns": 234000
+    },
+    {
+      "order": 413,
+      "input": "speech/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2601625,
+      "cpu_ns": 2596000
+    },
+    {
+      "order": 414,
+      "input": "speech/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2587542,
+      "cpu_ns": 2588000
+    },
+    {
+      "order": 415,
+      "input": "speech/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 247167,
+      "cpu_ns": 247000
+    },
+    {
+      "order": 416,
+      "input": "speech/native(300s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 35291,
+      "cpu_ns": 35000
+    },
+    {
+      "order": 417,
+      "input": "speech/native(300s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 33417,
+      "cpu_ns": 33000
+    },
+    {
+      "order": 418,
+      "input": "speech/native(300s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 31167,
+      "cpu_ns": 32000
+    },
+    {
+      "order": 419,
+      "input": "speech/native(300s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 32250,
+      "cpu_ns": 32000
+    },
+    {
+      "order": 420,
+      "input": "speech/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 81500,
+      "cpu_ns": 82000
+    },
+    {
+      "order": 421,
+      "input": "speech/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2533667,
+      "cpu_ns": 2527000
+    },
+    {
+      "order": 422,
+      "input": "speech/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2481625,
+      "cpu_ns": 2483000
+    },
+    {
+      "order": 423,
+      "input": "speech/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 60708,
+      "cpu_ns": 60000
+    },
+    {
+      "order": 424,
+      "input": "speech/native(300s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 205958,
+      "cpu_ns": 206000
+    },
+    {
+      "order": 425,
+      "input": "speech/native(300s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 154333,
+      "cpu_ns": 155000
+    },
+    {
+      "order": 426,
+      "input": "speech/native(300s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 147834,
+      "cpu_ns": 148000
+    },
+    {
+      "order": 427,
+      "input": "speech/native(300s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 199334,
+      "cpu_ns": 200000
+    },
+    {
+      "order": 428,
+      "input": "speech/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 62542,
+      "cpu_ns": 63000
+    },
+    {
+      "order": 429,
+      "input": "speech/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 648416,
+      "cpu_ns": 648000
+    },
+    {
+      "order": 430,
+      "input": "speech/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 648375,
+      "cpu_ns": 649000
+    },
+    {
+      "order": 431,
+      "input": "speech/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 56834,
+      "cpu_ns": 58000
+    },
+    {
+      "order": 432,
+      "input": "speech/native(300s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 31416,
+      "cpu_ns": 32000
+    },
+    {
+      "order": 433,
+      "input": "speech/native(300s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 33792,
+      "cpu_ns": 34000
+    },
+    {
+      "order": 434,
+      "input": "speech/native(300s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 31541,
+      "cpu_ns": 32000
+    },
+    {
+      "order": 435,
+      "input": "speech/native(300s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 29750,
+      "cpu_ns": 30000
+    },
+    {
+      "order": 436,
+      "input": "speech/native(300s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 50750,
+      "cpu_ns": 51000
+    },
+    {
+      "order": 437,
+      "input": "speech/native(300s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 136000,
+      "cpu_ns": 136000
+    },
+    {
+      "order": 438,
+      "input": "speech/native(300s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 134250,
+      "cpu_ns": 134000
+    },
+    {
+      "order": 439,
+      "input": "speech/native(300s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 45125,
+      "cpu_ns": 46000
+    },
+    {
+      "order": 440,
+      "input": "speech/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 32833,
+      "cpu_ns": 33000
+    },
+    {
+      "order": 441,
+      "input": "speech/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 37375,
+      "cpu_ns": 38000
+    },
+    {
+      "order": 442,
+      "input": "speech/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 33958,
+      "cpu_ns": 34000
+    },
+    {
+      "order": 443,
+      "input": "speech/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 30875,
+      "cpu_ns": 31000
+    },
+    {
+      "order": 444,
+      "input": "speech/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 232833,
+      "cpu_ns": 233000
+    },
+    {
+      "order": 445,
+      "input": "speech/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2600750,
+      "cpu_ns": 2601000
+    },
+    {
+      "order": 446,
+      "input": "speech/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2633958,
+      "cpu_ns": 2624000
+    },
+    {
+      "order": 447,
+      "input": "speech/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 224167,
+      "cpu_ns": 224000
+    },
+    {
+      "order": 448,
+      "input": "speech/native(300s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 46458,
+      "cpu_ns": 47000
+    },
+    {
+      "order": 449,
+      "input": "speech/native(300s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 135458,
+      "cpu_ns": 135000
+    },
+    {
+      "order": 450,
+      "input": "speech/native(300s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 131167,
+      "cpu_ns": 131000
+    },
+    {
+      "order": 451,
+      "input": "speech/native(300s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 43500,
+      "cpu_ns": 44000
+    },
+    {
+      "order": 452,
+      "input": "speech/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 31000,
+      "cpu_ns": 32000
+    },
+    {
+      "order": 453,
+      "input": "speech/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 33625,
+      "cpu_ns": 34000
+    },
+    {
+      "order": 454,
+      "input": "speech/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 31417,
+      "cpu_ns": 31000
+    },
+    {
+      "order": 455,
+      "input": "speech/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 29833,
+      "cpu_ns": 30000
+    },
+    {
+      "order": 456,
+      "input": "speech/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 30458,
+      "cpu_ns": 30000
+    },
+    {
+      "order": 457,
+      "input": "speech/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 29250,
+      "cpu_ns": 31000
+    },
+    {
+      "order": 458,
+      "input": "speech/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 28750,
+      "cpu_ns": 29000
+    },
+    {
+      "order": 459,
+      "input": "speech/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 29875,
+      "cpu_ns": 30000
+    },
+    {
+      "order": 460,
+      "input": "speech/native(300s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 22792,
+      "cpu_ns": 23000
+    },
+    {
+      "order": 461,
+      "input": "speech/native(300s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 20000,
+      "cpu_ns": 21000
+    },
+    {
+      "order": 462,
+      "input": "speech/native(300s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 18666,
+      "cpu_ns": 18000
+    },
+    {
+      "order": 463,
+      "input": "speech/native(300s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 21250,
+      "cpu_ns": 22000
+    },
+    {
+      "order": 464,
+      "input": "speech/native(300s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 31334,
+      "cpu_ns": 31000
+    },
+    {
+      "order": 465,
+      "input": "speech/native(300s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 31333,
+      "cpu_ns": 32000
+    },
+    {
+      "order": 466,
+      "input": "speech/native(300s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 30083,
+      "cpu_ns": 30000
+    },
+    {
+      "order": 467,
+      "input": "speech/native(300s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 29333,
+      "cpu_ns": 30000
+    },
+    {
+      "order": 468,
+      "input": "speech/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 188875,
+      "cpu_ns": 189000
+    },
+    {
+      "order": 469,
+      "input": "speech/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 54666,
+      "cpu_ns": 55000
+    },
+    {
+      "order": 470,
+      "input": "speech/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 48542,
+      "cpu_ns": 49000
+    },
+    {
+      "order": 471,
+      "input": "speech/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 187792,
+      "cpu_ns": 187000
+    },
+    {
+      "order": 472,
+      "input": "speech/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 63375,
+      "cpu_ns": 63000
+    },
+    {
+      "order": 473,
+      "input": "speech/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2510209,
+      "cpu_ns": 2511000
+    },
+    {
+      "order": 474,
+      "input": "speech/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2479542,
+      "cpu_ns": 2479000
+    },
+    {
+      "order": 475,
+      "input": "speech/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 60250,
+      "cpu_ns": 60000
+    },
+    {
+      "order": 476,
+      "input": "speech/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 26416,
+      "cpu_ns": 26000
+    },
+    {
+      "order": 477,
+      "input": "speech/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 31833,
+      "cpu_ns": 33000
+    },
+    {
+      "order": 478,
+      "input": "speech/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 30708,
+      "cpu_ns": 31000
+    },
+    {
+      "order": 479,
+      "input": "speech/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 25416,
+      "cpu_ns": 25000
+    },
+    {
+      "order": 480,
+      "input": "speech/native(300s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 21250,
+      "cpu_ns": 22000
+    },
+    {
+      "order": 481,
+      "input": "speech/native(300s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 18000,
+      "cpu_ns": 18000
+    },
+    {
+      "order": 482,
+      "input": "speech/native(300s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 17459,
+      "cpu_ns": 18000
+    },
+    {
+      "order": 483,
+      "input": "speech/native(300s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 20792,
+      "cpu_ns": 21000
+    },
+    {
+      "order": 484,
+      "input": "speech/native(300s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 45375,
+      "cpu_ns": 45000
+    },
+    {
+      "order": 485,
+      "input": "speech/native(300s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 130500,
+      "cpu_ns": 131000
+    },
+    {
+      "order": 486,
+      "input": "speech/native(300s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 129708,
+      "cpu_ns": 131000
+    },
+    {
+      "order": 487,
+      "input": "speech/native(300s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 43042,
+      "cpu_ns": 43000
+    },
+    {
+      "order": 488,
+      "input": "speech/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 652541,
+      "cpu_ns": 653000
+    },
+    {
+      "order": 489,
+      "input": "speech/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 63916,
+      "cpu_ns": 65000
+    },
+    {
+      "order": 490,
+      "input": "speech/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 56042,
+      "cpu_ns": 56000
+    },
+    {
+      "order": 491,
+      "input": "speech/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 653208,
+      "cpu_ns": 654000
+    },
+    {
+      "order": 492,
+      "input": "speech/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 55208,
+      "cpu_ns": 55000
+    },
+    {
+      "order": 493,
+      "input": "speech/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 652542,
+      "cpu_ns": 652000
+    },
+    {
+      "order": 494,
+      "input": "speech/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 660833,
+      "cpu_ns": 661000
+    },
+    {
+      "order": 495,
+      "input": "speech/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 55459,
+      "cpu_ns": 56000
+    },
+    {
+      "order": 496,
+      "input": "speech/native(300s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 29583,
+      "cpu_ns": 30000
+    },
+    {
+      "order": 497,
+      "input": "speech/native(300s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 30250,
+      "cpu_ns": 30000
+    },
+    {
+      "order": 498,
+      "input": "speech/native(300s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 29375,
+      "cpu_ns": 30000
+    },
+    {
+      "order": 499,
+      "input": "speech/native(300s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 28292,
+      "cpu_ns": 27000
+    },
+    {
+      "order": 500,
+      "input": "speech/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 25584,
+      "cpu_ns": 25000
+    },
+    {
+      "order": 501,
+      "input": "speech/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 31292,
+      "cpu_ns": 32000
+    },
+    {
+      "order": 502,
+      "input": "speech/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 30209,
+      "cpu_ns": 30000
+    },
+    {
+      "order": 503,
+      "input": "speech/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 24750,
+      "cpu_ns": 25000
+    },
+    {
+      "order": 504,
+      "input": "speech/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 31167,
+      "cpu_ns": 32000
+    },
+    {
+      "order": 505,
+      "input": "speech/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 35416,
+      "cpu_ns": 35000
+    },
+    {
+      "order": 506,
+      "input": "speech/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 31625,
+      "cpu_ns": 32000
+    },
+    {
+      "order": 507,
+      "input": "speech/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 30250,
+      "cpu_ns": 31000
+    },
+    {
+      "order": 508,
+      "input": "speech/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 29584,
+      "cpu_ns": 30000
+    },
+    {
+      "order": 509,
+      "input": "speech/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 30708,
+      "cpu_ns": 31000
+    },
+    {
+      "order": 510,
+      "input": "speech/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 30125,
+      "cpu_ns": 30000
+    },
+    {
+      "order": 511,
+      "input": "speech/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 29000,
+      "cpu_ns": 28000
+    },
+    {
+      "order": 512,
+      "input": "speech/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 30250,
+      "cpu_ns": 30000
+    },
+    {
+      "order": 513,
+      "input": "speech/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 28167,
+      "cpu_ns": 29000
+    },
+    {
+      "order": 514,
+      "input": "speech/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 26208,
+      "cpu_ns": 26000
+    },
+    {
+      "order": 515,
+      "input": "speech/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 51334,
+      "cpu_ns": 42000
+    },
+    {
+      "order": 516,
+      "input": "speech/native(300s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 135750,
+      "cpu_ns": 136000
+    },
+    {
+      "order": 517,
+      "input": "speech/native(300s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 49042,
+      "cpu_ns": 49000
+    },
+    {
+      "order": 518,
+      "input": "speech/native(300s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 44542,
+      "cpu_ns": 45000
+    },
+    {
+      "order": 519,
+      "input": "speech/native(300s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 141583,
+      "cpu_ns": 142000
+    },
+    {
+      "order": 520,
+      "input": "speech/native(300s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 134000,
+      "cpu_ns": 134000
+    },
+    {
+      "order": 521,
+      "input": "speech/native(300s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 42958,
+      "cpu_ns": 44000
+    },
+    {
+      "order": 522,
+      "input": "speech/native(300s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 42084,
+      "cpu_ns": 42000
+    },
+    {
+      "order": 523,
+      "input": "speech/native(300s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 128416,
+      "cpu_ns": 128000
+    },
+    {
+      "order": 524,
+      "input": "speech/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 235458,
+      "cpu_ns": 236000
+    },
+    {
+      "order": 525,
+      "input": "speech/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2666459,
+      "cpu_ns": 2667000
+    },
+    {
+      "order": 526,
+      "input": "speech/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2655625,
+      "cpu_ns": 2654000
+    },
+    {
+      "order": 527,
+      "input": "speech/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 236792,
+      "cpu_ns": 237000
+    },
+    {
+      "order": 528,
+      "input": "speech/native(300s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 55125,
+      "cpu_ns": 56000
+    },
+    {
+      "order": 529,
+      "input": "speech/native(300s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 46208,
+      "cpu_ns": 46000
+    },
+    {
+      "order": 530,
+      "input": "speech/native(300s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 62125,
+      "cpu_ns": 59000
+    },
+    {
+      "order": 531,
+      "input": "speech/native(300s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 63916,
+      "cpu_ns": 64000
+    },
+    {
+      "order": 532,
+      "input": "speech/native(300s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 36875,
+      "cpu_ns": 37000
+    },
+    {
+      "order": 533,
+      "input": "speech/native(300s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 47416,
+      "cpu_ns": 47000
+    },
+    {
+      "order": 534,
+      "input": "speech/native(300s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 38083,
+      "cpu_ns": 38000
+    },
+    {
+      "order": 535,
+      "input": "speech/native(300s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 35959,
+      "cpu_ns": 36000
+    },
+    {
+      "order": 536,
+      "input": "speech/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 70917,
+      "cpu_ns": 71000
+    },
+    {
+      "order": 537,
+      "input": "speech/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 672666,
+      "cpu_ns": 671000
+    },
+    {
+      "order": 538,
+      "input": "speech/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 648500,
+      "cpu_ns": 649000
+    },
+    {
+      "order": 539,
+      "input": "speech/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 61459,
+      "cpu_ns": 62000
+    },
+    {
+      "order": 540,
+      "input": "speech/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 57083,
+      "cpu_ns": 57000
+    },
+    {
+      "order": 541,
+      "input": "speech/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 648291,
+      "cpu_ns": 648000
+    },
+    {
+      "order": 542,
+      "input": "speech/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 654334,
+      "cpu_ns": 654000
+    },
+    {
+      "order": 543,
+      "input": "speech/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 58875,
+      "cpu_ns": 59000
+    },
+    {
+      "order": 544,
+      "input": "speech/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2519041,
+      "cpu_ns": 2510000
+    },
+    {
+      "order": 545,
+      "input": "speech/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 81959,
+      "cpu_ns": 82000
+    },
+    {
+      "order": 546,
+      "input": "speech/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 59208,
+      "cpu_ns": 60000
+    },
+    {
+      "order": 547,
+      "input": "speech/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2486042,
+      "cpu_ns": 2486000
+    },
+    {
+      "order": 548,
+      "input": "speech/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 251125,
+      "cpu_ns": 252000
+    },
+    {
+      "order": 549,
+      "input": "speech/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2607625,
+      "cpu_ns": 2608000
+    },
+    {
+      "order": 550,
+      "input": "speech/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2627750,
+      "cpu_ns": 2612000
+    },
+    {
+      "order": 551,
+      "input": "speech/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 224750,
+      "cpu_ns": 224000
+    },
+    {
+      "order": 552,
+      "input": "speech/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 648500,
+      "cpu_ns": 648000
+    },
+    {
+      "order": 553,
+      "input": "speech/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 61625,
+      "cpu_ns": 62000
+    },
+    {
+      "order": 554,
+      "input": "speech/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 56708,
+      "cpu_ns": 57000
+    },
+    {
+      "order": 555,
+      "input": "speech/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 648625,
+      "cpu_ns": 649000
+    },
+    {
+      "order": 556,
+      "input": "speech/native(300s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 46500,
+      "cpu_ns": 47000
+    },
+    {
+      "order": 557,
+      "input": "speech/native(300s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 38292,
+      "cpu_ns": 39000
+    },
+    {
+      "order": 558,
+      "input": "speech/native(300s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 37375,
+      "cpu_ns": 37000
+    },
+    {
+      "order": 559,
+      "input": "speech/native(300s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 46250,
+      "cpu_ns": 46000
+    },
+    {
+      "order": 560,
+      "input": "speech/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2479792,
+      "cpu_ns": 2480000
+    },
+    {
+      "order": 561,
+      "input": "speech/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 63000,
+      "cpu_ns": 63000
+    },
+    {
+      "order": 562,
+      "input": "speech/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 58625,
+      "cpu_ns": 58000
+    },
+    {
+      "order": 563,
+      "input": "speech/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2495000,
+      "cpu_ns": 2496000
+    },
+    {
+      "order": 564,
+      "input": "speech/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 58416,
+      "cpu_ns": 59000
+    },
+    {
+      "order": 565,
+      "input": "speech/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2485500,
+      "cpu_ns": 2486000
+    },
+    {
+      "order": 566,
+      "input": "speech/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2499583,
+      "cpu_ns": 2489000
+    },
+    {
+      "order": 567,
+      "input": "speech/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 60208,
+      "cpu_ns": 61000
+    },
+    {
+      "order": 568,
+      "input": "speech/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 59750,
+      "cpu_ns": 60000
+    },
+    {
+      "order": 569,
+      "input": "speech/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 648417,
+      "cpu_ns": 649000
+    },
+    {
+      "order": 570,
+      "input": "speech/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 648375,
+      "cpu_ns": 649000
+    },
+    {
+      "order": 571,
+      "input": "speech/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 56166,
+      "cpu_ns": 56000
+    },
+    {
+      "order": 572,
+      "input": "speech/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 187416,
+      "cpu_ns": 187000
+    },
+    {
+      "order": 573,
+      "input": "speech/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 65834,
+      "cpu_ns": 65000
+    },
+    {
+      "order": 574,
+      "input": "speech/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 47208,
+      "cpu_ns": 47000
+    },
+    {
+      "order": 575,
+      "input": "speech/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 187334,
+      "cpu_ns": 188000
+    },
+    {
+      "order": 576,
+      "input": "speech/native(300s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 45542,
+      "cpu_ns": 46000
+    },
+    {
+      "order": 577,
+      "input": "speech/native(300s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 37333,
+      "cpu_ns": 38000
+    },
+    {
+      "order": 578,
+      "input": "speech/native(300s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 36625,
+      "cpu_ns": 37000
+    },
+    {
+      "order": 579,
+      "input": "speech/native(300s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 45459,
+      "cpu_ns": 46000
+    },
+    {
+      "order": 580,
+      "input": "speech/native(300s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 19208,
+      "cpu_ns": 20000
+    },
+    {
+      "order": 581,
+      "input": "speech/native(300s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 23041,
+      "cpu_ns": 23000
+    },
+    {
+      "order": 582,
+      "input": "speech/native(300s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 21583,
+      "cpu_ns": 22000
+    },
+    {
+      "order": 583,
+      "input": "speech/native(300s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 18250,
+      "cpu_ns": 18000
+    },
+    {
+      "order": 584,
+      "input": "speech/native(300s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 33291,
+      "cpu_ns": 34000
+    },
+    {
+      "order": 585,
+      "input": "speech/native(300s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 35916,
+      "cpu_ns": 36000
+    },
+    {
+      "order": 586,
+      "input": "speech/native(300s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 32958,
+      "cpu_ns": 34000
+    },
+    {
+      "order": 587,
+      "input": "speech/native(300s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 30959,
+      "cpu_ns": 31000
+    },
+    {
+      "order": 588,
+      "input": "speech/native(300s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 32584,
+      "cpu_ns": 33000
+    },
+    {
+      "order": 589,
+      "input": "speech/native(300s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 33667,
+      "cpu_ns": 34000
+    },
+    {
+      "order": 590,
+      "input": "speech/native(300s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 29625,
+      "cpu_ns": 30000
+    },
+    {
+      "order": 591,
+      "input": "speech/native(300s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 30000,
+      "cpu_ns": 30000
+    },
+    {
+      "order": 592,
+      "input": "speech/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 242250,
+      "cpu_ns": 242000
+    },
+    {
+      "order": 593,
+      "input": "speech/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2584583,
+      "cpu_ns": 2585000
+    },
+    {
+      "order": 594,
+      "input": "speech/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2624417,
+      "cpu_ns": 2615000
+    },
+    {
+      "order": 595,
+      "input": "speech/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 248042,
+      "cpu_ns": 248000
+    },
+    {
+      "order": 596,
+      "input": "speech/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 24333,
+      "cpu_ns": 25000
+    },
+    {
+      "order": 597,
+      "input": "speech/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 31500,
+      "cpu_ns": 32000
+    },
+    {
+      "order": 598,
+      "input": "speech/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 30792,
+      "cpu_ns": 31000
+    },
+    {
+      "order": 599,
+      "input": "speech/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 24417,
+      "cpu_ns": 25000
+    },
+    {
+      "order": 600,
+      "input": "speech/native(300s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 30333,
+      "cpu_ns": 31000
+    },
+    {
+      "order": 601,
+      "input": "speech/native(300s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 29084,
+      "cpu_ns": 29000
+    },
+    {
+      "order": 602,
+      "input": "speech/native(300s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 28042,
+      "cpu_ns": 28000
+    },
+    {
+      "order": 603,
+      "input": "speech/native(300s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 29375,
+      "cpu_ns": 29000
+    },
+    {
+      "order": 604,
+      "input": "speech/native(300s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 28417,
+      "cpu_ns": 29000
+    },
+    {
+      "order": 605,
+      "input": "speech/native(300s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 26834,
+      "cpu_ns": 27000
+    },
+    {
+      "order": 606,
+      "input": "speech/native(300s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 25958,
+      "cpu_ns": 27000
+    },
+    {
+      "order": 607,
+      "input": "speech/native(300s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 27208,
+      "cpu_ns": 27000
+    },
+    {
+      "order": 608,
+      "input": "speech/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 61000,
+      "cpu_ns": 62000
+    },
+    {
+      "order": 609,
+      "input": "speech/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 648792,
+      "cpu_ns": 649000
+    },
+    {
+      "order": 610,
+      "input": "speech/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 648708,
+      "cpu_ns": 649000
+    },
+    {
+      "order": 611,
+      "input": "speech/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 57333,
+      "cpu_ns": 56000
+    },
+    {
+      "order": 612,
+      "input": "speech/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 62291,
+      "cpu_ns": 61000
+    },
+    {
+      "order": 613,
+      "input": "speech/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2497292,
+      "cpu_ns": 2498000
+    },
+    {
+      "order": 614,
+      "input": "speech/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2496584,
+      "cpu_ns": 2496000
+    },
+    {
+      "order": 615,
+      "input": "speech/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 60542,
+      "cpu_ns": 61000
+    },
+    {
+      "order": 616,
+      "input": "speech/native(300s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 53625,
+      "cpu_ns": 53000
+    },
+    {
+      "order": 617,
+      "input": "speech/native(300s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 41583,
+      "cpu_ns": 42000
+    },
+    {
+      "order": 618,
+      "input": "speech/native(300s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 37459,
+      "cpu_ns": 38000
+    },
+    {
+      "order": 619,
+      "input": "speech/native(300s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 49000,
+      "cpu_ns": 49000
+    },
+    {
+      "order": 620,
+      "input": "speech/native(300s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 22083,
+      "cpu_ns": 23000
+    },
+    {
+      "order": 621,
+      "input": "speech/native(300s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 18041,
+      "cpu_ns": 18000
+    },
+    {
+      "order": 622,
+      "input": "speech/native(300s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 17583,
+      "cpu_ns": 18000
+    },
+    {
+      "order": 623,
+      "input": "speech/native(300s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 20667,
+      "cpu_ns": 21000
+    },
+    {
+      "order": 624,
+      "input": "speech/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 231375,
+      "cpu_ns": 231000
+    },
+    {
+      "order": 625,
+      "input": "speech/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2617500,
+      "cpu_ns": 2607000
+    },
+    {
+      "order": 626,
+      "input": "speech/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2613000,
+      "cpu_ns": 2613000
+    },
+    {
+      "order": 627,
+      "input": "speech/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 227084,
+      "cpu_ns": 228000
+    },
+    {
+      "order": 628,
+      "input": "speech/native(300s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 20083,
+      "cpu_ns": 21000
+    },
+    {
+      "order": 629,
+      "input": "speech/native(300s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 17416,
+      "cpu_ns": 17000
+    },
+    {
+      "order": 630,
+      "input": "speech/native(300s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 17125,
+      "cpu_ns": 18000
+    },
+    {
+      "order": 631,
+      "input": "speech/native(300s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 20166,
+      "cpu_ns": 20000
+    },
+    {
+      "order": 632,
+      "input": "speech/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 649666,
+      "cpu_ns": 650000
+    },
+    {
+      "order": 633,
+      "input": "speech/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 60417,
+      "cpu_ns": 61000
+    },
+    {
+      "order": 634,
+      "input": "speech/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 55500,
+      "cpu_ns": 56000
+    },
+    {
+      "order": 635,
+      "input": "speech/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 648584,
+      "cpu_ns": 648000
+    },
+    {
+      "order": 636,
+      "input": "speech/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 31667,
+      "cpu_ns": 31000
+    },
+    {
+      "order": 637,
+      "input": "speech/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 33625,
+      "cpu_ns": 35000
+    },
+    {
+      "order": 638,
+      "input": "speech/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 32042,
+      "cpu_ns": 32000
+    },
+    {
+      "order": 639,
+      "input": "speech/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 30042,
+      "cpu_ns": 30000
+    },
+    {
+      "order": 640,
+      "input": "speech/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 57417,
+      "cpu_ns": 58000
+    },
+    {
+      "order": 641,
+      "input": "speech/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 189042,
+      "cpu_ns": 190000
+    },
+    {
+      "order": 642,
+      "input": "speech/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 191959,
+      "cpu_ns": 192000
+    },
+    {
+      "order": 643,
+      "input": "speech/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 49416,
+      "cpu_ns": 50000
+    },
+    {
+      "order": 644,
+      "input": "speech/native(300s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 31959,
+      "cpu_ns": 33000
+    },
+    {
+      "order": 645,
+      "input": "speech/native(300s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 35000,
+      "cpu_ns": 35000
+    },
+    {
+      "order": 646,
+      "input": "speech/native(300s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 32792,
+      "cpu_ns": 33000
+    },
+    {
+      "order": 647,
+      "input": "speech/native(300s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 30458,
+      "cpu_ns": 31000
+    },
+    {
+      "order": 648,
+      "input": "speech/native(300s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 28875,
+      "cpu_ns": 29000
+    },
+    {
+      "order": 649,
+      "input": "speech/native(300s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 31416,
+      "cpu_ns": 31000
+    },
+    {
+      "order": 650,
+      "input": "speech/native(300s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 30416,
+      "cpu_ns": 30000
+    },
+    {
+      "order": 651,
+      "input": "speech/native(300s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 28250,
+      "cpu_ns": 29000
+    },
+    {
+      "order": 652,
+      "input": "speech/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 26458,
+      "cpu_ns": 27000
+    },
+    {
+      "order": 653,
+      "input": "speech/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 31708,
+      "cpu_ns": 32000
+    },
+    {
+      "order": 654,
+      "input": "speech/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 31041,
+      "cpu_ns": 31000
+    },
+    {
+      "order": 655,
+      "input": "speech/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 24791,
+      "cpu_ns": 25000
+    },
+    {
+      "order": 656,
+      "input": "speech/native(300s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 17708,
+      "cpu_ns": 18000
+    },
+    {
+      "order": 657,
+      "input": "speech/native(300s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 21125,
+      "cpu_ns": 21000
+    },
+    {
+      "order": 658,
+      "input": "speech/native(300s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 20916,
+      "cpu_ns": 22000
+    },
+    {
+      "order": 659,
+      "input": "speech/native(300s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 17250,
+      "cpu_ns": 17000
+    },
+    {
+      "order": 660,
+      "input": "speech/native(300s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 30750,
+      "cpu_ns": 31000
+    },
+    {
+      "order": 661,
+      "input": "speech/native(300s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 28750,
+      "cpu_ns": 30000
+    },
+    {
+      "order": 662,
+      "input": "speech/native(300s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 28125,
+      "cpu_ns": 28000
+    },
+    {
+      "order": 663,
+      "input": "speech/native(300s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 29792,
+      "cpu_ns": 30000
+    },
+    {
+      "order": 664,
+      "input": "speech/native(300s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 170375,
+      "cpu_ns": 171000
+    },
+    {
+      "order": 665,
+      "input": "speech/native(300s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 242958,
+      "cpu_ns": 242000
+    },
+    {
+      "order": 666,
+      "input": "speech/native(300s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 201916,
+      "cpu_ns": 202000
+    },
+    {
+      "order": 667,
+      "input": "speech/native(300s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 151334,
+      "cpu_ns": 151000
+    },
+    {
+      "order": 668,
+      "input": "speech/native(300s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 46792,
+      "cpu_ns": 48000
+    },
+    {
+      "order": 669,
+      "input": "speech/native(300s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 145209,
+      "cpu_ns": 145000
+    },
+    {
+      "order": 670,
+      "input": "speech/native(300s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 130958,
+      "cpu_ns": 131000
+    },
+    {
+      "order": 671,
+      "input": "speech/native(300s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 43792,
+      "cpu_ns": 45000
+    },
+    {
+      "order": 672,
+      "input": "speech/native(300s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 42208,
+      "cpu_ns": 42000
+    },
+    {
+      "order": 673,
+      "input": "speech/native(300s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 128958,
+      "cpu_ns": 130000
+    },
+    {
+      "order": 674,
+      "input": "speech/native(300s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 128291,
+      "cpu_ns": 127000
+    },
+    {
+      "order": 675,
+      "input": "speech/native(300s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 41541,
+      "cpu_ns": 41000
+    },
+    {
+      "order": 676,
+      "input": "speech/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2605916,
+      "cpu_ns": 2601000
+    },
+    {
+      "order": 677,
+      "input": "speech/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 237917,
+      "cpu_ns": 238000
+    },
+    {
+      "order": 678,
+      "input": "speech/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 215875,
+      "cpu_ns": 217000
+    },
+    {
+      "order": 679,
+      "input": "speech/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2584667,
+      "cpu_ns": 2585000
+    },
+    {
+      "order": 680,
+      "input": "speech/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 38083,
+      "cpu_ns": 39000
+    },
+    {
+      "order": 681,
+      "input": "speech/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 34959,
+      "cpu_ns": 35000
+    },
+    {
+      "order": 682,
+      "input": "speech/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 32250,
+      "cpu_ns": 32000
+    },
+    {
+      "order": 683,
+      "input": "speech/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 34917,
+      "cpu_ns": 36000
+    },
+    {
+      "order": 684,
+      "input": "speech/native(300s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 53542,
+      "cpu_ns": 54000
+    },
+    {
+      "order": 685,
+      "input": "speech/native(300s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 130875,
+      "cpu_ns": 130000
+    },
+    {
+      "order": 686,
+      "input": "speech/native(300s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 129875,
+      "cpu_ns": 129000
+    },
+    {
+      "order": 687,
+      "input": "speech/native(300s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 44875,
+      "cpu_ns": 45000
+    },
+    {
+      "order": 688,
+      "input": "speech/native(300s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 33375,
+      "cpu_ns": 34000
+    },
+    {
+      "order": 689,
+      "input": "speech/native(300s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 31959,
+      "cpu_ns": 32000
+    },
+    {
+      "order": 690,
+      "input": "speech/native(300s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 31208,
+      "cpu_ns": 31000
+    },
+    {
+      "order": 691,
+      "input": "speech/native(300s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 32000,
+      "cpu_ns": 32000
+    },
+    {
+      "order": 692,
+      "input": "speech/native(300s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 31000,
+      "cpu_ns": 31000
+    },
+    {
+      "order": 693,
+      "input": "speech/native(300s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 30292,
+      "cpu_ns": 31000
+    },
+    {
+      "order": 694,
+      "input": "speech/native(300s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 28541,
+      "cpu_ns": 29000
+    },
+    {
+      "order": 695,
+      "input": "speech/native(300s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 29791,
+      "cpu_ns": 30000
+    },
+    {
+      "order": 696,
+      "input": "speech/native(300s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 19583,
+      "cpu_ns": 20000
+    },
+    {
+      "order": 697,
+      "input": "speech/native(300s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 22208,
+      "cpu_ns": 23000
+    },
+    {
+      "order": 698,
+      "input": "speech/native(300s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 21125,
+      "cpu_ns": 22000
+    },
+    {
+      "order": 699,
+      "input": "speech/native(300s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 17750,
+      "cpu_ns": 18000
+    },
+    {
+      "order": 700,
+      "input": "speech/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 228875,
+      "cpu_ns": 229000
+    },
+    {
+      "order": 701,
+      "input": "speech/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2587708,
+      "cpu_ns": 2588000
+    },
+    {
+      "order": 702,
+      "input": "speech/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2593625,
+      "cpu_ns": 2593000
+    },
+    {
+      "order": 703,
+      "input": "speech/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 226750,
+      "cpu_ns": 227000
+    },
+    {
+      "order": 704,
+      "input": "speech/native(300s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 235791,
+      "cpu_ns": 236000
+    },
+    {
+      "order": 705,
+      "input": "speech/native(300s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 184375,
+      "cpu_ns": 173000
+    },
+    {
+      "order": 706,
+      "input": "speech/native(300s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 148625,
+      "cpu_ns": 148000
+    },
+    {
+      "order": 707,
+      "input": "speech/native(300s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 209500,
+      "cpu_ns": 209000
+    },
+    {
+      "order": 708,
+      "input": "speech/native(300s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 22750,
+      "cpu_ns": 23000
+    },
+    {
+      "order": 709,
+      "input": "speech/native(300s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 19208,
+      "cpu_ns": 20000
+    },
+    {
+      "order": 710,
+      "input": "speech/native(300s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 18459,
+      "cpu_ns": 19000
+    },
+    {
+      "order": 711,
+      "input": "speech/native(300s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 22292,
+      "cpu_ns": 22000
+    },
+    {
+      "order": 712,
+      "input": "speech/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2848792,
+      "cpu_ns": 2818000
+    },
+    {
+      "order": 713,
+      "input": "speech/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 293917,
+      "cpu_ns": 294000
+    },
+    {
+      "order": 714,
+      "input": "speech/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 231583,
+      "cpu_ns": 232000
+    },
+    {
+      "order": 715,
+      "input": "speech/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2734375,
+      "cpu_ns": 2733000
+    },
+    {
+      "order": 716,
+      "input": "speech/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2631625,
+      "cpu_ns": 2631000
+    },
+    {
+      "order": 717,
+      "input": "speech/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 105792,
+      "cpu_ns": 106000
+    },
+    {
+      "order": 718,
+      "input": "speech/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 62250,
+      "cpu_ns": 62000
+    },
+    {
+      "order": 719,
+      "input": "speech/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2644833,
+      "cpu_ns": 2638000
+    },
+    {
+      "order": 720,
+      "input": "speech/native(300s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 206250,
+      "cpu_ns": 207000
+    },
+    {
+      "order": 721,
+      "input": "speech/native(300s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 152250,
+      "cpu_ns": 152000
+    },
+    {
+      "order": 722,
+      "input": "speech/native(300s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 150167,
+      "cpu_ns": 151000
+    },
+    {
+      "order": 723,
+      "input": "speech/native(300s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 203416,
+      "cpu_ns": 203000
+    },
+    {
+      "order": 724,
+      "input": "speech/native(300s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 22250,
+      "cpu_ns": 22000
+    },
+    {
+      "order": 725,
+      "input": "speech/native(300s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 18750,
+      "cpu_ns": 18000
+    },
+    {
+      "order": 726,
+      "input": "speech/native(300s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 18333,
+      "cpu_ns": 19000
+    },
+    {
+      "order": 727,
+      "input": "speech/native(300s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 21917,
+      "cpu_ns": 22000
+    },
+    {
+      "order": 728,
+      "input": "speech/native(300s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 32875,
+      "cpu_ns": 33000
+    },
+    {
+      "order": 729,
+      "input": "speech/native(300s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 33291,
+      "cpu_ns": 34000
+    },
+    {
+      "order": 730,
+      "input": "speech/native(300s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 32250,
+      "cpu_ns": 32000
+    },
+    {
+      "order": 731,
+      "input": "speech/native(300s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 31125,
+      "cpu_ns": 32000
+    },
+    {
+      "order": 732,
+      "input": "speech/native(300s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 48334,
+      "cpu_ns": 49000
+    },
+    {
+      "order": 733,
+      "input": "speech/native(300s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 136584,
+      "cpu_ns": 137000
+    },
+    {
+      "order": 734,
+      "input": "speech/native(300s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 136125,
+      "cpu_ns": 136000
+    },
+    {
+      "order": 735,
+      "input": "speech/native(300s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 46000,
+      "cpu_ns": 47000
+    },
+    {
+      "order": 736,
+      "input": "speech/native(300s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 150084,
+      "cpu_ns": 150000
+    },
+    {
+      "order": 737,
+      "input": "speech/native(300s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 201667,
+      "cpu_ns": 202000
+    },
+    {
+      "order": 738,
+      "input": "speech/native(300s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 199375,
+      "cpu_ns": 199000
+    },
+    {
+      "order": 739,
+      "input": "speech/native(300s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 150000,
+      "cpu_ns": 151000
+    },
+    {
+      "order": 740,
+      "input": "speech/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 34625,
+      "cpu_ns": 35000
+    },
+    {
+      "order": 741,
+      "input": "speech/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 38625,
+      "cpu_ns": 38000
+    },
+    {
+      "order": 742,
+      "input": "speech/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 36000,
+      "cpu_ns": 36000
+    },
+    {
+      "order": 743,
+      "input": "speech/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 32875,
+      "cpu_ns": 33000
+    },
+    {
+      "order": 744,
+      "input": "speech/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 34541,
+      "cpu_ns": 36000
+    },
+    {
+      "order": 745,
+      "input": "speech/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 31875,
+      "cpu_ns": 32000
+    },
+    {
+      "order": 746,
+      "input": "speech/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 31167,
+      "cpu_ns": 31000
+    },
+    {
+      "order": 747,
+      "input": "speech/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 33500,
+      "cpu_ns": 35000
+    },
+    {
+      "order": 748,
+      "input": "speech/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 261000,
+      "cpu_ns": 260000
+    },
+    {
+      "order": 749,
+      "input": "speech/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2739375,
+      "cpu_ns": 2739000
+    },
+    {
+      "order": 750,
+      "input": "speech/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2762791,
+      "cpu_ns": 2754000
+    },
+    {
+      "order": 751,
+      "input": "speech/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 267375,
+      "cpu_ns": 268000
+    },
+    {
+      "order": 752,
+      "input": "speech/native(300s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 31458,
+      "cpu_ns": 32000
+    },
+    {
+      "order": 753,
+      "input": "speech/native(300s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 32375,
+      "cpu_ns": 32000
+    },
+    {
+      "order": 754,
+      "input": "speech/native(300s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 30625,
+      "cpu_ns": 31000
+    },
+    {
+      "order": 755,
+      "input": "speech/native(300s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 40834,
+      "cpu_ns": 34000
+    },
+    {
+      "order": 756,
+      "input": "speech/native(300s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 198917,
+      "cpu_ns": 198000
+    },
+    {
+      "order": 757,
+      "input": "speech/native(300s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 151834,
+      "cpu_ns": 152000
+    },
+    {
+      "order": 758,
+      "input": "speech/native(300s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 150417,
+      "cpu_ns": 151000
+    },
+    {
+      "order": 759,
+      "input": "speech/native(300s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 199000,
+      "cpu_ns": 200000
+    },
+    {
+      "order": 760,
+      "input": "speech/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 73250,
+      "cpu_ns": 74000
+    },
+    {
+      "order": 761,
+      "input": "speech/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 199125,
+      "cpu_ns": 200000
+    },
+    {
+      "order": 762,
+      "input": "speech/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 198417,
+      "cpu_ns": 199000
+    },
+    {
+      "order": 763,
+      "input": "speech/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 52292,
+      "cpu_ns": 53000
+    },
+    {
+      "order": 764,
+      "input": "speech/native(300s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 44042,
+      "cpu_ns": 44000
+    },
+    {
+      "order": 765,
+      "input": "speech/native(300s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 56292,
+      "cpu_ns": 57000
+    },
+    {
+      "order": 766,
+      "input": "speech/native(300s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 53583,
+      "cpu_ns": 53000
+    },
+    {
+      "order": 767,
+      "input": "speech/native(300s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 47667,
+      "cpu_ns": 48000
+    },
+    {
+      "order": 768,
+      "input": "speech/native(300s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 204333,
+      "cpu_ns": 205000
+    },
+    {
+      "order": 769,
+      "input": "speech/native(300s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 150584,
+      "cpu_ns": 150000
+    },
+    {
+      "order": 770,
+      "input": "speech/native(300s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 149042,
+      "cpu_ns": 150000
+    },
+    {
+      "order": 771,
+      "input": "speech/native(300s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 197709,
+      "cpu_ns": 197000
+    },
+    {
+      "order": 772,
+      "input": "speech/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 94584,
+      "cpu_ns": 94000
+    },
+    {
+      "order": 773,
+      "input": "speech/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 697667,
+      "cpu_ns": 698000
+    },
+    {
+      "order": 774,
+      "input": "speech/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 684375,
+      "cpu_ns": 684000
+    },
+    {
+      "order": 775,
+      "input": "speech/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 61000,
+      "cpu_ns": 62000
+    },
+    {
+      "order": 776,
+      "input": "speech/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 53542,
+      "cpu_ns": 54000
+    },
+    {
+      "order": 777,
+      "input": "speech/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 198292,
+      "cpu_ns": 199000
+    },
+    {
+      "order": 778,
+      "input": "speech/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 197916,
+      "cpu_ns": 198000
+    },
+    {
+      "order": 779,
+      "input": "speech/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 49917,
+      "cpu_ns": 50000
+    },
+    {
+      "order": 780,
+      "input": "speech/native(300s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 137750,
+      "cpu_ns": 138000
+    },
+    {
+      "order": 781,
+      "input": "speech/native(300s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 48916,
+      "cpu_ns": 50000
+    },
+    {
+      "order": 782,
+      "input": "speech/native(300s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 45959,
+      "cpu_ns": 46000
+    },
+    {
+      "order": 783,
+      "input": "speech/native(300s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 139125,
+      "cpu_ns": 139000
+    },
+    {
+      "order": 784,
+      "input": "speech/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 712250,
+      "cpu_ns": 698000
+    },
+    {
+      "order": 785,
+      "input": "speech/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 69334,
+      "cpu_ns": 70000
+    },
+    {
+      "order": 786,
+      "input": "speech/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 59792,
+      "cpu_ns": 60000
+    },
+    {
+      "order": 787,
+      "input": "speech/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 689375,
+      "cpu_ns": 690000
+    },
+    {
+      "order": 788,
+      "input": "speech/native(300s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 31292,
+      "cpu_ns": 32000
+    },
+    {
+      "order": 789,
+      "input": "speech/native(300s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 32042,
+      "cpu_ns": 32000
+    },
+    {
+      "order": 790,
+      "input": "speech/native(300s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 35667,
+      "cpu_ns": 36000
+    },
+    {
+      "order": 791,
+      "input": "speech/native(300s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 30542,
+      "cpu_ns": 32000
+    },
+    {
+      "order": 792,
+      "input": "speech/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2630250,
+      "cpu_ns": 2630000
+    },
+    {
+      "order": 793,
+      "input": "speech/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 82041,
+      "cpu_ns": 83000
+    },
+    {
+      "order": 794,
+      "input": "speech/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 60750,
+      "cpu_ns": 61000
+    },
+    {
+      "order": 795,
+      "input": "speech/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2643291,
+      "cpu_ns": 2635000
+    },
+    {
+      "order": 796,
+      "input": "speech/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 37125,
+      "cpu_ns": 38000
+    },
+    {
+      "order": 797,
+      "input": "speech/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 33917,
+      "cpu_ns": 34000
+    },
+    {
+      "order": 798,
+      "input": "speech/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 33167,
+      "cpu_ns": 33000
+    },
+    {
+      "order": 799,
+      "input": "speech/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 35500,
+      "cpu_ns": 36000
+    },
+    {
+      "order": 800,
+      "input": "speech/native(300s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 54500,
+      "cpu_ns": 55000
+    },
+    {
+      "order": 801,
+      "input": "speech/native(300s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 42500,
+      "cpu_ns": 42000
+    },
+    {
+      "order": 802,
+      "input": "speech/native(300s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 43167,
+      "cpu_ns": 44000
+    },
+    {
+      "order": 803,
+      "input": "speech/native(300s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 53000,
+      "cpu_ns": 53000
+    },
+    {
+      "order": 804,
+      "input": "speech/native(300s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 39250,
+      "cpu_ns": 40000
+    },
+    {
+      "order": 805,
+      "input": "speech/native(300s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 51292,
+      "cpu_ns": 51000
+    },
+    {
+      "order": 806,
+      "input": "speech/native(300s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 49834,
+      "cpu_ns": 50000
+    },
+    {
+      "order": 807,
+      "input": "speech/native(300s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 38375,
+      "cpu_ns": 38000
+    },
+    {
+      "order": 808,
+      "input": "speech/native(300s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 37916,
+      "cpu_ns": 39000
+    },
+    {
+      "order": 809,
+      "input": "speech/native(300s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 48917,
+      "cpu_ns": 49000
+    },
+    {
+      "order": 810,
+      "input": "speech/native(300s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 48000,
+      "cpu_ns": 48000
+    },
+    {
+      "order": 811,
+      "input": "speech/native(300s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 37500,
+      "cpu_ns": 38000
+    },
+    {
+      "order": 812,
+      "input": "speech/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 54709,
+      "cpu_ns": 55000
+    },
+    {
+      "order": 813,
+      "input": "speech/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 199166,
+      "cpu_ns": 200000
+    },
+    {
+      "order": 814,
+      "input": "speech/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 198708,
+      "cpu_ns": 199000
+    },
+    {
+      "order": 815,
+      "input": "speech/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 49875,
+      "cpu_ns": 50000
+    },
+    {
+      "order": 816,
+      "input": "speech/native(300s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 49375,
+      "cpu_ns": 50000
+    },
+    {
+      "order": 817,
+      "input": "speech/native(300s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 138042,
+      "cpu_ns": 139000
+    },
+    {
+      "order": 818,
+      "input": "speech/native(300s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 144708,
+      "cpu_ns": 145000
+    },
+    {
+      "order": 819,
+      "input": "speech/native(300s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 46125,
+      "cpu_ns": 47000
+    },
+    {
+      "order": 820,
+      "input": "speech/native(300s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 48583,
+      "cpu_ns": 49000
+    },
+    {
+      "order": 821,
+      "input": "speech/native(300s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 38959,
+      "cpu_ns": 39000
+    },
+    {
+      "order": 822,
+      "input": "speech/native(300s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 38084,
+      "cpu_ns": 39000
+    },
+    {
+      "order": 823,
+      "input": "speech/native(300s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 48250,
+      "cpu_ns": 48000
+    },
+    {
+      "order": 824,
+      "input": "speech/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 69500,
+      "cpu_ns": 70000
+    },
+    {
+      "order": 825,
+      "input": "speech/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2633834,
+      "cpu_ns": 2631000
+    },
+    {
+      "order": 826,
+      "input": "speech/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2632167,
+      "cpu_ns": 2632000
+    },
+    {
+      "order": 827,
+      "input": "speech/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 65208,
+      "cpu_ns": 65000
+    },
+    {
+      "order": 828,
+      "input": "speech/native(300s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 38208,
+      "cpu_ns": 38000
+    },
+    {
+      "order": 829,
+      "input": "speech/native(300s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 34459,
+      "cpu_ns": 34000
+    },
+    {
+      "order": 830,
+      "input": "speech/native(300s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 32708,
+      "cpu_ns": 32000
+    },
+    {
+      "order": 831,
+      "input": "speech/native(300s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 36458,
+      "cpu_ns": 37000
+    },
+    {
+      "order": 832,
+      "input": "speech/native(300s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 38667,
+      "cpu_ns": 39000
+    },
+    {
+      "order": 833,
+      "input": "speech/native(300s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 48459,
+      "cpu_ns": 49000
+    },
+    {
+      "order": 834,
+      "input": "speech/native(300s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 47541,
+      "cpu_ns": 48000
+    },
+    {
+      "order": 835,
+      "input": "speech/native(300s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 37500,
+      "cpu_ns": 37000
+    },
+    {
+      "order": 836,
+      "input": "speech/native(300s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 135666,
+      "cpu_ns": 136000
+    },
+    {
+      "order": 837,
+      "input": "speech/native(300s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 46417,
+      "cpu_ns": 45000
+    },
+    {
+      "order": 838,
+      "input": "speech/native(300s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 44834,
+      "cpu_ns": 45000
+    },
+    {
+      "order": 839,
+      "input": "speech/native(300s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 156333,
+      "cpu_ns": 148000
+    },
+    {
+      "order": 840,
+      "input": "speech/native(300s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 212541,
+      "cpu_ns": 211000
+    },
+    {
+      "order": 841,
+      "input": "speech/native(300s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 157042,
+      "cpu_ns": 157000
+    },
+    {
+      "order": 842,
+      "input": "speech/native(300s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 153083,
+      "cpu_ns": 154000
+    },
+    {
+      "order": 843,
+      "input": "speech/native(300s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 204584,
+      "cpu_ns": 204000
+    },
+    {
+      "order": 844,
+      "input": "speech/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2759458,
+      "cpu_ns": 2759000
+    },
+    {
+      "order": 845,
+      "input": "speech/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 353458,
+      "cpu_ns": 353000
+    },
+    {
+      "order": 846,
+      "input": "speech/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 231833,
+      "cpu_ns": 233000
+    },
+    {
+      "order": 847,
+      "input": "speech/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2730791,
+      "cpu_ns": 2731000
+    },
+    {
+      "order": 848,
+      "input": "speech/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 36708,
+      "cpu_ns": 36000
+    },
+    {
+      "order": 849,
+      "input": "speech/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 33875,
+      "cpu_ns": 34000
+    },
+    {
+      "order": 850,
+      "input": "speech/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 33625,
+      "cpu_ns": 33000
+    },
+    {
+      "order": 851,
+      "input": "speech/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 35458,
+      "cpu_ns": 35000
+    },
+    {
+      "order": 852,
+      "input": "speech/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 60416,
+      "cpu_ns": 60000
+    },
+    {
+      "order": 853,
+      "input": "speech/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 199292,
+      "cpu_ns": 200000
+    },
+    {
+      "order": 854,
+      "input": "speech/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 201791,
+      "cpu_ns": 203000
+    },
+    {
+      "order": 855,
+      "input": "speech/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 50250,
+      "cpu_ns": 50000
+    },
+    {
+      "order": 856,
+      "input": "speech/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2593667,
+      "cpu_ns": 2580000
+    },
+    {
+      "order": 857,
+      "input": "speech/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 83583,
+      "cpu_ns": 80000
+    },
+    {
+      "order": 858,
+      "input": "speech/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 67458,
+      "cpu_ns": 68000
+    },
+    {
+      "order": 859,
+      "input": "speech/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2616708,
+      "cpu_ns": 2558000
+    },
+    {
+      "order": 860,
+      "input": "speech/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 66667,
+      "cpu_ns": 67000
+    },
+    {
+      "order": 861,
+      "input": "speech/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2480167,
+      "cpu_ns": 2481000
+    },
+    {
+      "order": 862,
+      "input": "speech/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2489792,
+      "cpu_ns": 2490000
+    },
+    {
+      "order": 863,
+      "input": "speech/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 62583,
+      "cpu_ns": 62000
+    },
+    {
+      "order": 864,
+      "input": "speech/native(300s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 230625,
+      "cpu_ns": 231000
+    },
+    {
+      "order": 865,
+      "input": "speech/native(300s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 179167,
+      "cpu_ns": 180000
+    },
+    {
+      "order": 866,
+      "input": "speech/native(300s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 160250,
+      "cpu_ns": 160000
+    },
+    {
+      "order": 867,
+      "input": "speech/native(300s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 224375,
+      "cpu_ns": 225000
+    },
+    {
+      "order": 868,
+      "input": "speech/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 27375,
+      "cpu_ns": 27000
+    },
+    {
+      "order": 869,
+      "input": "speech/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 33750,
+      "cpu_ns": 34000
+    },
+    {
+      "order": 870,
+      "input": "speech/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 32666,
+      "cpu_ns": 33000
+    },
+    {
+      "order": 871,
+      "input": "speech/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 25625,
+      "cpu_ns": 26000
+    },
+    {
+      "order": 872,
+      "input": "speech/native(300s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 37125,
+      "cpu_ns": 38000
+    },
+    {
+      "order": 873,
+      "input": "speech/native(300s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 40584,
+      "cpu_ns": 41000
+    },
+    {
+      "order": 874,
+      "input": "speech/native(300s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 35208,
+      "cpu_ns": 36000
+    },
+    {
+      "order": 875,
+      "input": "speech/native(300s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 31584,
+      "cpu_ns": 31000
+    },
+    {
+      "order": 876,
+      "input": "speech/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 312958,
+      "cpu_ns": 313000
+    },
+    {
+      "order": 877,
+      "input": "speech/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2668500,
+      "cpu_ns": 2640000
+    },
+    {
+      "order": 878,
+      "input": "speech/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2602208,
+      "cpu_ns": 2602000
+    },
+    {
+      "order": 879,
+      "input": "speech/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 238084,
+      "cpu_ns": 239000
+    },
+    {
+      "order": 880,
+      "input": "speech/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 33459,
+      "cpu_ns": 34000
+    },
+    {
+      "order": 881,
+      "input": "speech/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 31708,
+      "cpu_ns": 32000
+    },
+    {
+      "order": 882,
+      "input": "speech/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 30125,
+      "cpu_ns": 30000
+    },
+    {
+      "order": 883,
+      "input": "speech/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 31792,
+      "cpu_ns": 32000
+    },
+    {
+      "order": 884,
+      "input": "speech/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 187167,
+      "cpu_ns": 187000
+    },
+    {
+      "order": 885,
+      "input": "speech/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 62208,
+      "cpu_ns": 63000
+    },
+    {
+      "order": 886,
+      "input": "speech/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 46834,
+      "cpu_ns": 47000
+    },
+    {
+      "order": 887,
+      "input": "speech/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 187417,
+      "cpu_ns": 188000
+    },
+    {
+      "order": 888,
+      "input": "speech/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 31791,
+      "cpu_ns": 33000
+    },
+    {
+      "order": 889,
+      "input": "speech/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 27500,
+      "cpu_ns": 27000
+    },
+    {
+      "order": 890,
+      "input": "speech/2h-tiled(7200s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 25666,
+      "cpu_ns": 27000
+    },
+    {
+      "order": 891,
+      "input": "speech/2h-tiled(7200s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 31458,
+      "cpu_ns": 32000
+    },
+    {
+      "order": 892,
+      "input": "speech/native(300s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 194833,
+      "cpu_ns": 195000
+    },
+    {
+      "order": 893,
+      "input": "speech/native(300s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 146625,
+      "cpu_ns": 147000
+    },
+    {
+      "order": 894,
+      "input": "speech/native(300s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 145208,
+      "cpu_ns": 146000
+    },
+    {
+      "order": 895,
+      "input": "speech/native(300s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 193208,
+      "cpu_ns": 193000
+    },
+    {
+      "order": 896,
+      "input": "speech/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 648541,
+      "cpu_ns": 649000
+    },
+    {
+      "order": 897,
+      "input": "speech/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 91833,
+      "cpu_ns": 92000
+    },
+    {
+      "order": 898,
+      "input": "speech/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 56292,
+      "cpu_ns": 57000
+    },
+    {
+      "order": 899,
+      "input": "speech/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 659416,
+      "cpu_ns": 659000
+    },
+    {
+      "order": 900,
+      "input": "speech/native(300s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 47500,
+      "cpu_ns": 47000
+    },
+    {
+      "order": 901,
+      "input": "speech/native(300s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 130208,
+      "cpu_ns": 130000
+    },
+    {
+      "order": 902,
+      "input": "speech/native(300s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 129667,
+      "cpu_ns": 130000
+    },
+    {
+      "order": 903,
+      "input": "speech/native(300s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 43708,
+      "cpu_ns": 44000
+    },
+    {
+      "order": 904,
+      "input": "speech/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 63000,
+      "cpu_ns": 63000
+    },
+    {
+      "order": 905,
+      "input": "speech/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2529208,
+      "cpu_ns": 2510000
+    },
+    {
+      "order": 906,
+      "input": "speech/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2479625,
+      "cpu_ns": 2480000
+    },
+    {
+      "order": 907,
+      "input": "speech/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 63458,
+      "cpu_ns": 64000
+    },
+    {
+      "order": 908,
+      "input": "speech/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2594291,
+      "cpu_ns": 2595000
+    },
+    {
+      "order": 909,
+      "input": "speech/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 234500,
+      "cpu_ns": 235000
+    },
+    {
+      "order": 910,
+      "input": "speech/2h-tiled(7200s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 217292,
+      "cpu_ns": 218000
+    },
+    {
+      "order": 911,
+      "input": "speech/2h-tiled(7200s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 2601209,
+      "cpu_ns": 2602000
+    },
+    {
+      "order": 912,
+      "input": "speech/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 72500,
+      "cpu_ns": 72000
+    },
+    {
+      "order": 913,
+      "input": "speech/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 648667,
+      "cpu_ns": 648000
+    },
+    {
+      "order": 914,
+      "input": "speech/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 682541,
+      "cpu_ns": 669000
+    },
+    {
+      "order": 915,
+      "input": "speech/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 60459,
+      "cpu_ns": 61000
+    },
+    {
+      "order": 916,
+      "input": "speech/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 31042,
+      "cpu_ns": 31000
+    },
+    {
+      "order": 917,
+      "input": "speech/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 40292,
+      "cpu_ns": 40000
+    },
+    {
+      "order": 918,
+      "input": "speech/2h-tiled(7200s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 32625,
+      "cpu_ns": 33000
+    },
+    {
+      "order": 919,
+      "input": "speech/2h-tiled(7200s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 30375,
+      "cpu_ns": 30000
+    },
+    {
+      "order": 920,
+      "input": "speech/native(300s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 22459,
+      "cpu_ns": 23000
+    },
+    {
+      "order": 921,
+      "input": "speech/native(300s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 19084,
+      "cpu_ns": 19000
+    },
+    {
+      "order": 922,
+      "input": "speech/native(300s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 17792,
+      "cpu_ns": 18000
+    },
+    {
+      "order": 923,
+      "input": "speech/native(300s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 21583,
+      "cpu_ns": 21000
+    },
+    {
+      "order": 924,
+      "input": "speech/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 52334,
+      "cpu_ns": 53000
+    },
+    {
+      "order": 925,
+      "input": "speech/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 196083,
+      "cpu_ns": 196000
+    },
+    {
+      "order": 926,
+      "input": "speech/2h-tiled(7200s)/1/16/w1000",
+      "side": "old",
+      "wall_ns": 187125,
+      "cpu_ns": 187000
+    },
+    {
+      "order": 927,
+      "input": "speech/2h-tiled(7200s)/1/16/w1000",
+      "side": "new",
+      "wall_ns": 47709,
+      "cpu_ns": 48000
+    },
+    {
+      "order": 928,
+      "input": "speech/native(300s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 21375,
+      "cpu_ns": 22000
+    },
+    {
+      "order": 929,
+      "input": "speech/native(300s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 17583,
+      "cpu_ns": 18000
+    },
+    {
+      "order": 930,
+      "input": "speech/native(300s)/1s/w1000",
+      "side": "old",
+      "wall_ns": 17125,
+      "cpu_ns": 17000
+    },
+    {
+      "order": 931,
+      "input": "speech/native(300s)/1s/w1000",
+      "side": "new",
+      "wall_ns": 20625,
+      "cpu_ns": 21000
+    },
+    {
+      "order": 932,
+      "input": "speech/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2496083,
+      "cpu_ns": 2496000
+    },
+    {
+      "order": 933,
+      "input": "speech/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 63708,
+      "cpu_ns": 63000
+    },
+    {
+      "order": 934,
+      "input": "speech/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 58209,
+      "cpu_ns": 58000
+    },
+    {
+      "order": 935,
+      "input": "speech/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2479583,
+      "cpu_ns": 2480000
+    },
+    {
+      "order": 936,
+      "input": "speech/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2506875,
+      "cpu_ns": 2508000
+    },
+    {
+      "order": 937,
+      "input": "speech/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 57625,
+      "cpu_ns": 58000
+    },
+    {
+      "order": 938,
+      "input": "speech/2h-tiled(7200s)/whole/w1000",
+      "side": "new",
+      "wall_ns": 55709,
+      "cpu_ns": 56000
+    },
+    {
+      "order": 939,
+      "input": "speech/2h-tiled(7200s)/whole/w1000",
+      "side": "old",
+      "wall_ns": 2500334,
+      "cpu_ns": 2494000
+    },
+    {
+      "order": 940,
+      "input": "speech/native(300s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 39375,
+      "cpu_ns": 40000
+    },
+    {
+      "order": 941,
+      "input": "speech/native(300s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 50250,
+      "cpu_ns": 51000
+    },
+    {
+      "order": 942,
+      "input": "speech/native(300s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 48708,
+      "cpu_ns": 49000
+    },
+    {
+      "order": 943,
+      "input": "speech/native(300s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 37750,
+      "cpu_ns": 38000
+    },
+    {
+      "order": 944,
+      "input": "speech/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 60291,
+      "cpu_ns": 61000
+    },
+    {
+      "order": 945,
+      "input": "speech/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 649333,
+      "cpu_ns": 649000
+    },
+    {
+      "order": 946,
+      "input": "speech/2h-tiled(7200s)/1/4/w1000",
+      "side": "old",
+      "wall_ns": 648500,
+      "cpu_ns": 648000
+    },
+    {
+      "order": 947,
+      "input": "speech/2h-tiled(7200s)/1/4/w1000",
+      "side": "new",
+      "wall_ns": 56833,
+      "cpu_ns": 57000
+    },
+    {
+      "order": 948,
+      "input": "speech/native(300s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 32000,
+      "cpu_ns": 33000
+    },
+    {
+      "order": 949,
+      "input": "speech/native(300s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 36125,
+      "cpu_ns": 36000
+    },
+    {
+      "order": 950,
+      "input": "speech/native(300s)/30s/w1000",
+      "side": "old",
+      "wall_ns": 34125,
+      "cpu_ns": 35000
+    },
+    {
+      "order": 951,
+      "input": "speech/native(300s)/30s/w1000",
+      "side": "new",
+      "wall_ns": 30959,
+      "cpu_ns": 31000
+    },
+    {
+      "order": 952,
+      "input": "speech/native(300s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 145583,
+      "cpu_ns": 146000
+    },
+    {
+      "order": 953,
+      "input": "speech/native(300s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 193916,
+      "cpu_ns": 194000
+    },
+    {
+      "order": 954,
+      "input": "speech/native(300s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 191917,
+      "cpu_ns": 192000
+    },
+    {
+      "order": 955,
+      "input": "speech/native(300s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 144208,
+      "cpu_ns": 144000
+    },
+    {
+      "order": 956,
+      "input": "speech/native(300s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 142541,
+      "cpu_ns": 143000
+    },
+    {
+      "order": 957,
+      "input": "speech/native(300s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 189500,
+      "cpu_ns": 190000
+    },
+    {
+      "order": 958,
+      "input": "speech/native(300s)/whole/w3840",
+      "side": "old",
+      "wall_ns": 187833,
+      "cpu_ns": 188000
+    },
+    {
+      "order": 959,
+      "input": "speech/native(300s)/whole/w3840",
+      "side": "new",
+      "wall_ns": 141583,
+      "cpu_ns": 143000
+    }
+  ]
+}

@@ -1,0 +1,3092 @@
+{
+  "schema_version": 1,
+  "name": "filmcraft waveform repaint, claim-shape-shipped-scan",
+  "revs": {
+    "old": "eb59ec09daaea519c9c8fffa404a594ae50d00e0",
+    "new": "529c5c1e8e4b6be393e147bc6316a4643dda8529"
+  },
+  "fingerprint": {
+    "os": "macos",
+    "arch": "aarch64",
+    "kernel": "Darwin 27.0.0",
+    "cpu_model": "Apple M6",
+    "logical_cores": 12,
+    "physical_cores": 12,
+    "ram_bytes": 34359738368,
+    "rustc": "rustc 1.99.0 (b940084d7 2026-09-28) (Homebrew)",
+    "profile": "release",
+    "opt_level": "3",
+    "debug_assertions": false,
+    "date": "2026-11-04T23:21:57+00:00"
+  },
+  "config": {
+    "requested_repetitions": 40,
+    "runs_per_side": 40,
+    "warmup_runs": 2,
+    "resamples": 4000,
+    "seed": 12648430,
+    "output_checked": true,
+    "cpu_time": "process"
+  },
+  "guard": {
+    "contended": false,
+    "reasons": [],
+    "load_before": 3.68,
+    "load_after": 3.54,
+    "logical_cores": 12,
+    "max_load_per_core": 0.5,
+    "load_threshold": 6.0,
+    "throttle_before": {
+      "speed_limit_pct": null,
+      "throttle_count": null
+    },
+    "throttle_after": {
+      "speed_limit_pct": null,
+      "throttle_count": null
+    }
+  },
+  "contended": false,
+  "publishable": true,
+  "inputs": [
+    {
+      "name": "synthetic-2h/7200s/w1000",
+      "wall": {
+        "old": {
+          "n": 40,
+          "median_ns": 2490146.0,
+          "mad_ns": 8104.5,
+          "min_ns": 2475583.0,
+          "max_ns": 2692375.0
+        },
+        "new": {
+          "n": 40,
+          "median_ns": 61021.5,
+          "mad_ns": 1813.0,
+          "min_ns": 58042.0,
+          "max_ns": 80667.0
+        },
+        "ratio": {
+          "point": 0.0245051896555463,
+          "ci_lo": 0.024126403494586657,
+          "ci_hi": 0.024947205716637617
+        }
+      },
+      "cpu": {
+        "old": {
+          "n": 40,
+          "median_ns": 2490500.0,
+          "mad_ns": 7500.0,
+          "min_ns": 2475000.0,
+          "max_ns": 2611000.0
+        },
+        "new": {
+          "n": 40,
+          "median_ns": 61000.0,
+          "mad_ns": 1500.0,
+          "min_ns": 58000.0,
+          "max_ns": 80000.0
+        },
+        "ratio": {
+          "point": 0.024493073679983938,
+          "ci_lo": 0.024077046548956663,
+          "ci_hi": 0.024949698189134808
+        }
+      }
+    },
+    {
+      "name": "synthetic-2h/1800s/w1000",
+      "wall": {
+        "old": {
+          "n": 40,
+          "median_ns": 652896.0,
+          "mad_ns": 4083.0,
+          "min_ns": 648250.0,
+          "max_ns": 721000.0
+        },
+        "new": {
+          "n": 40,
+          "median_ns": 60062.5,
+          "mad_ns": 1417.0,
+          "min_ns": 58209.0,
+          "max_ns": 79917.0
+        },
+        "ratio": {
+          "point": 0.09199397760133314,
+          "ci_lo": 0.09101087615278736,
+          "ci_hi": 0.09510269665873569
+        }
+      },
+      "cpu": {
+        "old": {
+          "n": 40,
+          "median_ns": 653000.0,
+          "mad_ns": 3500.0,
+          "min_ns": 648000.0,
+          "max_ns": 698000.0
+        },
+        "new": {
+          "n": 40,
+          "median_ns": 60000.0,
+          "mad_ns": 1500.0,
+          "min_ns": 58000.0,
+          "max_ns": 73000.0
+        },
+        "ratio": {
+          "point": 0.09188361408882083,
+          "ci_lo": 0.09174311926605505,
+          "ci_hi": 0.09571209800918837
+        }
+      }
+    },
+    {
+      "name": "synthetic-2h/300s/w1000",
+      "wall": {
+        "old": {
+          "n": 40,
+          "median_ns": 134458.0,
+          "mad_ns": 124.5,
+          "min_ns": 134291.0,
+          "max_ns": 174959.0
+        },
+        "new": {
+          "n": 40,
+          "median_ns": 49208.0,
+          "mad_ns": 833.0,
+          "min_ns": 48000.0,
+          "max_ns": 60834.0
+        },
+        "ratio": {
+          "point": 0.3659730175965729,
+          "ci_lo": 0.3645601801949138,
+          "ci_hi": 0.3743399425843014
+        }
+      },
+      "cpu": {
+        "old": {
+          "n": 40,
+          "median_ns": 135000.0,
+          "mad_ns": 1000.0,
+          "min_ns": 133000.0,
+          "max_ns": 157000.0
+        },
+        "new": {
+          "n": 40,
+          "median_ns": 50000.0,
+          "mad_ns": 1000.0,
+          "min_ns": 48000.0,
+          "max_ns": 58000.0
+        },
+        "ratio": {
+          "point": 0.37037037037037035,
+          "ci_lo": 0.362962962962963,
+          "ci_hi": 0.37777777777777777
+        }
+      }
+    },
+    {
+      "name": "synthetic-2h/30s/w1000",
+      "wall": {
+        "old": {
+          "n": 40,
+          "median_ns": 45937.5,
+          "mad_ns": 458.0,
+          "min_ns": 44959.0,
+          "max_ns": 52458.0
+        },
+        "new": {
+          "n": 40,
+          "median_ns": 42333.5,
+          "mad_ns": 583.5,
+          "min_ns": 41375.0,
+          "max_ns": 50500.0
+        },
+        "ratio": {
+          "point": 0.9215455782312925,
+          "ci_lo": 0.9140909276223455,
+          "ci_hi": 0.9333569571722948
+        }
+      },
+      "cpu": {
+        "old": {
+          "n": 40,
+          "median_ns": 46000.0,
+          "mad_ns": 1000.0,
+          "min_ns": 45000.0,
+          "max_ns": 53000.0
+        },
+        "new": {
+          "n": 40,
+          "median_ns": 43000.0,
+          "mad_ns": 1000.0,
+          "min_ns": 41000.0,
+          "max_ns": 52000.0
+        },
+        "ratio": {
+          "point": 0.9347826086956522,
+          "ci_lo": 0.9130434782608695,
+          "ci_hi": 0.9347826086956522
+        }
+      }
+    },
+    {
+      "name": "synthetic-2h/1s/w1000",
+      "wall": {
+        "old": {
+          "n": 40,
+          "median_ns": 33271.0,
+          "mad_ns": 437.5,
+          "min_ns": 32583.0,
+          "max_ns": 66334.0
+        },
+        "new": {
+          "n": 40,
+          "median_ns": 39875.0,
+          "mad_ns": 417.0,
+          "min_ns": 38334.0,
+          "max_ns": 56000.0
+        },
+        "ratio": {
+          "point": 1.1984911785038022,
+          "ci_lo": 1.1790456647484795,
+          "ci_hi": 1.211320754716981
+        }
+      },
+      "cpu": {
+        "old": {
+          "n": 40,
+          "median_ns": 34000.0,
+          "mad_ns": 1000.0,
+          "min_ns": 32000.0,
+          "max_ns": 48000.0
+        },
+        "new": {
+          "n": 40,
+          "median_ns": 40000.0,
+          "mad_ns": 1000.0,
+          "min_ns": 39000.0,
+          "max_ns": 51000.0
+        },
+        "ratio": {
+          "point": 1.1764705882352942,
+          "ci_lo": 1.1764705882352942,
+          "ci_hi": 1.2121212121212122
+        }
+      }
+    }
+  ],
+  "aggregate": {
+    "inputs": 5,
+    "wall": {
+      "point": 0.24656057756534203,
+      "ci_lo": 0.24522340375665166,
+      "ci_hi": 0.24914784736821416
+    },
+    "cpu": {
+      "point": 0.24685496033687265,
+      "ci_lo": 0.24488845880433335,
+      "ci_hi": 0.25020764695114633
+    }
+  },
+  "runs": [
+    {
+      "order": 0,
+      "input": "synthetic-2h/300s/w1000",
+      "side": "new",
+      "wall_ns": 51917,
+      "cpu_ns": 53000
+    },
+    {
+      "order": 1,
+      "input": "synthetic-2h/300s/w1000",
+      "side": "old",
+      "wall_ns": 142375,
+      "cpu_ns": 142000
+    },
+    {
+      "order": 2,
+      "input": "synthetic-2h/300s/w1000",
+      "side": "old",
+      "wall_ns": 134458,
+      "cpu_ns": 135000
+    },
+    {
+      "order": 3,
+      "input": "synthetic-2h/300s/w1000",
+      "side": "new",
+      "wall_ns": 48459,
+      "cpu_ns": 49000
+    },
+    {
+      "order": 4,
+      "input": "synthetic-2h/1s/w1000",
+      "side": "old",
+      "wall_ns": 33667,
+      "cpu_ns": 34000
+    },
+    {
+      "order": 5,
+      "input": "synthetic-2h/1s/w1000",
+      "side": "new",
+      "wall_ns": 40167,
+      "cpu_ns": 40000
+    },
+    {
+      "order": 6,
+      "input": "synthetic-2h/1s/w1000",
+      "side": "new",
+      "wall_ns": 39875,
+      "cpu_ns": 40000
+    },
+    {
+      "order": 7,
+      "input": "synthetic-2h/1s/w1000",
+      "side": "old",
+      "wall_ns": 32958,
+      "cpu_ns": 33000
+    },
+    {
+      "order": 8,
+      "input": "synthetic-2h/300s/w1000",
+      "side": "new",
+      "wall_ns": 48666,
+      "cpu_ns": 49000
+    },
+    {
+      "order": 9,
+      "input": "synthetic-2h/300s/w1000",
+      "side": "old",
+      "wall_ns": 134416,
+      "cpu_ns": 134000
+    },
+    {
+      "order": 10,
+      "input": "synthetic-2h/300s/w1000",
+      "side": "old",
+      "wall_ns": 134375,
+      "cpu_ns": 134000
+    },
+    {
+      "order": 11,
+      "input": "synthetic-2h/300s/w1000",
+      "side": "new",
+      "wall_ns": 48292,
+      "cpu_ns": 48000
+    },
+    {
+      "order": 12,
+      "input": "synthetic-2h/300s/w1000",
+      "side": "old",
+      "wall_ns": 137208,
+      "cpu_ns": 138000
+    },
+    {
+      "order": 13,
+      "input": "synthetic-2h/300s/w1000",
+      "side": "new",
+      "wall_ns": 48167,
+      "cpu_ns": 49000
+    },
+    {
+      "order": 14,
+      "input": "synthetic-2h/300s/w1000",
+      "side": "new",
+      "wall_ns": 48375,
+      "cpu_ns": 48000
+    },
+    {
+      "order": 15,
+      "input": "synthetic-2h/300s/w1000",
+      "side": "old",
+      "wall_ns": 137834,
+      "cpu_ns": 138000
+    },
+    {
+      "order": 16,
+      "input": "synthetic-2h/7200s/w1000",
+      "side": "new",
+      "wall_ns": 65625,
+      "cpu_ns": 66000
+    },
+    {
+      "order": 17,
+      "input": "synthetic-2h/7200s/w1000",
+      "side": "old",
+      "wall_ns": 2496500,
+      "cpu_ns": 2498000
+    },
+    {
+      "order": 18,
+      "input": "synthetic-2h/7200s/w1000",
+      "side": "old",
+      "wall_ns": 2485250,
+      "cpu_ns": 2485000
+    },
+    {
+      "order": 19,
+      "input": "synthetic-2h/7200s/w1000",
+      "side": "new",
+      "wall_ns": 62167,
+      "cpu_ns": 62000
+    },
+    {
+      "order": 20,
+      "input": "synthetic-2h/30s/w1000",
+      "side": "old",
+      "wall_ns": 46708,
+      "cpu_ns": 46000
+    },
+    {
+      "order": 21,
+      "input": "synthetic-2h/30s/w1000",
+      "side": "new",
+      "wall_ns": 43250,
+      "cpu_ns": 43000
+    },
+    {
+      "order": 22,
+      "input": "synthetic-2h/30s/w1000",
+      "side": "new",
+      "wall_ns": 42250,
+      "cpu_ns": 42000
+    },
+    {
+      "order": 23,
+      "input": "synthetic-2h/30s/w1000",
+      "side": "old",
+      "wall_ns": 52458,
+      "cpu_ns": 53000
+    },
+    {
+      "order": 24,
+      "input": "synthetic-2h/1s/w1000",
+      "side": "new",
+      "wall_ns": 41208,
+      "cpu_ns": 41000
+    },
+    {
+      "order": 25,
+      "input": "synthetic-2h/1s/w1000",
+      "side": "old",
+      "wall_ns": 37375,
+      "cpu_ns": 38000
+    },
+    {
+      "order": 26,
+      "input": "synthetic-2h/1s/w1000",
+      "side": "old",
+      "wall_ns": 33792,
+      "cpu_ns": 34000
+    },
+    {
+      "order": 27,
+      "input": "synthetic-2h/1s/w1000",
+      "side": "new",
+      "wall_ns": 39792,
+      "cpu_ns": 40000
+    },
+    {
+      "order": 28,
+      "input": "synthetic-2h/300s/w1000",
+      "side": "new",
+      "wall_ns": 56291,
+      "cpu_ns": 56000
+    },
+    {
+      "order": 29,
+      "input": "synthetic-2h/300s/w1000",
+      "side": "old",
+      "wall_ns": 134666,
+      "cpu_ns": 135000
+    },
+    {
+      "order": 30,
+      "input": "synthetic-2h/300s/w1000",
+      "side": "old",
+      "wall_ns": 137042,
+      "cpu_ns": 137000
+    },
+    {
+      "order": 31,
+      "input": "synthetic-2h/300s/w1000",
+      "side": "new",
+      "wall_ns": 48542,
+      "cpu_ns": 49000
+    },
+    {
+      "order": 32,
+      "input": "synthetic-2h/30s/w1000",
+      "side": "old",
+      "wall_ns": 46292,
+      "cpu_ns": 47000
+    },
+    {
+      "order": 33,
+      "input": "synthetic-2h/30s/w1000",
+      "side": "new",
+      "wall_ns": 43459,
+      "cpu_ns": 45000
+    },
+    {
+      "order": 34,
+      "input": "synthetic-2h/30s/w1000",
+      "side": "new",
+      "wall_ns": 42125,
+      "cpu_ns": 42000
+    },
+    {
+      "order": 35,
+      "input": "synthetic-2h/30s/w1000",
+      "side": "old",
+      "wall_ns": 45500,
+      "cpu_ns": 45000
+    },
+    {
+      "order": 36,
+      "input": "synthetic-2h/1800s/w1000",
+      "side": "old",
+      "wall_ns": 657041,
+      "cpu_ns": 657000
+    },
+    {
+      "order": 37,
+      "input": "synthetic-2h/1800s/w1000",
+      "side": "new",
+      "wall_ns": 62375,
+      "cpu_ns": 63000
+    },
+    {
+      "order": 38,
+      "input": "synthetic-2h/1800s/w1000",
+      "side": "new",
+      "wall_ns": 58959,
+      "cpu_ns": 59000
+    },
+    {
+      "order": 39,
+      "input": "synthetic-2h/1800s/w1000",
+      "side": "old",
+      "wall_ns": 651125,
+      "cpu_ns": 651000
+    },
+    {
+      "order": 40,
+      "input": "synthetic-2h/1800s/w1000",
+      "side": "new",
+      "wall_ns": 58417,
+      "cpu_ns": 59000
+    },
+    {
+      "order": 41,
+      "input": "synthetic-2h/1800s/w1000",
+      "side": "old",
+      "wall_ns": 677083,
+      "cpu_ns": 671000
+    },
+    {
+      "order": 42,
+      "input": "synthetic-2h/1800s/w1000",
+      "side": "old",
+      "wall_ns": 648875,
+      "cpu_ns": 649000
+    },
+    {
+      "order": 43,
+      "input": "synthetic-2h/1800s/w1000",
+      "side": "new",
+      "wall_ns": 59917,
+      "cpu_ns": 60000
+    },
+    {
+      "order": 44,
+      "input": "synthetic-2h/1s/w1000",
+      "side": "old",
+      "wall_ns": 34375,
+      "cpu_ns": 35000
+    },
+    {
+      "order": 45,
+      "input": "synthetic-2h/1s/w1000",
+      "side": "new",
+      "wall_ns": 40125,
+      "cpu_ns": 42000
+    },
+    {
+      "order": 46,
+      "input": "synthetic-2h/1s/w1000",
+      "side": "new",
+      "wall_ns": 39708,
+      "cpu_ns": 39000
+    },
+    {
+      "order": 47,
+      "input": "synthetic-2h/1s/w1000",
+      "side": "old",
+      "wall_ns": 33042,
+      "cpu_ns": 33000
+    },
+    {
+      "order": 48,
+      "input": "synthetic-2h/7200s/w1000",
+      "side": "old",
+      "wall_ns": 2475791,
+      "cpu_ns": 2476000
+    },
+    {
+      "order": 49,
+      "input": "synthetic-2h/7200s/w1000",
+      "side": "new",
+      "wall_ns": 64375,
+      "cpu_ns": 65000
+    },
+    {
+      "order": 50,
+      "input": "synthetic-2h/7200s/w1000",
+      "side": "new",
+      "wall_ns": 59708,
+      "cpu_ns": 60000
+    },
+    {
+      "order": 51,
+      "input": "synthetic-2h/7200s/w1000",
+      "side": "old",
+      "wall_ns": 2482875,
+      "cpu_ns": 2484000
+    },
+    {
+      "order": 52,
+      "input": "synthetic-2h/300s/w1000",
+      "side": "old",
+      "wall_ns": 134458,
+      "cpu_ns": 135000
+    },
+    {
+      "order": 53,
+      "input": "synthetic-2h/300s/w1000",
+      "side": "new",
+      "wall_ns": 50459,
+      "cpu_ns": 51000
+    },
+    {
+      "order": 54,
+      "input": "synthetic-2h/300s/w1000",
+      "side": "new",
+      "wall_ns": 49083,
+      "cpu_ns": 49000
+    },
+    {
+      "order": 55,
+      "input": "synthetic-2h/300s/w1000",
+      "side": "old",
+      "wall_ns": 134291,
+      "cpu_ns": 135000
+    },
+    {
+      "order": 56,
+      "input": "synthetic-2h/1800s/w1000",
+      "side": "old",
+      "wall_ns": 648291,
+      "cpu_ns": 649000
+    },
+    {
+      "order": 57,
+      "input": "synthetic-2h/1800s/w1000",
+      "side": "new",
+      "wall_ns": 61708,
+      "cpu_ns": 62000
+    },
+    {
+      "order": 58,
+      "input": "synthetic-2h/1800s/w1000",
+      "side": "new",
+      "wall_ns": 59250,
+      "cpu_ns": 60000
+    },
+    {
+      "order": 59,
+      "input": "synthetic-2h/1800s/w1000",
+      "side": "old",
+      "wall_ns": 651042,
+      "cpu_ns": 651000
+    },
+    {
+      "order": 60,
+      "input": "synthetic-2h/1800s/w1000",
+      "side": "new",
+      "wall_ns": 59292,
+      "cpu_ns": 59000
+    },
+    {
+      "order": 61,
+      "input": "synthetic-2h/1800s/w1000",
+      "side": "old",
+      "wall_ns": 648500,
+      "cpu_ns": 649000
+    },
+    {
+      "order": 62,
+      "input": "synthetic-2h/1800s/w1000",
+      "side": "old",
+      "wall_ns": 656167,
+      "cpu_ns": 657000
+    },
+    {
+      "order": 63,
+      "input": "synthetic-2h/1800s/w1000",
+      "side": "new",
+      "wall_ns": 58916,
+      "cpu_ns": 59000
+    },
+    {
+      "order": 64,
+      "input": "synthetic-2h/7200s/w1000",
+      "side": "new",
+      "wall_ns": 64542,
+      "cpu_ns": 65000
+    },
+    {
+      "order": 65,
+      "input": "synthetic-2h/7200s/w1000",
+      "side": "old",
+      "wall_ns": 2501709,
+      "cpu_ns": 2495000
+    },
+    {
+      "order": 66,
+      "input": "synthetic-2h/7200s/w1000",
+      "side": "old",
+      "wall_ns": 2481959,
+      "cpu_ns": 2482000
+    },
+    {
+      "order": 67,
+      "input": "synthetic-2h/7200s/w1000",
+      "side": "new",
+      "wall_ns": 63250,
+      "cpu_ns": 63000
+    },
+    {
+      "order": 68,
+      "input": "synthetic-2h/1s/w1000",
+      "side": "old",
+      "wall_ns": 33417,
+      "cpu_ns": 33000
+    },
+    {
+      "order": 69,
+      "input": "synthetic-2h/1s/w1000",
+      "side": "new",
+      "wall_ns": 39375,
+      "cpu_ns": 39000
+    },
+    {
+      "order": 70,
+      "input": "synthetic-2h/1s/w1000",
+      "side": "new",
+      "wall_ns": 38709,
+      "cpu_ns": 39000
+    },
+    {
+      "order": 71,
+      "input": "synthetic-2h/1s/w1000",
+      "side": "old",
+      "wall_ns": 32875,
+      "cpu_ns": 33000
+    },
+    {
+      "order": 72,
+      "input": "synthetic-2h/1s/w1000",
+      "side": "old",
+      "wall_ns": 32583,
+      "cpu_ns": 33000
+    },
+    {
+      "order": 73,
+      "input": "synthetic-2h/1s/w1000",
+      "side": "new",
+      "wall_ns": 38583,
+      "cpu_ns": 39000
+    },
+    {
+      "order": 74,
+      "input": "synthetic-2h/1s/w1000",
+      "side": "new",
+      "wall_ns": 38334,
+      "cpu_ns": 39000
+    },
+    {
+      "order": 75,
+      "input": "synthetic-2h/1s/w1000",
+      "side": "old",
+      "wall_ns": 32750,
+      "cpu_ns": 33000
+    },
+    {
+      "order": 76,
+      "input": "synthetic-2h/30s/w1000",
+      "side": "new",
+      "wall_ns": 42791,
+      "cpu_ns": 43000
+    },
+    {
+      "order": 77,
+      "input": "synthetic-2h/30s/w1000",
+      "side": "old",
+      "wall_ns": 46875,
+      "cpu_ns": 48000
+    },
+    {
+      "order": 78,
+      "input": "synthetic-2h/30s/w1000",
+      "side": "old",
+      "wall_ns": 46125,
+      "cpu_ns": 46000
+    },
+    {
+      "order": 79,
+      "input": "synthetic-2h/30s/w1000",
+      "side": "new",
+      "wall_ns": 42083,
+      "cpu_ns": 42000
+    },
+    {
+      "order": 80,
+      "input": "synthetic-2h/30s/w1000",
+      "side": "new",
+      "wall_ns": 41917,
+      "cpu_ns": 43000
+    },
+    {
+      "order": 81,
+      "input": "synthetic-2h/30s/w1000",
+      "side": "old",
+      "wall_ns": 45208,
+      "cpu_ns": 45000
+    },
+    {
+      "order": 82,
+      "input": "synthetic-2h/30s/w1000",
+      "side": "old",
+      "wall_ns": 45000,
+      "cpu_ns": 45000
+    },
+    {
+      "order": 83,
+      "input": "synthetic-2h/30s/w1000",
+      "side": "new",
+      "wall_ns": 41750,
+      "cpu_ns": 42000
+    },
+    {
+      "order": 84,
+      "input": "synthetic-2h/7200s/w1000",
+      "side": "old",
+      "wall_ns": 2498416,
+      "cpu_ns": 2499000
+    },
+    {
+      "order": 85,
+      "input": "synthetic-2h/7200s/w1000",
+      "side": "new",
+      "wall_ns": 60834,
+      "cpu_ns": 61000
+    },
+    {
+      "order": 86,
+      "input": "synthetic-2h/7200s/w1000",
+      "side": "new",
+      "wall_ns": 59375,
+      "cpu_ns": 60000
+    },
+    {
+      "order": 87,
+      "input": "synthetic-2h/7200s/w1000",
+      "side": "old",
+      "wall_ns": 2499959,
+      "cpu_ns": 2493000
+    },
+    {
+      "order": 88,
+      "input": "synthetic-2h/1800s/w1000",
+      "side": "old",
+      "wall_ns": 653250,
+      "cpu_ns": 653000
+    },
+    {
+      "order": 89,
+      "input": "synthetic-2h/1800s/w1000",
+      "side": "new",
+      "wall_ns": 63125,
+      "cpu_ns": 63000
+    },
+    {
+      "order": 90,
+      "input": "synthetic-2h/1800s/w1000",
+      "side": "new",
+      "wall_ns": 59542,
+      "cpu_ns": 60000
+    },
+    {
+      "order": 91,
+      "input": "synthetic-2h/1800s/w1000",
+      "side": "old",
+      "wall_ns": 653125,
+      "cpu_ns": 654000
+    },
+    {
+      "order": 92,
+      "input": "synthetic-2h/7200s/w1000",
+      "side": "new",
+      "wall_ns": 62000,
+      "cpu_ns": 62000
+    },
+    {
+      "order": 93,
+      "input": "synthetic-2h/7200s/w1000",
+      "side": "old",
+      "wall_ns": 2482917,
+      "cpu_ns": 2484000
+    },
+    {
+      "order": 94,
+      "input": "synthetic-2h/7200s/w1000",
+      "side": "old",
+      "wall_ns": 2488667,
+      "cpu_ns": 2489000
+    },
+    {
+      "order": 95,
+      "input": "synthetic-2h/7200s/w1000",
+      "side": "new",
+      "wall_ns": 60209,
+      "cpu_ns": 59000
+    },
+    {
+      "order": 96,
+      "input": "synthetic-2h/1s/w1000",
+      "side": "new",
+      "wall_ns": 39542,
+      "cpu_ns": 39000
+    },
+    {
+      "order": 97,
+      "input": "synthetic-2h/1s/w1000",
+      "side": "old",
+      "wall_ns": 34375,
+      "cpu_ns": 35000
+    },
+    {
+      "order": 98,
+      "input": "synthetic-2h/1s/w1000",
+      "side": "old",
+      "wall_ns": 33042,
+      "cpu_ns": 33000
+    },
+    {
+      "order": 99,
+      "input": "synthetic-2h/1s/w1000",
+      "side": "new",
+      "wall_ns": 39875,
+      "cpu_ns": 40000
+    },
+    {
+      "order": 100,
+      "input": "synthetic-2h/7200s/w1000",
+      "side": "new",
+      "wall_ns": 58708,
+      "cpu_ns": 58000
+    },
+    {
+      "order": 101,
+      "input": "synthetic-2h/7200s/w1000",
+      "side": "old",
+      "wall_ns": 2501958,
+      "cpu_ns": 2502000
+    },
+    {
+      "order": 102,
+      "input": "synthetic-2h/7200s/w1000",
+      "side": "old",
+      "wall_ns": 2517250,
+      "cpu_ns": 2512000
+    },
+    {
+      "order": 103,
+      "input": "synthetic-2h/7200s/w1000",
+      "side": "new",
+      "wall_ns": 61209,
+      "cpu_ns": 62000
+    },
+    {
+      "order": 104,
+      "input": "synthetic-2h/7200s/w1000",
+      "side": "old",
+      "wall_ns": 2485209,
+      "cpu_ns": 2485000
+    },
+    {
+      "order": 105,
+      "input": "synthetic-2h/7200s/w1000",
+      "side": "new",
+      "wall_ns": 58834,
+      "cpu_ns": 59000
+    },
+    {
+      "order": 106,
+      "input": "synthetic-2h/7200s/w1000",
+      "side": "new",
+      "wall_ns": 58042,
+      "cpu_ns": 58000
+    },
+    {
+      "order": 107,
+      "input": "synthetic-2h/7200s/w1000",
+      "side": "old",
+      "wall_ns": 2493125,
+      "cpu_ns": 2494000
+    },
+    {
+      "order": 108,
+      "input": "synthetic-2h/1s/w1000",
+      "side": "old",
+      "wall_ns": 33125,
+      "cpu_ns": 34000
+    },
+    {
+      "order": 109,
+      "input": "synthetic-2h/1s/w1000",
+      "side": "new",
+      "wall_ns": 39917,
+      "cpu_ns": 41000
+    },
+    {
+      "order": 110,
+      "input": "synthetic-2h/1s/w1000",
+      "side": "new",
+      "wall_ns": 39166,
+      "cpu_ns": 39000
+    },
+    {
+      "order": 111,
+      "input": "synthetic-2h/1s/w1000",
+      "side": "old",
+      "wall_ns": 33084,
+      "cpu_ns": 33000
+    },
+    {
+      "order": 112,
+      "input": "synthetic-2h/300s/w1000",
+      "side": "old",
+      "wall_ns": 134625,
+      "cpu_ns": 134000
+    },
+    {
+      "order": 113,
+      "input": "synthetic-2h/300s/w1000",
+      "side": "new",
+      "wall_ns": 57833,
+      "cpu_ns": 58000
+    },
+    {
+      "order": 114,
+      "input": "synthetic-2h/300s/w1000",
+      "side": "new",
+      "wall_ns": 49041,
+      "cpu_ns": 48000
+    },
+    {
+      "order": 115,
+      "input": "synthetic-2h/300s/w1000",
+      "side": "old",
+      "wall_ns": 134333,
+      "cpu_ns": 134000
+    },
+    {
+      "order": 116,
+      "input": "synthetic-2h/7200s/w1000",
+      "side": "new",
+      "wall_ns": 59875,
+      "cpu_ns": 59000
+    },
+    {
+      "order": 117,
+      "input": "synthetic-2h/7200s/w1000",
+      "side": "old",
+      "wall_ns": 2502041,
+      "cpu_ns": 2495000
+    },
+    {
+      "order": 118,
+      "input": "synthetic-2h/7200s/w1000",
+      "side": "old",
+      "wall_ns": 2475667,
+      "cpu_ns": 2476000
+    },
+    {
+      "order": 119,
+      "input": "synthetic-2h/7200s/w1000",
+      "side": "new",
+      "wall_ns": 66042,
+      "cpu_ns": 65000
+    },
+    {
+      "order": 120,
+      "input": "synthetic-2h/1800s/w1000",
+      "side": "new",
+      "wall_ns": 63833,
+      "cpu_ns": 63000
+    },
+    {
+      "order": 121,
+      "input": "synthetic-2h/1800s/w1000",
+      "side": "old",
+      "wall_ns": 652583,
+      "cpu_ns": 653000
+    },
+    {
+      "order": 122,
+      "input": "synthetic-2h/1800s/w1000",
+      "side": "old",
+      "wall_ns": 652750,
+      "cpu_ns": 653000
+    },
+    {
+      "order": 123,
+      "input": "synthetic-2h/1800s/w1000",
+      "side": "new",
+      "wall_ns": 60375,
+      "cpu_ns": 60000
+    },
+    {
+      "order": 124,
+      "input": "synthetic-2h/7200s/w1000",
+      "side": "new",
+      "wall_ns": 61291,
+      "cpu_ns": 61000
+    },
+    {
+      "order": 125,
+      "input": "synthetic-2h/7200s/w1000",
+      "side": "old",
+      "wall_ns": 2482000,
+      "cpu_ns": 2483000
+    },
+    {
+      "order": 126,
+      "input": "synthetic-2h/7200s/w1000",
+      "side": "old",
+      "wall_ns": 2497208,
+      "cpu_ns": 2497000
+    },
+    {
+      "order": 127,
+      "input": "synthetic-2h/7200s/w1000",
+      "side": "new",
+      "wall_ns": 60125,
+      "cpu_ns": 60000
+    },
+    {
+      "order": 128,
+      "input": "synthetic-2h/30s/w1000",
+      "side": "new",
+      "wall_ns": 50500,
+      "cpu_ns": 52000
+    },
+    {
+      "order": 129,
+      "input": "synthetic-2h/30s/w1000",
+      "side": "old",
+      "wall_ns": 50125,
+      "cpu_ns": 50000
+    },
+    {
+      "order": 130,
+      "input": "synthetic-2h/30s/w1000",
+      "side": "old",
+      "wall_ns": 46208,
+      "cpu_ns": 46000
+    },
+    {
+      "order": 131,
+      "input": "synthetic-2h/30s/w1000",
+      "side": "new",
+      "wall_ns": 43250,
+      "cpu_ns": 43000
+    },
+    {
+      "order": 132,
+      "input": "synthetic-2h/30s/w1000",
+      "side": "new",
+      "wall_ns": 43042,
+      "cpu_ns": 43000
+    },
+    {
+      "order": 133,
+      "input": "synthetic-2h/30s/w1000",
+      "side": "old",
+      "wall_ns": 46000,
+      "cpu_ns": 46000
+    },
+    {
+      "order": 134,
+      "input": "synthetic-2h/30s/w1000",
+      "side": "old",
+      "wall_ns": 45958,
+      "cpu_ns": 47000
+    },
+    {
+      "order": 135,
+      "input": "synthetic-2h/30s/w1000",
+      "side": "new",
+      "wall_ns": 42541,
+      "cpu_ns": 43000
+    },
+    {
+      "order": 136,
+      "input": "synthetic-2h/7200s/w1000",
+      "side": "old",
+      "wall_ns": 2504750,
+      "cpu_ns": 2498000
+    },
+    {
+      "order": 137,
+      "input": "synthetic-2h/7200s/w1000",
+      "side": "new",
+      "wall_ns": 60583,
+      "cpu_ns": 61000
+    },
+    {
+      "order": 138,
+      "input": "synthetic-2h/7200s/w1000",
+      "side": "new",
+      "wall_ns": 58292,
+      "cpu_ns": 59000
+    },
+    {
+      "order": 139,
+      "input": "synthetic-2h/7200s/w1000",
+      "side": "old",
+      "wall_ns": 2485875,
+      "cpu_ns": 2487000
+    },
+    {
+      "order": 140,
+      "input": "synthetic-2h/7200s/w1000",
+      "side": "old",
+      "wall_ns": 2493459,
+      "cpu_ns": 2494000
+    },
+    {
+      "order": 141,
+      "input": "synthetic-2h/7200s/w1000",
+      "side": "new",
+      "wall_ns": 61667,
+      "cpu_ns": 62000
+    },
+    {
+      "order": 142,
+      "input": "synthetic-2h/7200s/w1000",
+      "side": "new",
+      "wall_ns": 58291,
+      "cpu_ns": 59000
+    },
+    {
+      "order": 143,
+      "input": "synthetic-2h/7200s/w1000",
+      "side": "old",
+      "wall_ns": 2486708,
+      "cpu_ns": 2487000
+    },
+    {
+      "order": 144,
+      "input": "synthetic-2h/300s/w1000",
+      "side": "old",
+      "wall_ns": 134458,
+      "cpu_ns": 135000
+    },
+    {
+      "order": 145,
+      "input": "synthetic-2h/300s/w1000",
+      "side": "new",
+      "wall_ns": 51917,
+      "cpu_ns": 52000
+    },
+    {
+      "order": 146,
+      "input": "synthetic-2h/300s/w1000",
+      "side": "new",
+      "wall_ns": 50333,
+      "cpu_ns": 50000
+    },
+    {
+      "order": 147,
+      "input": "synthetic-2h/300s/w1000",
+      "side": "old",
+      "wall_ns": 149333,
+      "cpu_ns": 142000
+    },
+    {
+      "order": 148,
+      "input": "synthetic-2h/1800s/w1000",
+      "side": "old",
+      "wall_ns": 648584,
+      "cpu_ns": 649000
+    },
+    {
+      "order": 149,
+      "input": "synthetic-2h/1800s/w1000",
+      "side": "new",
+      "wall_ns": 62084,
+      "cpu_ns": 63000
+    },
+    {
+      "order": 150,
+      "input": "synthetic-2h/1800s/w1000",
+      "side": "new",
+      "wall_ns": 59167,
+      "cpu_ns": 60000
+    },
+    {
+      "order": 151,
+      "input": "synthetic-2h/1800s/w1000",
+      "side": "old",
+      "wall_ns": 648417,
+      "cpu_ns": 648000
+    },
+    {
+      "order": 152,
+      "input": "synthetic-2h/30s/w1000",
+      "side": "old",
+      "wall_ns": 46167,
+      "cpu_ns": 46000
+    },
+    {
+      "order": 153,
+      "input": "synthetic-2h/30s/w1000",
+      "side": "new",
+      "wall_ns": 44333,
+      "cpu_ns": 45000
+    },
+    {
+      "order": 154,
+      "input": "synthetic-2h/30s/w1000",
+      "side": "new",
+      "wall_ns": 43250,
+      "cpu_ns": 43000
+    },
+    {
+      "order": 155,
+      "input": "synthetic-2h/30s/w1000",
+      "side": "old",
+      "wall_ns": 45666,
+      "cpu_ns": 46000
+    },
+    {
+      "order": 156,
+      "input": "synthetic-2h/300s/w1000",
+      "side": "new",
+      "wall_ns": 49791,
+      "cpu_ns": 51000
+    },
+    {
+      "order": 157,
+      "input": "synthetic-2h/300s/w1000",
+      "side": "old",
+      "wall_ns": 134417,
+      "cpu_ns": 134000
+    },
+    {
+      "order": 158,
+      "input": "synthetic-2h/300s/w1000",
+      "side": "old",
+      "wall_ns": 134416,
+      "cpu_ns": 135000
+    },
+    {
+      "order": 159,
+      "input": "synthetic-2h/300s/w1000",
+      "side": "new",
+      "wall_ns": 48750,
+      "cpu_ns": 48000
+    },
+    {
+      "order": 160,
+      "input": "synthetic-2h/30s/w1000",
+      "side": "new",
+      "wall_ns": 41750,
+      "cpu_ns": 42000
+    },
+    {
+      "order": 161,
+      "input": "synthetic-2h/30s/w1000",
+      "side": "old",
+      "wall_ns": 45083,
+      "cpu_ns": 45000
+    },
+    {
+      "order": 162,
+      "input": "synthetic-2h/30s/w1000",
+      "side": "old",
+      "wall_ns": 44959,
+      "cpu_ns": 45000
+    },
+    {
+      "order": 163,
+      "input": "synthetic-2h/30s/w1000",
+      "side": "new",
+      "wall_ns": 41792,
+      "cpu_ns": 41000
+    },
+    {
+      "order": 164,
+      "input": "synthetic-2h/1800s/w1000",
+      "side": "new",
+      "wall_ns": 59542,
+      "cpu_ns": 59000
+    },
+    {
+      "order": 165,
+      "input": "synthetic-2h/1800s/w1000",
+      "side": "old",
+      "wall_ns": 648375,
+      "cpu_ns": 649000
+    },
+    {
+      "order": 166,
+      "input": "synthetic-2h/1800s/w1000",
+      "side": "old",
+      "wall_ns": 648250,
+      "cpu_ns": 648000
+    },
+    {
+      "order": 167,
+      "input": "synthetic-2h/1800s/w1000",
+      "side": "new",
+      "wall_ns": 58917,
+      "cpu_ns": 58000
+    },
+    {
+      "order": 168,
+      "input": "synthetic-2h/7200s/w1000",
+      "side": "new",
+      "wall_ns": 63291,
+      "cpu_ns": 62000
+    },
+    {
+      "order": 169,
+      "input": "synthetic-2h/7200s/w1000",
+      "side": "old",
+      "wall_ns": 2487583,
+      "cpu_ns": 2483000
+    },
+    {
+      "order": 170,
+      "input": "synthetic-2h/7200s/w1000",
+      "side": "old",
+      "wall_ns": 2492541,
+      "cpu_ns": 2493000
+    },
+    {
+      "order": 171,
+      "input": "synthetic-2h/7200s/w1000",
+      "side": "new",
+      "wall_ns": 61625,
+      "cpu_ns": 62000
+    },
+    {
+      "order": 172,
+      "input": "synthetic-2h/1s/w1000",
+      "side": "new",
+      "wall_ns": 42667,
+      "cpu_ns": 43000
+    },
+    {
+      "order": 173,
+      "input": "synthetic-2h/1s/w1000",
+      "side": "old",
+      "wall_ns": 34875,
+      "cpu_ns": 36000
+    },
+    {
+      "order": 174,
+      "input": "synthetic-2h/1s/w1000",
+      "side": "old",
+      "wall_ns": 33583,
+      "cpu_ns": 34000
+    },
+    {
+      "order": 175,
+      "input": "synthetic-2h/1s/w1000",
+      "side": "new",
+      "wall_ns": 39333,
+      "cpu_ns": 40000
+    },
+    {
+      "order": 176,
+      "input": "synthetic-2h/1800s/w1000",
+      "side": "old",
+      "wall_ns": 653042,
+      "cpu_ns": 653000
+    },
+    {
+      "order": 177,
+      "input": "synthetic-2h/1800s/w1000",
+      "side": "new",
+      "wall_ns": 60167,
+      "cpu_ns": 61000
+    },
+    {
+      "order": 178,
+      "input": "synthetic-2h/1800s/w1000",
+      "side": "new",
+      "wall_ns": 58209,
+      "cpu_ns": 58000
+    },
+    {
+      "order": 179,
+      "input": "synthetic-2h/1800s/w1000",
+      "side": "old",
+      "wall_ns": 721000,
+      "cpu_ns": 698000
+    },
+    {
+      "order": 180,
+      "input": "synthetic-2h/7200s/w1000",
+      "side": "old",
+      "wall_ns": 2495459,
+      "cpu_ns": 2496000
+    },
+    {
+      "order": 181,
+      "input": "synthetic-2h/7200s/w1000",
+      "side": "new",
+      "wall_ns": 64708,
+      "cpu_ns": 65000
+    },
+    {
+      "order": 182,
+      "input": "synthetic-2h/7200s/w1000",
+      "side": "new",
+      "wall_ns": 60042,
+      "cpu_ns": 61000
+    },
+    {
+      "order": 183,
+      "input": "synthetic-2h/7200s/w1000",
+      "side": "old",
+      "wall_ns": 2495083,
+      "cpu_ns": 2496000
+    },
+    {
+      "order": 184,
+      "input": "synthetic-2h/1800s/w1000",
+      "side": "old",
+      "wall_ns": 651042,
+      "cpu_ns": 651000
+    },
+    {
+      "order": 185,
+      "input": "synthetic-2h/1800s/w1000",
+      "side": "new",
+      "wall_ns": 63750,
+      "cpu_ns": 64000
+    },
+    {
+      "order": 186,
+      "input": "synthetic-2h/1800s/w1000",
+      "side": "new",
+      "wall_ns": 66458,
+      "cpu_ns": 66000
+    },
+    {
+      "order": 187,
+      "input": "synthetic-2h/1800s/w1000",
+      "side": "old",
+      "wall_ns": 654041,
+      "cpu_ns": 655000
+    },
+    {
+      "order": 188,
+      "input": "synthetic-2h/1s/w1000",
+      "side": "old",
+      "wall_ns": 33125,
+      "cpu_ns": 34000
+    },
+    {
+      "order": 189,
+      "input": "synthetic-2h/1s/w1000",
+      "side": "new",
+      "wall_ns": 41125,
+      "cpu_ns": 41000
+    },
+    {
+      "order": 190,
+      "input": "synthetic-2h/1s/w1000",
+      "side": "new",
+      "wall_ns": 40167,
+      "cpu_ns": 40000
+    },
+    {
+      "order": 191,
+      "input": "synthetic-2h/1s/w1000",
+      "side": "old",
+      "wall_ns": 32958,
+      "cpu_ns": 34000
+    },
+    {
+      "order": 192,
+      "input": "synthetic-2h/300s/w1000",
+      "side": "old",
+      "wall_ns": 134500,
+      "cpu_ns": 134000
+    },
+    {
+      "order": 193,
+      "input": "synthetic-2h/300s/w1000",
+      "side": "new",
+      "wall_ns": 50917,
+      "cpu_ns": 51000
+    },
+    {
+      "order": 194,
+      "input": "synthetic-2h/300s/w1000",
+      "side": "new",
+      "wall_ns": 51667,
+      "cpu_ns": 52000
+    },
+    {
+      "order": 195,
+      "input": "synthetic-2h/300s/w1000",
+      "side": "old",
+      "wall_ns": 134375,
+      "cpu_ns": 135000
+    },
+    {
+      "order": 196,
+      "input": "synthetic-2h/1800s/w1000",
+      "side": "old",
+      "wall_ns": 651375,
+      "cpu_ns": 652000
+    },
+    {
+      "order": 197,
+      "input": "synthetic-2h/1800s/w1000",
+      "side": "new",
+      "wall_ns": 62875,
+      "cpu_ns": 63000
+    },
+    {
+      "order": 198,
+      "input": "synthetic-2h/1800s/w1000",
+      "side": "new",
+      "wall_ns": 58792,
+      "cpu_ns": 59000
+    },
+    {
+      "order": 199,
+      "input": "synthetic-2h/1800s/w1000",
+      "side": "old",
+      "wall_ns": 654084,
+      "cpu_ns": 653000
+    },
+    {
+      "order": 200,
+      "input": "synthetic-2h/30s/w1000",
+      "side": "old",
+      "wall_ns": 46666,
+      "cpu_ns": 47000
+    },
+    {
+      "order": 201,
+      "input": "synthetic-2h/30s/w1000",
+      "side": "new",
+      "wall_ns": 43583,
+      "cpu_ns": 43000
+    },
+    {
+      "order": 202,
+      "input": "synthetic-2h/30s/w1000",
+      "side": "new",
+      "wall_ns": 42917,
+      "cpu_ns": 42000
+    },
+    {
+      "order": 203,
+      "input": "synthetic-2h/30s/w1000",
+      "side": "old",
+      "wall_ns": 46000,
+      "cpu_ns": 46000
+    },
+    {
+      "order": 204,
+      "input": "synthetic-2h/300s/w1000",
+      "side": "new",
+      "wall_ns": 50500,
+      "cpu_ns": 51000
+    },
+    {
+      "order": 205,
+      "input": "synthetic-2h/300s/w1000",
+      "side": "old",
+      "wall_ns": 134333,
+      "cpu_ns": 135000
+    },
+    {
+      "order": 206,
+      "input": "synthetic-2h/300s/w1000",
+      "side": "old",
+      "wall_ns": 134375,
+      "cpu_ns": 135000
+    },
+    {
+      "order": 207,
+      "input": "synthetic-2h/300s/w1000",
+      "side": "new",
+      "wall_ns": 49041,
+      "cpu_ns": 48000
+    },
+    {
+      "order": 208,
+      "input": "synthetic-2h/300s/w1000",
+      "side": "old",
+      "wall_ns": 134416,
+      "cpu_ns": 133000
+    },
+    {
+      "order": 209,
+      "input": "synthetic-2h/300s/w1000",
+      "side": "new",
+      "wall_ns": 49125,
+      "cpu_ns": 49000
+    },
+    {
+      "order": 210,
+      "input": "synthetic-2h/300s/w1000",
+      "side": "new",
+      "wall_ns": 49041,
+      "cpu_ns": 48000
+    },
+    {
+      "order": 211,
+      "input": "synthetic-2h/300s/w1000",
+      "side": "old",
+      "wall_ns": 134416,
+      "cpu_ns": 134000
+    },
+    {
+      "order": 212,
+      "input": "synthetic-2h/300s/w1000",
+      "side": "new",
+      "wall_ns": 49041,
+      "cpu_ns": 49000
+    },
+    {
+      "order": 213,
+      "input": "synthetic-2h/300s/w1000",
+      "side": "old",
+      "wall_ns": 160333,
+      "cpu_ns": 151000
+    },
+    {
+      "order": 214,
+      "input": "synthetic-2h/300s/w1000",
+      "side": "old",
+      "wall_ns": 154584,
+      "cpu_ns": 142000
+    },
+    {
+      "order": 215,
+      "input": "synthetic-2h/300s/w1000",
+      "side": "new",
+      "wall_ns": 50041,
+      "cpu_ns": 51000
+    },
+    {
+      "order": 216,
+      "input": "synthetic-2h/7200s/w1000",
+      "side": "old",
+      "wall_ns": 2483375,
+      "cpu_ns": 2483000
+    },
+    {
+      "order": 217,
+      "input": "synthetic-2h/7200s/w1000",
+      "side": "new",
+      "wall_ns": 66125,
+      "cpu_ns": 65000
+    },
+    {
+      "order": 218,
+      "input": "synthetic-2h/7200s/w1000",
+      "side": "new",
+      "wall_ns": 60584,
+      "cpu_ns": 60000
+    },
+    {
+      "order": 219,
+      "input": "synthetic-2h/7200s/w1000",
+      "side": "old",
+      "wall_ns": 2475583,
+      "cpu_ns": 2475000
+    },
+    {
+      "order": 220,
+      "input": "synthetic-2h/7200s/w1000",
+      "side": "new",
+      "wall_ns": 60125,
+      "cpu_ns": 60000
+    },
+    {
+      "order": 221,
+      "input": "synthetic-2h/7200s/w1000",
+      "side": "old",
+      "wall_ns": 2487541,
+      "cpu_ns": 2488000
+    },
+    {
+      "order": 222,
+      "input": "synthetic-2h/7200s/w1000",
+      "side": "old",
+      "wall_ns": 2538791,
+      "cpu_ns": 2522000
+    },
+    {
+      "order": 223,
+      "input": "synthetic-2h/7200s/w1000",
+      "side": "new",
+      "wall_ns": 70208,
+      "cpu_ns": 71000
+    },
+    {
+      "order": 224,
+      "input": "synthetic-2h/1s/w1000",
+      "side": "old",
+      "wall_ns": 34500,
+      "cpu_ns": 35000
+    },
+    {
+      "order": 225,
+      "input": "synthetic-2h/1s/w1000",
+      "side": "new",
+      "wall_ns": 39584,
+      "cpu_ns": 40000
+    },
+    {
+      "order": 226,
+      "input": "synthetic-2h/1s/w1000",
+      "side": "new",
+      "wall_ns": 39458,
+      "cpu_ns": 40000
+    },
+    {
+      "order": 227,
+      "input": "synthetic-2h/1s/w1000",
+      "side": "old",
+      "wall_ns": 33125,
+      "cpu_ns": 33000
+    },
+    {
+      "order": 228,
+      "input": "synthetic-2h/1800s/w1000",
+      "side": "old",
+      "wall_ns": 651333,
+      "cpu_ns": 652000
+    },
+    {
+      "order": 229,
+      "input": "synthetic-2h/1800s/w1000",
+      "side": "new",
+      "wall_ns": 63667,
+      "cpu_ns": 64000
+    },
+    {
+      "order": 230,
+      "input": "synthetic-2h/1800s/w1000",
+      "side": "new",
+      "wall_ns": 59084,
+      "cpu_ns": 60000
+    },
+    {
+      "order": 231,
+      "input": "synthetic-2h/1800s/w1000",
+      "side": "old",
+      "wall_ns": 651833,
+      "cpu_ns": 652000
+    },
+    {
+      "order": 232,
+      "input": "synthetic-2h/1s/w1000",
+      "side": "new",
+      "wall_ns": 43250,
+      "cpu_ns": 44000
+    },
+    {
+      "order": 233,
+      "input": "synthetic-2h/1s/w1000",
+      "side": "old",
+      "wall_ns": 32958,
+      "cpu_ns": 33000
+    },
+    {
+      "order": 234,
+      "input": "synthetic-2h/1s/w1000",
+      "side": "old",
+      "wall_ns": 32750,
+      "cpu_ns": 33000
+    },
+    {
+      "order": 235,
+      "input": "synthetic-2h/1s/w1000",
+      "side": "new",
+      "wall_ns": 39542,
+      "cpu_ns": 40000
+    },
+    {
+      "order": 236,
+      "input": "synthetic-2h/300s/w1000",
+      "side": "new",
+      "wall_ns": 51167,
+      "cpu_ns": 51000
+    },
+    {
+      "order": 237,
+      "input": "synthetic-2h/300s/w1000",
+      "side": "old",
+      "wall_ns": 134375,
+      "cpu_ns": 134000
+    },
+    {
+      "order": 238,
+      "input": "synthetic-2h/300s/w1000",
+      "side": "old",
+      "wall_ns": 134333,
+      "cpu_ns": 135000
+    },
+    {
+      "order": 239,
+      "input": "synthetic-2h/300s/w1000",
+      "side": "new",
+      "wall_ns": 48542,
+      "cpu_ns": 49000
+    },
+    {
+      "order": 240,
+      "input": "synthetic-2h/7200s/w1000",
+      "side": "new",
+      "wall_ns": 61541,
+      "cpu_ns": 62000
+    },
+    {
+      "order": 241,
+      "input": "synthetic-2h/7200s/w1000",
+      "side": "old",
+      "wall_ns": 2484542,
+      "cpu_ns": 2485000
+    },
+    {
+      "order": 242,
+      "input": "synthetic-2h/7200s/w1000",
+      "side": "old",
+      "wall_ns": 2502958,
+      "cpu_ns": 2503000
+    },
+    {
+      "order": 243,
+      "input": "synthetic-2h/7200s/w1000",
+      "side": "new",
+      "wall_ns": 60000,
+      "cpu_ns": 60000
+    },
+    {
+      "order": 244,
+      "input": "synthetic-2h/7200s/w1000",
+      "side": "old",
+      "wall_ns": 2529250,
+      "cpu_ns": 2513000
+    },
+    {
+      "order": 245,
+      "input": "synthetic-2h/7200s/w1000",
+      "side": "new",
+      "wall_ns": 63417,
+      "cpu_ns": 64000
+    },
+    {
+      "order": 246,
+      "input": "synthetic-2h/7200s/w1000",
+      "side": "new",
+      "wall_ns": 59042,
+      "cpu_ns": 60000
+    },
+    {
+      "order": 247,
+      "input": "synthetic-2h/7200s/w1000",
+      "side": "old",
+      "wall_ns": 2475750,
+      "cpu_ns": 2476000
+    },
+    {
+      "order": 248,
+      "input": "synthetic-2h/1s/w1000",
+      "side": "old",
+      "wall_ns": 33667,
+      "cpu_ns": 34000
+    },
+    {
+      "order": 249,
+      "input": "synthetic-2h/1s/w1000",
+      "side": "new",
+      "wall_ns": 40459,
+      "cpu_ns": 41000
+    },
+    {
+      "order": 250,
+      "input": "synthetic-2h/1s/w1000",
+      "side": "new",
+      "wall_ns": 39875,
+      "cpu_ns": 40000
+    },
+    {
+      "order": 251,
+      "input": "synthetic-2h/1s/w1000",
+      "side": "old",
+      "wall_ns": 32959,
+      "cpu_ns": 33000
+    },
+    {
+      "order": 252,
+      "input": "synthetic-2h/1800s/w1000",
+      "side": "old",
+      "wall_ns": 653042,
+      "cpu_ns": 654000
+    },
+    {
+      "order": 253,
+      "input": "synthetic-2h/1800s/w1000",
+      "side": "new",
+      "wall_ns": 62791,
+      "cpu_ns": 62000
+    },
+    {
+      "order": 254,
+      "input": "synthetic-2h/1800s/w1000",
+      "side": "new",
+      "wall_ns": 59125,
+      "cpu_ns": 59000
+    },
+    {
+      "order": 255,
+      "input": "synthetic-2h/1800s/w1000",
+      "side": "old",
+      "wall_ns": 653167,
+      "cpu_ns": 652000
+    },
+    {
+      "order": 256,
+      "input": "synthetic-2h/300s/w1000",
+      "side": "old",
+      "wall_ns": 134334,
+      "cpu_ns": 134000
+    },
+    {
+      "order": 257,
+      "input": "synthetic-2h/300s/w1000",
+      "side": "new",
+      "wall_ns": 50208,
+      "cpu_ns": 51000
+    },
+    {
+      "order": 258,
+      "input": "synthetic-2h/300s/w1000",
+      "side": "new",
+      "wall_ns": 48000,
+      "cpu_ns": 49000
+    },
+    {
+      "order": 259,
+      "input": "synthetic-2h/300s/w1000",
+      "side": "old",
+      "wall_ns": 134542,
+      "cpu_ns": 134000
+    },
+    {
+      "order": 260,
+      "input": "synthetic-2h/7200s/w1000",
+      "side": "new",
+      "wall_ns": 60709,
+      "cpu_ns": 61000
+    },
+    {
+      "order": 261,
+      "input": "synthetic-2h/7200s/w1000",
+      "side": "old",
+      "wall_ns": 2478250,
+      "cpu_ns": 2478000
+    },
+    {
+      "order": 262,
+      "input": "synthetic-2h/7200s/w1000",
+      "side": "old",
+      "wall_ns": 2491625,
+      "cpu_ns": 2492000
+    },
+    {
+      "order": 263,
+      "input": "synthetic-2h/7200s/w1000",
+      "side": "new",
+      "wall_ns": 58917,
+      "cpu_ns": 58000
+    },
+    {
+      "order": 264,
+      "input": "synthetic-2h/300s/w1000",
+      "side": "old",
+      "wall_ns": 174959,
+      "cpu_ns": 157000
+    },
+    {
+      "order": 265,
+      "input": "synthetic-2h/300s/w1000",
+      "side": "new",
+      "wall_ns": 53084,
+      "cpu_ns": 53000
+    },
+    {
+      "order": 266,
+      "input": "synthetic-2h/300s/w1000",
+      "side": "new",
+      "wall_ns": 60834,
+      "cpu_ns": 57000
+    },
+    {
+      "order": 267,
+      "input": "synthetic-2h/300s/w1000",
+      "side": "old",
+      "wall_ns": 168833,
+      "cpu_ns": 156000
+    },
+    {
+      "order": 268,
+      "input": "synthetic-2h/1s/w1000",
+      "side": "new",
+      "wall_ns": 56000,
+      "cpu_ns": 51000
+    },
+    {
+      "order": 269,
+      "input": "synthetic-2h/1s/w1000",
+      "side": "old",
+      "wall_ns": 35708,
+      "cpu_ns": 36000
+    },
+    {
+      "order": 270,
+      "input": "synthetic-2h/1s/w1000",
+      "side": "old",
+      "wall_ns": 35083,
+      "cpu_ns": 35000
+    },
+    {
+      "order": 271,
+      "input": "synthetic-2h/1s/w1000",
+      "side": "new",
+      "wall_ns": 52667,
+      "cpu_ns": 48000
+    },
+    {
+      "order": 272,
+      "input": "synthetic-2h/1s/w1000",
+      "side": "new",
+      "wall_ns": 49208,
+      "cpu_ns": 47000
+    },
+    {
+      "order": 273,
+      "input": "synthetic-2h/1s/w1000",
+      "side": "old",
+      "wall_ns": 66334,
+      "cpu_ns": 48000
+    },
+    {
+      "order": 274,
+      "input": "synthetic-2h/1s/w1000",
+      "side": "old",
+      "wall_ns": 36500,
+      "cpu_ns": 37000
+    },
+    {
+      "order": 275,
+      "input": "synthetic-2h/1s/w1000",
+      "side": "new",
+      "wall_ns": 40000,
+      "cpu_ns": 41000
+    },
+    {
+      "order": 276,
+      "input": "synthetic-2h/1800s/w1000",
+      "side": "new",
+      "wall_ns": 79917,
+      "cpu_ns": 73000
+    },
+    {
+      "order": 277,
+      "input": "synthetic-2h/1800s/w1000",
+      "side": "old",
+      "wall_ns": 668542,
+      "cpu_ns": 660000
+    },
+    {
+      "order": 278,
+      "input": "synthetic-2h/1800s/w1000",
+      "side": "old",
+      "wall_ns": 660250,
+      "cpu_ns": 660000
+    },
+    {
+      "order": 279,
+      "input": "synthetic-2h/1800s/w1000",
+      "side": "new",
+      "wall_ns": 63000,
+      "cpu_ns": 63000
+    },
+    {
+      "order": 280,
+      "input": "synthetic-2h/7200s/w1000",
+      "side": "old",
+      "wall_ns": 2478542,
+      "cpu_ns": 2478000
+    },
+    {
+      "order": 281,
+      "input": "synthetic-2h/7200s/w1000",
+      "side": "new",
+      "wall_ns": 67917,
+      "cpu_ns": 68000
+    },
+    {
+      "order": 282,
+      "input": "synthetic-2h/7200s/w1000",
+      "side": "new",
+      "wall_ns": 59541,
+      "cpu_ns": 60000
+    },
+    {
+      "order": 283,
+      "input": "synthetic-2h/7200s/w1000",
+      "side": "old",
+      "wall_ns": 2482083,
+      "cpu_ns": 2483000
+    },
+    {
+      "order": 284,
+      "input": "synthetic-2h/30s/w1000",
+      "side": "new",
+      "wall_ns": 42667,
+      "cpu_ns": 43000
+    },
+    {
+      "order": 285,
+      "input": "synthetic-2h/30s/w1000",
+      "side": "old",
+      "wall_ns": 46459,
+      "cpu_ns": 46000
+    },
+    {
+      "order": 286,
+      "input": "synthetic-2h/30s/w1000",
+      "side": "old",
+      "wall_ns": 45292,
+      "cpu_ns": 45000
+    },
+    {
+      "order": 287,
+      "input": "synthetic-2h/30s/w1000",
+      "side": "new",
+      "wall_ns": 41750,
+      "cpu_ns": 42000
+    },
+    {
+      "order": 288,
+      "input": "synthetic-2h/30s/w1000",
+      "side": "old",
+      "wall_ns": 45292,
+      "cpu_ns": 45000
+    },
+    {
+      "order": 289,
+      "input": "synthetic-2h/30s/w1000",
+      "side": "new",
+      "wall_ns": 41708,
+      "cpu_ns": 43000
+    },
+    {
+      "order": 290,
+      "input": "synthetic-2h/30s/w1000",
+      "side": "new",
+      "wall_ns": 41584,
+      "cpu_ns": 42000
+    },
+    {
+      "order": 291,
+      "input": "synthetic-2h/30s/w1000",
+      "side": "old",
+      "wall_ns": 45167,
+      "cpu_ns": 45000
+    },
+    {
+      "order": 292,
+      "input": "synthetic-2h/1800s/w1000",
+      "side": "old",
+      "wall_ns": 648917,
+      "cpu_ns": 650000
+    },
+    {
+      "order": 293,
+      "input": "synthetic-2h/1800s/w1000",
+      "side": "new",
+      "wall_ns": 62000,
+      "cpu_ns": 63000
+    },
+    {
+      "order": 294,
+      "input": "synthetic-2h/1800s/w1000",
+      "side": "new",
+      "wall_ns": 58750,
+      "cpu_ns": 59000
+    },
+    {
+      "order": 295,
+      "input": "synthetic-2h/1800s/w1000",
+      "side": "old",
+      "wall_ns": 658875,
+      "cpu_ns": 659000
+    },
+    {
+      "order": 296,
+      "input": "synthetic-2h/1800s/w1000",
+      "side": "new",
+      "wall_ns": 58541,
+      "cpu_ns": 59000
+    },
+    {
+      "order": 297,
+      "input": "synthetic-2h/1800s/w1000",
+      "side": "old",
+      "wall_ns": 658625,
+      "cpu_ns": 656000
+    },
+    {
+      "order": 298,
+      "input": "synthetic-2h/1800s/w1000",
+      "side": "old",
+      "wall_ns": 720500,
+      "cpu_ns": 691000
+    },
+    {
+      "order": 299,
+      "input": "synthetic-2h/1800s/w1000",
+      "side": "new",
+      "wall_ns": 62667,
+      "cpu_ns": 63000
+    },
+    {
+      "order": 300,
+      "input": "synthetic-2h/30s/w1000",
+      "side": "new",
+      "wall_ns": 42500,
+      "cpu_ns": 43000
+    },
+    {
+      "order": 301,
+      "input": "synthetic-2h/30s/w1000",
+      "side": "old",
+      "wall_ns": 46375,
+      "cpu_ns": 47000
+    },
+    {
+      "order": 302,
+      "input": "synthetic-2h/30s/w1000",
+      "side": "old",
+      "wall_ns": 46125,
+      "cpu_ns": 46000
+    },
+    {
+      "order": 303,
+      "input": "synthetic-2h/30s/w1000",
+      "side": "new",
+      "wall_ns": 42334,
+      "cpu_ns": 42000
+    },
+    {
+      "order": 304,
+      "input": "synthetic-2h/1s/w1000",
+      "side": "old",
+      "wall_ns": 36250,
+      "cpu_ns": 38000
+    },
+    {
+      "order": 305,
+      "input": "synthetic-2h/1s/w1000",
+      "side": "new",
+      "wall_ns": 40709,
+      "cpu_ns": 40000
+    },
+    {
+      "order": 306,
+      "input": "synthetic-2h/1s/w1000",
+      "side": "new",
+      "wall_ns": 39584,
+      "cpu_ns": 39000
+    },
+    {
+      "order": 307,
+      "input": "synthetic-2h/1s/w1000",
+      "side": "old",
+      "wall_ns": 33667,
+      "cpu_ns": 34000
+    },
+    {
+      "order": 308,
+      "input": "synthetic-2h/30s/w1000",
+      "side": "old",
+      "wall_ns": 46708,
+      "cpu_ns": 47000
+    },
+    {
+      "order": 309,
+      "input": "synthetic-2h/30s/w1000",
+      "side": "new",
+      "wall_ns": 42916,
+      "cpu_ns": 44000
+    },
+    {
+      "order": 310,
+      "input": "synthetic-2h/30s/w1000",
+      "side": "new",
+      "wall_ns": 41375,
+      "cpu_ns": 41000
+    },
+    {
+      "order": 311,
+      "input": "synthetic-2h/30s/w1000",
+      "side": "old",
+      "wall_ns": 46125,
+      "cpu_ns": 46000
+    },
+    {
+      "order": 312,
+      "input": "synthetic-2h/1s/w1000",
+      "side": "old",
+      "wall_ns": 34291,
+      "cpu_ns": 36000
+    },
+    {
+      "order": 313,
+      "input": "synthetic-2h/1s/w1000",
+      "side": "new",
+      "wall_ns": 40792,
+      "cpu_ns": 41000
+    },
+    {
+      "order": 314,
+      "input": "synthetic-2h/1s/w1000",
+      "side": "new",
+      "wall_ns": 40000,
+      "cpu_ns": 40000
+    },
+    {
+      "order": 315,
+      "input": "synthetic-2h/1s/w1000",
+      "side": "old",
+      "wall_ns": 32875,
+      "cpu_ns": 33000
+    },
+    {
+      "order": 316,
+      "input": "synthetic-2h/1s/w1000",
+      "side": "new",
+      "wall_ns": 39375,
+      "cpu_ns": 40000
+    },
+    {
+      "order": 317,
+      "input": "synthetic-2h/1s/w1000",
+      "side": "old",
+      "wall_ns": 32792,
+      "cpu_ns": 33000
+    },
+    {
+      "order": 318,
+      "input": "synthetic-2h/1s/w1000",
+      "side": "old",
+      "wall_ns": 32792,
+      "cpu_ns": 33000
+    },
+    {
+      "order": 319,
+      "input": "synthetic-2h/1s/w1000",
+      "side": "new",
+      "wall_ns": 39167,
+      "cpu_ns": 39000
+    },
+    {
+      "order": 320,
+      "input": "synthetic-2h/300s/w1000",
+      "side": "new",
+      "wall_ns": 51334,
+      "cpu_ns": 51000
+    },
+    {
+      "order": 321,
+      "input": "synthetic-2h/300s/w1000",
+      "side": "old",
+      "wall_ns": 134458,
+      "cpu_ns": 135000
+    },
+    {
+      "order": 322,
+      "input": "synthetic-2h/300s/w1000",
+      "side": "old",
+      "wall_ns": 134375,
+      "cpu_ns": 135000
+    },
+    {
+      "order": 323,
+      "input": "synthetic-2h/300s/w1000",
+      "side": "new",
+      "wall_ns": 49250,
+      "cpu_ns": 50000
+    },
+    {
+      "order": 324,
+      "input": "synthetic-2h/1s/w1000",
+      "side": "old",
+      "wall_ns": 32709,
+      "cpu_ns": 33000
+    },
+    {
+      "order": 325,
+      "input": "synthetic-2h/1s/w1000",
+      "side": "new",
+      "wall_ns": 40292,
+      "cpu_ns": 40000
+    },
+    {
+      "order": 326,
+      "input": "synthetic-2h/1s/w1000",
+      "side": "new",
+      "wall_ns": 39958,
+      "cpu_ns": 40000
+    },
+    {
+      "order": 327,
+      "input": "synthetic-2h/1s/w1000",
+      "side": "old",
+      "wall_ns": 32667,
+      "cpu_ns": 32000
+    },
+    {
+      "order": 328,
+      "input": "synthetic-2h/300s/w1000",
+      "side": "old",
+      "wall_ns": 134584,
+      "cpu_ns": 134000
+    },
+    {
+      "order": 329,
+      "input": "synthetic-2h/300s/w1000",
+      "side": "new",
+      "wall_ns": 49042,
+      "cpu_ns": 50000
+    },
+    {
+      "order": 330,
+      "input": "synthetic-2h/300s/w1000",
+      "side": "new",
+      "wall_ns": 48875,
+      "cpu_ns": 49000
+    },
+    {
+      "order": 331,
+      "input": "synthetic-2h/300s/w1000",
+      "side": "old",
+      "wall_ns": 134459,
+      "cpu_ns": 135000
+    },
+    {
+      "order": 332,
+      "input": "synthetic-2h/30s/w1000",
+      "side": "old",
+      "wall_ns": 46291,
+      "cpu_ns": 47000
+    },
+    {
+      "order": 333,
+      "input": "synthetic-2h/30s/w1000",
+      "side": "new",
+      "wall_ns": 42792,
+      "cpu_ns": 43000
+    },
+    {
+      "order": 334,
+      "input": "synthetic-2h/30s/w1000",
+      "side": "new",
+      "wall_ns": 41917,
+      "cpu_ns": 42000
+    },
+    {
+      "order": 335,
+      "input": "synthetic-2h/30s/w1000",
+      "side": "old",
+      "wall_ns": 45792,
+      "cpu_ns": 46000
+    },
+    {
+      "order": 336,
+      "input": "synthetic-2h/1s/w1000",
+      "side": "new",
+      "wall_ns": 40208,
+      "cpu_ns": 40000
+    },
+    {
+      "order": 337,
+      "input": "synthetic-2h/1s/w1000",
+      "side": "old",
+      "wall_ns": 33584,
+      "cpu_ns": 34000
+    },
+    {
+      "order": 338,
+      "input": "synthetic-2h/1s/w1000",
+      "side": "old",
+      "wall_ns": 32792,
+      "cpu_ns": 33000
+    },
+    {
+      "order": 339,
+      "input": "synthetic-2h/1s/w1000",
+      "side": "new",
+      "wall_ns": 39459,
+      "cpu_ns": 40000
+    },
+    {
+      "order": 340,
+      "input": "synthetic-2h/30s/w1000",
+      "side": "new",
+      "wall_ns": 42541,
+      "cpu_ns": 43000
+    },
+    {
+      "order": 341,
+      "input": "synthetic-2h/30s/w1000",
+      "side": "old",
+      "wall_ns": 46375,
+      "cpu_ns": 46000
+    },
+    {
+      "order": 342,
+      "input": "synthetic-2h/30s/w1000",
+      "side": "old",
+      "wall_ns": 45459,
+      "cpu_ns": 45000
+    },
+    {
+      "order": 343,
+      "input": "synthetic-2h/30s/w1000",
+      "side": "new",
+      "wall_ns": 41750,
+      "cpu_ns": 42000
+    },
+    {
+      "order": 344,
+      "input": "synthetic-2h/30s/w1000",
+      "side": "new",
+      "wall_ns": 41541,
+      "cpu_ns": 42000
+    },
+    {
+      "order": 345,
+      "input": "synthetic-2h/30s/w1000",
+      "side": "old",
+      "wall_ns": 45375,
+      "cpu_ns": 45000
+    },
+    {
+      "order": 346,
+      "input": "synthetic-2h/30s/w1000",
+      "side": "old",
+      "wall_ns": 45250,
+      "cpu_ns": 46000
+    },
+    {
+      "order": 347,
+      "input": "synthetic-2h/30s/w1000",
+      "side": "new",
+      "wall_ns": 41417,
+      "cpu_ns": 41000
+    },
+    {
+      "order": 348,
+      "input": "synthetic-2h/300s/w1000",
+      "side": "old",
+      "wall_ns": 134875,
+      "cpu_ns": 134000
+    },
+    {
+      "order": 349,
+      "input": "synthetic-2h/300s/w1000",
+      "side": "new",
+      "wall_ns": 49166,
+      "cpu_ns": 49000
+    },
+    {
+      "order": 350,
+      "input": "synthetic-2h/300s/w1000",
+      "side": "new",
+      "wall_ns": 48416,
+      "cpu_ns": 49000
+    },
+    {
+      "order": 351,
+      "input": "synthetic-2h/300s/w1000",
+      "side": "old",
+      "wall_ns": 134542,
+      "cpu_ns": 135000
+    },
+    {
+      "order": 352,
+      "input": "synthetic-2h/30s/w1000",
+      "side": "old",
+      "wall_ns": 45625,
+      "cpu_ns": 46000
+    },
+    {
+      "order": 353,
+      "input": "synthetic-2h/30s/w1000",
+      "side": "new",
+      "wall_ns": 42125,
+      "cpu_ns": 42000
+    },
+    {
+      "order": 354,
+      "input": "synthetic-2h/30s/w1000",
+      "side": "new",
+      "wall_ns": 41666,
+      "cpu_ns": 41000
+    },
+    {
+      "order": 355,
+      "input": "synthetic-2h/30s/w1000",
+      "side": "old",
+      "wall_ns": 45166,
+      "cpu_ns": 47000
+    },
+    {
+      "order": 356,
+      "input": "synthetic-2h/1800s/w1000",
+      "side": "old",
+      "wall_ns": 648708,
+      "cpu_ns": 648000
+    },
+    {
+      "order": 357,
+      "input": "synthetic-2h/1800s/w1000",
+      "side": "new",
+      "wall_ns": 61916,
+      "cpu_ns": 62000
+    },
+    {
+      "order": 358,
+      "input": "synthetic-2h/1800s/w1000",
+      "side": "new",
+      "wall_ns": 59500,
+      "cpu_ns": 60000
+    },
+    {
+      "order": 359,
+      "input": "synthetic-2h/1800s/w1000",
+      "side": "old",
+      "wall_ns": 648416,
+      "cpu_ns": 649000
+    },
+    {
+      "order": 360,
+      "input": "synthetic-2h/300s/w1000",
+      "side": "old",
+      "wall_ns": 145792,
+      "cpu_ns": 143000
+    },
+    {
+      "order": 361,
+      "input": "synthetic-2h/300s/w1000",
+      "side": "new",
+      "wall_ns": 50333,
+      "cpu_ns": 51000
+    },
+    {
+      "order": 362,
+      "input": "synthetic-2h/300s/w1000",
+      "side": "new",
+      "wall_ns": 49417,
+      "cpu_ns": 50000
+    },
+    {
+      "order": 363,
+      "input": "synthetic-2h/300s/w1000",
+      "side": "old",
+      "wall_ns": 134667,
+      "cpu_ns": 135000
+    },
+    {
+      "order": 364,
+      "input": "synthetic-2h/30s/w1000",
+      "side": "new",
+      "wall_ns": 42333,
+      "cpu_ns": 42000
+    },
+    {
+      "order": 365,
+      "input": "synthetic-2h/30s/w1000",
+      "side": "old",
+      "wall_ns": 45833,
+      "cpu_ns": 45000
+    },
+    {
+      "order": 366,
+      "input": "synthetic-2h/30s/w1000",
+      "side": "old",
+      "wall_ns": 45292,
+      "cpu_ns": 47000
+    },
+    {
+      "order": 367,
+      "input": "synthetic-2h/30s/w1000",
+      "side": "new",
+      "wall_ns": 42209,
+      "cpu_ns": 42000
+    },
+    {
+      "order": 368,
+      "input": "synthetic-2h/30s/w1000",
+      "side": "old",
+      "wall_ns": 45167,
+      "cpu_ns": 45000
+    },
+    {
+      "order": 369,
+      "input": "synthetic-2h/30s/w1000",
+      "side": "new",
+      "wall_ns": 42125,
+      "cpu_ns": 43000
+    },
+    {
+      "order": 370,
+      "input": "synthetic-2h/30s/w1000",
+      "side": "new",
+      "wall_ns": 43667,
+      "cpu_ns": 44000
+    },
+    {
+      "order": 371,
+      "input": "synthetic-2h/30s/w1000",
+      "side": "old",
+      "wall_ns": 46084,
+      "cpu_ns": 46000
+    },
+    {
+      "order": 372,
+      "input": "synthetic-2h/1800s/w1000",
+      "side": "new",
+      "wall_ns": 61166,
+      "cpu_ns": 62000
+    },
+    {
+      "order": 373,
+      "input": "synthetic-2h/1800s/w1000",
+      "side": "old",
+      "wall_ns": 654375,
+      "cpu_ns": 655000
+    },
+    {
+      "order": 374,
+      "input": "synthetic-2h/1800s/w1000",
+      "side": "old",
+      "wall_ns": 661375,
+      "cpu_ns": 661000
+    },
+    {
+      "order": 375,
+      "input": "synthetic-2h/1800s/w1000",
+      "side": "new",
+      "wall_ns": 59958,
+      "cpu_ns": 60000
+    },
+    {
+      "order": 376,
+      "input": "synthetic-2h/1800s/w1000",
+      "side": "old",
+      "wall_ns": 650875,
+      "cpu_ns": 650000
+    },
+    {
+      "order": 377,
+      "input": "synthetic-2h/1800s/w1000",
+      "side": "new",
+      "wall_ns": 59542,
+      "cpu_ns": 59000
+    },
+    {
+      "order": 378,
+      "input": "synthetic-2h/1800s/w1000",
+      "side": "new",
+      "wall_ns": 59334,
+      "cpu_ns": 60000
+    },
+    {
+      "order": 379,
+      "input": "synthetic-2h/1800s/w1000",
+      "side": "old",
+      "wall_ns": 657458,
+      "cpu_ns": 658000
+    },
+    {
+      "order": 380,
+      "input": "synthetic-2h/7200s/w1000",
+      "side": "new",
+      "wall_ns": 66459,
+      "cpu_ns": 66000
+    },
+    {
+      "order": 381,
+      "input": "synthetic-2h/7200s/w1000",
+      "side": "old",
+      "wall_ns": 2692375,
+      "cpu_ns": 2611000
+    },
+    {
+      "order": 382,
+      "input": "synthetic-2h/7200s/w1000",
+      "side": "old",
+      "wall_ns": 2514416,
+      "cpu_ns": 2516000
+    },
+    {
+      "order": 383,
+      "input": "synthetic-2h/7200s/w1000",
+      "side": "new",
+      "wall_ns": 80667,
+      "cpu_ns": 80000
+    },
+    {
+      "order": 384,
+      "input": "synthetic-2h/1s/w1000",
+      "side": "new",
+      "wall_ns": 39542,
+      "cpu_ns": 39000
+    },
+    {
+      "order": 385,
+      "input": "synthetic-2h/1s/w1000",
+      "side": "old",
+      "wall_ns": 33583,
+      "cpu_ns": 34000
+    },
+    {
+      "order": 386,
+      "input": "synthetic-2h/1s/w1000",
+      "side": "old",
+      "wall_ns": 33542,
+      "cpu_ns": 34000
+    },
+    {
+      "order": 387,
+      "input": "synthetic-2h/1s/w1000",
+      "side": "new",
+      "wall_ns": 39083,
+      "cpu_ns": 39000
+    },
+    {
+      "order": 388,
+      "input": "synthetic-2h/300s/w1000",
+      "side": "new",
+      "wall_ns": 53958,
+      "cpu_ns": 54000
+    },
+    {
+      "order": 389,
+      "input": "synthetic-2h/300s/w1000",
+      "side": "old",
+      "wall_ns": 134334,
+      "cpu_ns": 134000
+    },
+    {
+      "order": 390,
+      "input": "synthetic-2h/300s/w1000",
+      "side": "old",
+      "wall_ns": 134333,
+      "cpu_ns": 135000
+    },
+    {
+      "order": 391,
+      "input": "synthetic-2h/300s/w1000",
+      "side": "new",
+      "wall_ns": 48875,
+      "cpu_ns": 49000
+    },
+    {
+      "order": 392,
+      "input": "synthetic-2h/1800s/w1000",
+      "side": "new",
+      "wall_ns": 71417,
+      "cpu_ns": 71000
+    },
+    {
+      "order": 393,
+      "input": "synthetic-2h/1800s/w1000",
+      "side": "old",
+      "wall_ns": 648333,
+      "cpu_ns": 649000
+    },
+    {
+      "order": 394,
+      "input": "synthetic-2h/1800s/w1000",
+      "side": "old",
+      "wall_ns": 661083,
+      "cpu_ns": 654000
+    },
+    {
+      "order": 395,
+      "input": "synthetic-2h/1800s/w1000",
+      "side": "new",
+      "wall_ns": 64000,
+      "cpu_ns": 65000
+    },
+    {
+      "order": 396,
+      "input": "synthetic-2h/30s/w1000",
+      "side": "old",
+      "wall_ns": 45917,
+      "cpu_ns": 46000
+    },
+    {
+      "order": 397,
+      "input": "synthetic-2h/30s/w1000",
+      "side": "new",
+      "wall_ns": 43958,
+      "cpu_ns": 44000
+    },
+    {
+      "order": 398,
+      "input": "synthetic-2h/30s/w1000",
+      "side": "new",
+      "wall_ns": 43500,
+      "cpu_ns": 44000
+    },
+    {
+      "order": 399,
+      "input": "synthetic-2h/30s/w1000",
+      "side": "old",
+      "wall_ns": 45875,
+      "cpu_ns": 47000
+    }
+  ]
+}
