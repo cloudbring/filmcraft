@@ -1100,6 +1100,11 @@ dependencies = [
 ]
 
 [[package]]
+name = "craft-resample"
+version = "0.1.0"
+source = "git+https://github.com/cloudbring/craft-libs?rev=b0574cf739e3dcf86c9cc157db9d759071e41c34#b0574cf739e3dcf86c9cc157db9d759071e41c34"
+
+[[package]]
 name = "craft-ui"
 version = "0.1.0"
 source = "git+https://github.com/storytold/craft-libs?rev=c5a1cbfb5f9049f9270955caffb5bee5997aebf7#c5a1cbfb5f9049f9270955caffb5bee5997aebf7"
@@ -1896,6 +1901,7 @@ dependencies = [
 name = "filmcraft-audio-dsp"
 version = "0.17.0"
 dependencies = [
+ "craft-resample",
  "filmcraft-testkit",
 ]
 

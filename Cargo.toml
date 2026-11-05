@@ -75,6 +75,8 @@ proptest = "1"
 roxmltree = "0.21"
 craft-docpath = { version = "0.1.0", git = "https://github.com/storytold/craft-libs", rev = "c5a1cbfb5f9049f9270955caffb5bee5997aebf7" }
 craft-media = { version = "0.1.0", git = "https://github.com/storytold/craft-libs", rev = "c5a1cbfb5f9049f9270955caffb5bee5997aebf7", default-features = false }
+# Proved polyphase rational resampler (Lean: polyphase = filter then decimate); b0574cf adds process_from_into (algo/224-resample-api).
+craft-resample = { version = "0.1.0", git = "https://github.com/cloudbring/craft-libs", rev = "b0574cf739e3dcf86c9cc157db9d759071e41c34" }
 
 # ui
 # Shared frontend components; keep this dependency above the engine boundary.

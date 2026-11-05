@@ -9,8 +9,10 @@ rust-version.workspace = true
 [lints]
 workspace = true
 
-# Intentionally dependency-free (layer L1): planar `&mut [f32]` slices in, planar slices out.
+# Layer L1: planar `&mut [f32]` slices in, planar slices out. Its one dependency, craft-resample, is
+# itself dependency-free and wasm-clean.
 [dependencies]
+craft-resample = { workspace = true }
 
 [dev-dependencies]
 filmcraft-testkit = { workspace = true }

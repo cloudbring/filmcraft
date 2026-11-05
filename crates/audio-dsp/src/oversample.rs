@@ -1,9 +1,12 @@
 //! Polyphase FIR interpolator used for true-peak estimation (BS.1770-4 Annex 2 style).
 //!
 //! The prototype is a Kaiser-windowed sinc low-pass (cut-off at the original Nyquist) split into
-//! `factor` phases of [`TAPS_PER_PHASE`] taps; each phase is normalised to unity DC gain.
+//! `factor` phases of [`TAPS_PER_PHASE`] taps; each phase is normalised to unity DC gain. The
+//! filter bank and its arithmetic are `craft-resample`'s, whose Lean proof shows the polyphase form
+//! equals zero-stuff, filter, keep every sample: `PolyphaseBank` is `craft_resample::Polyphase`
+//! with `kaiser_prototype(factor, 1, TAPS_PER_PHASE, 8.0)`.
 
-use std::f64::consts::PI;
+use craft_resample::{Polyphase, kaiser_prototype};
 
 /// Taps per polyphase branch.
 pub const TAPS_PER_PHASE: usize = 16;
@@ -20,53 +23,39 @@ pub fn true_peak_factor(sample_rate: f64) -> usize {
     }
 }
 
-fn bessel_i0(x: f64) -> f64 {
-    let mut sum = 1.0;
-    let mut term = 1.0;
-    let q = x * x / 4.0;
-    for k in 1..50 {
-        term *= q / (k * k) as f64;
-        sum += term;
-        if term < sum * 1e-17 {
-            break;
-        }
-    }
-    sum
-}
+/// Largest oversampling factor a [`PolyphaseBank`] accepts (the true-peak factors are 1, 2 and 4).
+pub const MAX_FACTOR: usize = 8;
+
+/// Kaiser beta of the interpolation prototype.
+const BETA: f64 = 8.0;
 
 /// Polyphase coefficient bank shared by all channels.
 #[derive(Clone, Debug)]
 pub struct PolyphaseBank {
     factor: usize,
-    /// `coeffs[p * TAPS_PER_PHASE + j]` multiplies `x[n - j]` for output phase `p`.
-    coeffs: Vec<f32>,
+    /// `phase(p)[q]` multiplies `x[n - q]` for output phase `p`; `None` only if the design were
+    /// rejected, which the fixed parameters below cannot do (then outputs are the input itself).
+    poly: Option<Polyphase<f32>>,
 }
 
 impl PolyphaseBank {
+    /// Interpolator by `factor` (clamped to `1..=`[`MAX_FACTOR`]).
     pub fn new(factor: usize) -> Self {
-        let factor = factor.max(1);
-        let len = factor * TAPS_PER_PHASE;
-        let centre = (len - 1) as f64 / 2.0;
-        let beta = 8.0;
-        let i0b = bessel_i0(beta);
-        let proto: Vec<f64> = (0..len)
-            .map(|m| {
-                let t = (m as f64 - centre) / factor as f64;
-                let sinc = if t.abs() < 1e-12 { 1.0 } else { (PI * t).sin() / (PI * t) };
-                let r = (m as f64 - centre) / (centre + 1.0);
-                let w = bessel_i0(beta * (1.0 - r * r).max(0.0).sqrt()) / i0b;
-                sinc * w
-            })
-            .collect();
-        let mut coeffs = vec![0.0f32; len];
-        for p in 0..factor {
-            let sum: f64 = (0..TAPS_PER_PHASE).map(|j| proto[p + factor * j]).sum();
-            for j in 0..TAPS_PER_PHASE {
-                coeffs[p * TAPS_PER_PHASE + j] = (proto[p + factor * j] / sum) as f32;
-            }
-        }
-        PolyphaseBank { factor, coeffs }
+        let factor = factor.clamp(1, MAX_FACTOR);
+        let proto = kaiser_prototype(factor, 1, TAPS_PER_PHASE, BETA).unwrap_or_default();
+        Self::from_prototype(&proto, factor)
     }
+
+    /// A bank from any prototype of at most `factor * TAPS_PER_PHASE` taps (shorter ones are
+    /// zero-padded).
+    fn from_prototype(h: &[f64], factor: usize) -> Self {
+        let mut padded = vec![0.0f32; factor * TAPS_PER_PHASE];
+        for (d, &c) in padded.iter_mut().zip(h) {
+            *d = c as f32;
+        }
+        Self { factor, poly: Polyphase::from_prototype(&padded, factor, 1).ok() }
+    }
+
     pub fn factor(&self) -> usize {
         self.factor
     }
@@ -96,6 +85,29 @@ impl Interpolator {
         *self = Self::default();
     }
 
+    /// Push one input sample; writes the `factor` interpolated output samples produced for it to
+    /// `out[..factor]` (`out` must hold at least `factor`; fewer are written otherwise).
+    #[inline]
+    pub fn push_phases(&mut self, bank: &PolyphaseBank, x: f32, out: &mut [f32]) {
+        let count = bank.factor.min(out.len());
+        let Some(out) = out.get_mut(..count) else { return };
+        // Oldest sample first, so window[TAPS-1-q] = x[n - q].
+        if let Some(slot) = self.hist.get_mut(self.pos) {
+            *slot = x;
+        }
+        if let Some(slot) = self.hist.get_mut(self.pos + TAPS_PER_PHASE) {
+            *slot = x;
+        }
+        self.pos = (self.pos + 1) % TAPS_PER_PHASE;
+        let window = self.hist.get(self.pos..self.pos + TAPS_PER_PHASE).unwrap_or_default();
+        match &bank.poly {
+            // The window ends at input index TAPS-1; output p of that input is upsampled index
+            // (TAPS-1) * factor + p.
+            Some(poly) => poly.process_from_into(window, ((TAPS_PER_PHASE - 1) * bank.factor) as u128, out),
+            None => out.fill(x),
+        }
+    }
+
     /// Push one input sample; returns the maximum absolute value of the `factor` interpolated
     /// output samples produced for it.
     #[inline]
@@ -103,30 +115,10 @@ impl Interpolator {
         if bank.factor == 1 {
             return x.abs();
         }
-        // Newest sample at window[TAPS-1-0]... store so that window[j] = x[n - j].
-        self.pos = if self.pos == 0 { TAPS_PER_PHASE - 1 } else { self.pos - 1 };
-        self.hist[self.pos] = x;
-        self.hist[self.pos + TAPS_PER_PHASE] = x;
-        let win = &self.hist[self.pos..self.pos + TAPS_PER_PHASE];
-        let mut peak = 0.0f32;
-        for c in bank.coeffs.as_chunks::<TAPS_PER_PHASE>().0 {
-            peak = peak.max(dot(c, win).abs());
-        }
-        peak
+        let mut out = [0.0f32; MAX_FACTOR];
+        self.push_phases(bank, x, &mut out);
+        out.iter().fold(0.0f32, |peak, y| peak.max(y.abs()))
     }
-}
-
-/// Dot product of one phase with the window. Eight partial sums (instead of one sequential sum)
-/// let the compiler vectorise it; the result differs from the sequential sum only by rounding.
-#[inline(always)]
-fn dot(c: &[f32; TAPS_PER_PHASE], win: &[f32]) -> f32 {
-    let mut acc = [0.0f32; 8];
-    for (cc, ww) in c.as_chunks::<8>().0.iter().zip(win.as_chunks::<8>().0) {
-        for ((a, &ci), &wi) in acc.iter_mut().zip(cc).zip(ww) {
-            *a += ci * wi;
-        }
-    }
-    (acc[0] + acc[4]) + (acc[1] + acc[5]) + (acc[2] + acc[6]) + (acc[3] + acc[7])
 }
 
 #[cfg(test)]
@@ -136,8 +128,9 @@ mod tests {
     #[test]
     fn phases_have_unity_dc_and_interpolate_sines() {
         let bank = PolyphaseBank::new(4);
+        let poly = bank.poly.as_ref().expect("bank");
         for p in 0..4 {
-            let s: f32 = bank.coeffs[p * TAPS_PER_PHASE..(p + 1) * TAPS_PER_PHASE].iter().sum();
+            let s: f32 = poly.phase(p).expect("phase").iter().sum();
             assert!((s - 1.0).abs() < 1e-5);
         }
         // Sine at fs/4 with 45° phase: samples at ±0.707, true peak 1.0.
@@ -153,48 +146,74 @@ mod tests {
         assert!((peak - 1.0).abs() < 0.02, "peak {peak}");
     }
 
-    /// The previous sequential-sum interpolator.
-    fn push_peak_reference(ip: &mut Interpolator, bank: &PolyphaseBank, x: f32) -> f32 {
-        ip.pos = if ip.pos == 0 { TAPS_PER_PHASE - 1 } else { ip.pos - 1 };
-        ip.hist[ip.pos] = x;
-        ip.hist[ip.pos + TAPS_PER_PHASE] = x;
-        let win = &ip.hist[ip.pos..ip.pos + TAPS_PER_PHASE];
-        let mut peak = 0.0f32;
-        for p in 0..bank.factor {
-            let c = &bank.coeffs[p * TAPS_PER_PHASE..(p + 1) * TAPS_PER_PHASE];
-            let y: f32 = c.iter().zip(win).map(|(a, b)| a * b).sum();
-            peak = peak.max(y.abs());
-        }
-        peak
-    }
-
+    /// The streaming interpolator is `craft-resample`'s polyphase on the whole signal: output
+    /// `n * factor + p` of the stream is what `push_phases` writes for input `n`, phase `p`.
     #[test]
-    fn partial_sums_match_sequential_sum_to_rounding() {
-        let mut rng = crate::testutil::Rng::new(9);
-        let mut signals: Vec<Vec<f32>> = vec![(0..48_000).map(|_| rng.uniform()).collect(), (0..48_000).map(|_| 1e-4 * rng.uniform()).collect()];
-        for f in [997.0, 11_025.0, 19_000.0, 23_900.0] {
-            signals.push(crate::testutil::sine(f, 0.99, 48_000.0, 48_000, 0.3));
-        }
-        let (mut max_abs, mut max_rel, mut max_db) = (0.0f32, 0.0f32, 0.0f64);
-        for factor in [2, 4] {
+    fn streaming_equals_the_whole_signal_polyphase() {
+        let mut rng = crate::testutil::Rng::new(5);
+        let x: Vec<f32> = (0..2_000).map(|_| rng.uniform()).collect();
+        for factor in [2, 4, 8] {
             let bank = PolyphaseBank::new(factor);
-            for x in &signals {
-                let (mut a, mut b) = (Interpolator::default(), Interpolator::default());
-                let (mut pa, mut pb) = (0.0f32, 0.0f32);
-                for &v in x {
-                    let (ya, yb) = (a.push_peak(&bank, v), push_peak_reference(&mut b, &bank, v));
-                    max_abs = max_abs.max((ya - yb).abs());
-                    if yb > 0.0 {
-                        max_rel = max_rel.max((ya - yb).abs() / yb);
-                    }
-                    pa = pa.max(ya);
-                    pb = pb.max(yb);
-                }
-                max_db = max_db.max((20.0 * (pa as f64 / pb as f64).log10()).abs());
+            let poly = bank.poly.as_ref().expect("bank");
+            let all = poly.process(&x, 0, x.len() * factor);
+            let (mut ip, mut out) = (Interpolator::default(), [0.0f32; MAX_FACTOR]);
+            for (n, &v) in x.iter().enumerate() {
+                ip.push_phases(&bank, v, &mut out);
+                assert_eq!(out[..factor], all[n * factor..(n + 1) * factor], "factor {factor} n {n}");
             }
         }
-        println!("true-peak interpolator vs sequential sum: max abs {max_abs:e}, max rel {max_rel:e}, max peak {max_db:e} dB");
-        assert!(max_abs < 1e-6, "abs {max_abs}");
-        assert!(max_db < 1e-5, "dB {max_db}");
+    }
+
+    // The Lean-generated vectors of craft-resample (craft-libs b0574cf `crates/resample/tests/
+    // vectors/lean-resample.csv`) through this app's path: `from_prototype` -> `push_phases`, in f32.
+    // The app interpolates (M = 1) with at most TAPS_PER_PHASE taps per phase, so those rows apply;
+    // the rest have M > 1, which the interpolator does not implement.
+    #[test]
+    fn lean_vectors_through_the_app_path() {
+        const TABLE: &str = include_str!("../tests/vectors/lean-resample.csv");
+        let rational = |t: &str| -> f64 {
+            let (n, d) = t.split_once('/').expect("fraction");
+            n.parse::<f64>().expect("num") / d.parse::<f64>().expect("den")
+        };
+        let list = |t: &str| -> Vec<f64> { t.split(' ').filter(|v| !v.is_empty()).map(rational).collect() };
+        let u = 2.0f64.powi(-24);
+        let (mut used, mut skipped, mut worst_ratio) = (0, 0, 0.0f64);
+        for line in TABLE.lines().skip(1) {
+            let f: Vec<&str> = line.split(',').collect();
+            let (up, down): (usize, usize) = (f[1].parse().expect("L"), f[2].parse().expect("M"));
+            let (x, h, y) = (list(f[6]), list(f[7]), list(f[8]));
+            let t = h.len().div_ceil(up);
+            if down != 1 || t > TAPS_PER_PHASE || up > MAX_FACTOR {
+                skipped += 1;
+                continue;
+            }
+            // `up == 1` is the identity-rate case: push_peak shortcuts it, push_phases still filters.
+            let bank = PolyphaseBank::from_prototype(&h, up);
+            let (mut ip, mut out) = (Interpolator::default(), [0.0f32; MAX_FACTOR]);
+            let mut got = Vec::new();
+            // input, then zeros to flush the filter's tail
+            for n in 0..x.len() + TAPS_PER_PHASE {
+                ip.push_phases(&bank, x.get(n).map_or(0.0, |&v| v as f32), &mut out);
+                got.extend_from_slice(&out[..up]);
+            }
+            for (m, &want) in y.iter().enumerate() {
+                let (i, p) = ((m / up) as i64, m % up);
+                let mag: f64 = (0..t)
+                    .map(|q| {
+                        let xv = usize::try_from(i - q as i64).ok().and_then(|j| x.get(j)).copied().unwrap_or(0.0);
+                        (h.get(p + q * up).copied().unwrap_or(0.0) * xv).abs()
+                    })
+                    .sum();
+                let bound = (t as f64 + 4.0) * u * mag;
+                let err = (f64::from(got[m]) - want).abs();
+                if bound > 0.0 {
+                    worst_ratio = worst_ratio.max(err / bound);
+                }
+                assert!(err <= bound, "{} {up}/{down} m={m}: err {err:e} > {bound:e}", f[0]);
+            }
+            used += 1;
+        }
+        println!("lean vectors via the interpolator: {used} rows used, {skipped} skipped (M > 1), worst error/bound {worst_ratio:.3}");
+        assert!(used >= 2);
     }
 }
